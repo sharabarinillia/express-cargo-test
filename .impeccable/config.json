@@ -21,6 +21,15 @@
         ],
         "createdAt": "2026-10-01T13:14:59.242Z",
         "reason": "Claude: false positive — detector does not resolve class-based display sizes; measured in Chromium at 1440px: h1 76–95px, h2 66px, h3 39px vs 17px body"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/styles/main.css"
+        ],
+        "createdAt": "2026-10-01T13:47:37.224Z",
+        "reason": "Claude: false positive — .custody-bar .seg::after is a bottom-edge progress meter (scaleX bound to custody progress via GSAP --fill), requested by the finish reviewer as a 'solid progress rule'; not a card side accent"
       }
     ]
   }
