@@ -4,7 +4,7 @@ Licensed through the Magnific (Freepik) stock library on the account's Premium+ 
 
 | File | Magnific title | Stock ID |
 |---|---|---|
-| hero-depart | Large Blue Passenger Airplane Taking Off into Cloudy Sky (4K source; desktop crop 2880×1620 at 0,270 and phone crop 1350×1760 at 1111,400, from 12.5 s; plays once) | 7683626 |
+| hero-clouds | Pilot POV while flying at the golden minute above an endless ocean of clouds, with an orange sun sinking in a golden horizon (4K source; 0.5–20.5 s, last 1.5 s crossfaded into the start for a seamless loop; phone crop 1350×2160 at 1250,0) | 7256473 |
 | air-loading | Low-angle video shot of cargo being loaded onto a large aircraft, showcasing logistics | 7082345 |
 | road-highway | Birdseye Aerial View of European Highway Traffic, Moving Cars and Trucks, Top Down Drone Shot | 9060859 |
 | sea-river | Container vessel loaded with containers sailing fast on a dutch river | 961214 |

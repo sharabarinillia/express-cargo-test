@@ -8,7 +8,7 @@
     <meta property="og:title" content="Express Cargo — Your most sensitive shipments, in safe hands" />
     <meta property="og:description" content="Air, road and sea freight for clinical trials, biological samples, dangerous goods and cold-chain cargo. Schiphol and Belgrade, since 2002." />
     <meta property="og:url" content="https://www.express-cargo.nl/" />
-    <meta property="og:image" content="https://www.express-cargo.nl/img/poster-hero-depart-1600.webp" />
+    <meta property="og:image" content="https://www.express-cargo.nl/img/poster-hero-clouds-1600.webp" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -32,7 +32,7 @@
     </script>
     <script type="module" src="/src/home.ts"></script>
   </head>
-  <body>
+  <body data-dark-hero>
     <!-- @include header -->
 
     <main id="main" class="relative" data-route-host>
@@ -49,17 +49,17 @@
       </div>
 
       <!-- HERO: full-bleed departure ──────────────────────────── -->
-      <section id="top" class="hero" data-leg="hero" data-wp="EHAM · 52°18′N 004°46′E">
+      <section id="top" class="hero on-night" data-route-dark data-leg="hero" data-wp="EHAM · 52°18′N 004°46′E">
         <div class="hero-media" aria-hidden="true" data-hero-media>
           <picture>
-            <source media="(max-width: 767px)" type="image/avif" srcset="/img/poster-hero-depart-m-480.avif 480w, /img/poster-hero-depart-m-720.avif 720w" sizes="100vw" />
-            <source media="(max-width: 767px)" type="image/webp" srcset="/img/poster-hero-depart-m-480.webp 480w, /img/poster-hero-depart-m-720.webp 720w" sizes="100vw" />
-            <source type="image/avif" srcset="/img/poster-hero-depart-960.avif 960w, /img/poster-hero-depart-1600.avif 1600w, /img/poster-hero-depart-1920.avif 1920w" sizes="100vw" />
-            <img src="/img/poster-hero-depart-1600.webp" srcset="/img/poster-hero-depart-960.webp 960w, /img/poster-hero-depart-1600.webp 1600w, /img/poster-hero-depart-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high" />
+            <source media="(max-width: 767px)" type="image/avif" srcset="/img/poster-hero-clouds-m-480.avif 480w, /img/poster-hero-clouds-m-720.avif 720w" sizes="100vw" />
+            <source media="(max-width: 767px)" type="image/webp" srcset="/img/poster-hero-clouds-m-480.webp 480w, /img/poster-hero-clouds-m-720.webp 720w" sizes="100vw" />
+            <source type="image/avif" srcset="/img/poster-hero-clouds-960.avif 960w, /img/poster-hero-clouds-1600.avif 1600w, /img/poster-hero-clouds-1920.avif 1920w" sizes="100vw" />
+            <img src="/img/poster-hero-clouds-1600.webp" srcset="/img/poster-hero-clouds-960.webp 960w, /img/poster-hero-clouds-1600.webp 1600w, /img/poster-hero-clouds-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high" />
           </picture>
-          <video muted playsinline preload="none" data-hero-video>
-            <source media="(max-width: 767px)" src="/video/hero-depart-m.mp4" type="video/mp4" />
-            <source src="/video/hero-depart.mp4" type="video/mp4" />
+          <video muted loop playsinline preload="none" data-hero-video>
+            <source media="(max-width: 767px)" src="/video/hero-clouds-m.mp4" type="video/mp4" />
+            <source src="/video/hero-clouds.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="hero-veil" aria-hidden="true"></div>
@@ -72,17 +72,17 @@
           <div class="wrap grid items-end gap-x-12 gap-y-6 lg:grid-cols-12">
             <p class="lede order-2 lg:order-none lg:col-span-5" data-fade>Specialist air, road and sea freight from Amsterdam Schiphol and Belgrade since 2002, for clinical trials, biological samples, dangerous goods and temperature-controlled cargo.</p>
             <div class="order-1 flex flex-wrap items-center gap-3 lg:order-none lg:col-span-5 lg:gap-4" data-fade>
-              <a href="/contact/#enquiry" class="btn btn-ink">Request a quote <!-- @include arrow --></a>
-              <a href="tel:+31203332405" class="btn btn-line whitespace-nowrap"><ec-icon name="phone" /> +31 20 333 2405</a>
+              <a href="/contact/#enquiry" class="btn btn-cyan">Request a quote <!-- @include arrow --></a>
+              <a href="tel:+31203332405" class="btn btn-line"><ec-icon name="phone" /> +31 20 333 2405</a>
             </div>
-            <ul class="chart order-3 flex flex-wrap gap-x-5 gap-y-2 text-ink-2 lg:order-none lg:col-span-2 lg:flex-col lg:items-end">
-              <li class="flex items-center gap-2"><ec-icon name="badge-check" class="!h-[18px] !w-[18px] text-cyan-ink" /> ISO 9001:2015</li>
-              <li class="flex items-center gap-2"><ec-icon name="plane" class="!h-[18px] !w-[18px] text-cyan-ink" /> IATA · DGR</li>
-              <li class="flex items-center gap-2"><ec-icon name="shield-check" class="!h-[18px] !w-[18px] text-cyan-ink" /> GDP</li>
+            <ul class="chart order-3 flex flex-wrap gap-x-5 gap-y-2 text-[#dbe5ee] lg:order-none lg:col-span-2 lg:flex-col lg:items-end">
+              <li class="flex items-center gap-2"><ec-icon name="badge-check" class="!h-[18px] !w-[18px] text-cyan" /> ISO 9001:2015</li>
+              <li class="flex items-center gap-2"><ec-icon name="plane" class="!h-[18px] !w-[18px] text-cyan" /> IATA · DGR</li>
+              <li class="flex items-center gap-2"><ec-icon name="shield-check" class="!h-[18px] !w-[18px] text-cyan" /> GDP</li>
             </ul>
           </div>
           <div class="wrap mt-8" data-fade>
-            <p class="manifest chart"><span class="text-mute">We carry</span> <span>UN3373 specimens</span> <span>Dry ice</span> <span>Clinical trial kits</span> <span>Lithium batteries</span> <span>+2–8 °C</span> <span>−20 °C</span> <span>Oversize</span></p>
+            <p class="manifest chart"><span class="text-[#9fb2c6]">We carry</span> <span>UN3373 specimens</span> <span>Dry ice</span> <span>Clinical trial kits</span> <span>Lithium batteries</span> <span>+2–8 °C</span> <span>−20 °C</span> <span>Oversize</span></p>
           </div>
         </div>
       </section>
@@ -440,7 +440,7 @@
                     <option value="time-critical">Time-critical (NFO · OBC · Direct)</option>
                   </select>
                 </div>
-                <button class="btn btn-cyan self-end justify-between" type="submit">Continue to quote <!-- @include arrow --></button>
+                <button class="btn btn-cyan self-end" type="submit">Continue to quote <!-- @include arrow --></button>
               </form>
               <p class="mt-6 text-[#c9d6e3]">Prefer to talk? Call <a class="link-u whitespace-nowrap text-white" href="tel:+31203332405">+31 20 333 2405</a> or email <a class="link-u whitespace-nowrap text-white" href="mailto:salesams@express-cargo.com">salesams@express-cargo.com</a>.</p>
             </div>

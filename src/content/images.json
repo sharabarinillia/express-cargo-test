@@ -178,23 +178,6 @@
     "ratio": 0.862,
     "source": "brand/site-photos/team-kim.jpg"
   },
-  "poster-hero-depart": {
-    "widths": [
-      960,
-      1600,
-      1920
-    ],
-    "ratio": 1.7778,
-    "source": "brand/stock/hero-depart-poster.jpg"
-  },
-  "poster-hero-depart-m": {
-    "widths": [
-      480,
-      720
-    ],
-    "ratio": 0.7676,
-    "source": "brand/stock/hero-depart-m-poster.jpg"
-  },
   "poster-air-loading": {
     "widths": [
       960,
@@ -250,5 +233,22 @@
     ],
     "ratio": 1.7778,
     "source": "brand/stock/close-wing-poster.jpg"
+  },
+  "poster-hero-clouds": {
+    "widths": [
+      960,
+      1600,
+      1920
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/hero-clouds-poster.jpg"
+  },
+  "poster-hero-clouds-m": {
+    "widths": [
+      480,
+      720
+    ],
+    "ratio": 0.625,
+    "source": "brand/stock/hero-clouds-m-poster.jpg"
   }
 }
