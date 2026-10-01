@@ -46,6 +46,7 @@ Express Cargo is a small, specialised forwarder founded in 2002, with offices at
 - **Voice:** calm, precise and reassuring, with no hype. Deck lines to keep: "Precision logistics since 2002", "Fast & Safe Transportation", "One partner, every mode", "When it absolutely cannot wait", "A partner you can rely on", "Placing your shipment in our hands is placing it in safe and reliable hands."
 
 - **User decisions (October 2026):** the dark "Logger trace" design was not approved. The site must be **semi-light** and use a completely new design. It should be immersive and modern, with scroll-based animation and icons, and it should use Magnific stock photos and video for imagery. The chosen direction is "Flight chart" (aeronautical chart).
+- **Flight chart review (October 2026):** the scroll-flown aircraft route is approved. Follow-ups: the hero must take the full width of the canvas; **no grid backgrounds anywhere**; the world-map section must be a realistic 3D globe (globe.gl or a custom Cobe/three.js build); Barlow and Barlow Condensed are replaced (now Overpass + Overpass Mono, with Sora for display); the logo must sit straight and even (the traced SVG was rotated ~0.9° and asymmetric).
 
 ## Evidence on Hand
 
