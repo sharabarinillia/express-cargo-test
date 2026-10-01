@@ -1,10 +1,16 @@
 import './styles/main.css';
 import { initShell } from './lib/shell';
 import { initTrace } from './lib/trace';
-import { initHeadlines, initLogger, initReveals } from './lib/motion';
+import { initColdChain, initHeadlines, initJourneys, initLogger, initPrintout, initReveals, initTimeCritical } from './lib/motion';
 
 initShell();
-initTrace();
+// pins first, so the trace measures chapters with their pin spacers
+initTimeCritical();
+let setTemp: (t: number) => void = () => {};
+const trace = initTrace((t) => setTemp(t));
+setTemp = initLogger(trace);
 initHeadlines();
 initReveals();
-initLogger();
+initColdChain();
+initJourneys();
+initPrintout(trace);

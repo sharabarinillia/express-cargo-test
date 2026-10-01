@@ -1,7 +1,7 @@
 import './styles/main.css';
 import { gsap } from 'gsap';
 import { initShell, reducedMotion } from './lib/shell';
-import { initHeadlines, initReveals } from './lib/motion';
+import { initHeadlines } from './lib/motion';
 
 /** Where enquiries go. Set VITE_FORM_ENDPOINT to POST JSON to a form backend; otherwise we fall back to the visitor's email app. */
 const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
@@ -9,22 +9,14 @@ const SALES = 'salesams@express-cargo.com';
 
 initShell();
 initHeadlines();
-initReveals();
+
 drawTrace();
 initForm();
 
 function drawTrace() {
-  const path = document.querySelector<SVGPathElement>('[data-contact-trace]');
-  if (!path) return;
-  let d = '';
-  for (let x = 0; x <= 1000; x += 5) {
-    const y = 36 + 7 * (0.6 * Math.sin(x / 31) + 0.3 * Math.sin(x / 11 + 1.3) + 0.12 * Math.sin(x / 4.3));
-    d += `${x ? 'L' : 'M'}${x} ${y.toFixed(1)}`;
-  }
-  path.setAttribute('d', d);
-  if (reducedMotion) return;
-  const len = path.getTotalLength();
-  gsap.fromTo(path, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 2.4, delay: 0.4, ease: 'power2.inOut' });
+  const line = document.querySelector<HTMLElement>('[data-contact-trace]');
+  if (!line || reducedMotion) return;
+  gsap.fromTo(line, { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 1.4, delay: 0.3, ease: 'expo.out' });
 }
 
 function initForm() {

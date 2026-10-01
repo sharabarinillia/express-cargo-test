@@ -150,7 +150,10 @@ body {
   color: color-mix(in oklab, var(--color-paper) 82%, var(--color-muted));
 }
 .hl {
-  color: var(--color-cyan);
+  /* emphasis by width, not colour: cyan belongs to the live trace */
+  font-stretch: 62%;
+  font-weight: 720;
+  letter-spacing: -0.005em;
 }
 
 /* split-text line masks */
@@ -304,8 +307,7 @@ body {
     transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .site-header.is-solid {
-  background: color-mix(in oklab, var(--color-ink-900) 92%, transparent);
-  backdrop-filter: blur(8px);
+  background: var(--color-ink-900);
   box-shadow: 0 1px 0 color-mix(in oklab, var(--color-line) 70%, transparent);
 }
 .site-header.is-hidden {
@@ -414,8 +416,7 @@ body {
   transform: translateY(-50%);
   min-width: 212px;
   padding: 10px 12px 11px;
-  background: color-mix(in oklab, var(--color-ink-900) 88%, transparent);
-  backdrop-filter: blur(6px);
+  background: var(--color-ink-950);
   box-shadow:
     inset 0 0 0 1px color-mix(in oklab, var(--color-cyan) 35%, transparent),
     0 12px 32px -12px rgb(0 0 0 / 0.5);
@@ -611,8 +612,9 @@ body {
     color 0.2s;
 }
 .choice input:checked + span {
-  box-shadow: inset 0 0 0 2px var(--color-cyan);
-  color: var(--color-cyan);
+  box-shadow: inset 0 0 0 2px var(--color-paper);
+  color: var(--color-paper);
+  background: var(--color-ink-700);
 }
 .choice input:focus-visible + span {
   outline: 2px solid var(--color-cyan);
@@ -706,10 +708,8 @@ body {
   height: 14px;
   margin: -7px 0 0 -7px;
   border-radius: 50%;
-  background: var(--color-cyan);
-  box-shadow:
-    0 0 0 6px color-mix(in oklab, var(--color-cyan) 25%, transparent),
-    0 0 0 14px color-mix(in oklab, var(--color-cyan) 10%, transparent);
+  background: var(--color-paper);
+  box-shadow: 0 0 0 5px color-mix(in oklab, var(--color-paper) 18%, transparent);
 }
 .menu-open .logger {
   opacity: 0;
@@ -723,4 +723,497 @@ body {
 /* pages without the trace rail use the full measure */
 body.no-rail {
   --content-right: var(--gutter);
+}
+
+/* ── Trace v2: record details ────────────────────────────────────── */
+@layer components {
+  .trace-dots {
+    fill: none;
+    stroke: var(--color-cyan);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 0 19;
+    opacity: 0.55;
+    vector-effect: non-scaling-stroke;
+  }
+  .trace-tip {
+    fill: var(--color-ink-900);
+    stroke: var(--color-cyan);
+    stroke-width: 2;
+  }
+  .trace-events {
+    position: absolute;
+    inset: 0;
+  }
+  .trace-event {
+    position: absolute;
+    right: calc(var(--rail-x) + var(--rail-w) / 2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transform: translateY(-50%);
+    color: var(--color-muted);
+    opacity: 0.35;
+    transition:
+      opacity 0.2s,
+      color 0.2s;
+  }
+  .trace-event i {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+  }
+  .trace-event b {
+    font-weight: 600;
+  }
+  .trace-event.is-on {
+    opacity: 1;
+    color: var(--color-paper);
+  }
+  .trace-event.is-on b {
+    color: var(--color-cyan);
+  }
+  [data-theme="light"] .trace-event.is-on,
+  .trace-event.is-on.on-light {
+    color: var(--color-ink-900);
+  }
+  .trace-rail.is-warn .trace-band {
+    box-shadow:
+      inset 1px 0 0 color-mix(in oklab, var(--color-cyan) 45%, transparent),
+      inset -2px 0 0 var(--color-amber);
+  }
+  .logger .warn-flag {
+    display: none;
+    margin-top: 6px;
+    color: var(--color-amber);
+  }
+  .logger.is-warn .warn-flag {
+    display: block;
+  }
+  .logger.is-warn .temp {
+    color: var(--color-amber);
+  }
+  .logger.is-warn {
+    box-shadow:
+      inset 0 0 0 1px var(--color-amber),
+      0 12px 32px -12px rgb(0 0 0 / 0.5);
+  }
+  .snap-flash {
+    box-shadow: inset 0 -1px 0 var(--color-cyan);
+  }
+
+  /* spec sheet rows (replaces pills and feature tiles) */
+  .spec {
+    border-top: 1px solid var(--color-line);
+    column-gap: 48px;
+  }
+  .spec > div {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .spec dt {
+    font-stretch: 75%;
+    font-weight: 560;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    padding-top: 3px;
+  }
+  .steps {
+    border-top: 1px solid var(--color-line);
+  }
+  .steps .step {
+    border-top: 0;
+    padding: 20px 24px 22px 0;
+  }
+  @media (min-width: 640px) {
+    .steps .step + .step {
+      border-left: 1px solid var(--color-line);
+      padding-left: 24px;
+    }
+  }
+
+  /* certificate record */
+  .certs > div {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-line);
+  }
+  .certs > div:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .certs dt {
+    font-stretch: 75%;
+    font-weight: 560;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    padding-top: 6px;
+  }
+  .certs dd {
+    font-stretch: 112%;
+    font-weight: 650;
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+  .certs dd span {
+    display: block;
+    font-stretch: 100%;
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--color-muted);
+  }
+
+  /* custody chain (time-critical) */
+  .custody-row {
+    display: grid;
+    gap: 14px;
+    padding: 22px 0;
+    border-top: 1px solid var(--color-line);
+  }
+  .custody-row:last-of-type {
+    border-bottom: 1px solid var(--color-line);
+  }
+  @media (min-width: 900px) {
+    .custody-row {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: center;
+      gap: 32px;
+    }
+  }
+  .custody-bar {
+    display: flex;
+    height: 40px;
+    gap: 3px;
+  }
+  .custody-bar .seg {
+    position: relative;
+    flex: 0 0 calc(var(--w) - 2px);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-amber) 45%, transparent);
+    overflow: hidden;
+  }
+  .custody-bar .seg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--color-amber) 22%, transparent);
+    transform-origin: left;
+    transform: scaleX(var(--fill, 1));
+  }
+  .custody-bar .seg-one::before {
+    background: color-mix(in oklab, var(--color-amber) 30%, transparent);
+  }
+  .custody-bar b {
+    position: relative;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 12px;
+    font-stretch: 75%;
+    font-weight: 560;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* the ice chapter: a frost ground that sweeps in from the rail */
+  .ice-ground {
+    position: absolute;
+    inset: 0;
+    background: var(--color-ice);
+  }
+  #cold-chain {
+    background: var(--color-ink-900);
+  }
+
+  /* three-lane temperature plot */
+  .lanes-plot {
+    position: relative;
+    height: clamp(340px, 38vw, 480px);
+    border-left: 1px solid var(--color-ice-line);
+    border-bottom: 1px solid var(--color-ice-line);
+    margin-left: 3.2rem;
+  }
+  .lanes-plot svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .lanes-grid line {
+    stroke: var(--color-ice-line);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+  .lane-band {
+    fill: color-mix(in oklab, var(--color-cyan-deep) 12%, transparent);
+  }
+  .lane-trace {
+    fill: none;
+    stroke: var(--color-cyan-deep);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+  }
+  .lanes-axis span {
+    position: absolute;
+    left: -3.2rem;
+    transform: translateY(-50%);
+    color: var(--color-slate);
+  }
+  .lane-readout {
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: right;
+    background: var(--color-ice);
+    padding: 4px 0 4px 12px;
+  }
+  .lane-readout .readout {
+    display: block;
+    color: var(--color-slate);
+  }
+  .lane-readout b {
+    font-stretch: 125%;
+    font-weight: 760;
+    font-size: clamp(1.5rem, 2.6vw, 2.6rem);
+    line-height: 1;
+    color: var(--color-ink-900);
+    white-space: nowrap;
+  }
+
+  /* logged journeys ledger */
+  .journey-shot {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .journey-shot.is-active {
+    opacity: 1;
+  }
+  .journey-shot picture,
+  .journey-shot img {
+    width: 100%;
+    height: 100%;
+  }
+  .ledger {
+    border-top: 1px solid var(--color-line);
+  }
+  .ledger li {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 16px;
+    width: 100%;
+    padding: 22px 16px 24px 0;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+  }
+  .ledger-row .route {
+    color: var(--color-paper);
+  }
+  .ledger-row .mode {
+    color: var(--color-muted);
+    text-align: right;
+  }
+  .ledger-row .mini {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 22px;
+    margin: 4px 0;
+  }
+  .ledger-row .mini path {
+    fill: none;
+    stroke: var(--color-muted);
+    stroke-width: 1.25;
+    vector-effect: non-scaling-stroke;
+  }
+  .ledger-row .title {
+    grid-column: 1 / -1;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-stretch: 108%;
+  }
+  .ledger-row .desc {
+    grid-column: 1 / -1;
+    color: color-mix(in oklab, var(--color-paper) 78%, var(--color-muted));
+    max-width: 60ch;
+  }
+  .ledger-row::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 22px;
+    bottom: 24px;
+    width: 2px;
+    background: var(--color-cyan);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ledger-row.is-active::before {
+    transform: scaleY(1);
+  }
+  .ledger-row.is-active .mini path {
+    stroke: var(--color-cyan);
+  }
+  .ledger-row:hover .title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  /* quieter measurement surface under proof content */
+  .graticule-quiet {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-line) 22%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 22%, transparent) 1px, transparent 1px);
+    background-size: 96px 48px;
+  }
+
+  /* team: one row on desktop, a horizontal reel on small screens */
+  .team {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+  }
+  @media (max-width: 1023px) {
+    .team {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin-right: calc(var(--content-right) * -1);
+      padding-right: var(--content-right);
+      padding-bottom: 8px;
+    }
+    .team > li {
+      flex: 0 0 min(62vw, 260px);
+      scroll-snap-align: start;
+    }
+  }
+  .office {
+    padding: 22px 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* closing printout */
+  .printout {
+    background: var(--color-ink-950);
+    box-shadow: inset 0 0 0 1px var(--color-line);
+    padding: 18px 20px 20px;
+  }
+  .printout-head {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-paper);
+  }
+  .printout-plot {
+    position: relative;
+    margin-top: 16px;
+    height: 150px;
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-line) 50%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 50%, transparent) 1px, transparent 1px);
+    background-size: 5% 25%;
+  }
+  .printout-plot svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .printout-band {
+    fill: color-mix(in oklab, var(--color-cyan) 10%, transparent);
+  }
+  .printout-trace {
+    fill: none;
+    stroke: var(--color-cyan);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+  .printout-events span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-left: 1px dashed color-mix(in oklab, var(--color-muted) 50%, transparent);
+    padding-left: 4px;
+    color: var(--color-muted);
+    font-size: 0.6rem;
+    white-space: nowrap;
+  }
+  .printout-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 24px;
+    margin-top: 18px;
+  }
+  @media (min-width: 768px) {
+    .printout-stats {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+  .printout-stats dt {
+    color: var(--color-muted);
+  }
+  .printout-stats dd {
+    margin-top: 4px;
+    font-size: 0.95rem;
+    color: var(--color-paper);
+  }
+  .startlog-strip {
+    position: relative;
+    height: 44px;
+    border-top: 1px dashed var(--color-line);
+    border-bottom: 1px dashed var(--color-line);
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    color: var(--color-muted);
+  }
+  .startlog-strip::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    margin-top: -4.5px;
+    border-radius: 50%;
+    border: 2px solid var(--color-cyan);
+    background: var(--color-ink-900);
+  }
+  .startlog-strip .readout {
+    margin-left: 18px;
+  }
+  .row-arrow {
+    align-self: center;
+  }
+}
+
+@media (max-width: 767px) {
+  /* keep photos clear of the rail on phones */
+  .trace-rail {
+    background-color: var(--color-ink-900);
+  }
+  .trace-event span {
+    display: none;
+  }
+  .trace-event i {
+    width: 10px;
+  }
 }

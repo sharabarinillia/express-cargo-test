@@ -36,12 +36,13 @@ for (const [name, [src, widths]] of Object.entries(SETS)) {
   const out = [];
   for (const w of widths) {
     const width = Math.min(w, meta.width);
-    const base = sharp(src).rotate().resize({ width, withoutEnlargement: true });
+    const crop = name === 'project-kenya' ? { left: 0, top: 0, width: meta.width, height: Math.round(meta.height * 0.9) } : null; // trims the PhotoGrid app watermark
+    const base = (crop ? sharp(src).extract(crop) : sharp(src)).rotate().resize({ width, withoutEnlargement: true });
     await base.clone().avif({ quality: 52, effort: 5 }).toFile(`public/img/${name}-${width}.avif`);
     await base.clone().webp({ quality: 74 }).toFile(`public/img/${name}-${width}.webp`);
     out.push(width);
   }
-  manifest[name] = { widths: [...new Set(out)], ratio: +(meta.width / meta.height).toFixed(4), source: src };
+  manifest[name] = { widths: [...new Set(out)], ratio: +(meta.width / (name === 'project-kenya' ? meta.height * 0.9 : meta.height)).toFixed(4), source: src };
   console.log(name, out.join(','));
 }
 await writeFile('src/content/images.json', JSON.stringify(manifest, null, 2));
