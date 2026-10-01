@@ -1209,3 +1209,7 @@ body.no-rail {
     width: 10px;
   }
 }
+/* lines are split at their final width; keep their content fixed while the width settles */
+.split-line {
+  white-space: nowrap;
+}
