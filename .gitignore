@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.coverage
+node_modules/
+dist/
+.claude/settings.local.json
+.impeccable/config.local.json
