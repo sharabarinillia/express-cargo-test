@@ -959,21 +959,28 @@
   }
   .fl-flown {
     position: absolute;
-    inset: -0.5px auto -0.5px 0;
-    width: var(--fl, 0%);
-    background: var(--color-cyan);
+    inset: -0.5px 0 -0.5px 0;
     height: 3px;
-    transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--color-cyan);
+    transform-origin: left;
+    transform: scaleX(var(--flk, 0));
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* a full-width rail moved by transform, so its % tracks the line */
+  .fl-rail {
+    position: absolute;
+    inset: 0;
+    transform: translateX(var(--fl, 0%));
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .fl-plane {
     position: absolute;
     top: 50%;
-    left: var(--fl, 0%);
+    left: 0;
     width: 30px;
     height: 30px;
     color: var(--color-ink);
     transform: translate(-50%, -50%) rotate(90deg);
-    transition: left 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     filter: drop-shadow(0 4px 6px rgb(14 42 74 / 0.25));
   }
   .sentence-line {

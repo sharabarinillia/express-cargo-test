@@ -30,6 +30,7 @@ function initForm() {
   const syncLine = () => {
     const done = KEY.filter((k) => value(k)).length;
     line?.style.setProperty('--fl', `${(done / KEY.length) * 100}%`);
+    line?.style.setProperty('--flk', String(done / KEY.length));
     const to = value('to');
     if (dest) dest.textContent = to || 'Your destination';
     dest?.parentElement?.classList.toggle('is-set', !!to);
@@ -127,6 +128,7 @@ function initForm() {
     form.classList.add('hidden');
     success.classList.remove('hidden');
     line?.style.setProperty('--fl', '100%');
+    line?.style.setProperty('--flk', '1');
     if (ENDPOINT) {
       success.querySelector('[data-success-title]')!.textContent = 'Thank you. Your enquiry is on its way.';
       success.querySelector('[data-success-copy]')!.textContent = 'A coordinator will get back to you. For anything urgent, call +31 20 333 2405.';
