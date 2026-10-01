@@ -14,9 +14,11 @@ drawTrace();
 initForm();
 
 function drawTrace() {
-  const line = document.querySelector<HTMLElement>('[data-contact-trace]');
+  const line = document.querySelector<SVGLineElement>('[data-contact-trace]');
   if (!line || reducedMotion) return;
-  gsap.fromTo(line, { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: 1.4, delay: 0.3, ease: 'expo.out' });
+  line.setAttribute('pathLength', '1');
+  gsap.fromTo(line, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.6, delay: 0.4, ease: 'expo.out' });
+  gsap.from('[data-fade]', { y: 18, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1, delay: 0.35 });
 }
 
 function initForm() {

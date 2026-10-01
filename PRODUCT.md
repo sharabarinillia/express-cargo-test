@@ -45,6 +45,8 @@ Express Cargo is a small, specialised forwarder founded in 2002, with offices at
 - **Name:** "Express Cargo" (group: "Express-Cargo Group"; NL entity sometimes "Express-Cargo Amsterdam").
 - **Voice:** calm, precise and reassuring, with no hype. Deck lines to keep: "Precision logistics since 2002", "Fast & Safe Transportation", "One partner, every mode", "When it absolutely cannot wait", "A partner you can rely on", "Placing your shipment in our hands is placing it in safe and reliable hands."
 
+- **User decisions (October 2026):** the dark "Logger trace" design was not approved. The site must be **semi-light** and use a completely new design. It should be immersive and modern, with scroll-based animation and icons, and it should use Magnific stock photos and video for imagery. The chosen direction is "Flight chart" (aeronautical chart).
+
 ## Evidence on Hand
 
 - The deck: `brand/source/express-cargo-presentation.pdf` (19 slides).

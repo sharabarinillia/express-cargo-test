@@ -5,25 +5,25 @@ primary_target: "src/pages/index.html"
 related_targets: []
 ---
 
-# Surface brief: Home (scroll story) + site shell
+# Surface brief: Home (scroll story) + site shell + contact
 
-Scope: the home page `/` as an immersive scroll story, plus the shared shell (nav, footer, quote entry points) that every sub-page inherits. Visitor mode: Persuade.
+Scope: the home page `/` as an immersive scroll story; the shared shell (nav, footer, quote entry points) and `/contact/` follow the same world. Visitor mode: Persuade.
 
-Audience and job: pharma, clinical, lab and industrial logistics buyers with a sensitive or time-critical shipment, who need a specialist they can trust and a quick way to request a quote.
+Audience and job: pharma, clinical, lab and industrial logistics buyers with a sensitive or time-critical shipment, who need a specialist they can trust and a fast way to request a quote.
 Action: request a quote (primary), or call or email (secondary).
-Proof: the real deck content (IATA, ISO 9001 TÜV SÜD, GDP, DGR), cold-chain zones, NFO/OBC/Direct Driver, 6 real projects, named team, Schiphol and Belgrade offices.
-Constraints: logo plus navy/cyan/white brand; English only; hybrid IA; no fabricated metrics; the trace is illustrative and labelled as such.
+Proof: deck content (IATA, ISO 9001 TÜV SÜD, GDP, DGR), cold-chain zones, NFO/OBC/Direct Driver, 5 real projects plus white glove, named team, Schiphol and Belgrade.
+Constraints: semi-light theme (user-mandated); logo plus navy/cyan brand; Magnific stock video and photos; icons; English only; no fabricated metrics.
 
 ## Direction contract
 
-THESIS: The page is one shipment's temperature-logger trace, drawn by your scroll. It holds inside its band from pickup to delivery while the world around it changes from apron to road to sea to cold store. It refuses the category default of a cinematic hero, stat counters and a service-card grid.
+THESIS: The page is an aeronautical chart. Scrolling flies one shipment's route from EHAM Schiphol through every service waypoint to delivery, with a small aircraft tracking the plotted line. It refuses the category default of a dark cinematic hero, stat counters and a card grid of services.
 
-OWN-WORLD: Deep navy instrument ground (#0B2140 → #071A30) and ink blue fields. Logo cyan (#12C4DE) belongs only to the live trace, the in-band channel and live readouts. Amber (#FFB23F) appears only for excursions, time-critical items and the quote action. One pale "ice" chapter (#E9F6FA) for the cold store. Archivo is the only family: expanded widths for display, normal width for prose, semi-condensed tabular numerals for readouts. Hairline graticule grids, tick marks, timestamp rails and bracketed readouts. Photos are graded cool and duotone-leaning, with one dominant image per chapter.
+OWN-WORLD: Cool chart paper ground (#EEF2F5) with white chart panels and navy ink (#0E2A4A). Cyan (#12C4DE, text #0A7F93) for the plotted route and airspace tints, and chart magenta (#B4236B) only for waypoint symbols and the active position. Navy video "insets" are the dark bands, so the page is semi-light. Sora for display headlines, Barlow for text, Barlow Condensed caps for chart lettering, coordinates and frequencies. Hairline lat/long graticule, compass ticks, waypoint triangles and VOR roses, and dashed airways. Lucide line icons at a 1.5 stroke inside chart symbols.
 
-STORY: Visitors see that this firm moves what others won't touch, under control, by every mode. They come to believe it through certifications, temperature zones, projects and people, then request a quote at the "Delivered, within range" close.
+STORY: Visitors read that this specialist moves sensitive cargo by every mode from Schiphol and Belgrade, see the proof plotted as real routes and certified legends, and file a quote styled as a flight plan.
 
-FIRST VIEWPORT: A full-bleed dusk apron photo (AI-generated, pharma container being loaded) with a slow push-in. Top-left logo; a slim nav with "Request a quote" (amber) at top right. Left two-thirds: kicker "Precision logistics since 2002 · Schiphol & Belgrade" and the headline "Your most sensitive shipments, in safe hands." in Archivo Expanded at about 7vw. Across the bottom third a graticule strip with the 2–8 °C cyan band; the trace draws in from the left on load and stops at "now". A bracketed readout at the right reads "PICKUP · AMS · +4.1 °C · 04:12". Under the headline: the primary quote CTA and a phone link.
+FIRST VIEWPORT: The left 55% is chart paper with a graticule. It holds a coordinate kicker "EHAM · 52°18′N 004°46′E", the Sora headline "Your most sensitive shipments, in safe hands." at about 5.6vw, a lede, a navy "Request a quote" button and a phone link. The right 45% is a framed video inset (A330 take-off, light sky) with coordinate ticks on its frame and a magenta EHAM waypoint at its corner. The route line starts at that waypoint and exits down the page, and the aircraft icon sits on it.
 
-FORM: Logger trace (data-logger printout / cold-chain instrument record), candidate 1 on my ordered list (assigned was 3, the handling-label system). The user chose the pick. Seed key 035c9c1f. Raises kept: snap-and-settle state changes for readouts (from depot blind); one dominant image per chapter that survives any crop (from poster); every claim traceable to its evidence (from jacquard).
+FORM: Flight chart (aeronautical enroute and approach chart), my top-ranked pick in re-roll round 1, chosen by the user. Seed key 035c9c1f (reroll 1). Raises kept: scroll-linked depth on video insets (from the multiplane challenger) and one decisive moment per chapter (from the forging challenger).
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

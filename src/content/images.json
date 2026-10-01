@@ -177,5 +177,69 @@
     ],
     "ratio": 0.862,
     "source": "brand/site-photos/team-kim.jpg"
+  },
+  "poster-hero-a330": {
+    "widths": [
+      960,
+      1600
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/hero-a330-poster.jpg"
+  },
+  "poster-air-loading": {
+    "widths": [
+      960,
+      1600
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/air-loading-poster.jpg"
+  },
+  "poster-road-highway": {
+    "widths": [
+      960,
+      1600
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/road-highway-poster.jpg"
+  },
+  "poster-sea-river": {
+    "widths": [
+      960,
+      1600
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/sea-river-poster.jpg"
+  },
+  "poster-tc-cargojet": {
+    "widths": [
+      960,
+      1600
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/tc-cargojet-poster.jpg"
+  },
+  "poster-lab-tubes": {
+    "widths": [
+      960,
+      1280
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/lab-tubes-poster.jpg"
+  },
+  "poster-cold-store": {
+    "widths": [
+      960,
+      1600
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/cold-store-poster.jpg"
+  },
+  "poster-close-wing": {
+    "widths": [
+      960,
+      1600
+    ],
+    "ratio": 1.7778,
+    "source": "brand/stock/close-wing-poster.jpg"
   }
 }

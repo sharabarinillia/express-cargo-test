@@ -27,6 +27,14 @@ const SETS = {
   'team-niels': ['brand/site-photos/team-niels.jpg', [480, 800]],
   'team-josette': ['brand/site-photos/team-josette.jpg', [480, 800]],
   'team-kim': ['brand/site-photos/team-kim.jpg', [480, 800]],
+  'poster-hero-a330': ['brand/stock/hero-a330-poster.jpg', [960, 1600]],
+  'poster-air-loading': ['brand/stock/air-loading-poster.jpg', [960, 1600]],
+  'poster-road-highway': ['brand/stock/road-highway-poster.jpg', [960, 1600]],
+  'poster-sea-river': ['brand/stock/sea-river-poster.jpg', [960, 1600]],
+  'poster-tc-cargojet': ['brand/stock/tc-cargojet-poster.jpg', [960, 1600]],
+  'poster-lab-tubes': ['brand/stock/lab-tubes-poster.jpg', [960, 1280]],
+  'poster-cold-store': ['brand/stock/cold-store-poster.jpg', [960, 1600]],
+  'poster-close-wing': ['brand/stock/close-wing-poster.jpg', [960, 1600]],
 };
 
 await mkdir('public/img', { recursive: true });

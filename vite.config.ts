@@ -31,9 +31,36 @@ function pictures(html: string): string {
   });
 }
 
+/** `<ec-icon name="plane" class="…">` → inline Lucide SVG (decorative, 1.5 stroke). */
+function icons(html: string): string {
+  return html.replace(/<ec-icon\s+([^>]*?)\/?>/g, (_, rawAttrs: string) => {
+    const attrs: Record<string, string> = {};
+    rawAttrs.replace(/([\w-]+)="([^"]*)"/g, (_m: string, k: string, v: string) => ((attrs[k] = v), ''));
+    const file = resolve(import.meta.dirname, `node_modules/lucide-static/icons/${attrs.name}.svg`);
+    let svg = readFileSync(file, 'utf8').replace(/<!--.*?-->/s, '').trim();
+    svg = svg
+      .replace(/class="[^"]*"/, `class="icon ${attrs.class ?? ''}" aria-hidden="true" focusable="false"`)
+      .replace(/stroke-width="2"/, `stroke-width="${attrs.stroke ?? '1.5'}"`)
+      .replace(/\s*width="24"\s*height="24"/, '')
+      .replace(/\n\s*/g, ' ');
+    return svg;
+  });
+}
+
+/** `<ec-video name="x" class="…">` → muted looping inset video with responsive poster. */
+function videos(html: string): string {
+  return html.replace(/<ec-video\s+([^>]*?)\/?>/g, (_, rawAttrs: string) => {
+    const attrs: Record<string, string> = {};
+    rawAttrs.replace(/([\w-]+)="([^"]*)"/g, (_m: string, k: string, v: string) => ((attrs[k] = v), ''));
+    const poster = images[`poster-${attrs.name}`];
+    const w = poster ? poster.widths.find((x) => x >= 1200) ?? poster.widths[poster.widths.length - 1] : 0;
+    return `<video class="${attrs.class ?? ''}" muted loop playsinline preload="none" data-video${poster ? ` poster="/img/poster-${attrs.name}-${w}.webp"` : ''} aria-hidden="true"><source src="/video/${attrs.name}.mp4" type="video/mp4"></video>`;
+  });
+}
+
 const html = (): Plugin => ({
   name: 'ec-html',
-  transformIndexHtml: { order: 'pre', handler: (src) => pictures(includes(src)) },
+  transformIndexHtml: { order: 'pre', handler: (src) => videos(icons(pictures(includes(src)))) },
 });
 
 export default defineConfig({
