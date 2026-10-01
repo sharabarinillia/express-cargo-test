@@ -18,7 +18,7 @@ function drawTrace() {
   if (!line || reducedMotion) return;
   line.setAttribute('pathLength', '1');
   gsap.fromTo(line, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.6, delay: 0.4, ease: 'expo.out' });
-  gsap.from('[data-fade]', { y: 18, autoAlpha: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1, delay: 0.35 });
+  gsap.from('[data-fade]', { y: 18, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1, delay: 0.35 });
 }
 
 function initForm() {

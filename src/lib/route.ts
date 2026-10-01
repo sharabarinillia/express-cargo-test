@@ -72,15 +72,33 @@ export function initRoute(): void {
       pts.push({ x, y: Math.max(box.top + 140, box.bottom - 56) });
     }
 
-    // path: verticals down each margin, S-curves across the gaps
+    // path: verticals down each margin, S-curves across the gaps. The same
+    // geometry is sampled here directly (cheap) instead of querying the SVG
+    // path thousands of times, which blocked the main thread on long pages.
     let d = `M${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
+    const raw: { x: number; y: number }[] = [{ x: pts[0].x, y: pts[0].y }];
     for (let i = 1; i < pts.length; i++) {
       const a = pts[i - 1];
       const b = pts[i];
-      if (Math.abs(a.x - b.x) < 1) d += `L${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
-      else {
+      if (Math.abs(a.x - b.x) < 1) {
+        d += `L${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
+        const n = Math.max(1, Math.ceil(Math.hypot(b.x - a.x, b.y - a.y) / 6));
+        for (let k = 1; k <= n; k++) raw.push({ x: a.x + ((b.x - a.x) * k) / n, y: a.y + ((b.y - a.y) * k) / n });
+      } else {
         const dy = b.y - a.y;
-        d += `C${a.x.toFixed(1)} ${(a.y + dy * 0.55).toFixed(1)} ${b.x.toFixed(1)} ${(b.y - dy * 0.55).toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
+        const c1 = { x: a.x, y: a.y + dy * 0.55 };
+        const c2 = { x: b.x, y: b.y - dy * 0.55 };
+        d += `C${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
+        const approx = Math.hypot(c1.x - a.x, c1.y - a.y) + Math.hypot(c2.x - c1.x, c2.y - c1.y) + Math.hypot(b.x - c2.x, b.y - c2.y);
+        const n = Math.max(4, Math.ceil(approx / 6));
+        for (let k = 1; k <= n; k++) {
+          const t = k / n;
+          const u = 1 - t;
+          raw.push({
+            x: u * u * u * a.x + 3 * u * u * t * c1.x + 3 * u * t * t * c2.x + t * t * t * b.x,
+            y: u * u * u * a.y + 3 * u * u * t * c1.y + 3 * u * t * t * c2.y + t * t * t * b.y,
+          });
+        }
       }
     }
     plan!.setAttribute('d', d);
@@ -88,13 +106,14 @@ export function initRoute(): void {
     total = flown!.getTotalLength();
     flown!.style.strokeDasharray = `${total} ${total}`;
 
-    samples = [];
-    for (let l = 0; l <= total; l += 6) {
-      const p = flown!.getPointAtLength(l);
-      samples.push({ x: p.x, y: p.y, len: l });
-    }
-    const end = flown!.getPointAtLength(total);
-    samples.push({ x: end.x, y: end.y, len: total });
+    // cumulative length along the samples, scaled to the real path length
+    let acc = 0;
+    samples = raw.map((p, i) => {
+      if (i) acc += Math.hypot(p.x - raw[i - 1].x, p.y - raw[i - 1].y);
+      return { x: p.x, y: p.y, len: acc };
+    });
+    const k = acc > 0 ? total / acc : 1;
+    for (const sm of samples) sm.len *= k;
 
     // waypoints
     wpLayer!.replaceChildren();
@@ -132,8 +151,15 @@ export function initRoute(): void {
   }
 
   function pointAt(l: number): Sample {
-    const i = Math.max(0, Math.min(samples.length - 1, Math.round(l / 6)));
-    return samples[i];
+    // samples are not evenly spaced in length, so search by length
+    let lo = 0;
+    let hi = samples.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (samples[mid].len < l) lo = mid + 1;
+      else hi = mid;
+    }
+    return samples[lo];
   }
 
   function render() {

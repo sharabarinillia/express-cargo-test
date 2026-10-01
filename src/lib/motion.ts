@@ -8,12 +8,29 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 /** Videos play only while on screen (and never under reduced motion). */
 export function initVideos(): void {
   const vids = [...document.querySelectorAll<HTMLVideoElement>('video[data-video]')];
+
+  // posters load only as their video approaches (in every motion mode)
+  const posterIo = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const v = e.target as HTMLVideoElement;
+        const small = v.clientWidth * (window.devicePixelRatio || 1) < 1100;
+        const src = (small && v.dataset.posterSm) || v.dataset.poster;
+        if (src) v.poster = src;
+        posterIo.unobserve(v);
+      }
+    },
+    { rootMargin: '150% 0px' },
+  );
+  vids.forEach((v) => posterIo.observe(v));
   if (reducedMotion) return;
   const hero = document.querySelector<HTMLVideoElement>('[data-hero-video]');
   const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
   if (hero && saveData) hero.remove(); // the poster carries the hero on data-saver connections
   else if (hero) {
-    // fades in over its poster only once frames are actually moving
+    // fetched only when it will actually play; fades in over its poster once frames move
+    hero.preload = 'auto';
     hero.addEventListener('playing', () => hero.classList.add('is-playing'), { once: true });
     hero.play().catch(() => {});
   }
@@ -66,13 +83,20 @@ function drawIcons(scope: Element, delay = 0) {
 export function initReveals(): void {
   if (reducedMotion) return;
 
+  // reveals only fade (never visibility:hidden), so links stay in the tab order;
+  // a keyboard user landing on a not-yet-revealed item sees it at once
+  document.addEventListener('focusin', (e) => {
+    const item = (e.target as Element).closest?.('.airway, [data-crew] li, [data-strips] .strip, [data-fade], .leg');
+    if (item && Number(getComputedStyle(item).opacity) < 1) gsap.to(item, { opacity: 1, y: 0, x: 0, xPercent: 0, duration: 0.25, overwrite: true });
+  });
+
   // hero: the departure plays once, then holds on the aircraft in the distance
-  gsap.from('[data-fade]', { y: 22, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.45 });
+  gsap.from('[data-fade]', { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.45 });
   const heroMedia = document.querySelector<HTMLElement>('[data-hero-media]');
   if (heroMedia) {
     gsap.fromTo(heroMedia, { scale: 1.08 }, { scale: 1, duration: 2.4, ease: 'expo.out' });
     gsap.to(heroMedia, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.hero-head', { yPercent: -18, autoAlpha: 0.2, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom 20%', scrub: true } });
+    gsap.to('.hero-head', { yPercent: -18, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom 20%', scrub: true } });
   }
 
   // chart insets: scroll depth (multiplane push)
@@ -92,18 +116,18 @@ export function initReveals(): void {
   const legsLine = document.querySelector('[data-legs-line]');
   if (legsLine) {
     gsap.fromTo(legsLine, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '[data-legs]', start: 'top 80%', end: 'top 40%', scrub: 0.6 } });
-    gsap.from('[data-legs] .leg', { autoAlpha: 0, y: 16, stagger: 0.18, duration: 0.6, ease: 'power3.out', scrollTrigger: { trigger: '[data-legs]', start: 'top 75%', once: true } });
+    gsap.from('[data-legs] .leg', { opacity: 0, y: 16, stagger: 0.18, duration: 0.6, ease: 'power3.out', scrollTrigger: { trigger: '[data-legs]', start: 'top 75%', once: true } });
   }
 
   // airways: rows land, icons draw themselves
   gsap.utils.toArray<HTMLElement>('[data-airways] .airway').forEach((row, i) => {
-    gsap.set(row, { autoAlpha: 0, y: 26 });
+    gsap.set(row, { opacity: 0, y: 26 });
     ScrollTrigger.create({
       trigger: row,
       start: 'top 88%',
       once: true,
       onEnter: () => {
-        gsap.to(row, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: (i % 2) * 0.08 });
+        gsap.to(row, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: (i % 2) * 0.08 });
         drawIcons(row, 0.15);
       },
     });
@@ -113,7 +137,7 @@ export function initReveals(): void {
   });
 
   // flight strips slide into the bay
-  gsap.from('[data-strips] .strip', { xPercent: 12, autoAlpha: 0, duration: 0.9, ease: 'expo.out', stagger: 0.14, scrollTrigger: { trigger: '[data-strips]', start: 'top 80%', once: true } });
+  gsap.from('[data-strips] .strip', { xPercent: 12, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.14, scrollTrigger: { trigger: '[data-strips]', start: 'top 80%', once: true } });
 
   // airspace layers fill
   const layers = gsap.utils.toArray<HTMLElement>('[data-airspace] .layer');
@@ -122,7 +146,7 @@ export function initReveals(): void {
   }
 
   // crew
-  gsap.from('[data-crew] li', { autoAlpha: 0, y: 30, duration: 0.8, ease: 'power3.out', stagger: 0.08, scrollTrigger: { trigger: '[data-crew]', start: 'top 88%', once: true } });
+  gsap.from('[data-crew] li', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out', stagger: 0.08, scrollTrigger: { trigger: '[data-crew]', start: 'top 88%', once: true } });
 
   // close: the flight-plan panel rises into place
   const close = document.querySelector<HTMLElement>('[data-close-inset]');

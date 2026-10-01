@@ -85,8 +85,15 @@ export function initGlobe(): void {
   let active = -1;
   let lastF = NaN;
 
+  const stage = document.querySelector<HTMLElement>('[data-globe-stage]');
   function measure() {
-    const mid = window.innerHeight * 0.5;
+    // the reading line is the middle of the space the cards can actually use:
+    // the full viewport beside the globe, or the band below it when it sits on top
+    let mid = window.innerHeight * 0.5;
+    if (stage && window.innerWidth < 1024) {
+      const b = Math.max(0, stage.getBoundingClientRect().bottom);
+      mid = b + (window.innerHeight - b) * 0.45;
+    }
     const centers = cards.map((c) => {
       const r = c.getBoundingClientRect();
       return r.top + r.height / 2 - mid;

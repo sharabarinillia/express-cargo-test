@@ -84,6 +84,11 @@
     outline-offset: 3px;
     border-radius: 2px;
   }
+  /* on navy, magenta is only 2.6:1; cyan keeps the ring above 3:1 */
+  .on-night :focus-visible,
+  .bg-night :focus-visible {
+    outline-color: var(--color-cyan);
+  }
 }
 
 @layer components {
@@ -862,7 +867,7 @@
     min-height: 82svh;
     padding-block: 8svh;
   }
-  /* inactive projects recede, text stays readable (AA) */
+  /* inactive projects recede through their photos only; text keeps full contrast */
   .is-live .project-card figure {
     transition:
       opacity 0.5s,
@@ -872,9 +877,7 @@
     opacity: 0.45;
     filter: grayscale(1);
   }
-  .is-live .project-card:not(.is-active) :is(h3, p) {
-    opacity: 0.8;
-  }
+
   @media (max-width: 1023px) {
     .globe-stage {
       top: 0;
@@ -1023,6 +1026,15 @@
     border: 1px solid currentColor;
     border-radius: 2px;
     font-size: 0.7rem;
+  }
+}
+
+/* tablet: the gutter is narrower than the desktop aircraft */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .aircraft {
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
   }
 }
 

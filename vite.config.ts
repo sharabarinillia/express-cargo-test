@@ -53,8 +53,11 @@ function videos(html: string): string {
     const attrs: Record<string, string> = {};
     rawAttrs.replace(/([\w-]+)="([^"]*)"/g, (_m: string, k: string, v: string) => ((attrs[k] = v), ''));
     const poster = images[`poster-${attrs.name}`];
-    const w = poster ? poster.widths.find((x) => x >= 1200) ?? poster.widths[poster.widths.length - 1] : 0;
-    return `<video class="${attrs.class ?? ''}" muted loop playsinline preload="none" data-video${poster ? ` poster="/img/poster-${attrs.name}-${w}.webp"` : ''} aria-hidden="true"><source src="/video/${attrs.name}.mp4" type="video/mp4"></video>`;
+    // posters are assigned by script as the video nears the viewport (largest and smallest width)
+    const lg = poster ? poster.widths[poster.widths.length - 1] : 0;
+    const sm = poster ? poster.widths[0] : 0;
+    const data = poster ? ` data-poster="/img/poster-${attrs.name}-${lg}.webp" data-poster-sm="/img/poster-${attrs.name}-${sm}.webp"` : '';
+    return `<video class="${attrs.class ?? ''}" muted loop playsinline preload="none" data-video${data} aria-hidden="true"><source src="/video/${attrs.name}.mp4" type="video/mp4"></video>`;
   });
 }
 
