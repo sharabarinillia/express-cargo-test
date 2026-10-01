@@ -64,5 +64,10 @@ export function initShell(): Lenis | null {
   initHeader();
   initMenu(lenis);
   document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
+  // mark the current page in the navigation (in-page anchors are not pages)
+  document.querySelectorAll<HTMLAnchorElement>('.nav-link, [data-menu-link]').forEach((a) => {
+    const url = new URL(a.href, location.href);
+    if (!url.hash && url.pathname === location.pathname) a.setAttribute('aria-current', 'page');
+  });
   return lenis;
 }

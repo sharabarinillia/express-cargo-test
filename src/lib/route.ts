@@ -28,6 +28,9 @@ export function initRoute(): void {
   let total = 0;
   let wps: Waypoint[] = [];
   let lastHead = -1;
+  // the visitor's own destination, typed into the closing quick quote
+  let destLabel = '';
+  const destInput = document.querySelector<HTMLInputElement>('#qq-to');
 
   const headRatio = () => (window.innerWidth < 768 ? 0.45 : 0.55);
 
@@ -61,7 +64,7 @@ export function initRoute(): void {
       if (side === 'end') {
         const inset = leg.querySelector<HTMLElement>('[data-close-inset]');
         const ib = inset ? rel(inset.getBoundingClientRect()) : box;
-        pts.push({ x: xLeft, y: ib.top - 36, wp: { label, side: 'left' } });
+        pts.push({ x: xLeft, y: ib.top - 36, wp: { label: destLabel || label, side: 'left' } });
         continue;
       }
       const x = side === 'left' ? xLeft : xRight;
@@ -103,7 +106,8 @@ export function initRoute(): void {
       el.dataset.side = p.wp.side;
       el.style.left = `${p.x}px`;
       el.style.top = `${p.y}px`;
-      el.innerHTML = `<i></i><b class="chart">${p.wp.label}</b>`;
+      el.innerHTML = '<i></i><b class="chart"></b>';
+      el.querySelector('b')!.textContent = p.wp.label;
       wpLayer!.appendChild(el);
       wps.push({ el, len: lenAtY(p.y) });
     }
@@ -146,10 +150,20 @@ export function initRoute(): void {
     const angle = (Math.atan2(q.y - back.y, q.x - back.x) * 180) / Math.PI + 90;
     aircraft!.style.transform = `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px) rotate(${angle.toFixed(1)}deg)`;
     for (const w of wps) w.el.classList.toggle('is-on', l >= w.len - 2);
+    // touchdown: the aircraft lands into the destination waypoint
+    const arrived = !reducedMotion && l >= total - 2;
+    wps[wps.length - 1]?.el.classList.toggle('is-arrived', arrived);
+    aircraft!.classList.toggle('is-landed', arrived);
   }
 
   build();
   if (reducedMotion) aircraft.style.display = 'none';
+  destInput?.addEventListener('input', () => {
+    destLabel = destInput.value.trim().slice(0, 32);
+    const b = wps[wps.length - 1]?.el.querySelector('b');
+    const end = document.querySelector<HTMLElement>('[data-leg="end"]');
+    if (b) b.textContent = destLabel || end?.dataset.wp || '';
+  });
   gsap.ticker.add(render);
   ScrollTrigger.addEventListener('refresh', build);
   document.fonts?.ready.then(() => ScrollTrigger.refresh());

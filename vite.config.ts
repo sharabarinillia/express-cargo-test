@@ -66,6 +66,8 @@ const html = (): Plugin => ({
 export default defineConfig({
   plugins: [html(), tailwindcss()],
   build: {
+    // the WebGL globe (three.js) is a lazy chunk fetched only near #projects
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),

@@ -30,6 +30,7 @@ function initForm() {
   const quoteFields = document.querySelector<HTMLElement>('[data-quote-fields]');
   const unField = document.querySelector<HTMLElement>('[data-un]');
   const messageLabel = document.querySelector<HTMLElement>('[data-message-label]');
+  const intro = document.querySelector<HTMLElement>('[data-form-intro]');
   if (!form || !success || !summary || !list || !quoteFields) return;
 
   const isQuote = () => (form.elements.namedItem('type') as RadioNodeList).value === 'quote';
@@ -73,7 +74,12 @@ function initForm() {
   }
   function labelOf(input: HTMLInputElement): string {
     if (input.type === 'checkbox') return 'Consent';
-    return (form!.querySelector(`label[for="${input.id}"]`)?.textContent ?? input.name).replace('*', '').trim();
+    const label = form!.querySelector(`label[for="${input.id}"]`);
+    if (!label) return input.name;
+    // flight-plan field numbers and other decorations are not part of the name
+    const clone = label.cloneNode(true) as HTMLElement;
+    clone.querySelectorAll('.fp-box, [aria-hidden="true"]').forEach((n) => n.remove());
+    return (clone.textContent ?? input.name).replace('*', '').trim();
   }
   function validateField(input: HTMLInputElement): boolean {
     const msg = message(input);
@@ -142,23 +148,43 @@ function initForm() {
         ? `Quote request: ${data.get('from')} → ${data.get('to')} (${data.get('mode')})`
         : `Question from ${data.get('name')}`;
       const body = entries.map(([k, v]) => `${k[0].toUpperCase()}${k.slice(1)}: ${v}`).join('\n');
-      window.location.href = `mailto:${SALES}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const href = `mailto:${SALES}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // the draft stays on screen: a missing mail app must not lose the enquiry
+      const draft = document.querySelector<HTMLTextAreaElement>('[data-draft]');
+      if (draft) draft.value = `To: ${SALES}\nSubject: ${subject}\n\n${body}`;
+      document.querySelector<HTMLAnchorElement>('[data-mailto]')?.setAttribute('href', href);
+      window.location.href = href;
     }
 
     form.classList.add('hidden');
+    intro?.classList.add('hidden');
     success.classList.remove('hidden');
     if (ENDPOINT) {
-      success.querySelector('h2')!.textContent = 'Thank you. Your enquiry is on its way.';
-      success.querySelector('p.prose-ec')!.textContent = 'Your coordinator will get back to you. For anything urgent, call +31 20 333 2405.';
+      success.querySelector('[data-success-title]')!.textContent = 'Thank you. Your enquiry is on its way.';
+      success.querySelector('[data-success-copy]')!.textContent = 'Your coordinator will get back to you. For anything urgent, call +31 20 333 2405.';
+      success.querySelector<HTMLElement>('[data-success-draft]')?.classList.add('hidden');
     }
     success.focus();
   });
 
+  document.querySelector('[data-copy]')?.addEventListener('click', async () => {
+    const draft = document.querySelector<HTMLTextAreaElement>('[data-draft]');
+    const out = document.querySelector<HTMLElement>('[data-copy-status]');
+    if (!draft) return;
+    try {
+      await navigator.clipboard.writeText(draft.value);
+      if (out) out.textContent = 'Copied. Paste it into a new email.';
+    } catch {
+      draft.focus();
+      draft.select();
+      if (out) out.textContent = 'Selected. Press Ctrl+C (or Cmd+C) to copy.';
+    }
+  });
+
+  // back to the form with everything still filled in
   document.querySelector('[data-reset]')?.addEventListener('click', () => {
-    form.reset();
-    syncType();
-    syncDg();
     success.classList.add('hidden');
+    intro?.classList.remove('hidden');
     form.classList.remove('hidden');
     form.querySelector<HTMLInputElement>('input')?.focus();
   });

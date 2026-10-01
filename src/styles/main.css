@@ -125,7 +125,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     line-height: 1.35;
   }
   .chart-l {
@@ -217,7 +217,7 @@
   .display-hero {
     font-size: clamp(2.6rem, 5.3vw, 6rem);
     line-height: 0.98;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.04em;
     max-width: 10.5ch;
   }
   .hero-foot {
@@ -233,11 +233,11 @@
     }
     .hero-media {
       bottom: auto;
-      height: 70svh;
+      height: 54svh;
     }
     .hero-veil {
       bottom: auto;
-      height: 70svh;
+      height: 54svh;
       background: linear-gradient(
         to top,
         var(--color-paper) 0%,
@@ -246,11 +246,37 @@
       );
     }
     .hero-head {
-      padding-top: 54svh;
+      padding-top: 38svh;
+    }
+    .display-hero {
+      font-size: 2.4rem;
     }
     .hero-foot {
-      padding-top: 28px;
+      padding-top: 22px;
     }
+  }
+
+  /* "We carry": a manifest line of real cargo classes under the hero */
+  .manifest {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-line);
+    color: var(--color-ink);
+  }
+  .manifest span:not(:first-child) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .manifest span:not(:first-child)::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: var(--color-cyan-ink);
+    transform: rotate(45deg);
   }
 
   /* chart tag: an opaque callout that reads over sky, media or paper */
@@ -537,6 +563,24 @@
     background: var(--color-magenta);
     transform: rotate(45deg) scale(1.15);
   }
+  .wp.is-arrived i {
+    transform: rotate(45deg) scale(1.6);
+    box-shadow: 0 0 0 6px rgb(180 35 107 / 0.18);
+  }
+  .wp.is-arrived b {
+    color: #fff;
+    background: var(--color-magenta);
+    box-shadow: none;
+  }
+  .aircraft svg {
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.4s;
+  }
+  .aircraft.is-landed svg {
+    transform: scale(0.2);
+    opacity: 0;
+  }
   /* chart callout: an opaque tag, so it reads over any surface (night bands, media) */
   .wp b {
     position: absolute;
@@ -736,11 +780,16 @@
     width: min(100%, 74svh);
     aspect-ratio: 1;
   }
+  /* the canvas is larger than the frame so glow and long arcs have room, and its rim fades out */
   .globe-canvas {
     position: absolute;
-    inset: 0;
+    inset: -12%;
     opacity: 0;
     transition: opacity 1.2s;
+  }
+  .globe-canvas canvas {
+    -webkit-mask-image: radial-gradient(closest-side, #000 80%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 80%, transparent 100%);
   }
   .globe-canvas.is-ready {
     opacity: 1;
@@ -748,16 +797,24 @@
   .globe-canvas canvas {
     display: block;
   }
-  /* a soft cast shadow grounds the globe on the paper */
-  .globe-shadow {
+  /* still of the globe for no-JS / no-WebGL, and the frame before WebGL is ready */
+  .globe-poster {
     position: absolute;
-    left: 18%;
-    right: 18%;
-    bottom: 1%;
-    height: 7%;
-    border-radius: 50%;
-    background: radial-gradient(closest-side, rgb(14 42 74 / 0.22), rgb(14 42 74 / 0));
-    filter: blur(6px);
+    inset: -12%;
+    width: 124%;
+    height: 124%;
+    max-width: none;
+    object-fit: contain;
+    transition: opacity 1.2s;
+  }
+  .globe-frame:has(.globe-canvas.is-ready) .globe-poster {
+    opacity: 0;
+  }
+  .globe-labels {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
   }
   .globe-hud {
     position: absolute;
@@ -774,7 +831,11 @@
     box-shadow: inset 0 0 0 1px var(--color-line);
   }
   .globe-label {
+    position: absolute;
+    left: 0;
+    top: 0;
     transform: translate(-50%, calc(-100% - 10px));
+    transition: opacity 0.25s;
     padding: 4px 8px 3px;
     white-space: nowrap;
     color: var(--color-ink);
@@ -800,15 +861,25 @@
     justify-content: center;
     min-height: 82svh;
     padding-block: 8svh;
-    transition: opacity 0.5s;
   }
-  .project-card:not(.is-active) {
-    opacity: 0.35;
+  /* inactive projects recede, text stays readable (AA) */
+  .is-live .project-card figure {
+    transition:
+      opacity 0.5s,
+      filter 0.5s;
+  }
+  .is-live .project-card:not(.is-active) figure {
+    opacity: 0.45;
+    filter: grayscale(1);
+  }
+  .is-live .project-card:not(.is-active) :is(h3, p) {
+    opacity: 0.8;
   }
   @media (max-width: 1023px) {
     .globe-stage {
-      top: 64px;
-      height: 46svh;
+      top: 0;
+      padding-top: 72px;
+      height: calc(46svh + 72px);
       background: linear-gradient(to bottom, var(--color-paper) 88%, rgb(238 242 245 / 0));
       margin-inline: calc(var(--gutter) * -1);
     }
@@ -818,6 +889,9 @@
     .project-card {
       min-height: auto;
       padding-block: 12svh;
+    }
+    .globe-hud [data-globe-dist] {
+      display: none;
     }
   }
 
@@ -848,6 +922,10 @@
   .field legend {
     display: block;
     margin-bottom: 8px;
+  }
+  .field label.chart,
+  .field legend.chart {
+    font-size: 0.82rem;
   }
   .field input,
   .field select,

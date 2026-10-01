@@ -10,7 +10,9 @@ export function initVideos(): void {
   const vids = [...document.querySelectorAll<HTMLVideoElement>('video[data-video]')];
   if (reducedMotion) return;
   const hero = document.querySelector<HTMLVideoElement>('[data-hero-video]');
-  if (hero) {
+  const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+  if (hero && saveData) hero.remove(); // the poster carries the hero on data-saver connections
+  else if (hero) {
     // fades in over its poster only once frames are actually moving
     hero.addEventListener('playing', () => hero.classList.add('is-playing'), { once: true });
     hero.play().catch(() => {});
@@ -89,8 +91,7 @@ export function initReveals(): void {
   }
   const legsLine = document.querySelector('[data-legs-line]');
   if (legsLine) {
-    legsLine.setAttribute('pathLength', '1');
-    gsap.fromTo(legsLine, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '[data-legs]', start: 'top 80%', end: 'top 40%', scrub: 0.6 } });
+    gsap.fromTo(legsLine, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '[data-legs]', start: 'top 80%', end: 'top 40%', scrub: 0.6 } });
     gsap.from('[data-legs] .leg', { autoAlpha: 0, y: 16, stagger: 0.18, duration: 0.6, ease: 'power3.out', scrollTrigger: { trigger: '[data-legs]', start: 'top 75%', once: true } });
   }
 
@@ -117,7 +118,7 @@ export function initReveals(): void {
   // airspace layers fill
   const layers = gsap.utils.toArray<HTMLElement>('[data-airspace] .layer');
   if (layers.length) {
-    gsap.fromTo(layers, { '--fill': 0 }, { '--fill': 1, duration: 1.1, ease: 'expo.inOut', stagger: 0.15, scrollTrigger: { trigger: '[data-airspace]', start: 'top 80%', once: true } });
+    gsap.fromTo(layers, { '--fill': 0.35 }, { '--fill': 1, duration: 1.1, ease: 'expo.inOut', stagger: 0.15, scrollTrigger: { trigger: '[data-airspace]', start: 'top 80%', once: true } });
   }
 
   // crew
