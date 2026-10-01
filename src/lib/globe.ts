@@ -75,7 +75,7 @@ export function initGlobe(): void {
     const d = { lat: +c.dataset.lat!, lng: +c.dataset.lng!, place: c.dataset.place!, mode: c.dataset.mode! };
     const sea = d.mode === 'sea';
     const from = sea ? RTM : AMS;
-    return { ...d, from, code: sea ? 'RTM' : 'EHAM', km: Math.round((centralAngle(from, d) * R_EARTH) / 10) * 10 };
+    return { ...d, from, code: sea ? 'RTM' : 'AMS', km: Math.round((centralAngle(from, d) * R_EARTH) / 10) * 10 };
   });
   const povs: Pov[] = [{ lat: AMS.lat - 14, lng: AMS.lng + 8, altitude: 1.8 }, ...dests.map(routePov)];
   const arcs: Arc[] = dests.map((_, i) => ({ i, t: reducedMotion ? 1 : 0 }));

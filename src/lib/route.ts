@@ -3,7 +3,7 @@
  *
  * Each chapter declares a leg (`data-leg="left|right"`) and a waypoint label
  * (`data-wp`). The route runs down the chosen margin through every chapter,
- * crossing over in the gaps between chapters, from the EHAM waypoint at the
+ * crossing over in the gaps between chapters, from the AMS waypoint at the
  * foot of the departure hero to the destination at the close. A small aircraft flies it: its
  * position is tied to scroll so it stays on a fixed reading line, and the
  * flown part of the line is drawn behind it.
@@ -42,6 +42,14 @@ export function initRoute(): void {
     const H = host!.scrollHeight;
     svg!.setAttribute('viewBox', `0 0 ${W} ${H}`);
     const rel = (r: DOMRect) => ({ top: r.top - hostRect.top, bottom: r.bottom - hostRect.top, left: r.left - hostRect.left, right: r.right - hostRect.left });
+    // the padded block that holds a chapter's content (the chapter itself, or a
+    // .section inside it), minus its padding
+    const contentBox = (leg: HTMLElement) => {
+      const inner = leg.matches('.section') ? leg : (leg.querySelector<HTMLElement>('.section') ?? leg);
+      const r = rel(inner.getBoundingClientRect());
+      const cs = getComputedStyle(inner);
+      return { top: r.top + parseFloat(cs.paddingTop), bottom: r.bottom - parseFloat(cs.paddingBottom) };
+    };
 
     const legs = [...document.querySelectorAll<HTMLElement>('[data-leg]')];
     const firstWrap = document.querySelector<HTMLElement>('.wrap');
@@ -69,18 +77,14 @@ export function initRoute(): void {
         pts.push({ x: xLeft, y: ib.top - 36, wp: { label: destLabel || label, side: 'left' } });
         continue;
       }
+      // the route enters above the chapter's first content and leaves below its
+      // last, so every crossing runs through empty padding, never over text or icons
+      const c = contentBox(leg);
       const x = side === 'left' ? xLeft : xRight;
-      pts.push({ x, y: box.top + 72, wp: { label, side: side as 'left' | 'right' } });
-      pts.push({ x, y: Math.max(box.top + 140, box.bottom - 56) });
-    }
-
-    // side switches: start the crossing earlier so the S-curve has room to
-    // flow (control handles stay vertical, so it leaves and joins the margins tangentially)
-    for (let i = 1; i < pts.length; i++) {
-      const a = pts[i - 1];
-      const b = pts[i];
-      const prev = pts[i - 2];
-      if (Math.abs(a.x - b.x) > 1 && !a.wp && prev) a.y = Math.max(prev.y + 40, Math.min(a.y, b.y - 250));
+      const enter = Math.max(box.top + 20, c.top - 34);
+      const leave = Math.min(box.bottom - 14, c.bottom + 26);
+      pts.push({ x, y: enter, wp: { label, side: side as 'left' | 'right' } });
+      pts.push({ x, y: Math.max(enter + 40, leave) });
     }
 
     // dark surfaces the aircraft crosses (it turns white over them)
