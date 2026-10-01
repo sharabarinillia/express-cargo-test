@@ -250,17 +250,7 @@ export function initJourneys(): void {
   const rows = gsap.utils.toArray<HTMLButtonElement>('[data-ledger] .ledger-row');
   const shots = gsap.utils.toArray<HTMLElement>('[data-shot]');
   const caption = document.querySelector<HTMLElement>('[data-shot-caption]');
-  rows.forEach((row, i) => {
-    // a mini in-band trace for each journey, flat and quiet
-    const path = row.querySelector<SVGPathElement>('.mini path');
-    if (path) {
-      let d = '';
-      for (let x = 0; x <= 120; x += 3) {
-        const v = 12 + 4 * (0.6 * Math.sin(x / 9 + i * 1.7) + 0.4 * Math.sin(x / 3.7 + i));
-        d += `${x ? 'L' : 'M'}${x} ${v.toFixed(1)}`;
-      }
-      path.setAttribute('d', d);
-    }
+  rows.forEach((row) => {
     const activate = () => {
       rows.forEach((r) => {
         const on = r === row;
@@ -282,6 +272,7 @@ export function initPrintout(trace: TraceApi | null): void {
   const path = document.querySelector<SVGPathElement>('[data-printout-path]');
   const evs = document.querySelector<HTMLElement>('[data-printout-events]');
   const peakEl = document.querySelector<HTMLElement>('[data-printout-peak]');
+  const legend = document.querySelector<HTMLElement>('[data-printout-legend]');
   if (!fig || !path || !evs || !trace) return;
 
   const draw = () => {
@@ -296,11 +287,18 @@ export function initPrintout(trace: TraceApi | null): void {
     });
     path.setAttribute('d', d);
     evs.replaceChildren(
-      ...events.map((e) => {
-        const s = document.createElement('span');
-        s.style.left = `${(e.f * 100).toFixed(2)}%`;
-        s.textContent = window.innerWidth >= 1024 ? e.label : '';
-        return s;
+      ...events.map((e, i) => {
+        const tick = document.createElement('span');
+        tick.style.left = `${(Math.min(e.f, 0.97) * 100).toFixed(2)}%`;
+        tick.textContent = String(i + 1);
+        return tick;
+      }),
+    );
+    legend?.replaceChildren(
+      ...events.map((e, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<b>${i + 1}</b>${e.label}`;
+        return li;
       }),
     );
     if (peakEl) peakEl.textContent = fmtTemp(Math.max(...temps));
