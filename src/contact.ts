@@ -9,17 +9,8 @@ const SALES = 'salesams@express-cargo.com';
 
 initShell();
 initHeadlines();
-
-drawTrace();
+if (!reducedMotion) gsap.from('[data-fade]', { y: 18, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1, delay: 0.35 });
 initForm();
-
-function drawTrace() {
-  const line = document.querySelector<SVGLineElement>('[data-contact-trace]');
-  if (!line || reducedMotion) return;
-  line.setAttribute('pathLength', '1');
-  gsap.fromTo(line, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.6, delay: 0.4, ease: 'expo.out' });
-  gsap.from('[data-fade]', { y: 18, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1, delay: 0.35 });
-}
 
 function initForm() {
   const form = document.querySelector<HTMLFormElement>('[data-enquiry]');
@@ -27,94 +18,76 @@ function initForm() {
   const summary = document.querySelector<HTMLElement>('[data-error-summary]');
   const list = document.querySelector<HTMLUListElement>('[data-error-list]');
   const status = document.querySelector<HTMLElement>('[data-form-status]');
-  const quoteFields = document.querySelector<HTMLElement>('[data-quote-fields]');
-  const unField = document.querySelector<HTMLElement>('[data-un]');
-  const messageLabel = document.querySelector<HTMLElement>('[data-message-label]');
-  const intro = document.querySelector<HTMLElement>('[data-form-intro]');
-  if (!form || !success || !summary || !list || !quoteFields) return;
+  const line = document.querySelector<HTMLElement>('[data-flightline]');
+  const dest = document.querySelector<HTMLElement>('[data-fl-dest]');
+  if (!form || !success || !summary || !list) return;
 
-  const isQuote = () => (form.elements.namedItem('type') as RadioNodeList).value === 'quote';
+  const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement | null;
+  const value = (name: string) => (field(name)?.value ?? '').trim();
 
-  const syncType = () => {
-    const quote = isQuote();
-    quoteFields.hidden = !quote;
-    quoteFields.querySelectorAll<HTMLInputElement>('[data-quote-required]').forEach((i) => (i.required = quote));
-    if (messageLabel) messageLabel.firstChild!.textContent = quote ? 'Anything else we should know?' : 'Your question';
+  // the flight line fills as the sentence is completed; the destination tag follows "to"
+  const KEY = ['what', 'from', 'to', 'name', 'email'];
+  const syncLine = () => {
+    const done = KEY.filter((k) => value(k)).length;
+    line?.style.setProperty('--fl', `${(done / KEY.length) * 100}%`);
+    const to = value('to');
+    if (dest) dest.textContent = to || 'Your destination';
+    dest?.parentElement?.classList.toggle('is-set', !!to);
   };
-  const syncDg = () => {
-    const yes = (form.elements.namedItem('dg') as RadioNodeList).value === 'Yes';
-    unField?.classList.toggle('hidden', !yes);
-  };
-  form.addEventListener('change', (e) => {
-    const name = (e.target as HTMLInputElement).name;
-    if (name === 'type') syncType();
-    if (name === 'dg') syncDg();
-    if ((e.target as HTMLElement).getAttribute('aria-invalid') === 'true') validateField(e.target as HTMLInputElement);
+  form.addEventListener('input', (e) => {
+    syncLine();
+    const t = e.target as HTMLInputElement;
+    if (t.getAttribute('aria-invalid') === 'true') validate(t);
+    if (!form.querySelector('[aria-invalid="true"]')) summary.classList.add('hidden');
   });
+  form.addEventListener('change', syncLine);
 
   // prefill from the home page quick quote: /contact/?type=quote&mode=air&from=…&to=…
   const params = new URLSearchParams(location.search);
   const modeMap: Record<string, string> = { air: 'Air freight', road: 'Road', ocean: 'Ocean', 'time-critical': 'Time-critical' };
   const mode = modeMap[params.get('mode') ?? ''];
-  if (mode) form.querySelector<HTMLInputElement>(`input[name="mode"][value="${mode}"]`)!.checked = true;
+  if (mode && field('mode')) field('mode')!.value = mode;
   for (const key of ['from', 'to'] as const) {
     const v = params.get(key);
-    if (v) (form.elements.namedItem(key) as HTMLInputElement).value = v;
+    if (v && field(key)) field(key)!.value = v;
   }
-  if (params.has('type')) {
-    requestAnimationFrame(() => document.getElementById('enquiry')?.scrollIntoView({ block: 'start' }));
-  }
-  syncType();
-  syncDg();
+  syncLine();
 
+  const LABELS: Record<string, string> = { name: 'Your name', email: 'Your email' };
   function message(input: HTMLInputElement): string {
-    if (input.validity.valueMissing) return input.type === 'checkbox' ? 'Please confirm you agree so we can reply.' : 'This field is required.';
-    if (input.validity.typeMismatch) return 'Please enter a valid email address, like name@company.com.';
+    if (input.validity.valueMissing) return input.name === 'email' ? 'add an email so we can reply.' : 'add your name.';
+    if (input.validity.typeMismatch) return 'check the address, like name@company.com.';
     return '';
   }
-  function labelOf(input: HTMLInputElement): string {
-    if (input.type === 'checkbox') return 'Consent';
-    const label = form!.querySelector(`label[for="${input.id}"]`);
-    if (!label) return input.name;
-    // flight-plan field numbers and other decorations are not part of the name
-    const clone = label.cloneNode(true) as HTMLElement;
-    clone.querySelectorAll('.fp-box, [aria-hidden="true"]').forEach((n) => n.remove());
-    return (clone.textContent ?? input.name).replace('*', '').trim();
-  }
-  function validateField(input: HTMLInputElement): boolean {
+  function validate(input: HTMLInputElement): boolean {
     const msg = message(input);
-    const holder = input.type === 'checkbox' ? input.closest('label')! : input.closest('.field')!;
-    holder.querySelector('.error')?.remove();
     if (msg) {
       input.setAttribute('aria-invalid', 'true');
-      const err = document.createElement('p');
-      err.className = 'error';
-      err.id = `${input.id || input.name}-error`;
-      err.textContent = msg;
-      holder.appendChild(err);
-      input.setAttribute('aria-describedby', err.id);
+      input.setAttribute('aria-description', msg);
       return false;
     }
     input.removeAttribute('aria-invalid');
-    input.removeAttribute('aria-describedby');
+    input.removeAttribute('aria-description');
     return true;
   }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const fields = [...form.querySelectorAll<HTMLInputElement>('input[required], textarea[required]')].filter(
-      (i) => !i.closest('[hidden]'),
-    );
-    const invalid = fields.filter((f) => !validateField(f));
+    const required = [...form.querySelectorAll<HTMLInputElement>('input[required]')];
+    const invalid = required.filter((f) => !validate(f));
     list.replaceChildren();
     if (invalid.length) {
       invalid.forEach((f) => {
         const li = document.createElement('li');
-        li.innerHTML = `<a class="link-u" href="#${f.id || ''}">${labelOf(f)}</a>`;
-        li.querySelector('a')!.addEventListener('click', (ev) => {
+        const a = document.createElement('a');
+        a.className = 'link-u';
+        a.href = `#${f.id}`;
+        a.textContent = `${LABELS[f.name] ?? f.name}: ${message(f)}`;
+        a.addEventListener('click', (ev) => {
           ev.preventDefault();
           f.focus();
         });
+        li.appendChild(a);
         list.appendChild(li);
       });
       summary.classList.remove('hidden');
@@ -125,11 +98,7 @@ function initForm() {
 
     const data = new FormData(form);
     if (data.get('website')) return; // honeypot
-    const entries = [...data.entries()].filter(([k, v]) => k !== 'website' && k !== 'consent' && String(v).trim() !== '');
-    if (!isQuote()) {
-      const skip = new Set(['mode', 'from', 'to', 'pieces', 'weight', 'dimensions', 'commodity', 'temperature', 'ready', 'dg', 'un']);
-      entries.splice(0, entries.length, ...entries.filter(([k]) => !skip.has(k)));
-    }
+    const entries = [...data.entries()].filter(([k, v]) => k !== 'website' && String(v).trim() !== '');
 
     if (ENDPOINT) {
       if (status) status.textContent = 'Sending…';
@@ -144,9 +113,8 @@ function initForm() {
         return;
       }
     } else {
-      const subject = isQuote()
-        ? `Quote request: ${data.get('from')} → ${data.get('to')} (${data.get('mode')})`
-        : `Question from ${data.get('name')}`;
+      const route = value('from') || value('to') ? ` ${value('from') || '?'} → ${value('to') || '?'}` : '';
+      const subject = `Enquiry: ${value('what') || 'shipment'}${route}${value('mode') ? ` (${value('mode')})` : ''}`;
       const body = entries.map(([k, v]) => `${k[0].toUpperCase()}${k.slice(1)}: ${v}`).join('\n');
       const href = `mailto:${SALES}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       // the draft stays on screen: a missing mail app must not lose the enquiry
@@ -157,11 +125,11 @@ function initForm() {
     }
 
     form.classList.add('hidden');
-    intro?.classList.add('hidden');
     success.classList.remove('hidden');
+    line?.style.setProperty('--fl', '100%');
     if (ENDPOINT) {
       success.querySelector('[data-success-title]')!.textContent = 'Thank you. Your enquiry is on its way.';
-      success.querySelector('[data-success-copy]')!.textContent = 'Your coordinator will get back to you. For anything urgent, call +31 20 333 2405.';
+      success.querySelector('[data-success-copy]')!.textContent = 'A coordinator will get back to you. For anything urgent, call +31 20 333 2405.';
       success.querySelector<HTMLElement>('[data-success-draft]')?.classList.add('hidden');
     }
     success.focus();
@@ -181,11 +149,11 @@ function initForm() {
     }
   });
 
-  // back to the form with everything still filled in
+  // back to the sentence with everything still filled in
   document.querySelector('[data-reset]')?.addEventListener('click', () => {
     success.classList.add('hidden');
-    intro?.classList.remove('hidden');
     form.classList.remove('hidden');
-    form.querySelector<HTMLInputElement>('input')?.focus();
+    syncLine();
+    field('what')?.focus();
   });
 }

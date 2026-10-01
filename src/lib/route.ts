@@ -28,6 +28,8 @@ export function initRoute(): void {
   let total = 0;
   let wps: Waypoint[] = [];
   let lastHead = -1;
+  let curL = -1; // eased position along the route
+  let dark: { top: number; bottom: number; left: number; right: number }[] = [];
   // the visitor's own destination, typed into the closing quick quote
   let destLabel = '';
   const destInput = document.querySelector<HTMLInputElement>('#qq-to');
@@ -72,6 +74,18 @@ export function initRoute(): void {
       pts.push({ x, y: Math.max(box.top + 140, box.bottom - 56) });
     }
 
+    // side switches: start the crossing earlier so the S-curve has room to
+    // flow (control handles stay vertical, so it leaves and joins the margins tangentially)
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1];
+      const b = pts[i];
+      const prev = pts[i - 2];
+      if (Math.abs(a.x - b.x) > 1 && !a.wp && prev) a.y = Math.max(prev.y + 40, Math.min(a.y, b.y - 250));
+    }
+
+    // dark surfaces the aircraft crosses (it turns white over them)
+    dark = [...document.querySelectorAll<HTMLElement>('[data-route-dark]')].map((el) => rel(el.getBoundingClientRect()));
+
     // path: verticals down each margin, S-curves across the gaps. The same
     // geometry is sampled here directly (cheap) instead of querying the SVG
     // path thousands of times, which blocked the main thread on long pages.
@@ -86,8 +100,8 @@ export function initRoute(): void {
         for (let k = 1; k <= n; k++) raw.push({ x: a.x + ((b.x - a.x) * k) / n, y: a.y + ((b.y - a.y) * k) / n });
       } else {
         const dy = b.y - a.y;
-        const c1 = { x: a.x, y: a.y + dy * 0.55 };
-        const c2 = { x: b.x, y: b.y - dy * 0.55 };
+        const c1 = { x: a.x, y: a.y + dy * 0.8 };
+        const c2 = { x: b.x, y: b.y - dy * 0.8 };
         d += `C${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
         const approx = Math.hypot(c1.x - a.x, c1.y - a.y) + Math.hypot(c2.x - c1.x, c2.y - c1.y) + Math.hypot(b.x - c2.x, b.y - c2.y);
         const n = Math.max(4, Math.ceil(approx / 6));
@@ -166,15 +180,20 @@ export function initRoute(): void {
     if (!samples.length) return;
     const hostTop = host!.getBoundingClientRect().top;
     const headDocY = window.innerHeight * headRatio() - hostTop;
-    if (Math.abs(headDocY - lastHead) < 0.5) return;
+    const target = reducedMotion ? total : lenAtY(headDocY);
+    if (curL < 0 || reducedMotion) curL = target;
+    // ease toward the reading line so fast side switches glide instead of jump
+    else curL += (target - curL) * 0.16;
+    if (Math.abs(headDocY - lastHead) < 0.5 && Math.abs(target - curL) < 0.3) return;
     lastHead = headDocY;
-    const l = reducedMotion ? total : lenAtY(headDocY);
+    const l = curL;
     flown!.style.strokeDashoffset = String(total - l);
     const p = pointAt(l);
     const q = pointAt(Math.min(total, l + 18));
     const back = pointAt(Math.max(0, l - 18));
     const angle = (Math.atan2(q.y - back.y, q.x - back.x) * 180) / Math.PI + 90;
     aircraft!.style.transform = `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px) rotate(${angle.toFixed(1)}deg)`;
+    aircraft!.classList.toggle('on-dark', dark.some((r) => p.y > r.top && p.y < r.bottom && p.x > r.left - 30 && p.x < r.right + 30));
     for (const w of wps) w.el.classList.toggle('is-on', l >= w.len - 2);
     // touchdown: the aircraft lands into the destination waypoint
     const arrived = !reducedMotion && l >= total - 2;
