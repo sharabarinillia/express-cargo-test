@@ -1,0 +1,181 @@
+{
+  "hero-runway": {
+    "widths": [
+      768,
+      1280,
+      1920,
+      2400
+    ],
+    "ratio": 1.7778,
+    "source": "brand/photos/runway-approach-lights.jpg"
+  },
+  "air-apron": {
+    "widths": [
+      768,
+      1280,
+      1920
+    ],
+    "ratio": 1.5,
+    "source": "brand/photos/schiphol-klm-apron.jpg"
+  },
+  "obc-case": {
+    "widths": [
+      640,
+      1060
+    ],
+    "ratio": 1.1097,
+    "source": "brand/photos/obc-courier-suitcase.jpg"
+  },
+  "lab-tubes": {
+    "widths": [
+      768,
+      1280,
+      1920
+    ],
+    "ratio": 1.7778,
+    "source": "brand/photos/lab-sample-tubes.jpg"
+  },
+  "specimen-box": {
+    "widths": [
+      640,
+      1060
+    ],
+    "ratio": 0.8667,
+    "source": "brand/photos/specimen-transport-box.jpg"
+  },
+  "cold-store": {
+    "widths": [
+      768,
+      1280
+    ],
+    "ratio": 1.7827,
+    "source": "brand/photos/cold-store-warehouse.jpg"
+  },
+  "cold-doors": {
+    "widths": [
+      640,
+      1060
+    ],
+    "ratio": 0.8667,
+    "source": "brand/photos/cold-store-doors.jpg"
+  },
+  "truck-motion": {
+    "widths": [
+      768,
+      1280,
+      1536
+    ],
+    "ratio": 2,
+    "source": "brand/photos/truck-motion-hero.jpg"
+  },
+  "containership": {
+    "widths": [
+      640,
+      1060
+    ],
+    "ratio": 0.8667,
+    "source": "brand/photos/aerial-containership.jpg"
+  },
+  "schiphol-aerial": {
+    "widths": [
+      640,
+      1035
+    ],
+    "ratio": 0.7672,
+    "source": "brand/photos/schiphol-aerial.jpg"
+  },
+  "world-map": {
+    "widths": [
+      991
+    ],
+    "ratio": 1.9131,
+    "source": "brand/photos/world-map-outline-white.jpg"
+  },
+  "project-white-glove": {
+    "widths": [
+      534
+    ],
+    "ratio": 1.3728,
+    "source": "brand/site-photos/project-white-glove.jpg"
+  },
+  "project-trucks-brunei": {
+    "widths": [
+      640,
+      1280
+    ],
+    "ratio": 1.5,
+    "source": "brand/site-photos/project-trucks-brunei.jpg"
+  },
+  "project-perth": {
+    "widths": [
+      640,
+      800
+    ],
+    "ratio": 1.0165,
+    "source": "brand/site-photos/project-perth-construction.jpg"
+  },
+  "project-crate-mexico": {
+    "widths": [
+      640,
+      1280
+    ],
+    "ratio": 1,
+    "source": "brand/site-photos/project-crate-mexico.jpg"
+  },
+  "project-envirotainer": {
+    "widths": [
+      640,
+      1280
+    ],
+    "ratio": 1.7778,
+    "source": "brand/site-photos/project-envirotainer-australia.jpg"
+  },
+  "project-kenya": {
+    "widths": [
+      640,
+      800
+    ],
+    "ratio": 1,
+    "source": "brand/site-photos/project-kenya-hospital.jpg"
+  },
+  "team-marcel": {
+    "widths": [
+      480,
+      800
+    ],
+    "ratio": 0.75,
+    "source": "brand/site-photos/team-marcel.jpg"
+  },
+  "team-roy": {
+    "widths": [
+      480,
+      800
+    ],
+    "ratio": 0.75,
+    "source": "brand/site-photos/team-roy.jpg"
+  },
+  "team-niels": {
+    "widths": [
+      480,
+      800
+    ],
+    "ratio": 0.75,
+    "source": "brand/site-photos/team-niels.jpg"
+  },
+  "team-josette": {
+    "widths": [
+      480,
+      800
+    ],
+    "ratio": 0.7563,
+    "source": "brand/site-photos/team-josette.jpg"
+  },
+  "team-kim": {
+    "widths": [
+      480,
+      800
+    ],
+    "ratio": 0.862,
+    "source": "brand/site-photos/team-kim.jpg"
+  }
+}

@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- @include head -->
+    <title>Express Cargo — Air, road &amp; sea freight for sensitive shipments | Schiphol &amp; Belgrade</title>
+    <meta name="description" content="Specialist freight forwarder since 2002 at Amsterdam Schiphol and Belgrade. Clinical trials, biological samples, dangerous goods (IATA DGR), bonded cold-chain warehousing and time-critical NFO, OBC and Direct Driver." />
+    <link rel="canonical" href="https://www.express-cargo.nl/" />
+    <meta property="og:title" content="Express Cargo — Your most sensitive shipments, in safe hands" />
+    <meta property="og:description" content="Air, road and sea freight for clinical trials, biological samples, dangerous goods and cold-chain cargo. Schiphol and Belgrade, since 2002." />
+    <meta property="og:url" content="https://www.express-cargo.nl/" />
+    <meta property="og:image" content="https://www.express-cargo.nl/img/hero-runway-1280.webp" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Express Cargo",
+        "url": "https://www.express-cargo.nl/",
+        "logo": "https://www.express-cargo.nl/logo.svg",
+        "foundingDate": "2002",
+        "email": "salesams@express-cargo.com",
+        "telephone": "+31 20 333 2405",
+        "sameAs": ["https://www.linkedin.com/company/express-cargo-amsterdam/"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Breguetlaan 21",
+          "postalCode": "1438 BA",
+          "addressLocality": "Oude Meer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        }
+      }
+    </script>
+    <script type="module" src="/src/home.ts"></script>
+  </head>
+  <body>
+    <!-- @include header -->
+
+    <!-- the logger: readout riding beside the trace head (decorative, mirrors chapter content) -->
+    <div class="logger readout" data-logger aria-hidden="true">
+      <p class="optional mb-1.5 flex items-center justify-between gap-3 text-muted">
+        <span>Logger EC-01</span><span class="text-[0.62rem] tracking-[0.18em]">Illustrative</span>
+      </p>
+      <dl>
+        <dt>Stage</dt>
+        <dd data-log="stage">Pickup</dd>
+        <dt>Loc</dt>
+        <dd data-log="loc">AMS · Schiphol</dd>
+        <dt>Temp</dt>
+        <dd class="temp" data-log="temp">+4.1 °C</dd>
+        <dt class="optional">Time</dt>
+        <dd data-log="time">04:12</dd>
+      </dl>
+    </div>
+    <div class="head-dot" data-head aria-hidden="true"></div>
+
+    <main id="main" class="relative" data-trace-host>
+      <div class="trace-rail hidden" data-rail aria-hidden="true"><div class="trace-band"></div></div>
+      <div class="trace-layer" aria-hidden="true">
+        <svg data-trace-svg>
+          <path class="trace-path ghost" data-trace-ghost />
+          <path class="trace-path" data-trace-main />
+          <g data-trace-lanes></g>
+        </svg>
+      </div>
+
+      <!-- 00 · HERO ────────────────────────────────────────────── -->
+      <section
+        id="top"
+        class="relative flex min-h-[100svh] flex-col overflow-clip"
+        data-chapter
+        data-stage="Pickup"
+        data-loc="AMS · Schiphol"
+        data-temp="+4.1 °C"
+        data-time="04:12"
+        data-trace="hero"
+      >
+        <div class="plate cool absolute inset-0 -z-0" data-hero-plate>
+          <ec-img name="hero-runway" alt="" sizes="100vw" loading="eager" class="h-full w-full object-[62%_50%]" />
+        </div>
+        <div class="absolute inset-0 bg-[linear-gradient(90deg,#071a30_0%,rgba(7,26,48,0.86)_34%,rgba(7,26,48,0.25)_70%,rgba(7,26,48,0.55)_100%)]"></div>
+        <div class="absolute inset-x-0 bottom-0 h-[42%] bg-[linear-gradient(0deg,#071a30_8%,rgba(7,26,48,0)_100%)]"></div>
+
+        <div class="wrap relative z-[4] flex flex-1 flex-col justify-center pt-28 pb-6">
+          <p class="kicker readout" data-reveal="fade">Precision logistics since 2002 · Schiphol &amp; Belgrade</p>
+          <h1 class="display mt-6 max-w-[16ch] text-[clamp(2.5rem,5.3vw,6.1rem)]" data-split>Your most sensitive shipments, in&nbsp;safe hands.</h1>
+          <p class="lede mt-8" data-reveal="fade">
+            Air, road and sea freight for the cargo others won't touch: clinical trials, biological samples, dangerous goods and temperature-controlled shipments.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal="fade">
+            <a href="/contact/#enquiry" class="btn btn-amber">Request a quote <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="tel:+31203332405" class="btn btn-line">Call +31 20 333 2405</a>
+          </div>
+        </div>
+
+        <!-- logger strip: the trace starts here -->
+        <div class="relative z-[3] h-[clamp(120px,22vh,200px)]" data-hero-strip>
+          <div class="graticule-fine absolute inset-0 opacity-70"></div>
+          <div class="absolute inset-x-0 top-[34%] bottom-[34%] bg-cyan/10 shadow-[inset_0_1px_0_rgba(18,196,222,0.45),inset_0_-1px_0_rgba(18,196,222,0.45)]" data-hero-band></div>
+          <span class="readout absolute left-[var(--gutter)] top-[34%] -translate-y-[calc(100%+6px)] text-cyan/80">8 °C</span>
+          <span class="readout absolute left-[var(--gutter)] bottom-[34%] translate-y-[calc(100%+6px)] text-cyan/80">2 °C</span>
+          <span class="readout absolute bottom-3 right-[var(--content-right)] hidden text-muted md:block">Illustrative logger trace</span>
+        </div>
+      </section>
+
+      <!-- 01 · ONE PARTNER, EVERY MODE ────────────────────────── -->
+      <section
+        id="services"
+        class="chapter graticule-strip"
+        data-chapter
+        data-stage="Booked"
+        data-loc="AMS · Schiphol"
+        data-temp="+4.3 °C"
+        data-time="05:02"
+      >
+        <div class="wrap">
+          <div class="grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-5">
+              <p class="kicker readout">01 · What we do</p>
+              <h2 class="display display-l mt-5" data-split>One partner, <span class="hl">every mode.</span></h2>
+            </div>
+            <p class="lede self-end lg:col-span-6 lg:col-start-7">
+              We have supplied the entire package of logistics solutions since 2002. Through a wide network of agents we reach even the most remote destinations, and one coordinator stays with your shipment from pickup to delivery.
+            </p>
+          </div>
+
+          <ol class="mt-16" data-log-rows>
+            <li class="log-row">
+              <span class="readout text-cyan">05:10</span>
+              <h3 class="row-title display display-m"><a class="row-link" href="#air">Air freight</a></h3>
+              <p class="prose-ec col-start-2 mt-3 lg:col-start-auto lg:mt-0">Customs-cleared, door to door, via Amsterdam Schiphol and Belgrade airport.</p>
+              <span class="hidden text-cyan lg:block" aria-hidden="true">→</span>
+              <span class="leader hidden lg:block" aria-hidden="true"></span>
+            </li>
+            <li class="log-row">
+              <span class="readout text-cyan">05:24</span>
+              <h3 class="row-title display display-m"><a class="row-link" href="#road-sea">Road &amp; sea</a></h3>
+              <p class="prose-ec col-start-2 mt-3 lg:col-start-auto lg:mt-0">National and EU-wide road transport, full containers (FCL) and groupage (LCL), oversize included.</p>
+              <span class="hidden text-cyan lg:block" aria-hidden="true">→</span>
+              <span class="leader hidden lg:block" aria-hidden="true"></span>
+            </li>
+            <li class="log-row">
+              <span class="readout text-amber">05:31</span>
+              <h3 class="row-title display display-m"><a class="row-link" href="#time-critical">Critical express</a></h3>
+              <p class="prose-ec col-start-2 mt-3 lg:col-start-auto lg:mt-0">Next Flight Out, On-Board Courier and Direct Driver, for when it absolutely cannot wait.</p>
+              <span class="hidden text-cyan lg:block" aria-hidden="true">→</span>
+              <span class="leader hidden lg:block" aria-hidden="true"></span>
+            </li>
+            <li class="log-row">
+              <span class="readout text-cyan">05:48</span>
+              <h3 class="row-title display display-m"><a class="row-link" href="#specialist">Biological &amp; DGR</a></h3>
+              <p class="prose-ec col-start-2 mt-3 lg:col-start-auto lg:mt-0">Specimens and dangerous goods worldwide, lithium included, handled by IATA DGR-certified staff.</p>
+              <span class="hidden text-cyan lg:block" aria-hidden="true">→</span>
+              <span class="leader hidden lg:block" aria-hidden="true"></span>
+            </li>
+            <li class="log-row">
+              <span class="readout text-cyan">06:02</span>
+              <h3 class="row-title display display-m"><a class="row-link" href="#specialist">Clinical-trial logistics</a></h3>
+              <p class="prose-ec col-start-2 mt-3 lg:col-start-auto lg:mt-0">IMP, drug substance, drug product and ancillary supplies, with regulatory consulting.</p>
+              <span class="hidden text-cyan lg:block" aria-hidden="true">→</span>
+              <span class="leader hidden lg:block" aria-hidden="true"></span>
+            </li>
+            <li class="log-row">
+              <span class="readout text-cyan">06:15</span>
+              <h3 class="row-title display display-m"><a class="row-link" href="#cold-chain">Cold-chain warehouse</a></h3>
+              <p class="prose-ec col-start-2 mt-3 lg:col-start-auto lg:mt-0">Bonded storage in three controlled zones, from −20 °C to +25 °C.</p>
+              <span class="hidden text-cyan lg:block" aria-hidden="true">→</span>
+              <span class="leader hidden lg:block" aria-hidden="true"></span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 02 · AIR FREIGHT ────────────────────────────────────── -->
+      <section
+        id="air"
+        class="chapter bg-ink-800"
+        data-chapter
+        data-stage="Air · Customs"
+        data-loc="AMS → World"
+        data-temp="+4.4 °C"
+        data-time="06:40"
+      >
+        <div class="wrap">
+          <p class="kicker readout">02 · Air freight</p>
+          <div class="mt-5 grid gap-10 lg:grid-cols-12">
+            <h2 class="display display-l lg:col-span-7" data-split>The fastest mode, <span class="hl">handled completely.</span></h2>
+            <p class="prose-ec self-end lg:col-span-5">
+              Within a few days your shipment can be on the other side of the globe. Express Cargo is registered with IATA and IATA DGR certified. We collect, clear customs, keep every document in perfect order and deliver to the door. Speed, communication and service are our top priorities.
+            </p>
+          </div>
+
+          <figure class="plate cool mt-14 aspect-[16/10] md:aspect-[21/9]" data-parallax>
+            <ec-img name="air-apron" alt="Passenger aircraft and cargo loaders on the apron at Amsterdam Schiphol" sizes="(min-width: 768px) 88vw, 100vw" class="h-full w-full" />
+            <figcaption class="readout bottom-4 left-4 bg-ink-900/85 px-3 py-2 text-paper">AMS · Amsterdam Schiphol</figcaption>
+          </figure>
+
+          <ol class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4" data-steps>
+            <li class="step"><span class="readout-l text-3xl text-cyan">01</span><p class="mt-3 text-lg font-medium">Pickup at your location</p></li>
+            <li class="step"><span class="readout-l text-3xl text-cyan">02</span><p class="mt-3 text-lg font-medium">Import / export customs clearance</p></li>
+            <li class="step"><span class="readout-l text-3xl text-cyan">03</span><p class="mt-3 text-lg font-medium">Transport to and from Amsterdam airport</p></li>
+            <li class="step"><span class="readout-l text-3xl text-cyan">04</span><p class="mt-3 text-lg font-medium">Door-to-door delivery</p></li>
+          </ol>
+
+          <div class="mt-14 grid gap-8 lg:grid-cols-12">
+            <p class="readout text-muted lg:col-span-3">We handle, among other things</p>
+            <ul class="flex flex-wrap gap-2.5 lg:col-span-9">
+              <li class="tag">Dangerous goods</li>
+              <li class="tag">Lithium batteries</li>
+              <li class="tag">Biological &amp; pharmaceutical</li>
+              <li class="tag">Temperature-controlled</li>
+              <li class="tag">Customs documents &amp; formalities</li>
+              <li class="tag">Bonded warehousing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · ROAD & SEA ─────────────────────────────────────── -->
+      <section
+        id="road-sea"
+        class="relative"
+        data-chapter
+        data-stage="Road · Sea"
+        data-loc="EU · World"
+        data-temp="+4.6 °C"
+        data-time="09:15"
+      >
+        <div class="plate duo relative h-[78svh] min-h-[520px]">
+          <ec-img name="truck-motion" alt="Truck at speed on a motorway" sizes="100vw" class="h-full w-full object-[30%_50%]" data-push />
+          <div class="absolute inset-0 z-[2] bg-[linear-gradient(0deg,#071a30_0%,rgba(7,26,48,0)_55%)]"></div>
+          <div class="wrap absolute inset-x-0 bottom-0 z-[3] pb-14">
+            <p class="kicker readout">03 · Road &amp; sea</p>
+            <h2 class="display display-l mt-5 max-w-[15ch]" data-split>From 1 kg to 10,000 kg. <span class="hl">No limits.</span></h2>
+          </div>
+        </div>
+        <div class="wrap chapter !pt-16">
+          <div class="grid gap-14 lg:grid-cols-12">
+            <div class="lg:col-span-6">
+              <h3 class="display display-m">Road transport</h3>
+              <p class="prose-ec mt-5">
+                National and international road transport across Europe and beyond. One pallet or two hundred, valuable goods with a security guard and a tracking link, or oversize air freight relayed to regional hubs: we arrange it safely from A to B, and deliver to any customs office in Serbia or the EU.
+              </p>
+              <ul class="mt-6 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+                <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">—</span>Dedicated transport</li>
+                <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">—</span>TAPA TSR1 transport</li>
+                <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">—</span>Art transport</li>
+                <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">—</span>Fashion (hanging) transport</li>
+                <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">—</span>Groupage</li>
+                <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">—</span>Medical sample shipments</li>
+              </ul>
+            </div>
+            <div class="lg:col-span-5 lg:col-start-8">
+              <figure class="plate duo aspect-[4/3]" data-parallax>
+                <ec-img name="containership" alt="Container ship seen from above" sizes="(min-width: 1024px) 38vw, 100vw" class="h-full w-full" />
+              </figure>
+              <h3 class="display display-m mt-8">Ocean freight</h3>
+              <p class="prose-ec mt-5">
+                Full containers (FCL) and smaller shipments consolidated in one container (LCL), picked up and delivered anywhere in the world. We organise full container transport and take care of every document, with the same personal service.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · TIME-CRITICAL ──────────────────────────────────── -->
+      <section
+        id="time-critical"
+        class="chapter bg-ink-950"
+        data-chapter
+        data-stage="NFO · OBC"
+        data-loc="AMS ✈ Next flight"
+        data-temp="+4.2 °C"
+        data-time="T+00:47"
+        data-trace="fast"
+      >
+        <div class="wrap">
+          <div class="grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <p class="kicker readout !text-amber">04 · Time-critical</p>
+              <h2 class="display display-l mt-5" data-split>When it absolutely <span class="text-amber">cannot wait.</span></h2>
+            </div>
+            <p class="lede self-end lg:col-span-5">Three ways to compress the clock, chosen by what your shipment and your deadline demand.</p>
+          </div>
+
+          <div class="mt-16 grid gap-px bg-line lg:grid-cols-12" data-stagger>
+            <article class="bg-ink-950 p-7 md:p-9 lg:col-span-4">
+              <p class="readout text-amber">NFO · Next Flight Out</p>
+              <h3 class="display display-m mt-4">First available flight.</h3>
+              <p class="prose-ec mt-4">Collected and flown on the first available flight, tracked door to door.</p>
+            </article>
+            <article class="relative bg-ink-800 lg:col-span-4 lg:row-span-1">
+              <figure class="plate cool aspect-[16/10]">
+                <ec-img name="obc-case" alt="Aluminium hard-shell case with a blue strap in an airport terminal" sizes="(min-width: 1024px) 30vw, 100vw" class="h-full w-full" />
+              </figure>
+              <div class="p-7 md:p-9">
+                <p class="readout text-amber">OBC · On-Board Courier · Premium</p>
+                <h3 class="display display-m mt-4">Never leaves its side.</h3>
+                <p class="prose-ec mt-4">Our premium service. A dedicated staff member hand-carries your shipment as cabin luggage on the first flight out.</p>
+              </div>
+            </article>
+            <article class="bg-ink-950 p-7 md:p-9 lg:col-span-4">
+              <p class="readout text-amber">Direct Driver · Exclusive road</p>
+              <h3 class="display display-m mt-4">One driver, one shipment.</h3>
+              <p class="prose-ec mt-4">Exclusive road transport by van, hydraulic-lift truck, thermal or refrigerated vehicle, with minimal transit time.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · SPECIALIST ─────────────────────────────────────── -->
+      <section
+        id="specialist"
+        class="chapter"
+        data-chapter
+        data-stage="Specimen · DG"
+        data-loc="IATA DGR"
+        data-temp="+3.9 °C"
+        data-time="13:30"
+      >
+        <div class="wrap grid gap-14 lg:grid-cols-12">
+          <div class="lg:col-span-5">
+            <p class="kicker readout">05 · The specialist difference</p>
+            <h2 class="display display-l mt-5" data-split>Biological samples &amp; <span class="hl">dangerous goods.</span></h2>
+            <p class="prose-ec mt-8">
+              Our specialisation is the shipment others decline: drugs, medical specimens, equipment for clinical trials and sample shipments on dry ice. Chemicals, batteries and flammable materials need correct documentation, packaging and labelling under IATA and ICAO rules, and a team trained to do it every time.
+            </p>
+          </div>
+          <div class="lg:col-span-6 lg:col-start-7">
+            <figure class="plate cool aspect-[4/3]" data-parallax>
+              <ec-img name="lab-tubes" alt="Rack of blood sample tubes in a laboratory" sizes="(min-width: 1024px) 45vw, 100vw" class="h-full w-full" />
+            </figure>
+          </div>
+          <ul class="grid gap-px bg-line sm:grid-cols-2 lg:col-span-12 lg:grid-cols-4" data-stagger>
+            <li class="bg-ink-900 p-6"><p class="readout text-cyan">Network</p><p class="mt-3">Worldwide specimen transport via our partner-agent network</p></li>
+            <li class="bg-ink-900 p-6"><p class="readout text-cyan">Clinical</p><p class="mt-3">Clinical drug substance, IMP, drug product and ancillary supplies</p></li>
+            <li class="bg-ink-900 p-6"><p class="readout text-cyan">Monitored</p><p class="mt-3">Temperature-controlled vehicles, monitored live by TT4 data loggers</p></li>
+            <li class="bg-ink-900 p-6"><p class="readout text-cyan">Compliance</p><p class="mt-3">Regulatory and foreign-trade consulting, full import-export documentation</p></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 06 · COLD CHAIN (ice chapter) ───────────────────────── -->
+      <section
+        id="cold-chain"
+        class="chapter bg-ice text-ink-900"
+        data-chapter
+        data-stage="Cold store"
+        data-loc="Bonded"
+        data-temp="+5.0 °C"
+        data-time="18:00"
+        data-trace="split"
+        data-theme="light"
+      >
+        <div class="wrap">
+          <p class="kicker readout !text-cyan-deep">06 · Bonded cold-chain warehouse</p>
+          <div class="mt-5 grid gap-10 lg:grid-cols-12">
+            <h2 class="display display-l lg:col-span-7" data-split>Three climates, <span class="text-cyan-deep">one bonded store.</span></h2>
+            <p class="self-end text-slate lg:col-span-5">
+              Storage that holds its range around the clock: twin-screw double cooling, PLC automatic temperature control, humidity control and 24/7 CCTV.
+            </p>
+          </div>
+
+          <div class="mt-14 grid gap-4 md:grid-cols-3" data-zones>
+            <div class="zone p-7">
+              <p class="readout text-slate">Frozen cold store</p>
+              <p class="display mt-6 whitespace-nowrap text-[clamp(2.2rem,3.3vw,3.4rem)] text-cyan-deep" data-zone-temp>−20 °C</p>
+              <div class="mt-6 h-1.5 bg-ice"><div class="h-full w-[12%] bg-cyan-deep" data-zone-bar></div></div>
+            </div>
+            <div class="zone p-7 !shadow-[inset_0_0_0_2px_#0a7f93]">
+              <p class="readout text-slate">Refrigerated</p>
+              <p class="display mt-6 whitespace-nowrap text-[clamp(2.2rem,3.3vw,3.4rem)] text-cyan-deep" data-zone-temp>+2–8 °C</p>
+              <div class="mt-6 h-1.5 bg-ice"><div class="h-full w-[48%] bg-cyan-deep" data-zone-bar></div></div>
+            </div>
+            <div class="zone p-7">
+              <p class="readout text-slate">Ambient controlled</p>
+              <p class="display mt-6 whitespace-nowrap text-[clamp(2.2rem,3.3vw,3.4rem)] text-cyan-deep" data-zone-temp>+15–25 °C</p>
+              <div class="mt-6 h-1.5 bg-ice"><div class="h-full w-[86%] bg-cyan-deep" data-zone-bar></div></div>
+            </div>
+          </div>
+
+          <div class="mt-14 grid gap-6 md:grid-cols-12">
+            <figure class="plate cool aspect-[16/10] md:col-span-8" data-parallax>
+              <ec-img name="cold-store" alt="Inside a temperature-controlled warehouse with racked pallets" sizes="(min-width: 768px) 60vw, 100vw" class="h-full w-full" />
+            </figure>
+            <figure class="plate cool aspect-[4/5] md:col-span-4 md:aspect-auto">
+              <ec-img name="cold-doors" alt="Insulated loading doors of a cold store" sizes="(min-width: 768px) 30vw, 100vw" class="h-full w-full" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 · PROJECTS ───────────────────────────────────────── -->
+      <section
+        id="projects"
+        class="chapter"
+        data-chapter
+        data-stage="Delivered"
+        data-loc="Worldwide"
+        data-temp="+4.0 °C"
+        data-time="D+3"
+      >
+        <div class="wrap">
+          <div class="grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <p class="kicker readout">07 · Logged journeys</p>
+              <h2 class="display display-l mt-5" data-split>Challenges find us. <span class="hl">We deliver them.</span></h2>
+            </div>
+            <p class="lede self-end lg:col-span-5">A few of the shipments we're proud of, from oversize trucks to a hospital in rural Kenya.</p>
+          </div>
+
+          <ul class="mt-16 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-stagger>
+            <li class="journey flex flex-col">
+              <figure class="plate aspect-[4/3]"><ec-img name="project-trucks-brunei" alt="Truck with yellow vacuum tank prepared for shipment" sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw" class="h-full w-full" /></figure>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="readout flex justify-between text-cyan"><span>NL → Brunei</span><span class="text-muted">Sea · Road</span></p>
+                <h3 class="mt-3 text-xl font-semibold">Two trucks with high-value vacuum tanks</h3>
+                <p class="prose-ec mt-2.5 text-[0.97rem]">Loaded by low-loader at the supplier, sealed and packed in Rotterdam, shipped on two 40' High Cube flatracks with our partners Supermaritime Forwarding and Maple Group.</p>
+              </div>
+            </li>
+            <li class="journey flex flex-col">
+              <figure class="plate aspect-[4/3]"><ec-img name="project-envirotainer" alt="Envirotainer active temperature-controlled container" sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw" class="h-full w-full" /></figure>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="readout flex justify-between text-cyan"><span>AMS → Australia</span><span class="text-muted">Air · Active cold</span></p>
+                <h3 class="mt-3 text-xl font-semibold">Two Envirotainers of pharmaceuticals</h3>
+                <p class="prose-ec mt-2.5 text-[0.97rem]">Active containers for pharma and biotech, holding a constant controlled temperature all the way to Australia.</p>
+              </div>
+            </li>
+            <li class="journey flex flex-col">
+              <figure class="plate aspect-[4/3]"><ec-img name="project-kenya" alt="Medical equipment delivered at Madiany Sub County Hospital, Kenya" sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw" class="h-full w-full object-top" /></figure>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="readout flex justify-between text-cyan"><span>AMS → South Uyoma, Kenya</span><span class="text-muted">Air</span></p>
+                <h3 class="mt-3 text-xl font-semibold">Medical equipment for a remote hospital</h3>
+                <p class="prose-ec mt-2.5 text-[0.97rem]">Delivered safely to Madiany Sub County Hospital, a Ministry of Health primary care hospital.</p>
+              </div>
+            </li>
+            <li class="journey flex flex-col">
+              <figure class="plate aspect-[4/3]"><ec-img name="project-crate-mexico" alt="Large wooden transport crates in a warehouse" sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw" class="h-full w-full" /></figure>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="readout flex justify-between text-cyan"><span>AMS → Mexico</span><span class="text-muted">Air · Tailor-made</span></p>
+                <h3 class="mt-3 text-xl font-semibold">A crate almost three metres long</h3>
+                <p class="prose-ec mt-2.5 text-[0.97rem]">Two and a half metres high, in tailor-made packaging. For international transport a wooden crate is the recommended choice.</p>
+              </div>
+            </li>
+            <li class="journey flex flex-col">
+              <figure class="plate aspect-[4/3]"><ec-img name="project-perth" alt="Sealed construction materials on pallets ready for shipment" sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw" class="h-full w-full" /></figure>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="readout flex justify-between text-cyan"><span>NL → Perth, Australia</span><span class="text-muted">Air</span></p>
+                <h3 class="mt-3 text-xl font-semibold">Construction materials above 3,000 kg</h3>
+                <p class="prose-ec mt-2.5 text-[0.97rem]">Collected, sealed and on their way to Perth.</p>
+              </div>
+            </li>
+            <li class="journey flex flex-col">
+              <figure class="plate aspect-[4/3]"><ec-img name="project-white-glove" alt="Illustration: a gloved hand presenting an Express Cargo delivery van" sizes="(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 100vw" class="h-full w-full" /></figure>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="readout flex justify-between text-cyan"><span>Door → Room</span><span class="text-muted">White glove</span></p>
+                <h3 class="mt-3 text-xl font-semibold">White glove delivery</h3>
+                <p class="prose-ec mt-2.5 text-[0.97rem]">For high-value, fragile or complex items: real-time tracking, inside delivery to the room you choose, and direct updates throughout.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 08 · ABOUT / ASSURANCE ──────────────────────────────── -->
+      <section
+        id="about"
+        class="chapter bg-ink-800"
+        data-chapter
+        data-stage="Assured"
+        data-loc="AMS · BEG"
+        data-temp="+4.1 °C"
+        data-time="Since 2002"
+      >
+        <div class="wrap grid gap-14 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <p class="kicker readout">08 · Why Express Cargo</p>
+            <h2 class="display display-l mt-5" data-split>A partner you can <span class="hl">rely on.</span></h2>
+            <p class="prose-ec mt-8">
+              Express Cargo was founded in 2002 to provide fast and safe cargo transport to any destination in the world. As part of the Express-Cargo Group, with offices at Amsterdam Schiphol, Europe's key cargo airport, and in Serbia, we offer international and domestic freight, forwarding, customs brokerage and warehousing.
+            </p>
+            <p class="prose-ec mt-5">
+              Every shipment is managed by a dedicated coordinator from start to finish. You have one direct point of contact, fast communication, and a transport solution tailored to your schedule, cargo and customs requirements.
+            </p>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-8">
+            <blockquote class="border-l-2 border-cyan pl-6">
+              <p class="display display-m !font-[620]">“Placing your shipment in our hands is placing it in safe and reliable hands.”</p>
+            </blockquote>
+            <dl class="mt-12 grid grid-cols-2 gap-px bg-line" data-stagger>
+              <div class="bg-ink-800 p-5"><dt class="readout text-muted">In operation</dt><dd class="readout-l mt-2 text-3xl text-cyan">Since 2002</dd></div>
+              <div class="bg-ink-800 p-5"><dt class="readout text-muted">Offices</dt><dd class="readout-l mt-2 text-3xl text-cyan">NL · RS</dd></div>
+              <div class="bg-ink-800 p-5"><dt class="readout text-muted">Quality</dt><dd class="readout-l mt-2 text-2xl">ISO 9001:2015<span class="block text-base text-muted">certified by TÜV SÜD</span></dd></div>
+              <div class="bg-ink-800 p-5"><dt class="readout text-muted">Air cargo</dt><dd class="readout-l mt-2 text-2xl">IATA member<span class="block text-base text-muted">DGR certified</span></dd></div>
+              <div class="bg-ink-800 p-5"><dt class="readout text-muted">Pharma</dt><dd class="readout-l mt-2 text-2xl">GDP<span class="block text-base text-muted">Good Distribution Practice</span></dd></div>
+              <div class="bg-ink-800 p-5"><dt class="readout text-muted">Network</dt><dd class="readout-l mt-2 text-2xl">Global Logistics<span class="block text-base text-muted">Network member</span></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09 · TEAM + FOOTPRINT ───────────────────────────────── -->
+      <section
+        id="team"
+        class="chapter"
+        data-chapter
+        data-stage="Your contact"
+        data-loc="AMS · Schiphol"
+        data-temp="+4.0 °C"
+        data-time="Mon–Fri"
+      >
+        <div class="wrap">
+          <div class="grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <p class="kicker readout">09 · People</p>
+              <h2 class="display display-l mt-5" data-split>Dedication. Expertise. <span class="hl">Passion.</span></h2>
+            </div>
+            <p class="lede self-end lg:col-span-5">An experienced, driven team. No challenge is too big: we think along with you and guarantee the best service.</p>
+          </div>
+
+          <ul class="mt-16 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 xl:grid-cols-5" data-stagger>
+            <li>
+              <figure class="plate duo aspect-[4/5]"><ec-img name="team-marcel" alt="Marcel Sannes" sizes="(min-width: 1280px) 17vw, (min-width: 768px) 28vw, 45vw" class="h-full w-full" /></figure>
+              <p class="readout mt-4 text-cyan">Director</p>
+              <p class="mt-1 text-lg font-semibold">Marcel Sannes</p>
+              <a class="link-u text-sm text-muted" href="mailto:marcel@express-cargo.nl">marcel@express-cargo.nl</a>
+            </li>
+            <li>
+              <figure class="plate duo aspect-[4/5]"><ec-img name="team-roy" alt="Roy van Zwieten" sizes="(min-width: 1280px) 17vw, (min-width: 768px) 28vw, 45vw" class="h-full w-full" /></figure>
+              <p class="readout mt-4 text-cyan">Operations manager</p>
+              <p class="mt-1 text-lg font-semibold">Roy van Zwieten</p>
+              <a class="link-u text-sm text-muted" href="mailto:roy@express-cargo.nl">roy@express-cargo.nl</a>
+            </li>
+            <li>
+              <figure class="plate duo aspect-[4/5]"><ec-img name="team-niels" alt="Niels Meijaard" sizes="(min-width: 1280px) 17vw, (min-width: 768px) 28vw, 45vw" class="h-full w-full" /></figure>
+              <p class="readout mt-4 text-cyan">Export</p>
+              <p class="mt-1 text-lg font-semibold">Niels Meijaard</p>
+              <a class="link-u text-sm text-muted" href="mailto:exportams@express-cargo.nl">exportams@express-cargo.nl</a>
+            </li>
+            <li>
+              <figure class="plate duo aspect-[4/5]"><ec-img name="team-josette" alt="Josette van Kaam" sizes="(min-width: 1280px) 17vw, (min-width: 768px) 28vw, 45vw" class="h-full w-full" /></figure>
+              <p class="readout mt-4 text-cyan">Import</p>
+              <p class="mt-1 text-lg font-semibold">Josette van Kaam</p>
+              <a class="link-u text-sm text-muted" href="mailto:importams@express-cargo.nl">importams@express-cargo.nl</a>
+            </li>
+            <li>
+              <figure class="plate duo aspect-[4/5]"><ec-img name="team-kim" alt="Kim Sannes" sizes="(min-width: 1280px) 17vw, (min-width: 768px) 28vw, 45vw" class="h-full w-full" /></figure>
+              <p class="readout mt-4 text-cyan">Accounting</p>
+              <p class="mt-1 text-lg font-semibold">Kim Sannes</p>
+              <a class="link-u text-sm text-muted" href="mailto:accounting@express-cargo.nl">accounting@express-cargo.nl</a>
+            </li>
+          </ul>
+
+          <div class="mt-24 grid gap-10 lg:grid-cols-12">
+            <div class="relative lg:col-span-7" data-map>
+              <p class="readout text-muted">Where to reach us</p>
+              <div class="relative mt-5 aspect-[991/518]">
+                <ec-img name="world-map" alt="" sizes="(min-width: 1024px) 55vw, 100vw" class="absolute inset-0 h-full w-full object-contain opacity-35 mix-blend-screen" />
+                <span class="map-pin absolute left-[47.2%] top-[20.1%]" data-pin><span class="readout absolute bottom-3 right-3 whitespace-nowrap text-paper">Amsterdam</span></span>
+                <span class="map-pin absolute left-[52%] top-[24.7%]" data-pin><span class="readout absolute left-3 top-3 whitespace-nowrap text-paper">Belgrade</span></span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-6 lg:col-span-5">
+              <div class="journey p-6">
+                <p class="readout text-cyan">Amsterdam — Schiphol Airport</p>
+                <address class="mt-3 not-italic leading-relaxed">Breguetlaan 21, 1438 BA Oude Meer<br />The Netherlands</address>
+                <p class="mt-3 flex flex-col gap-1">
+                  <a class="link-u w-fit readout-l text-lg text-cyan" href="tel:+31203332405">+31 20 333 2405</a>
+                  <a class="link-u w-fit text-muted" href="mailto:salesams@express-cargo.com">salesams@express-cargo.com</a>
+                </p>
+              </div>
+              <div class="journey p-6">
+                <p class="readout text-cyan">Belgrade — Serbia</p>
+                <p class="mt-3 leading-relaxed">Customs-cleared, door-to-door air freight via Belgrade airport, and delivery to any customs office in Serbia or the EU.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 · CLOSE ──────────────────────────────────────────── -->
+      <section
+        id="close"
+        class="relative overflow-clip"
+        data-chapter
+        data-stage="Delivered"
+        data-loc="Within range ✓"
+        data-temp="+4.0 °C"
+        data-time="Done"
+        data-trace="end"
+      >
+        <div class="plate duo absolute inset-0">
+          <ec-img name="air-apron" alt="" sizes="100vw" class="h-full w-full" data-push />
+        </div>
+        <div class="absolute inset-0 bg-[linear-gradient(180deg,#071a30_0%,rgba(7,26,48,0.82)_45%,rgba(7,26,48,0.94)_100%)]"></div>
+        <div class="wrap chapter relative z-[4]">
+          <p class="kicker readout">10 · Request a quote</p>
+          <h2 class="display display-xl mt-6 max-w-[14ch]" data-split>Ready when your shipment&nbsp;is.</h2>
+          <form class="mt-12 grid max-w-[880px] gap-4 md:grid-cols-[1fr_1fr_1fr_auto]" action="/contact/" method="get" data-quick-quote>
+            <input type="hidden" name="type" value="quote" />
+            <div class="field">
+              <label class="readout text-muted" for="qq-mode">Mode</label>
+              <select id="qq-mode" name="mode">
+                <option value="">Not sure yet</option>
+                <option value="air">Air freight</option>
+                <option value="road">Road</option>
+                <option value="ocean">Ocean</option>
+                <option value="time-critical">Time-critical (NFO · OBC · Direct)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="readout text-muted" for="qq-from">From</label>
+              <input id="qq-from" name="from" autocomplete="off" placeholder="City or country" />
+            </div>
+            <div class="field">
+              <label class="readout text-muted" for="qq-to">To</label>
+              <input id="qq-to" name="to" autocomplete="off" placeholder="City or country" />
+            </div>
+            <button class="btn btn-amber self-end justify-between" type="submit">Continue <span class="arrow" aria-hidden="true">→</span></button>
+          </form>
+          <p class="mt-6 text-muted">Prefer to talk? Call <a class="link-u text-paper" href="tel:+31203332405">+31 20 333 2405</a> or email <a class="link-u text-paper" href="mailto:salesams@express-cargo.com">salesams@express-cargo.com</a>.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include footer -->
+  </body>
+</html>

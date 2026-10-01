@@ -1,0 +1,45 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="flex items-center justify-between gap-6 py-4 pl-[var(--gutter)] pr-[var(--gutter)]">
+    <a href="/" class="relative z-[51] block w-[104px] md:w-[122px]" aria-label="Express Cargo — home">
+      <img src="/logo.svg" alt="Express Cargo" width="792" height="381" class="block h-auto w-full" />
+    </a>
+    <nav aria-label="Primary" class="hidden lg:block">
+      <ul class="flex items-center gap-8">
+        <li><a class="nav-link" href="/#services" data-nav="services">Services</a></li>
+        <li><a class="nav-link" href="/#cold-chain" data-nav="cold-chain">Cold chain</a></li>
+        <li><a class="nav-link" href="/#projects" data-nav="projects">Projects</a></li>
+        <li><a class="nav-link" href="/#about" data-nav="about">About</a></li>
+        <li><a class="nav-link" href="/#team" data-nav="team">Team</a></li>
+        <li><a class="nav-link" href="/contact/" data-nav="contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="flex items-center gap-5">
+      <a href="tel:+31203332405" class="readout hidden text-[0.8rem] text-paper xl:inline link-u">+31 20 333 2405</a>
+      <a href="/contact/#enquiry" class="btn btn-amber hidden sm:inline-flex !min-h-[44px] !text-[0.92rem]">Request a quote <span class="arrow" aria-hidden="true">→</span></a>
+      <button type="button" class="relative z-[51] -mr-2 inline-flex h-11 w-11 items-center justify-center lg:hidden" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+        <span class="sr-only" data-menu-label>Open menu</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="stroke-paper" fill="none" stroke-width="1.6">
+          <path d="M3 8h18M3 16h18" data-menu-icon />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu-panel lg:hidden" id="menu" data-menu>
+  <nav aria-label="Mobile">
+    <ul class="display display-m flex flex-col gap-3">
+      <li><a href="/#services" data-menu-link>Services</a></li>
+      <li><a href="/#cold-chain" data-menu-link>Cold chain</a></li>
+      <li><a href="/#projects" data-menu-link>Projects</a></li>
+      <li><a href="/#about" data-menu-link>About</a></li>
+      <li><a href="/#team" data-menu-link>Team</a></li>
+      <li><a href="/contact/" data-menu-link>Contact</a></li>
+    </ul>
+  </nav>
+  <div class="mt-auto flex flex-col gap-4">
+    <a href="/contact/#enquiry" class="btn btn-amber justify-between" data-menu-link>Request a quote <span class="arrow" aria-hidden="true">→</span></a>
+    <a href="tel:+31203332405" class="readout-l text-lg">+31 20 333 2405</a>
+    <a href="mailto:salesams@express-cargo.com" class="text-muted">salesams@express-cargo.com</a>
+  </div>
+</div>

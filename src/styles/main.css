@@ -1,0 +1,726 @@
+@import "tailwindcss" source(none);
+@source "../../index.html";
+@source "../../contact/index.html";
+@source "../partials";
+@source "../lib";
+@source "../*.ts";
+
+/* ── Type ────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/archivo-latin-standard-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/archivo-latin-ext-standard-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@theme {
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink-950: #04111f;
+  --color-ink-900: #071a30;
+  --color-ink-800: #0b2140;
+  --color-ink-700: #123a66;
+  --color-ink-600: #1e4473;
+  --color-line: #24507f;
+  --color-cyan: #12c4de;
+  --color-cyan-deep: #0a7f93;
+  --color-amber: #ffb23f;
+  --color-ice: #e9f6fa;
+  --color-ice-line: #bfdde8;
+  --color-paper: #f4f7fa;
+  --color-muted: #9db3cc;
+  --color-slate: #3e5672;
+}
+
+@layer base {
+/* ── Base ────────────────────────────────────────────────────────── */
+:root {
+  --rail-x: clamp(28px, 5.2vw, 84px); /* rail centre, measured from the right edge */
+  --rail-w: 44px;
+  --gutter: clamp(20px, 5vw, 80px);
+  --content-right: calc(var(--rail-x) + var(--rail-w) / 2 + clamp(16px, 3vw, 48px));
+  --head-y: 62vh; /* where the trace's drawing head sits in the viewport */
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-ink-900);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: 96px;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-cyan);
+  color: var(--color-ink-900);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  background: var(--color-cyan);
+  color: var(--color-ink-900);
+  padding: 10px 16px;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+}
+
+@layer components {
+/* ── Typographic roles ───────────────────────────────────────────── */
+.display {
+  font-stretch: 125%;
+  font-weight: 760;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+.display-xl {
+  font-size: clamp(2.6rem, 6.6vw, 7.25rem);
+}
+.display-l {
+  font-size: clamp(2.1rem, 4.6vw, 4.9rem);
+}
+.display-m {
+  font-size: clamp(1.6rem, 2.7vw, 2.75rem);
+  line-height: 1.04;
+}
+.readout {
+  font-stretch: 75%;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.readout-l {
+  font-stretch: 75%;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+.lede {
+  font-size: clamp(1.125rem, 1.35vw, 1.3rem);
+  line-height: 1.5;
+  max-width: 38ch;
+  color: color-mix(in oklab, var(--color-paper) 88%, var(--color-muted));
+}
+.prose-ec {
+  max-width: 62ch;
+  color: color-mix(in oklab, var(--color-paper) 82%, var(--color-muted));
+}
+.hl {
+  color: var(--color-cyan);
+}
+
+/* split-text line masks */
+.line-mask {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* ── Layout ──────────────────────────────────────────────────────── */
+.wrap {
+  padding-left: var(--gutter);
+  padding-right: var(--content-right);
+}
+.chapter {
+  position: relative;
+  padding-block: clamp(96px, 14vh, 168px);
+}
+
+/* bracketed kicker: [ 02 · AIR FREIGHT ] */
+.kicker {
+  display: inline-flex;
+  gap: 0.75em;
+  align-items: center;
+  color: var(--color-cyan);
+}
+.kicker::before,
+.kicker::after {
+  color: color-mix(in oklab, var(--color-cyan) 55%, transparent);
+}
+.kicker::before {
+  content: "[";
+}
+.kicker::after {
+  content: "]";
+}
+
+/* hairline graticule ground */
+.graticule {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px);
+  background-size: 96px 48px;
+}
+.graticule-fine {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-line) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 35%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ── Photography ─────────────────────────────────────────────────── */
+.plate {
+  position: relative;
+  overflow: clip;
+  background: var(--color-ink-700);
+  isolation: isolate;
+}
+.plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* cool brand duotone so deck, site and stock photos read as one set */
+.plate.duo img {
+  filter: grayscale(1) contrast(1.08) brightness(0.92);
+}
+.plate.duo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #1e4473 0%, #0b2140 100%);
+  mix-blend-mode: color;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.plate.cool img {
+  filter: saturate(0.72) contrast(1.04);
+}
+.plate.cool::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #123a66;
+  mix-blend-mode: soft-light;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.plate figcaption,
+.plate .caption {
+  position: absolute;
+  z-index: 2;
+}
+
+/* ── Controls ────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  min-height: 52px;
+  padding: 0 22px 0 24px;
+  font-stretch: 112%;
+  font-weight: 650;
+  font-size: 0.98rem;
+  letter-spacing: 0.005em;
+  border-radius: 2px;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.2s;
+  cursor: pointer;
+}
+.btn .arrow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+.btn-amber {
+  background: var(--color-amber);
+  color: var(--color-ink-900);
+}
+.btn-amber:hover {
+  background: #ffc46a;
+}
+.btn-line {
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-paper) 40%, transparent);
+  color: var(--color-paper);
+}
+.btn-line:hover {
+  box-shadow: inset 0 0 0 1px var(--color-cyan);
+  color: var(--color-cyan);
+}
+.link-u {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.3s;
+}
+.link-u:hover {
+  background-size: 100% 1px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s,
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.site-header.is-solid {
+  background: color-mix(in oklab, var(--color-ink-900) 92%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--color-line) 70%, transparent);
+}
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+.nav-link {
+  position: relative;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: color-mix(in oklab, var(--color-paper) 86%, var(--color-muted));
+}
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  color: var(--color-paper);
+}
+.nav-link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--color-cyan);
+}
+
+.menu-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: var(--color-ink-900);
+  padding: 112px var(--gutter) 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    visibility 0s 0.3s;
+}
+.menu-open .menu-panel {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* ── Trace instrument ────────────────────────────────────────────── */
+.trace-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.trace-layer svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.trace-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(var(--rail-x) - var(--rail-w) / 2);
+  width: var(--rail-w);
+  pointer-events: none;
+  z-index: 2;
+  /* minor ticks every 24px, major every 120px */
+  background:
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-muted) 40%, transparent) 1px, transparent 1px) left top / 8px 24px repeat-y,
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-muted) 55%, transparent) 1px, transparent 1px) left top / 14px 120px repeat-y,
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-muted) 40%, transparent) 1px, transparent 1px) right top / 8px 24px repeat-y;
+}
+.trace-band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  background: color-mix(in oklab, var(--color-cyan) 11%, transparent);
+  box-shadow:
+    inset 1px 0 0 color-mix(in oklab, var(--color-cyan) 45%, transparent),
+    inset -1px 0 0 color-mix(in oklab, var(--color-cyan) 45%, transparent);
+}
+.trace-path {
+  fill: none;
+  stroke: var(--color-cyan);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.trace-path.ghost {
+  stroke: color-mix(in oklab, var(--color-cyan) 22%, transparent);
+  stroke-width: 1;
+}
+
+/* fixed readout riding next to the trace head */
+.logger {
+  position: fixed;
+  z-index: 40;
+  right: calc(var(--rail-x) + var(--rail-w) / 2 + 10px);
+  top: var(--head-y);
+  transform: translateY(-50%);
+  min-width: 212px;
+  padding: 10px 12px 11px;
+  background: color-mix(in oklab, var(--color-ink-900) 88%, transparent);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-cyan) 35%, transparent),
+    0 12px 32px -12px rgb(0 0 0 / 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.logger.is-live {
+  opacity: 1;
+}
+.logger::after {
+  /* leader to the head */
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  width: 10px;
+  height: 1px;
+  background: var(--color-cyan);
+}
+.logger dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 14px;
+  row-gap: 2px;
+}
+.logger dt {
+  color: var(--color-muted);
+}
+.logger dd {
+  color: var(--color-paper);
+  white-space: nowrap;
+}
+.logger .temp {
+  color: var(--color-cyan);
+}
+.head-dot {
+  position: fixed;
+  z-index: 41;
+  top: var(--head-y);
+  right: calc(var(--rail-x) - 5px);
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-cyan) 22%, transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.head-dot.is-live {
+  opacity: 1;
+}
+
+/* ── Chapter-specific ────────────────────────────────────────────── */
+.log-row {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0 24px;
+  align-items: baseline;
+  padding: 28px 0 30px;
+  border-top: 1px solid color-mix(in oklab, var(--color-line) 80%, transparent);
+  position: relative;
+}
+.log-row:last-child {
+  border-bottom: 1px solid color-mix(in oklab, var(--color-line) 80%, transparent);
+}
+@media (min-width: 900px) {
+  .log-row {
+    grid-template-columns: 6.5rem minmax(0, 1.15fr) minmax(0, 1fr) 2rem;
+  }
+}
+.log-row .leader {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  height: 1px;
+  width: calc(var(--content-right) - var(--rail-x));
+  background: linear-gradient(to right, color-mix(in oklab, var(--color-cyan) 50%, transparent) 50%, transparent 50%) 0 0 / 6px 1px;
+  transform-origin: left;
+}
+.log-row a.row-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.log-row:hover .row-title {
+  color: var(--color-cyan);
+}
+.log-row .row-title {
+  transition: color 0.2s;
+}
+
+.step {
+  border-top: 1px solid color-mix(in oklab, var(--color-line) 80%, transparent);
+  padding-top: 18px;
+}
+
+.zone {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--color-ice-line);
+  color: var(--color-ink-900);
+}
+
+.journey {
+  background: var(--color-ink-800);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-line) 70%, transparent);
+  transition: box-shadow 0.25s;
+}
+.journey:hover {
+  box-shadow: inset 0 0 0 1px var(--color-cyan);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-paper) 30%, transparent);
+}
+
+.field label,
+.field legend {
+  display: block;
+  margin-bottom: 8px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  background: var(--color-ink-900);
+  color: var(--color-paper);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-line) 100%, transparent);
+  transition: box-shadow 0.2s;
+  font-size: 1rem;
+}
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  box-shadow: inset 0 0 0 1px var(--color-muted);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-cyan);
+}
+.field [aria-invalid="true"] {
+  box-shadow: inset 0 0 0 2px var(--color-amber);
+}
+.field .error {
+  color: var(--color-amber);
+  margin-top: 6px;
+  font-size: 0.875rem;
+}
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-cyan) 50%),
+    linear-gradient(135deg, var(--color-cyan) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 14px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+.choice {
+  position: relative;
+}
+.choice input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+.choice span {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 16px;
+  box-shadow: inset 0 0 0 1px var(--color-line);
+  transition:
+    box-shadow 0.2s,
+    color 0.2s;
+}
+.choice input:checked + span {
+  box-shadow: inset 0 0 0 2px var(--color-cyan);
+  color: var(--color-cyan);
+}
+.choice input:focus-visible + span {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+/* reserve a readout column beside the rail so the logger never covers copy */
+@media (min-width: 1280px) {
+  :root {
+    --content-right: calc(var(--rail-x) + var(--rail-w) / 2 + 256px);
+  }
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+  :root {
+    --content-right: calc(var(--rail-x) + var(--rail-w) / 2 + 132px);
+  }
+  .logger {
+    min-width: 0;
+    width: 112px;
+    padding: 8px 10px;
+  }
+  .logger dl {
+    grid-template-columns: 1fr;
+  }
+  .logger dt,
+  .logger .optional,
+  .logger [data-log="loc"],
+  .logger [data-log="time"] {
+    display: none;
+  }
+  .logger dd {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --rail-x: 14px;
+    --rail-w: 16px;
+    --content-right: calc(var(--rail-x) + 22px);
+    --gutter: 20px;
+  }
+  .trace-band {
+    left: 4px;
+    right: 4px;
+  }
+  .trace-rail {
+    background:
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-muted) 40%, transparent) 1px, transparent 1px) left top / 4px 24px repeat-y;
+  }
+  .logger {
+    top: auto;
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    transform: none;
+    min-width: 0;
+    padding: 8px 10px;
+  }
+  .logger::after {
+    display: none;
+  }
+  .logger dl {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+    column-gap: 8px;
+  }
+  .logger dt {
+    display: none;
+  }
+  .logger .optional {
+    display: none;
+  }
+}
+
+/* ── Motion preferences ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* footprint pins */
+.map-pin {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  box-shadow:
+    0 0 0 6px color-mix(in oklab, var(--color-cyan) 25%, transparent),
+    0 0 0 14px color-mix(in oklab, var(--color-cyan) 10%, transparent);
+}
+.menu-open .logger {
+  opacity: 0;
+}
+
+}
+.logger.is-parked,
+.logger.is-parked + .head-dot {
+  opacity: 0;
+}
+/* pages without the trace rail use the full measure */
+body.no-rail {
+  --content-right: var(--gutter);
+}
