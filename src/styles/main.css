@@ -12,8 +12,8 @@
   font-weight: 100 800;
   font-display: swap;
 }
-/* Overpass: an open descendant of Highway Gothic, the road-signage face;
-   its mono cut carries chart labels, codes and coordinates */
+/* Overpass (Highway Gothic lineage) for running text; Manrope medium/semibold
+   for subtitles, chart labels, routes and codes */
 @font-face {
   font-family: "Overpass";
   src: url("/fonts/overpass-latin-wght-normal.woff2") format("woff2");
@@ -21,16 +21,16 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Overpass Mono";
-  src: url("/fonts/overpass-mono-latin-wght-normal.woff2") format("woff2");
-  font-weight: 300 700;
+  font-family: "Manrope";
+  src: url("/fonts/manrope-latin-wght-normal.woff2") format("woff2");
+  font-weight: 200 800;
   font-display: swap;
 }
 
 @theme {
   --font-sans: "Overpass", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
-  --font-chart: "Overpass Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-chart: "Manrope", "Overpass", ui-sans-serif, system-ui, sans-serif;
 
   --color-paper: #eef2f5;
   --color-paper-2: #e3e9ee;
@@ -120,23 +120,29 @@
   .display-l {
     font-size: clamp(2.1rem, 4vw, 4.2rem);
   }
+  /* subtitles: Manrope semibold */
   .display-m {
-    font-size: clamp(1.45rem, 2.2vw, 2.1rem);
-    line-height: 1.12;
-    letter-spacing: -0.025em;
+    font-family: var(--font-chart);
+    font-weight: 600;
+    font-size: clamp(1.4rem, 2.1vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
+  /* chart labels, routes, codes: Manrope semibold caps */
   .chart {
     font-family: var(--font-chart);
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    font-size: 0.76rem;
     line-height: 1.35;
+    font-variant-numeric: tabular-nums;
   }
   .chart-l {
     font-family: var(--font-chart);
     font-weight: 600;
-    letter-spacing: 0;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
   }
   .lede {
     font-size: clamp(1.13rem, 1.35vw, 1.3rem);
