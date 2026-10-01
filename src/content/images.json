@@ -178,13 +178,22 @@
     "ratio": 0.862,
     "source": "brand/site-photos/team-kim.jpg"
   },
-  "poster-hero-a330": {
+  "poster-hero-depart": {
     "widths": [
       960,
-      1600
+      1600,
+      1920
     ],
     "ratio": 1.7778,
-    "source": "brand/stock/hero-a330-poster.jpg"
+    "source": "brand/stock/hero-depart-poster.jpg"
+  },
+  "poster-hero-depart-m": {
+    "widths": [
+      480,
+      720
+    ],
+    "ratio": 0.7676,
+    "source": "brand/stock/hero-depart-m-poster.jpg"
   },
   "poster-air-loading": {
     "widths": [

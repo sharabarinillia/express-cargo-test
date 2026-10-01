@@ -9,6 +9,12 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export function initVideos(): void {
   const vids = [...document.querySelectorAll<HTMLVideoElement>('video[data-video]')];
   if (reducedMotion) return;
+  const hero = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (hero) {
+    // fades in over its poster only once frames are actually moving
+    hero.addEventListener('playing', () => hero.classList.add('is-playing'), { once: true });
+    hero.play().catch(() => {});
+  }
   const io = new IntersectionObserver(
     (entries) => {
       for (const e of entries) {
@@ -58,13 +64,13 @@ function drawIcons(scope: Element, delay = 0) {
 export function initReveals(): void {
   if (reducedMotion) return;
 
-  // hero
+  // hero: the departure plays once, then holds on the aircraft in the distance
   gsap.from('[data-fade]', { y: 22, autoAlpha: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.45 });
-  const heroInset = document.querySelector<HTMLElement>('[data-hero-inset]');
-  if (heroInset) {
-    gsap.fromTo(heroInset, { clipPath: 'inset(100% 0% 0% 0% round 6px)' }, { clipPath: 'inset(0% 0% 0% 0% round 6px)', duration: 1.4, ease: 'expo.inOut', delay: 0.2 });
-    gsap.fromTo(heroInset.querySelector('video'), { scale: 1.25 }, { scale: 1, duration: 2.2, ease: 'expo.out', delay: 0.2 });
-    gsap.to(heroInset, { yPercent: -10, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
+  const heroMedia = document.querySelector<HTMLElement>('[data-hero-media]');
+  if (heroMedia) {
+    gsap.fromTo(heroMedia, { scale: 1.08 }, { scale: 1, duration: 2.4, ease: 'expo.out' });
+    gsap.to(heroMedia, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero-head', { yPercent: -18, autoAlpha: 0.2, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom 20%', scrub: true } });
   }
 
   // chart insets: scroll depth (multiplane push)
@@ -120,76 +126,4 @@ export function initReveals(): void {
   // close: the flight-plan panel rises into place
   const close = document.querySelector<HTMLElement>('[data-close-inset]');
   if (close) gsap.fromTo(close, { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: close, start: 'top bottom', end: 'top 30%', scrub: 0.5 } });
-}
-
-/** Projects: routes plotted from EHAM; pinned and stepped through on desktop. */
-export function initProjects(): void {
-  const section = document.querySelector<HTMLElement>('[data-projects]');
-  const routes = document.querySelector<SVGGElement>('[data-wc-routes]');
-  const cards = gsap.utils.toArray<HTMLElement>('[data-project-stack] .project-card');
-  if (!section || !routes || !cards.length) return;
-  const NS = 'http://www.w3.org/2000/svg';
-  const ox = 468;
-  const oy = 104;
-  const paths: SVGPathElement[] = [];
-  const dots: SVGCircleElement[] = [];
-  cards.forEach((card) => {
-    const x = +card.dataset.x!;
-    const y = +card.dataset.y!;
-    const cx = (ox + x) / 2;
-    const cy = Math.max(12, Math.min(oy, y) - 70 - Math.abs(x - ox) * 0.12);
-    const p = document.createElementNS(NS, 'path');
-    p.setAttribute('d', `M${ox} ${oy} Q${cx} ${cy} ${x} ${y}`);
-    p.setAttribute('class', 'wc-route');
-    p.setAttribute('pathLength', '1');
-    routes.appendChild(p);
-    const c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', String(x));
-    c.setAttribute('cy', String(y));
-    c.setAttribute('r', '6');
-    c.setAttribute('class', 'wc-dot');
-    routes.appendChild(c);
-    paths.push(p);
-    dots.push(c);
-  });
-
-  const setActive = (i: number) => {
-    cards.forEach((c, j) => c.classList.toggle('is-active', j === i));
-    paths.forEach((p, j) => p.classList.toggle('is-active', j === i));
-    dots.forEach((d, j) => d.classList.toggle('is-active', j === i));
-  };
-  setActive(0);
-  if (reducedMotion) return;
-
-  ScrollTrigger.matchMedia({
-    '(min-width: 1024px)': () => {
-      gsap.set(paths, { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set(dots, { scale: 0, transformOrigin: 'center', transformBox: 'fill-box' });
-      const n = cards.length;
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => `+=${window.innerHeight * (n * 0.7)}`,
-          pin: true,
-          scrub: 0.6,
-          onUpdate: (self) => setActive(Math.min(n - 1, Math.floor(self.progress * n * 0.999))),
-        },
-      });
-      paths.forEach((p, i) => {
-        tl.to(p, { strokeDashoffset: 0, duration: 0.6, ease: 'power1.inOut' }, i);
-        tl.to(dots[i], { scale: 1, duration: 0.2, ease: 'power3.out' }, i + 0.55);
-      });
-      tl.to({}, { duration: 0.4 });
-      return () => {
-        tl.scrollTrigger?.kill();
-        tl.kill();
-        gsap.set([...paths, ...dots], { clearProps: 'all' });
-      };
-    },
-    '(max-width: 1023px)': () => {
-      const t = gsap.fromTo(paths, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.4, stagger: 0.15, ease: 'power2.inOut', scrollTrigger: { trigger: '[data-worldchart]', start: 'top 80%', once: true } });
-      return () => t.kill();
-    },
-  });
 }

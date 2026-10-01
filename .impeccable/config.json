@@ -21,15 +21,6 @@
         ],
         "createdAt": "2026-10-01T13:14:59.242Z",
         "reason": "Claude: false positive \u2014 detector does not resolve class-based display sizes; measured in Chromium at 1440px: h1 76\u201395px, h2 66px, h3 39px vs 17px body"
-      },
-      {
-        "rule": "codex-grid-background",
-        "value": "*",
-        "files": [
-          "src/styles/main.css"
-        ],
-        "createdAt": "2026-10-01T16:00:00.000Z",
-        "reason": "Claude: intentional \u2014 .graticule is the aeronautical-chart graticule of the chosen 'Flight chart' world (a map surface, which the rule exempts); it carries the plotted route and waypoints"
       }
     ]
   }

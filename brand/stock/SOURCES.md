@@ -4,7 +4,7 @@ Licensed through the Magnific (Freepik) stock library on the account's Premium+ 
 
 | File | Magnific title | Stock ID |
 |---|---|---|
-| hero-a330 | Airbus A330 Takeoff From the Runway, Cloudy Day, Low Angle Belly View | 9457354 |
+| hero-depart | Large Blue Passenger Airplane Taking Off into Cloudy Sky (4K source; desktop crop 2880×1620 at 0,270 and phone crop 1350×1760 at 1111,400, from 12.5 s; plays once) | 7683626 |
 | air-loading | Low-angle video shot of cargo being loaded onto a large aircraft, showcasing logistics | 7082345 |
 | road-highway | Birdseye Aerial View of European Highway Traffic, Moving Cars and Trucks, Top Down Drone Shot | 9060859 |
 | sea-river | Container vessel loaded with containers sailing fast on a dutch river | 961214 |
@@ -14,3 +14,8 @@ Licensed through the Magnific (Freepik) stock library on the account's Premium+ 
 | close-wing | Beautiful cloudscape and airplane wing above the clouds | 8945319 |
 
 All clips are filmed footage (none flagged as AI-generated). The cold-store clip is illustrative, not Express Cargo's own facility.
+
+## Globe textures (`public/globe/`)
+
+From the `three-globe` example assets (MIT package), derived from NASA Visible Earth imagery (public domain):
+`earth-4k.webp` / `earth-2k.webp` (Blue Marble), `bump-2k.jpg` (topology), `water-1600.jpg` (ocean specular mask), `clouds-2k.webp` (cloud deck).

@@ -1,12 +1,12 @@
 import './styles/main.css';
 import { initShell } from './lib/shell';
-import { initHeadlines, initProjects, initReveals, initVideos } from './lib/motion';
+import { initHeadlines, initReveals, initVideos } from './lib/motion';
+import { initGlobe } from './lib/globe';
 import { initRoute } from './lib/route';
 
 initShell();
-// pins first, so the route measures chapters with their pin spacers
-initProjects();
 initRoute();
+initGlobe();
 initHeadlines();
 initReveals();
 initVideos();

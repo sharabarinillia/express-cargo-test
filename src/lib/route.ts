@@ -3,8 +3,8 @@
  *
  * Each chapter declares a leg (`data-leg="left|right"`) and a waypoint label
  * (`data-wp`). The route runs down the chosen margin through every chapter,
- * crossing over in the gaps between chapters, from the EHAM waypoint on the
- * hero inset to the destination at the close. A small aircraft flies it: its
+ * crossing over in the gaps between chapters, from the EHAM waypoint at the
+ * foot of the departure hero to the destination at the close. A small aircraft flies it: its
  * position is tied to scroll so it stays on a fixed reading line, and the
  * flown part of the line is drawn behind it.
  */
@@ -53,10 +53,9 @@ export function initRoute(): void {
       const box = rel(leg.getBoundingClientRect());
       const label = leg.dataset.wp ?? '';
       if (side === 'hero') {
-        const inset = leg.querySelector<HTMLElement>('[data-hero-inset]');
-        const ib = inset ? rel(inset.getBoundingClientRect()) : box;
-        const wide = window.innerWidth >= 1024;
-        pts.push({ x: wide ? ib.left : xRight, y: wide ? ib.bottom - 40 : ib.bottom + 24, wp: { label, side: 'right' } });
+        const foot = leg.querySelector<HTMLElement>('.hero-foot');
+        const fb = foot ? rel(foot.getBoundingClientRect()) : box;
+        pts.push({ x: xRight, y: fb.top - 24, wp: { label, side: 'right' } });
         continue;
       }
       if (side === 'end') {

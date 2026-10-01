@@ -8,7 +8,7 @@
     <meta property="og:title" content="Express Cargo — Your most sensitive shipments, in safe hands" />
     <meta property="og:description" content="Air, road and sea freight for clinical trials, biological samples, dangerous goods and cold-chain cargo. Schiphol and Belgrade, since 2002." />
     <meta property="og:url" content="https://www.express-cargo.nl/" />
-    <meta property="og:image" content="https://www.express-cargo.nl/img/poster-hero-a330-1600.webp" />
+    <meta property="og:image" content="https://www.express-cargo.nl/img/poster-hero-depart-1600.webp" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -48,28 +48,39 @@
         </div>
       </div>
 
-      <!-- HERO ────────────────────────────────────────────────── -->
-      <section id="top" class="graticule relative overflow-clip pt-28 pb-20 lg:min-h-[100svh] lg:pt-36" data-leg="hero" data-wp="EHAM · Schiphol">
-        <div class="wrap grid items-center gap-12 lg:grid-cols-12">
-          <div class="lg:col-span-6">
-            <p class="coord chart" data-fade>EHAM · 52°18′N 004°46′E · Since 2002</p>
-            <h1 class="display display-xl mt-6" data-split>Your most sensitive shipments, <span class="inline-block">in safe hands.</span></h1>
-            <p class="lede mt-7" data-fade>Specialist air, road and sea freight from Amsterdam Schiphol and Belgrade, for clinical trials, biological samples, dangerous goods and temperature-controlled cargo.</p>
-            <div class="mt-9 flex flex-wrap items-center gap-4" data-fade>
+      <!-- HERO: full-bleed departure ──────────────────────────── -->
+      <section id="top" class="hero" data-leg="hero" data-wp="EHAM · Schiphol">
+        <div class="hero-media" aria-hidden="true" data-hero-media>
+          <picture>
+            <source media="(max-width: 767px)" type="image/avif" srcset="/img/poster-hero-depart-m-480.avif 480w, /img/poster-hero-depart-m-720.avif 720w" sizes="100vw" />
+            <source media="(max-width: 767px)" type="image/webp" srcset="/img/poster-hero-depart-m-480.webp 480w, /img/poster-hero-depart-m-720.webp 720w" sizes="100vw" />
+            <source type="image/avif" srcset="/img/poster-hero-depart-960.avif 960w, /img/poster-hero-depart-1600.avif 1600w, /img/poster-hero-depart-1920.avif 1920w" sizes="100vw" />
+            <img src="/img/poster-hero-depart-1600.webp" srcset="/img/poster-hero-depart-960.webp 960w, /img/poster-hero-depart-1600.webp 1600w, /img/poster-hero-depart-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high" />
+          </picture>
+          <video muted playsinline preload="auto" data-hero-video>
+            <source media="(max-width: 767px)" src="/video/hero-depart-m.mp4" type="video/mp4" />
+            <source src="/video/hero-depart.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="hero-veil" aria-hidden="true"></div>
+
+        <div class="wrap hero-head">
+          <p class="tag chart" data-fade>EHAM · 52°18′N 004°46′E · Since 2002</p>
+          <h1 class="display display-hero mt-6" data-split>Your most sensitive shipments, in safe hands.</h1>
+        </div>
+
+        <div class="hero-foot">
+          <div class="wrap grid items-end gap-x-12 gap-y-7 lg:grid-cols-12">
+            <p class="lede lg:col-span-5" data-fade>Specialist air, road and sea freight from Amsterdam Schiphol and Belgrade, for clinical trials, biological samples, dangerous goods and temperature-controlled cargo.</p>
+            <div class="flex flex-wrap items-center gap-4 lg:col-span-5" data-fade>
               <a href="/contact/#enquiry" class="btn btn-ink">Request a quote <!-- @include arrow --></a>
               <a href="tel:+31203332405" class="btn btn-line"><ec-icon name="phone" /> +31 20 333 2405</a>
             </div>
-            <ul class="chart mt-12 flex flex-wrap gap-x-6 gap-y-3 text-ink-2" data-fade>
-              <li class="flex items-center gap-2"><ec-icon name="badge-check" class="!h-5 !w-5 text-cyan-ink" /> ISO 9001:2015</li>
-              <li class="flex items-center gap-2"><ec-icon name="plane" class="!h-5 !w-5 text-cyan-ink" /> IATA · DGR</li>
-              <li class="flex items-center gap-2"><ec-icon name="shield-check" class="!h-5 !w-5 text-cyan-ink" /> GDP</li>
+            <ul class="chart flex flex-wrap gap-x-5 gap-y-2 text-ink-2 lg:col-span-2 lg:flex-col lg:items-end" data-fade>
+              <li class="flex items-center gap-2"><ec-icon name="badge-check" class="!h-[18px] !w-[18px] text-cyan-ink" /> ISO 9001:2015</li>
+              <li class="flex items-center gap-2"><ec-icon name="plane" class="!h-[18px] !w-[18px] text-cyan-ink" /> IATA · DGR</li>
+              <li class="flex items-center gap-2"><ec-icon name="shield-check" class="!h-[18px] !w-[18px] text-cyan-ink" /> GDP</li>
             </ul>
-          </div>
-          <div class="lg:col-span-6">
-            <figure class="inset aspect-[4/3] lg:aspect-[5/6]" data-hero-inset>
-              <ec-video name="hero-a330" class="h-full w-full object-[58%_50%]" />
-              <figcaption class="inset-label chart">Departure · runway 24</figcaption>
-            </figure>
           </div>
         </div>
       </section>
@@ -179,7 +190,7 @@
       </section>
 
       <!-- TIME-CRITICAL: flight strips ────────────────────────── -->
-      <section id="time-critical" class="section graticule bg-paper-2 overflow-x-clip" data-leg="left" data-wp="PRI · Next flight">
+      <section id="time-critical" class="section bg-paper-2 overflow-x-clip" data-leg="left" data-wp="PRI · Next flight">
         <div class="wrap">
           <div class="grid items-end gap-10 lg:grid-cols-12">
             <div class="lg:col-span-7">
@@ -238,7 +249,7 @@
       </section>
 
       <!-- COLD CHAIN: airspace cross-section ──────────────────── -->
-      <section id="cold-chain" class="section graticule bg-paper-2" data-leg="left" data-wp="COLD · Bonded store">
+      <section id="cold-chain" class="section bg-paper-2" data-leg="left" data-wp="COLD · Bonded store">
         <div class="wrap">
           <div class="grid gap-10 lg:grid-cols-12">
             <div class="lg:col-span-7">
@@ -279,9 +290,9 @@
         </div>
       </section>
 
-      <!-- PROJECTS: routes plotted on a world chart (pinned on desktop) -->
-      <section id="projects" class="relative" data-leg="right" data-wp="LOG · Journeys">
-        <div class="wrap section lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center lg:!py-24" data-projects>
+      <!-- PROJECTS: routes flown on a 3D globe (sticky globe, scrolling log) -->
+      <section id="projects" class="section" data-leg="right" data-wp="LOG · Journeys">
+        <div class="wrap">
           <div class="grid gap-6 lg:grid-cols-12">
             <div class="lg:col-span-7">
               <h2 class="display display-l" data-split>Challenges find us. We deliver them.</h2>
@@ -289,41 +300,40 @@
             <p class="lede self-end lg:col-span-5">From oversize trucks to a hospital in rural Kenya: a few of the routes we are proud of.</p>
           </div>
 
-          <div class="mt-10 grid items-start gap-10 lg:grid-cols-12">
-            <div class="worldchart lg:col-span-7" data-worldchart>
-              <img src="/world-chart.png" alt="" width="991" height="518" />
-              <svg viewBox="0 0 991 518" aria-hidden="true">
-                <g data-wc-routes></g>
-                <circle class="wc-origin" cx="468" cy="104" r="6" />
-                <text class="wc-label" x="452" y="92" text-anchor="end">EHAM</text>
-              </svg>
+          <div class="mt-12 grid gap-x-12 lg:grid-cols-12" data-projects>
+            <div class="globe-stage lg:col-span-7" data-globe-stage>
+              <div class="globe-frame">
+                <div class="globe-shadow" aria-hidden="true"></div>
+                <div class="globe-canvas" data-globe role="img" aria-label="Globe showing the five project routes from Amsterdam Schiphol"></div>
+                <p class="globe-hud chart" aria-hidden="true"><span data-globe-route>EHAM → Brunei</span><span class="text-mute" data-globe-dist></span></p>
+              </div>
             </div>
-            <ol class="project-stack lg:col-span-5" data-project-stack>
-              <li class="project-card is-active" data-to="NL → Brunei" data-x="822" data-y="290">
+            <ol class="project-log lg:col-span-5" data-project-log>
+              <li class="project-card" data-lat="4.94" data-lng="114.95" data-place="Brunei" data-mode="sea">
                 <figure class="inset aspect-[16/10]"><ec-img name="project-trucks-brunei" alt="Truck with a yellow vacuum tank prepared for shipment" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
                 <p class="chart mt-5 flex justify-between text-cyan-ink"><span>NL → Brunei</span><span class="text-mute">Sea · Road</span></p>
                 <h3 class="display display-m mt-2">Two trucks with high-value vacuum tanks</h3>
                 <p class="copy mt-3">Loaded by low-loader at the supplier, sealed and packed in Rotterdam, shipped on two 40' High Cube flatracks with our partners Supermaritime Forwarding and Maple Group.</p>
               </li>
-              <li class="project-card" data-to="AMS → Australia" data-x="955" data-y="432">
+              <li class="project-card" data-lat="-33.87" data-lng="151.21" data-place="Australia" data-mode="air">
                 <figure class="inset aspect-[16/10]"><ec-img name="project-envirotainer" alt="Envirotainer active temperature-controlled container" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
                 <p class="chart mt-5 flex justify-between text-cyan-ink"><span>AMS → Australia</span><span class="text-mute">Air · Active cold</span></p>
                 <h3 class="display display-m mt-2">Two Envirotainers of pharmaceuticals</h3>
                 <p class="copy mt-3">Active containers for pharma and biotech, holding a constant controlled temperature all the way to Australia.</p>
               </li>
-              <li class="project-card" data-to="AMS → South Uyoma, Kenya" data-x="575" data-y="290">
+              <li class="project-card" data-lat="-0.25" data-lng="34.33" data-place="South Uyoma, Kenya" data-mode="air">
                 <figure class="inset aspect-[16/10]"><ec-img name="project-kenya" alt="Medical equipment delivered at Madiany Sub County Hospital, Kenya" sizes="(min-width: 1024px) 34vw, 100vw" class="object-top" /></figure>
                 <p class="chart mt-5 flex justify-between text-cyan-ink"><span>AMS → South Uyoma, Kenya</span><span class="text-mute">Air</span></p>
                 <h3 class="display display-m mt-2">Medical equipment for a remote hospital</h3>
                 <p class="copy mt-3">Delivered safely to Madiany Sub County Hospital, a Ministry of Health primary care hospital.</p>
               </li>
-              <li class="project-card" data-to="AMS → Mexico" data-x="135" data-y="235">
+              <li class="project-card" data-lat="19.43" data-lng="-99.13" data-place="Mexico" data-mode="air">
                 <figure class="inset aspect-[16/10]"><ec-img name="project-crate-mexico" alt="Large wooden transport crates" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
                 <p class="chart mt-5 flex justify-between text-cyan-ink"><span>AMS → Mexico</span><span class="text-mute">Air · Tailor-made</span></p>
                 <h3 class="display display-m mt-2">A crate almost three metres long</h3>
                 <p class="copy mt-3">Two and a half metres high, in tailor-made packaging. For international transport a wooden crate is the recommended choice.</p>
               </li>
-              <li class="project-card" data-to="NL → Perth, Australia" data-x="828" data-y="420">
+              <li class="project-card" data-lat="-31.95" data-lng="115.86" data-place="Perth" data-mode="air">
                 <figure class="inset aspect-[16/10]"><ec-img name="project-perth" alt="Sealed construction materials ready for shipment" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
                 <p class="chart mt-5 flex justify-between text-cyan-ink"><span>NL → Perth, Australia</span><span class="text-mute">Air</span></p>
                 <h3 class="display display-m mt-2">Construction materials above 3,000 kg</h3>
@@ -335,7 +345,7 @@
       </section>
 
       <!-- ABOUT / LEGEND ──────────────────────────────────────── -->
-      <section id="about" class="section graticule bg-paper-2" data-leg="left" data-wp="QA · Certified">
+      <section id="about" class="section bg-paper-2" data-leg="left" data-wp="QA · Certified">
         <div class="wrap grid gap-14 lg:grid-cols-12">
           <div class="lg:col-span-6">
             <h2 class="display display-l" data-split>A partner you can rely on.</h2>
