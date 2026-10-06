@@ -1,8 +1,10 @@
 /**
  * Writes vercel.json: permanent redirects from the old Wix site to the new pages.
  * Old Dutch pages lived at the root, the English mirror under /en/. Sources are
- * anchored, case-insensitive regexes so `^/contact$` (old Dutch page) never
- * catches the new English `/contact/`. Inventory checked against the live site
+ * anchored regexes so `^/contact$` (old Dutch page) never catches the new
+ * English `/contact/`. Vercel compiles them as JavaScript regexes, so inline
+ * flags such as `(?i)` are invalid and fail the deployment; the Wix URLs are
+ * all lowercase. The check below runs every source through RegExp first. Inventory checked against the live site
  * (Firecrawl map + Wix sitemaps). Run: node scripts/redirects.mjs
  */
 import { writeFileSync } from 'node:fs';
@@ -41,11 +43,12 @@ const map = [
 const config = {
   $schema: 'https://openapi.vercel.sh/vercel.json',
   routes: [
-    ...map.map(([src, to]) => ({ src: `(?i)${src}`, status: 301, headers: { Location: to } })),
+    ...map.map(([src, to]) => ({ src, status: 301, headers: { Location: to } })),
     // static assets with hashed names can be cached for a year
     { src: '^/assets/(.*)$', headers: { 'cache-control': 'public, max-age=31536000, immutable' }, continue: true },
   ],
 };
+for (const r of config.routes) new RegExp(r.src); // throws on a pattern Vercel would reject
 writeFileSync(resolve(import.meta.dirname, '..', 'vercel.json'), JSON.stringify(config, null, 2) + '\n');
 console.log(`vercel.json: ${map.length} redirects`);
 export { map };
