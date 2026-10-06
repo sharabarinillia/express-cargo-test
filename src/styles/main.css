@@ -1285,53 +1285,211 @@
     background: var(--color-magenta);
     box-shadow: 0 6px 16px -8px rgb(14 42 74 / 0.6);
   }
+  /* flight log: without script a list beside a sticky globe; live, one pinned
+     stage where the globe flies route to route and the card swaps */
+  .flog-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px 48px;
+  }
+  .flog-side {
+    min-width: 0;
+  }
+  .flog .globe-stage {
+    position: sticky;
+    top: 80px;
+    height: auto;
+  }
+  .flog-tabs {
+    display: none;
+  }
   .project-log {
     position: relative;
     z-index: 1;
+    display: grid;
+    gap: 56px;
   }
   .project-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 82svh;
-    padding-block: 8svh;
   }
-  /* inactive projects recede through their photos only; text keeps full contrast */
-  .is-live .project-card figure {
+  @media (min-width: 1024px) {
+    .flog-grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      align-items: start;
+    }
+  }
+
+  .flog.is-live {
+    height: calc(100svh + (var(--n) - 0.4) * 50svh);
+  }
+  .flog.is-live .flog-sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-top: 70px;
+  }
+  .flog.is-live .flog-grid {
+    width: 100%;
+    align-items: center;
+  }
+  .flog.is-live .globe-stage {
+    position: relative;
+    top: 0;
+    display: grid;
+    place-items: center;
+  }
+  .flog.is-live .globe-frame {
+    width: min(100%, 66svh);
+  }
+  .flog.is-live .flog-tabs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+  }
+  .flog-tabs button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-family: var(--font-chart);
+    font-weight: 600;
+    font-size: 0.86rem;
+    white-space: nowrap;
+    color: var(--color-ink-2);
+    box-shadow: inset 0 0 0 1px var(--color-line);
     transition:
-      opacity 0.5s,
-      filter 0.5s;
+      background-color 0.3s,
+      color 0.3s,
+      box-shadow 0.3s;
   }
-  .is-live .project-card:not(.is-active) figure {
-    opacity: 0.45;
-    filter: grayscale(1);
+  .flog-tabs button .chart {
+    color: var(--color-mute);
+    transition: color 0.3s;
+  }
+  .flog-tabs button:hover {
+    box-shadow: inset 0 0 0 1px var(--color-ink);
+  }
+  .flog-tabs button[aria-current="true"] {
+    background: var(--color-ink);
+    color: #fff;
+    box-shadow: none;
+  }
+  .flog-tabs button[aria-current="true"] .chart {
+    color: var(--color-cyan);
+  }
+  .flog-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--color-cyan-ink) 0 3px, transparent 3px 9px);
+    opacity: 0.6;
+  }
+  .flog-progress i {
+    position: absolute;
+    inset: 0;
+    background: var(--color-cyan-ink);
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  .flog.is-live .project-log {
+    gap: 0;
+  }
+  .flog.is-live .project-card {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition:
+      opacity 0.45s,
+      transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .flog.is-live .project-card.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .flog.is-live .project-card figure {
+    clip-path: inset(0 0 0 0 round 6px);
+    transition: clip-path 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .flog.is-live .project-card:not(.is-active) figure {
+    clip-path: inset(0 0 100% 0 round 6px);
   }
 
   @media (max-width: 1023px) {
-    .globe-stage {
+    .flog .globe-stage {
+      position: relative;
       top: 0;
-      padding-top: 72px;
-      height: calc(46svh + 72px);
-      background: linear-gradient(to bottom, var(--color-paper) 88%, rgb(238 242 245 / 0));
-      margin-inline: calc(var(--gutter) * -1);
     }
     .globe-frame {
-      width: min(86vw, 44svh);
-    }
-    .project-card {
-      min-height: auto;
-      padding-block: 12svh;
-    }
-    /* the photo follows the text, so it is never the part passing under the globe */
-    .project-card figure {
-      order: 9;
-      margin-top: 20px;
-    }
-    .project-card figure + p {
-      margin-top: 0;
+      width: min(80vw, 44svh);
+      margin-inline: auto;
     }
     .globe-hud [data-globe-dist] {
       display: none;
+    }
+    /* live on phones: globe, tabs, then the card with its photo beside the title */
+    .flog.is-live .flog-sticky {
+      align-items: flex-start;
+      padding-top: 78px;
+    }
+    .flog.is-live .flog-grid {
+      gap: 14px;
+    }
+    .flog.is-live .globe-frame {
+      width: min(62vw, 28svh);
+    }
+    .flog.is-live .flog-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      /* stays inside the content column: the route runs down the gutter */
+      margin: 0 0 16px;
+      padding: 2px 28px 12px 0;
+      scrollbar-width: none;
+      mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+    }
+    .flog.is-live .flog-tabs::-webkit-scrollbar {
+      display: none;
+    }
+    .flog.is-live .flog-tabs button {
+      flex: none;
+    }
+    .flog.is-live .flog-progress {
+      left: var(--gutter);
+      right: var(--gutter);
+    }
+    .flog.is-live .project-card {
+      display: grid;
+      grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+      column-gap: 16px;
+      align-items: start;
+    }
+    .flog.is-live .project-card figure {
+      grid-row: span 2;
+      aspect-ratio: 4 / 3;
+    }
+    .flog.is-live .project-card figure + p {
+      margin-top: 0;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .flog.is-live .project-card h3 {
+      font-size: 1.15rem;
+    }
+    .flog.is-live .project-card .copy {
+      grid-column: 1 / -1;
+      margin-top: 12px;
+      font-size: 0.98rem;
     }
   }
 

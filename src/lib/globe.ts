@@ -62,7 +62,7 @@ function routePov(d: { lat: number; lng: number }): Pov {
   return { lat: c.lat - 12, lng: c.lng, altitude: Math.min(2.1, Math.max(1.6, 1.1 + ang * 0.42)) };
 }
 
-export function initGlobe(): void {
+export function initGlobe(lenis: { scrollTo: (y: number, o?: { duration?: number }) => void } | null = null): void {
   const section = document.querySelector<HTMLElement>('[data-projects]');
   const host = document.querySelector<HTMLElement>('[data-globe]');
   const cards = [...document.querySelectorAll<HTMLElement>('[data-project-log] .project-card')];
@@ -81,50 +81,43 @@ export function initGlobe(): void {
   const povs: Pov[] = [{ lat: AMS.lat - 14, lng: AMS.lng + 8, altitude: 1.8 }, ...dests.map(routePov)];
   const arcs: Arc[] = dests.map((_, i) => ({ i, t: reducedMotion ? 1 : 0 }));
 
-  // f: fractional index of the card on the reading line (-1 = before the first)
-  let f = -1;
+  // f: fractional project index along the flight (-LEAD = the opening view)
+  const LEAD = 0.6;
+  let f = -LEAD;
   let active = -1;
   let lastF = NaN;
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-flog-tab]')];
+  const fill = document.querySelector<HTMLElement>('[data-flog-fill]');
+  const span = cards.length - 1 + LEAD;
 
-  const stage = document.querySelector<HTMLElement>('[data-globe-stage]');
-  function measure() {
-    // the reading line is the middle of the space the cards can actually use:
-    // the full viewport beside the globe, or the band below it when it sits on top
-    let mid = window.innerHeight * 0.5;
-    if (stage && window.innerWidth < 1024) {
-      const b = Math.max(0, stage.getBoundingClientRect().bottom);
-      mid = b + (window.innerHeight - b) * 0.45;
-    }
-    // on narrow screens the photo sits at the top of each card, just under the
-    // sticky globe, so the photo (not the whole card) meets the reading line
-    const narrow = window.innerWidth < 1024;
-    const centers = cards.map((c) => {
-      const r = ((narrow && c.querySelector('figure')) || c).getBoundingClientRect();
-      return r.top + r.height / 2 - mid;
-    });
-    // centers[i] is the card centre relative to the reading line (0 = on it)
-    if (centers[0] > 0) {
-      const lead = cards[0].getBoundingClientRect().height;
-      return Math.max(-1, -centers[0] / lead);
-    }
-    for (let i = 0; i < centers.length - 1; i++) {
-      if (centers[i + 1] > 0) return i + -centers[i] / (centers[i + 1] - centers[i]);
-    }
-    return cards.length - 1;
+  /** progress through the pinned stage, 0 at its start, 1 at its end */
+  function progress() {
+    const r = section!.getBoundingClientRect();
+    const run = r.height - window.innerHeight;
+    return run > 0 ? Math.min(1, Math.max(0, -r.top / run)) : 0;
   }
+  const measure = () => -LEAD + progress() * span;
 
-  /** under 1024px: the first card whose photo is wholly below the sticky globe */
-  function narrowActive(): number | null {
-    if (window.innerWidth >= 1024 || !stage) return null;
-    const edge = stage.getBoundingClientRect().bottom - 8;
-    const i = cards.findIndex((c) => (c.querySelector('figure') ?? c).getBoundingClientRect().top >= edge);
-    return i < 0 ? cards.length - 1 : i;
-  }
+  // a tab flies the page (and the globe) to its project
+  tabs.forEach((tab, i) =>
+    tab.addEventListener('click', () => {
+      const r = section.getBoundingClientRect();
+      const run = r.height - window.innerHeight;
+      const y = window.scrollY + r.top + run * ((i + LEAD) / span) + 2;
+      if (lenis) lenis.scrollTo(y, { duration: 1.2 });
+      else window.scrollTo({ top: y, behavior: reducedMotion ? 'auto' : 'smooth' });
+    }),
+  );
 
   function setActive(i: number) {
     if (i === active) return;
     active = i;
     cards.forEach((c, j) => c.classList.toggle('is-active', j === i));
+    tabs.forEach((tb, j) => tb.setAttribute('aria-current', String(j === i)));
+    // keep the active tab in view when the row scrolls sideways (phones), without moving the page
+    const tab = tabs[i];
+    const row = tab?.parentElement;
+    if (tab && row && row.scrollWidth > row.clientWidth) row.scrollTo({ left: tab.offsetLeft - row.clientWidth / 2 + tab.offsetWidth / 2, behavior: reducedMotion ? 'auto' : 'smooth' });
     const d = dests[Math.max(0, i)];
     if (hudRoute) hudRoute.textContent = `${d.code} → ${d.place}`;
     if (hudDist) hudDist.textContent = `${t('Great-circle', 'Grootcirkel')} ${d.km.toLocaleString(locale)} km`;
@@ -138,7 +131,8 @@ export function initGlobe(): void {
     f = measure();
     if (Math.abs(f - lastF) < 0.0005) return;
     lastF = f;
-    setActive(narrowActive() ?? Math.max(0, Math.min(cards.length - 1, Math.round(f))));
+    setActive(Math.max(0, Math.min(cards.length - 1, Math.round(f))));
+    if (fill) fill.style.transform = `scaleX(${((f + LEAD) / span).toFixed(4)})`;
     onFrame?.(f);
   }
   setActive(0);
@@ -151,13 +145,19 @@ export function initGlobe(): void {
     started = true;
     const { Earth } = await import('./earth');
     const small = window.innerWidth < 1024;
-    const earth = new Earth(host, {
+    // no WebGL (blocked, old device): the still poster stays, the log still works
+    let earth: InstanceType<typeof Earth>;
+    try {
+      earth = new Earth(host, {
       texture: small ? '/globe/earth-2k.webp' : '/globe/earth-4k.webp',
       bump: '/globe/bump-2k.jpg',
       water: '/globe/water-1600.jpg',
       clouds: small ? undefined : '/globe/clouds-2k.webp',
       small,
     });
+    } catch {
+      return;
+    }
     earth.setArcs(dests.map((d) => ({ from: d.from, to: d })), small);
 
     const size = () => {

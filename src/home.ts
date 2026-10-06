@@ -4,9 +4,9 @@ import { initHeadlines, initReveals, initVideos } from './lib/motion';
 import { initGlobe } from './lib/globe';
 import { initRoute } from './lib/route';
 
-initShell();
+const lenis = initShell();
 initRoute();
-initGlobe();
+initGlobe(lenis);
 initHeadlines();
 initReveals();
 initVideos();

@@ -294,15 +294,27 @@
           <h2 class="display display-l max-w-[22ch]" data-split>Brunei, rural Kenya, Mexico, and twice to Australia.</h2>
           <p class="lede mt-6">Five shipments others found difficult, and the routes they took.</p>
 
-          <div class="mt-14 grid gap-x-12 lg:grid-cols-12" data-projects>
-            <div class="globe-stage lg:col-span-7" data-globe-stage>
+          <!-- flight log: one pinned stage, the globe flies route to route -->
+          <div class="flog mt-14" data-projects data-flog style="--n: 5">
+            <div class="flog-sticky">
+            <div class="flog-grid">
+            <div class="globe-stage" data-globe-stage>
               <div class="globe-frame">
                 <img class="globe-poster" src="/globe/globe-poster.webp" alt="" width="900" height="900" loading="lazy" decoding="async" />
                 <div class="globe-canvas" data-globe role="img" aria-label="Globe showing the five project routes from Amsterdam Schiphol"></div>
                 <p class="globe-hud chart" aria-hidden="true"><span data-globe-route>AMS → Brunei</span><span class="text-mute" data-globe-dist></span></p>
               </div>
             </div>
-            <ol class="project-log lg:col-span-5" data-project-log>
+            <div class="flog-side">
+            <div class="flog-tabs" role="group" aria-label="Projects" data-flog-tabs>
+              <button type="button" data-flog-tab="0"><span class="chart">01</span> Brunei</button>
+              <button type="button" data-flog-tab="1"><span class="chart">02</span> Australia</button>
+              <button type="button" data-flog-tab="2"><span class="chart">03</span> Kenya</button>
+              <button type="button" data-flog-tab="3"><span class="chart">04</span> Mexico</button>
+              <button type="button" data-flog-tab="4"><span class="chart">05</span> Perth</button>
+              <span class="flog-progress" aria-hidden="true"><i data-flog-fill></i></span>
+            </div>
+            <ol class="project-log" data-project-log>
               <li class="project-card" data-lat="4.94" data-lng="114.95" data-place="Brunei" data-mode="sea">
                 <figure class="inset aspect-[16/10]"><ec-img name="project-trucks-brunei" alt="Truck with a yellow vacuum tank prepared for shipment" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
                 <p class="chart mt-5 flex justify-between text-cyan-ink"><span>RTM → Brunei</span><span class="text-mute">Sea · Road</span></p>
@@ -334,6 +346,9 @@
                 <p class="copy mt-3">Collected, sealed and on their way to Perth. For high-value, fragile or complex items we also offer white glove delivery, inside to the room you choose.</p>
               </li>
             </ol>
+            </div>
+            </div>
+            </div>
           </div>
         </div>
       </section>
