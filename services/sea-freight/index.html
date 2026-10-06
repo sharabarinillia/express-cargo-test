@@ -40,10 +40,13 @@
       </section>
 
       <!-- JOURNEY: the shipment travels as you scroll ──────────── -->
-      <section class="journey" aria-labelledby="journey-title" data-journey style="--steps: 5">
+      <section class="journey on-night" aria-labelledby="journey-title" data-journey style="--steps: 5">
         <div class="journey-sticky">
           <div class="wrap">
-            <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>How a sea shipment moves.</h2>
+            <div class="jt-head">
+              <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>How a sea shipment moves.</h2>
+              <p class="chart text-[#c9d6e3]">5 steps · one coordinator</p>
+            </div>
             <div class="journey-track" aria-hidden="true">
               <span class="jt-line"><i data-jt-fill></i></span>
               <span class="jt-node" style="--at: 0" data-jt-node><b class="chart">PICKUP</b><i><ec-icon name="package" /></i></span>
@@ -53,13 +56,22 @@
               <span class="jt-node" style="--at: 1" data-jt-node><b class="chart">POD</b><i><ec-icon name="map-pin-check" /></i></span>
               <span class="jt-vehicle" data-jt-vehicle><ec-icon name="ship" /></span>
             </div>
-            <ol class="journey-steps" data-jt-steps>
-              <li class="jt-step is-active"><span class="chart text-magenta">01 / 05</span><h3 class="display-m mt-2">Collection</h3><p class="copy mt-3">Collected at the supplier, by low-loader if it has to be, and brought to the port.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">02 / 05</span><h3 class="display-m mt-2">Into the container</h3><p class="copy mt-3">Your own container (FCL), or consolidated with other cargo in one container (LCL). Sealed, secured, documented.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">03 / 05</span><h3 class="display-m mt-2">Port of loading</h3><p class="copy mt-3">Export customs cleared and loaded on the carrier that fits the route and the date.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">04 / 05</span><h3 class="display-m mt-2">At sea</h3><p class="copy mt-3">We follow the vessel and tell you when anything changes, not after.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">05 / 05</span><h3 class="display-m mt-2">Port to door</h3><p class="copy mt-3">Our partner at destination clears the cargo and delivers it to your door.</p></li>
-            </ol>
+            <div class="jt-body">
+              <ol class="journey-steps" data-jt-steps>
+                <li class="jt-step is-active"><span class="chart text-cyan">01 / 05 · PICKUP</span><h3 class="mt-3">Collection</h3><p class="mt-3">Collected at the supplier, by low-loader if it has to be, and brought to the port.</p><ul class="jt-facts"><li><ec-icon name="check" />Collected at the supplier</li><li><ec-icon name="check" />Low-loader for heavy or oversize cargo</li><li><ec-icon name="check" />Brought to the port or the consolidation warehouse</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">02 / 05 · STUFF</span><h3 class="mt-3">Into the container</h3><p class="mt-3">Your own container (FCL), or consolidated with other cargo in one container (LCL). Sealed, secured, documented.</p><ul class="jt-facts"><li><ec-icon name="check" />FCL: your own 20′, 40′ or 40′ high cube</li><li><ec-icon name="check" />LCL: consolidated with other cargo</li><li><ec-icon name="check" />Sealed, secured and documented</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">03 / 05 · POL</span><h3 class="mt-3">Port of loading</h3><p class="mt-3">Export customs cleared and loaded on the carrier that fits the route and the date.</p><ul class="jt-facts"><li><ec-icon name="check" />Export customs cleared</li><li><ec-icon name="check" />Bill of lading issued</li><li><ec-icon name="check" />Loaded on the carrier that fits route and date</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">04 / 05 · OCEAN</span><h3 class="mt-3">At sea</h3><p class="mt-3">We follow the vessel and tell you when anything changes, not after.</p><ul class="jt-facts"><li><ec-icon name="check" />The vessel followed throughout</li><li><ec-icon name="check" />Changes reported as they happen</li><li><ec-icon name="check" />Arrival notice prepared</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">05 / 05 · POD</span><h3 class="mt-3">Port to door</h3><p class="mt-3">Our partner at destination clears the cargo and delivers it to your door.</p><ul class="jt-facts"><li><ec-icon name="check" />Import clearance at destination</li><li><ec-icon name="check" />Container delivered or unloaded</li><li><ec-icon name="check" />Delivered to your door</li></ul></li>
+              </ol>
+              <div class="jt-media" aria-hidden="true" data-jt-media>
+                <figure class="is-active"><ec-img name="truck-motion" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 01 · PICKUP</figcaption></figure>
+                <figure class=""><ec-img name="project-trucks-brunei" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 02 · STUFF</figcaption></figure>
+                <figure class=""><ec-img name="containership" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 03 · POL</figcaption></figure>
+                <figure class=""><ec-img name="poster-sea-river" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 04 · OCEAN</figcaption></figure>
+                <figure class=""><ec-img name="poster-road-highway" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 05 · POD</figcaption></figure>
+              </div>
+            </div>
           </div>
         </div>
       </section>

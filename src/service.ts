@@ -27,6 +27,17 @@ function initJourney() {
   const vehicle = section.querySelector<HTMLElement>('[data-jt-vehicle]');
   const nodes = [...section.querySelectorAll<HTMLElement>('[data-jt-node]')];
   const steps = [...section.querySelectorAll<HTMLElement>('[data-jt-steps] > li')];
+  const media = [...section.querySelectorAll<HTMLElement>('[data-jt-media] > figure')];
+  // the stage's photos (all but the first are hidden) load as the section nears
+  const io = new IntersectionObserver(
+    ([e]) => {
+      if (!e.isIntersecting) return;
+      section.querySelectorAll<HTMLImageElement>('[data-jt-media] img').forEach((img) => (img.loading = 'eager'));
+      io.disconnect();
+    },
+    { rootMargin: '100% 0px' },
+  );
+  io.observe(section);
   if (!fill || !vehicle || !nodes.length) return;
   section.classList.add('is-live');
   const n = nodes.length;
@@ -48,6 +59,7 @@ function initJourney() {
     if (a !== active) {
       active = a;
       steps.forEach((s, i) => s.classList.toggle('is-active', i === a));
+      media.forEach((m, i) => m.classList.toggle('is-active', i === a));
     }
   };
   update(0);

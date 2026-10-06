@@ -40,10 +40,13 @@
       </section>
 
       <!-- JOURNEY: the shipment travels as you scroll ──────────── -->
-      <section class="journey" aria-labelledby="journey-title" data-journey style="--steps: 5">
+      <section class="journey on-night" aria-labelledby="journey-title" data-journey style="--steps: 5">
         <div class="journey-sticky">
           <div class="wrap">
-            <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>How an air shipment moves.</h2>
+            <div class="jt-head">
+              <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>How an air shipment moves.</h2>
+              <p class="chart text-[#c9d6e3]">5 steps · one coordinator</p>
+            </div>
             <div class="journey-track" aria-hidden="true">
               <span class="jt-line"><i data-jt-fill></i></span>
               <span class="jt-node" style="--at: 0" data-jt-node><b class="chart">PICKUP</b><i><ec-icon name="plane-takeoff" /></i></span>
@@ -53,13 +56,22 @@
               <span class="jt-node" style="--at: 1" data-jt-node><b class="chart">POD</b><i><ec-icon name="map-pin-check" /></i></span>
               <span class="jt-vehicle" data-jt-vehicle><ec-icon name="plane" /></span>
             </div>
-            <ol class="journey-steps" data-jt-steps>
-              <li class="jt-step is-active"><span class="chart text-magenta">01 / 05</span><h3 class="display-m mt-2">Collection</h3><p class="copy mt-3">We collect at your door, or at your supplier anywhere in our network of local agents.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">02 / 05</span><h3 class="display-m mt-2">Documents &amp; DGR check</h3><p class="copy mt-3">Export customs filed, dangerous goods declared and packed to IATA DGR. Every document in order before the cargo moves.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">03 / 05</span><h3 class="display-m mt-2">Uplift at Schiphol</h3><p class="copy mt-3">Booked on the flight that fits the cargo and the deadline, built up and loaded.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">04 / 05</span><h3 class="display-m mt-2">Arrival &amp; clearance</h3><p class="copy mt-3">Our agent at destination handles import formalities, so the shipment does not wait in a shed.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">05 / 05</span><h3 class="display-m mt-2">Delivered</h3><p class="copy mt-3">Signed for at the door. You get the proof of delivery and one coordinator answered every question on the way.</p></li>
-            </ol>
+            <div class="jt-body">
+              <ol class="journey-steps" data-jt-steps>
+                <li class="jt-step is-active"><span class="chart text-cyan">01 / 05 · PICKUP</span><h3 class="mt-3">Collection</h3><p class="mt-3">We collect at your door, or at your supplier anywhere in our network of local agents.</p><ul class="jt-facts"><li><ec-icon name="check" />Pickup from your door or your supplier</li><li><ec-icon name="check" />Packed and labelled for the route</li><li><ec-icon name="check" />Collection confirmed by your coordinator</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">02 / 05 · DOCS</span><h3 class="mt-3">Documents &amp; DGR check</h3><p class="mt-3">Export customs filed, dangerous goods declared and packed to IATA DGR. Every document in order before the cargo moves.</p><ul class="jt-facts"><li><ec-icon name="check" />Air waybill and commercial invoice</li><li><ec-icon name="check" />Shipper’s Declaration for Dangerous Goods when needed</li><li><ec-icon name="check" />Export declaration filed with customs</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">03 / 05 · AMS</span><h3 class="mt-3">Uplift at Schiphol</h3><p class="mt-3">Booked on the flight that fits the cargo and the deadline, built up and loaded.</p><ul class="jt-facts"><li><ec-icon name="check" />Booked on the flight that fits cargo and deadline</li><li><ec-icon name="check" />Built up and loaded at Schiphol</li><li><ec-icon name="check" />Flight details sent to you</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">04 / 05 · ARR</span><h3 class="mt-3">Arrival &amp; clearance</h3><p class="mt-3">Our agent at destination handles import formalities, so the shipment does not wait in a shed.</p><ul class="jt-facts"><li><ec-icon name="check" />Received by our agent at destination</li><li><ec-icon name="check" />Import clearance and duties handled</li><li><ec-icon name="check" />Temperature and DG requirements checked again</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">05 / 05 · POD</span><h3 class="mt-3">Delivered</h3><p class="mt-3">Signed for at the door. You get the proof of delivery and one coordinator answered every question on the way.</p><ul class="jt-facts"><li><ec-icon name="check" />Delivered to the named address</li><li><ec-icon name="check" />Proof of delivery shared with you</li><li><ec-icon name="check" />One coordinator from start to finish</li></ul></li>
+              </ol>
+              <div class="jt-media" aria-hidden="true" data-jt-media>
+                <figure class="is-active"><ec-img name="truck-motion" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 01 · PICKUP</figcaption></figure>
+                <figure class=""><ec-img name="specimen-box" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 02 · DOCS</figcaption></figure>
+                <figure class=""><ec-img name="poster-air-loading" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 03 · AMS</figcaption></figure>
+                <figure class=""><ec-img name="poster-tc-cargojet" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 04 · ARR</figcaption></figure>
+                <figure class=""><ec-img name="project-kenya" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 05 · POD</figcaption></figure>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -672,15 +672,26 @@
     position: relative;
   }
 
-  /* ── Services: journey ──────────────────────────────────────────── */
+  /* ── Services: journey (a dark operations board) ───────────────── */
   .journey {
     position: relative;
     padding-block: clamp(96px, 13vh, 160px);
+    background:
+      radial-gradient(60% 50% at 85% 20%, rgb(18 196 222 / 0.14), transparent 70%),
+      radial-gradient(50% 60% at 0% 100%, rgb(180 35 107 / 0.1), transparent 70%),
+      var(--color-night);
+  }
+  .jt-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 12px 32px;
   }
   .journey-track {
     position: relative;
-    height: 120px;
-    margin: 56px 22px 0;
+    height: 96px;
+    margin: clamp(28px, 4vh, 48px) 22px 0;
   }
   .jt-line {
     position: absolute;
@@ -688,13 +699,13 @@
     right: 0;
     top: 53px;
     height: 2px;
-    background: repeating-linear-gradient(90deg, var(--color-cyan-ink) 0 3px, transparent 3px 10px);
-    opacity: 0.6;
+    background: repeating-linear-gradient(90deg, rgb(18 196 222 / 0.55) 0 3px, transparent 3px 10px);
   }
   .jt-line i {
     position: absolute;
     inset: -1px 0;
     background: var(--color-cyan);
+    box-shadow: 0 0 12px rgb(18 196 222 / 0.6);
     transform-origin: left;
     transform: scaleX(1);
   }
@@ -710,7 +721,7 @@
   .jt-node b {
     height: 18px;
     line-height: 18px;
-    color: var(--color-mute);
+    color: #8fa6bd;
     transition: color 0.3s;
   }
   .jt-node i {
@@ -719,9 +730,9 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: var(--color-paper);
-    box-shadow: inset 0 0 0 1.5px var(--color-line);
-    color: var(--color-mute);
+    background: var(--color-night);
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.22);
+    color: #8fa6bd;
     transition:
       background-color 0.35s,
       box-shadow 0.35s,
@@ -734,35 +745,77 @@
   }
   .journey:not(.is-live) .jt-node i,
   .jt-node.is-passed i {
-    background: var(--color-ink);
-    box-shadow: none;
-    color: var(--color-cyan);
-  }
-  .jt-node.is-passed i {
-    transform: scale(1.06);
+    background: var(--color-cyan);
+    box-shadow: 0 0 0 6px rgb(18 196 222 / 0.16);
+    color: var(--color-night);
   }
   .journey:not(.is-live) .jt-node b,
   .jt-node.is-passed b {
-    color: var(--color-ink);
+    color: #fff;
   }
   .jt-vehicle {
     display: none;
   }
+  .jt-body {
+    margin-top: clamp(28px, 4vh, 48px);
+  }
   .journey-steps {
     display: grid;
-    gap: 32px;
-    margin-top: 40px;
+    gap: 36px;
+  }
+  .jt-step h3 {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: clamp(1.7rem, 3vw, 2.8rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .jt-step > p {
+    max-width: 46ch;
+    font-size: clamp(1.02rem, 1.2vw, 1.18rem);
+    color: #c9d6e3;
+  }
+  .jt-facts {
+    display: grid;
+    gap: 2px;
+    margin-top: 22px;
+    border-top: 1px solid rgb(255 255 255 / 0.14);
+  }
+  .jt-facts li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    font-family: var(--font-chart);
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+  .jt-facts .icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-cyan);
+    stroke-width: 2.2;
+  }
+  .jt-media {
+    display: none;
   }
   @media (min-width: 768px) {
     .journey:not(.is-live) .journey-steps {
-      grid-template-columns: repeat(var(--steps), minmax(0, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px 32px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .journey:not(.is-live) .journey-steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
   /* live: a sticky stage the shipment travels across */
   .journey.is-live {
-    height: calc(100svh + var(--steps) * 50svh);
+    height: calc(100svh + var(--steps) * 55svh);
     padding: 0;
   }
   .journey.is-live .journey-sticky {
@@ -771,7 +824,8 @@
     height: 100svh;
     display: flex;
     align-items: center;
-    padding-top: 60px;
+    padding: 76px 0 24px;
+    overflow: hidden;
   }
   .journey.is-live .wrap {
     width: 100%;
@@ -798,28 +852,21 @@
     background: var(--color-magenta);
     color: #fff;
     stroke-width: 1.8;
-    box-shadow: 0 10px 24px -10px rgb(180 35 107 / 0.8);
+    box-shadow:
+      0 0 0 6px rgb(180 35 107 / 0.25),
+      0 10px 24px -8px rgb(0 0 0 / 0.6);
+  }
+  .journey.is-live .jt-body {
+    display: grid;
+    gap: 24px;
+    align-items: center;
   }
   .journey.is-live .journey-steps {
     position: relative;
     display: grid;
-    min-height: 240px;
-    margin-top: clamp(40px, 7vh, 80px);
-  }
-  .journey.is-live .jt-step h3 {
-    font-family: var(--font-display);
-    font-weight: 650;
-    font-size: clamp(1.9rem, 3.6vw, 3.4rem);
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-  }
-  .journey.is-live .jt-step p {
-    font-size: clamp(1.05rem, 1.3vw, 1.25rem);
-    max-width: 46ch;
   }
   .journey.is-live .jt-step {
     grid-area: 1 / 1;
-    max-width: 60ch;
     opacity: 0;
     transform: translateY(18px);
     transition:
@@ -829,6 +876,96 @@
   .journey.is-live .jt-step.is-active {
     opacity: 1;
     transform: none;
+  }
+  .journey.is-live .jt-step .jt-facts li {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition:
+      opacity 0.35s,
+      transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .journey.is-live .jt-step.is-active .jt-facts li {
+    opacity: 1;
+    transform: none;
+  }
+  .journey.is-live .jt-step.is-active .jt-facts li:nth-child(2) {
+    transition-delay: 0.08s;
+  }
+  .journey.is-live .jt-step.is-active .jt-facts li:nth-child(3) {
+    transition-delay: 0.16s;
+  }
+  .journey.is-live .jt-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--color-night-2);
+    box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7);
+  }
+  .jt-media figure {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+  .jt-media figure img {
+    transform: scale(1.1);
+    transition: transform 2.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .jt-media figure.is-active {
+    opacity: 1;
+  }
+  .jt-media figure.is-active img {
+    transform: scale(1);
+  }
+  .jt-media picture {
+    position: absolute;
+    inset: 0;
+  }
+  @media (min-width: 1024px) {
+    .journey.is-live .jt-body {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: clamp(40px, 5vw, 80px);
+    }
+  }
+  /* phones and tablets: the step photo becomes the stage's dimmed backdrop */
+  @media (max-width: 1023px) {
+    .journey.is-live .jt-media {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      aspect-ratio: auto;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .journey.is-live .jt-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgb(11 33 64 / 0.9) 0%, rgb(11 33 64 / 0.72) 45%, rgb(11 33 64 / 0.94) 100%);
+    }
+    .journey.is-live .jt-media figcaption {
+      display: none;
+    }
+    .journey.is-live .journey-sticky {
+      isolation: isolate;
+    }
+    .journey.is-live .jt-step h3 {
+      font-size: 1.6rem;
+    }
+    .journey.is-live .jt-facts {
+      margin-top: 14px;
+    }
+    .journey.is-live .jt-facts li {
+      padding: 7px 0;
+      font-size: 0.92rem;
+    }
+  }
+  @media (max-height: 700px) {
+    .journey.is-live .jt-head p {
+      display: none;
+    }
   }
 
   /* ── Services: capabilities ─────────────────────────────────────── */

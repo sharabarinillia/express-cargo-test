@@ -160,6 +160,39 @@ const pages = [
   },
 ];
 
+
+/** per step: three concrete facts and a photo for the journey stage */
+const journeyMore = {
+  'air-freight': [
+    [['Pickup from your door or your supplier', 'Packed and labelled for the route', 'Collection confirmed by your coordinator'], 'truck-motion'],
+    [['Air waybill and commercial invoice', 'Shipper’s Declaration for Dangerous Goods when needed', 'Export declaration filed with customs'], 'specimen-box'],
+    [['Booked on the flight that fits cargo and deadline', 'Built up and loaded at Schiphol', 'Flight details sent to you'], 'poster-air-loading'],
+    [['Received by our agent at destination', 'Import clearance and duties handled', 'Temperature and DG requirements checked again'], 'poster-tc-cargojet'],
+    [['Delivered to the named address', 'Proof of delivery shared with you', 'One coordinator from start to finish'], 'project-kenya'],
+  ],
+  'sea-freight': [
+    [['Collected at the supplier', 'Low-loader for heavy or oversize cargo', 'Brought to the port or the consolidation warehouse'], 'truck-motion'],
+    [['FCL: your own 20′, 40′ or 40′ high cube', 'LCL: consolidated with other cargo', 'Sealed, secured and documented'], 'project-trucks-brunei'],
+    [['Export customs cleared', 'Bill of lading issued', 'Loaded on the carrier that fits route and date'], 'containership'],
+    [['The vessel followed throughout', 'Changes reported as they happen', 'Arrival notice prepared'], 'poster-sea-river'],
+    [['Import clearance at destination', 'Container delivered or unloaded', 'Delivered to your door'], 'poster-road-highway'],
+  ],
+  'road-transport': [
+    [['Groupage or a dedicated vehicle', 'Security escort and TAPA TSR1 on request', 'Collection slot agreed with you'], 'cold-doors'],
+    [['Loaded at your dock', 'Checked and secured', 'CMR consignment note'], 'truck-motion'],
+    [['Direct, or through a groupage hub', 'Rails for hanging garments, care for art', 'A specialist partner per destination'], 'poster-road-highway'],
+    [['Tracking link for high-value loads', 'GPS on the vehicle', 'Updates from your coordinator'], 'poster-close-wing'],
+    [['Signed for at the door', 'White glove and inside delivery on request', 'Proof of delivery shared'], 'project-white-glove'],
+  ],
+  'special-projects': [
+    [['Size, value and fragility', 'Perishability and the route', 'Packing and mode advised'], 'project-perth'],
+    [['Hard or soft pack', 'Wooden crates for international transport', 'Labelled and inspected'], 'project-crate-mexico'],
+    [['Courier, air or sea freight', 'Chosen for deadline and budget', 'Local handling at destination arranged'], 'project-envirotainer'],
+    [['A transport manager can travel along', 'Real-time tracking', 'Regular updates until delivery'], 'obc-case'],
+    [['Brought into the building', 'Placed in the right room', 'Assembled where needed'], 'project-kenya'],
+  ],
+};
+
 const esc = (s) => s.replace(/&(?!\w+;)/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
 function page(p) {
@@ -218,18 +251,33 @@ function page(p) {
       </section>
 
       <!-- JOURNEY: the shipment travels as you scroll ──────────── -->
-      <section class="journey" aria-labelledby="journey-title" data-journey style="--steps: ${p.journey.length}">
+      <section class="journey on-night" aria-labelledby="journey-title" data-journey style="--steps: ${p.journey.length}">
         <div class="journey-sticky">
           <div class="wrap">
-            <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>${esc(p.journeyTitle)}</h2>
+            <div class="jt-head">
+              <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>${esc(p.journeyTitle)}</h2>
+              <p class="chart text-[#c9d6e3]">${p.journey.length} steps · one coordinator</p>
+            </div>
             <div class="journey-track" aria-hidden="true">
               <span class="jt-line"><i data-jt-fill></i></span>
               ${p.journey.map(([icon, code], i) => `<span class="jt-node" style="--at: ${i / (p.journey.length - 1)}" data-jt-node><b class="chart">${code}</b><i><ec-icon name="${icon}" /></i></span>`).join('\n              ')}
               <span class="jt-vehicle" data-jt-vehicle><ec-icon name="${p.icon}" /></span>
             </div>
-            <ol class="journey-steps" data-jt-steps>
-              ${p.journey.map(([, , title, text], i) => `<li class="jt-step${i === 0 ? ' is-active' : ''}"><span class="chart text-magenta">${String(i + 1).padStart(2, '0')} / ${String(p.journey.length).padStart(2, '0')}</span><h3 class="display-m mt-2">${esc(title)}</h3><p class="copy mt-3">${esc(text)}</p></li>`).join('\n              ')}
-            </ol>
+            <div class="jt-body">
+              <ol class="journey-steps" data-jt-steps>
+                ${p.journey
+                  .map(([, code, title, text], i) => {
+                    const [facts] = journeyMore[p.slug][i];
+                    return `<li class="jt-step${i === 0 ? ' is-active' : ''}"><span class="chart text-cyan">${String(i + 1).padStart(2, '0')} / ${String(p.journey.length).padStart(2, '0')} · ${code}</span><h3 class="mt-3">${esc(title)}</h3><p class="mt-3">${esc(text)}</p><ul class="jt-facts">${facts.map((f) => `<li><ec-icon name="check" />${esc(f)}</li>`).join('')}</ul></li>`;
+                  })
+                  .join('\n                ')}
+              </ol>
+              <div class="jt-media" aria-hidden="true" data-jt-media>
+                ${p.journey
+                  .map(([, code], i) => `<figure class="${i === 0 ? 'is-active' : ''}"><ec-img name="${journeyMore[p.slug][i][1]}" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step ${String(i + 1).padStart(2, '0')} · ${code}</figcaption></figure>`)
+                  .join('\n                ')}
+              </div>
+            </div>
           </div>
         </div>
       </section>

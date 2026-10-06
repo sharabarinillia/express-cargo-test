@@ -40,10 +40,13 @@
       </section>
 
       <!-- JOURNEY: the shipment travels as you scroll ──────────── -->
-      <section class="journey" aria-labelledby="journey-title" data-journey style="--steps: 5">
+      <section class="journey on-night" aria-labelledby="journey-title" data-journey style="--steps: 5">
         <div class="journey-sticky">
           <div class="wrap">
-            <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>How a road shipment moves.</h2>
+            <div class="jt-head">
+              <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>How a road shipment moves.</h2>
+              <p class="chart text-[#c9d6e3]">5 steps · one coordinator</p>
+            </div>
             <div class="journey-track" aria-hidden="true">
               <span class="jt-line"><i data-jt-fill></i></span>
               <span class="jt-node" style="--at: 0" data-jt-node><b class="chart">BOOK</b><i><ec-icon name="clipboard-check" /></i></span>
@@ -53,13 +56,22 @@
               <span class="jt-node" style="--at: 1" data-jt-node><b class="chart">POD</b><i><ec-icon name="map-pin-check" /></i></span>
               <span class="jt-vehicle" data-jt-vehicle><ec-icon name="truck" /></span>
             </div>
-            <ol class="journey-steps" data-jt-steps>
-              <li class="jt-step is-active"><span class="chart text-magenta">01 / 05</span><h3 class="display-m mt-2">Booking</h3><p class="copy mt-3">Groupage or dedicated, with or without a security escort: we pick the right solution for the cargo.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">02 / 05</span><h3 class="display-m mt-2">Collection</h3><p class="copy mt-3">Loaded at your dock in the agreed slot, checked and secured.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">03 / 05</span><h3 class="display-m mt-2">On the road</h3><p class="copy mt-3">Direct with a dedicated vehicle, or through the groupage network of our long-standing partners.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">04 / 05</span><h3 class="display-m mt-2">Tracking link</h3><p class="copy mt-3">High-value loads travel with a tracking link, so you can see where your goods are.</p></li>
-              <li class="jt-step"><span class="chart text-magenta">05 / 05</span><h3 class="display-m mt-2">Delivered</h3><p class="copy mt-3">Safe from A to B, and signed for at the door.</p></li>
-            </ol>
+            <div class="jt-body">
+              <ol class="journey-steps" data-jt-steps>
+                <li class="jt-step is-active"><span class="chart text-cyan">01 / 05 · BOOK</span><h3 class="mt-3">Booking</h3><p class="mt-3">Groupage or dedicated, with or without a security escort: we pick the right solution for the cargo.</p><ul class="jt-facts"><li><ec-icon name="check" />Groupage or a dedicated vehicle</li><li><ec-icon name="check" />Security escort and TAPA TSR1 on request</li><li><ec-icon name="check" />Collection slot agreed with you</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">02 / 05 · PICKUP</span><h3 class="mt-3">Collection</h3><p class="mt-3">Loaded at your dock in the agreed slot, checked and secured.</p><ul class="jt-facts"><li><ec-icon name="check" />Loaded at your dock</li><li><ec-icon name="check" />Checked and secured</li><li><ec-icon name="check" />CMR consignment note</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">03 / 05 · LINEHAUL</span><h3 class="mt-3">On the road</h3><p class="mt-3">Direct with a dedicated vehicle, or through the groupage network of our long-standing partners.</p><ul class="jt-facts"><li><ec-icon name="check" />Direct, or through a groupage hub</li><li><ec-icon name="check" />Rails for hanging garments, care for art</li><li><ec-icon name="check" />A specialist partner per destination</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">04 / 05 · TRACK</span><h3 class="mt-3">Tracking link</h3><p class="mt-3">High-value loads travel with a tracking link, so you can see where your goods are.</p><ul class="jt-facts"><li><ec-icon name="check" />Tracking link for high-value loads</li><li><ec-icon name="check" />GPS on the vehicle</li><li><ec-icon name="check" />Updates from your coordinator</li></ul></li>
+                <li class="jt-step"><span class="chart text-cyan">05 / 05 · POD</span><h3 class="mt-3">Delivered</h3><p class="mt-3">Safe from A to B, and signed for at the door.</p><ul class="jt-facts"><li><ec-icon name="check" />Signed for at the door</li><li><ec-icon name="check" />White glove and inside delivery on request</li><li><ec-icon name="check" />Proof of delivery shared</li></ul></li>
+              </ol>
+              <div class="jt-media" aria-hidden="true" data-jt-media>
+                <figure class="is-active"><ec-img name="cold-doors" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 01 · BOOK</figcaption></figure>
+                <figure class=""><ec-img name="truck-motion" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 02 · PICKUP</figcaption></figure>
+                <figure class=""><ec-img name="poster-road-highway" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 03 · LINEHAUL</figcaption></figure>
+                <figure class=""><ec-img name="poster-close-wing" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 04 · TRACK</figcaption></figure>
+                <figure class=""><ec-img name="project-white-glove" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step 05 · POD</figcaption></figure>
+              </div>
+            </div>
           </div>
         </div>
       </section>
