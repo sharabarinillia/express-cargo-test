@@ -3,6 +3,18 @@
 // brand/site-photos = downloaded from the current express-cargo.nl site.
 import sharp from 'sharp';
 import { mkdir, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+// smooth skies band at normal settings: deband the source (ffmpeg gradfun),
+// then encode at higher quality with full-resolution colour
+const SMOOTH = new Set(['poster-hero-clouds', 'poster-hero-clouds-m']);
+const debanded = (src) => {
+  const out = join(tmpdir(), src.split('/').pop().replace(/\.\w+$/, '-deband.png'));
+  execFileSync('ffmpeg', ['-loglevel', 'error', '-y', '-i', src, '-vf', 'gradfun=strength=1.4:radius=20', out]);
+  return out;
+};
 
 const SETS = {
   'hero-runway': ['brand/photos/runway-approach-lights.jpg', [768, 1280, 1920, 2400]],
@@ -40,7 +52,9 @@ const SETS = {
 
 await mkdir('public/img', { recursive: true });
 const manifest = {};
-for (const [name, [src, widths]] of Object.entries(SETS)) {
+for (const [name, [orig, widths]] of Object.entries(SETS)) {
+  const smooth = SMOOTH.has(name);
+  const src = smooth ? debanded(orig) : orig;
   const meta = await sharp(src).metadata();
   const out = [];
   for (const w of widths) {
@@ -48,11 +62,11 @@ for (const [name, [src, widths]] of Object.entries(SETS)) {
     // project-kenya: keep only the hospital-gate photo of the PhotoGrid collage (above its watermark)
     const crop = name === 'project-kenya' ? { left: 0, top: Math.round(meta.height * 0.49), width: meta.width, height: Math.round(meta.height * 0.43) } : null;
     const base = (crop ? sharp(src).extract(crop) : sharp(src)).rotate().resize({ width, withoutEnlargement: true });
-    await base.clone().avif({ quality: 52, effort: 5 }).toFile(`public/img/${name}-${width}.avif`);
-    await base.clone().webp({ quality: 74 }).toFile(`public/img/${name}-${width}.webp`);
+    await base.clone().avif(smooth ? { quality: 68, effort: 6, chromaSubsampling: '4:4:4' } : { quality: 52, effort: 5 }).toFile(`public/img/${name}-${width}.avif`);
+    await base.clone().webp(smooth ? { quality: 88, smartSubsample: true } : { quality: 74 }).toFile(`public/img/${name}-${width}.webp`);
     out.push(width);
   }
-  manifest[name] = { widths: [...new Set(out)], ratio: +(meta.width / (name === 'project-kenya' ? Math.round(meta.height * 0.43) : meta.height)).toFixed(4), source: src };
+  manifest[name] = { widths: [...new Set(out)], ratio: +(meta.width / (name === 'project-kenya' ? Math.round(meta.height * 0.43) : meta.height)).toFixed(4), source: orig };
   console.log(name, out.join(','));
 }
 await writeFile('src/content/images.json', JSON.stringify(manifest, null, 2));

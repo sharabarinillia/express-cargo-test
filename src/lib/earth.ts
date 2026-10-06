@@ -87,20 +87,21 @@ export class Earth {
     this.globe = new Mesh(new SphereGeometry(R, seg, seg), mat);
     this.scene.add(this.globe);
 
-    // fresnel atmosphere: a soft cyan rim that also reads on light paper
+    // fresnel atmosphere: a thin, muted rim, enough to lift the globe off light
+    // paper without a glow that fights the chart palette
     const atmo = new Mesh(
-      new SphereGeometry(R * 1.14, seg, seg),
+      new SphereGeometry(R * 1.07, seg, seg),
       new ShaderMaterial({
         side: BackSide,
         transparent: true,
         depthWrite: false,
         blending: NormalBlending,
-        uniforms: { c: { value: new Color('#7cc8f2') } },
+        uniforms: { c: { value: new Color('#8fb3cc') } },
         vertexShader: `varying vec3 vN; varying vec3 vV;
           void main(){ vec4 mv = modelViewMatrix * vec4(position,1.0); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }`,
         // far-side faces of the shell: strongest at the globe's limb, fading to nothing at the shell's edge
         fragmentShader: `uniform vec3 c; varying vec3 vN; varying vec3 vV;
-          void main(){ float k = clamp(-dot(vN, vV) / 0.5, 0.0, 1.0); gl_FragColor = vec4(c, pow(k, 2.4) * 0.8); }`,
+          void main(){ float k = clamp(-dot(vN, vV) / 0.5, 0.0, 1.0); gl_FragColor = vec4(c, pow(k, 2.8) * 0.42); }`,
       }),
     );
     this.scene.add(atmo);

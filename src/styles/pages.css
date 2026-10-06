@@ -167,7 +167,7 @@
     border-radius: 3px;
     background: var(--color-ink);
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     white-space: nowrap;
   }
   .cube-arrows {
@@ -295,7 +295,7 @@
   }
   .row .field label {
     margin-bottom: 6px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     white-space: nowrap;
   }
   .row .field input {
@@ -844,21 +844,25 @@
   .journey.is-live .jt-line i {
     transform: scaleX(0);
   }
+  /* the vehicle runs its own lane under the nodes, so it never hides one */
+  .journey.is-live .journey-track {
+    height: 120px;
+  }
   .journey.is-live .jt-vehicle {
     position: absolute;
     left: 0;
     right: 0;
-    top: 34px;
+    top: 88px;
     display: block;
     pointer-events: none;
     will-change: transform;
   }
   .journey.is-live .jt-vehicle .icon {
     position: absolute;
-    left: -20px;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
     border-radius: 50%;
     background: var(--color-magenta);
     color: #fff;
@@ -1190,20 +1194,23 @@
     height: 18px;
   }
   .jt-node b {
-    font-size: 0.6rem;
-    letter-spacing: 0.04em;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
   }
   .jt-line {
     top: 47px;
   }
+  .journey.is-live .journey-track {
+    height: 108px;
+  }
   .journey.is-live .jt-vehicle {
-    top: 32px;
+    top: 76px;
   }
   .journey.is-live .jt-vehicle .icon {
-    left: -16px;
-    width: 32px;
-    height: 32px;
-    padding: 6px;
+    left: -13px;
+    width: 26px;
+    height: 26px;
+    padding: 5px;
   }
   .tool-strip {
     grid-template-columns: 44px 1fr;
@@ -1319,7 +1326,7 @@
     vertical-align: bottom;
     font-family: var(--font-chart);
     font-weight: 600;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--color-mute);
