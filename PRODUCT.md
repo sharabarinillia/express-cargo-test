@@ -55,7 +55,7 @@ Express Cargo is a small, specialised forwarder founded in 2002, with offices at
 - Current site content and audit: `ANALYSIS.md`. It covers 6 real project case studies (trucks to Brunei, >3 t to Perth, crate to Mexico, Envirotainers to Australia, medical equipment to Madiany Sub County Hospital in Kenya, and white-glove delivery), 5 named team members with roles and emails, and the Dangerous Goods blog post.
 - Certifications claimed in the deck: IATA member, IATA DGR, ISO 9001:2015 (TÜV SÜD), GDP. The current site also claims TAPA TSR1. Badge artwork is in the deck.
 - Contact: Breguetlaan 21, 1438 BA Oude Meer (Schiphol), +31 20 333 2405. Email is inconsistent: the deck uses `salesams@express-cargo.nl` and the site uses `salesams@express-cargo.nl`. **The canonical email needs confirming.**
-- **Must not be fabricated:** client names or logos, testimonials, shipment volumes, on-time percentages, transit times, prices, tracking capability (there is no tracking portal), and Belgrade address details.
+- **Must not be fabricated:** client names or logos, testimonials, shipment volumes, on-time percentages, transit times, prices, tracking capability (there is no tracking portal), and Belgrade address details. Exception, sourced from express-cargo.nl itself: per-shipment tracking links for high-value road loads and real-time GPS tracking in the white glove service ("Weg transport" and "Speciale Projecten en Service" pages). Say no more than that; there is still no customer tracking portal.
 
 ## Product Principles
 

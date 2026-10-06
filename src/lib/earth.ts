@@ -180,7 +180,7 @@ export class Earth {
       const p = toXYZ(from.lat, from.lng);
       const q = toXYZ(to.lat, to.lng);
       const ang = p.angleTo(q);
-      const h = 0.42 * (ang / Math.PI) * 1.4;
+      const h = 0.3 * (ang / Math.PI) * 1.4;
       const pts: Vector3[] = [];
       const N = 64;
       for (let i = 0; i <= N; i++) {

@@ -1,7 +1,7 @@
 ---
 version: 1
 slug: "src-pages-index-html"
-primary_target: "src/pages/index.html"
+primary_target: "index.html"
 related_targets: []
 ---
 

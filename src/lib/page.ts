@@ -79,7 +79,7 @@ export function initPageMotion(): void {
   // framed media: opens from an inset to full frame while the image drifts
   gsap.utils.toArray<HTMLElement>('[data-depth]').forEach((fig) => {
     const media = fig.querySelector('video, img');
-    gsap.fromTo(fig, { clipPath: 'inset(10% 7% 10% 7% round 8px)' }, { clipPath: 'inset(0% 0% 0% 0% round 8px)', ease: 'power2.out', scrollTrigger: { trigger: fig, start: 'top 95%', end: 'top 45%', scrub: 0.6 } });
+    gsap.fromTo(fig, { clipPath: window.innerWidth < 768 ? 'inset(4% 3% 4% 3% round 8px)' : 'inset(10% 7% 10% 7% round 8px)' }, { clipPath: 'inset(0% 0% 0% 0% round 8px)', ease: 'power2.out', scrollTrigger: { trigger: fig, start: 'top 95%', end: 'top 45%', scrub: 0.6 } });
     if (media) gsap.fromTo(media, { scale: 1.2, yPercent: -5 }, { scale: 1.04, yPercent: 5, ease: 'none', scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
 

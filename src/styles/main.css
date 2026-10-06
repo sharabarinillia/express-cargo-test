@@ -486,6 +486,9 @@
   .site-header.is-hidden {
     transform: translateY(calc(-100% - 12px));
   }
+  .site-header.is-hidden .header-bar {
+    box-shadow: none;
+  }
   /* one compact bar; once scrolled it becomes a floating frosted panel
      (the negative margin keeps the logo on the content edge) */
   .header-bar {
@@ -1309,6 +1312,14 @@
       min-height: auto;
       padding-block: 12svh;
     }
+    /* the photo follows the text, so it is never the part passing under the globe */
+    .project-card figure {
+      order: 9;
+      margin-top: 20px;
+    }
+    .project-card figure + p {
+      margin-top: 0;
+    }
     .globe-hud [data-globe-dist] {
       display: none;
     }
@@ -1415,7 +1426,8 @@
   }
   .blank::placeholder {
     color: #7d8d9c;
-    font-weight: 500;
+    font-weight: 400;
+    font-style: italic;
   }
   .blank:hover {
     background: rgb(18 196 222 / 0.08);

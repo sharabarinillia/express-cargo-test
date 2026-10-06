@@ -40,22 +40,29 @@
     position: relative;
     overflow: hidden;
     border-radius: 14px;
-    background:
-      radial-gradient(120% 140% at 100% 0%, rgb(18 196 222 / 0.22), transparent 55%),
-      var(--color-night);
+    background: var(--color-night);
     padding: clamp(32px, 6vw, 80px);
   }
+  .close-panel::before,
   .close-panel::after {
-    /* a dashed route crossing the panel */
+    /* a short dashed route that lands on a waypoint diamond */
     content: "";
     position: absolute;
-    right: -6%;
-    top: 18%;
-    width: 46%;
-    height: 120%;
-    border: 1.5px dashed rgb(18 196 222 / 0.4);
-    border-radius: 50%;
+    top: clamp(28px, 4vw, 44px);
     pointer-events: none;
+  }
+  .close-panel::before {
+    right: calc(clamp(28px, 4vw, 44px) + 10px);
+    width: min(32%, 280px);
+    border-top: 1.5px dashed rgb(18 196 222 / 0.6);
+  }
+  .close-panel::after {
+    right: clamp(28px, 4vw, 44px);
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    background: var(--color-magenta);
+    transform: rotate(45deg);
   }
   .close-panel > * {
     position: relative;
@@ -345,9 +352,7 @@
     top: 96px;
     border-radius: 14px;
     padding: clamp(24px, 3vw, 36px);
-    background:
-      radial-gradient(90% 70% at 100% 0%, rgb(18 196 222 / 0.2), transparent 60%),
-      var(--color-night);
+    background: var(--color-night);
   }
   .result [data-copy-status]:empty {
     display: none;
@@ -681,14 +686,11 @@
     position: relative;
   }
 
-  /* ── Services: journey (a dark operations board) ───────────────── */
+  /* ── Services: journey (a light chart board) ───────────────────── */
   .journey {
     position: relative;
-    padding-block: clamp(96px, 13vh, 160px);
-    background:
-      radial-gradient(60% 50% at 85% 20%, rgb(18 196 222 / 0.14), transparent 70%),
-      radial-gradient(50% 60% at 0% 100%, rgb(180 35 107 / 0.1), transparent 70%),
-      var(--color-night);
+    padding-block: clamp(88px, 6vw + 48px, 160px);
+    background: var(--color-paper-2);
   }
   .jt-head {
     display: flex;
@@ -708,13 +710,13 @@
     right: 0;
     top: 53px;
     height: 2px;
-    background: repeating-linear-gradient(90deg, rgb(18 196 222 / 0.55) 0 3px, transparent 3px 10px);
+    background: repeating-linear-gradient(90deg, var(--color-cyan-ink) 0 3px, transparent 3px 10px);
+    opacity: 0.7;
   }
   .jt-line i {
     position: absolute;
     inset: -1px 0;
-    background: var(--color-cyan);
-    box-shadow: 0 0 12px rgb(18 196 222 / 0.6);
+    background: var(--color-cyan-ink);
     transform-origin: left;
     transform: scaleX(1);
   }
@@ -730,7 +732,7 @@
   .jt-node b {
     height: 18px;
     line-height: 18px;
-    color: #8fa6bd;
+    color: var(--color-mute);
     transition: color 0.3s;
   }
   .jt-node i {
@@ -739,9 +741,9 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: var(--color-night);
-    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.22);
-    color: #8fa6bd;
+    background: var(--color-sheet);
+    box-shadow: inset 0 0 0 1.5px var(--color-line);
+    color: var(--color-mute);
     transition:
       background-color 0.35s,
       box-shadow 0.35s,
@@ -754,13 +756,13 @@
   }
   .journey:not(.is-live) .jt-node i,
   .jt-node.is-passed i {
-    background: var(--color-cyan);
-    box-shadow: 0 0 0 6px rgb(18 196 222 / 0.16);
-    color: var(--color-night);
+    background: var(--color-ink);
+    box-shadow: none;
+    color: var(--color-cyan);
   }
   .journey:not(.is-live) .jt-node b,
   .jt-node.is-passed b {
-    color: #fff;
+    color: var(--color-ink);
   }
   .jt-vehicle {
     display: none;
@@ -782,13 +784,13 @@
   .jt-step > p {
     max-width: 46ch;
     font-size: clamp(1.02rem, 1.2vw, 1.18rem);
-    color: #c9d6e3;
+    color: var(--color-ink-2);
   }
   .jt-facts {
     display: grid;
     gap: 2px;
     margin-top: 22px;
-    border-top: 1px solid rgb(255 255 255 / 0.14);
+    border-top: 1px solid var(--color-line);
   }
   .jt-facts li {
     display: grid;
@@ -796,7 +798,7 @@
     gap: 12px;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    border-bottom: 1px solid var(--color-line-2);
     font-family: var(--font-chart);
     font-weight: 600;
     font-size: 0.98rem;
@@ -804,7 +806,7 @@
   .jt-facts .icon {
     width: 18px;
     height: 18px;
-    color: var(--color-cyan);
+    color: var(--color-magenta);
     stroke-width: 2.2;
   }
   .jt-media {
@@ -862,8 +864,8 @@
     color: #fff;
     stroke-width: 1.8;
     box-shadow:
-      0 0 0 6px rgb(180 35 107 / 0.25),
-      0 10px 24px -8px rgb(0 0 0 / 0.6);
+      0 0 0 4px var(--color-paper-2),
+      0 10px 20px -10px rgb(180 35 107 / 0.7);
   }
   .journey.is-live .jt-body {
     display: grid;
@@ -910,7 +912,7 @@
     border-radius: 10px;
     overflow: hidden;
     background: var(--color-night-2);
-    box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7);
+    box-shadow: 0 30px 60px -36px rgb(14 42 74 / 0.6);
   }
   .jt-media figure {
     position: absolute;
@@ -938,27 +940,15 @@
       gap: clamp(40px, 5vw, 80px);
     }
   }
-  /* phones and tablets: the step photo becomes the stage's dimmed backdrop */
+  /* phones and tablets: a photo strip above the step when there is room */
   @media (max-width: 1023px) {
     .journey.is-live .jt-media {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
+      order: -1;
       aspect-ratio: auto;
-      border-radius: 0;
-      box-shadow: none;
-    }
-    .journey.is-live .jt-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgb(11 33 64 / 0.9) 0%, rgb(11 33 64 / 0.72) 45%, rgb(11 33 64 / 0.94) 100%);
+      height: min(18svh, 200px);
     }
     .journey.is-live .jt-media figcaption {
       display: none;
-    }
-    .journey.is-live .journey-sticky {
-      isolation: isolate;
     }
     .journey.is-live .jt-step h3 {
       font-size: 1.6rem;
@@ -969,6 +959,11 @@
     .journey.is-live .jt-facts li {
       padding: 7px 0;
       font-size: 0.92rem;
+    }
+  }
+  @media (max-width: 1023px) and (max-height: 740px) {
+    .journey.is-live .jt-media {
+      display: none;
     }
   }
   @media (max-height: 700px) {
@@ -1324,14 +1319,14 @@
     vertical-align: bottom;
     font-family: var(--font-chart);
     font-weight: 600;
-    font-size: 0.6rem;
-    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--color-mute);
     text-align: center;
   }
   .ic-table thead th:first-child {
-    width: 216px;
+    width: 228px;
     text-align: left;
   }
   .ic-table thead .icon {
@@ -1367,10 +1362,8 @@
     letter-spacing: -0.01em;
   }
   .ic-table tbody th span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
+    line-height: 1.15;
     color: var(--color-ink-2);
   }
   .ic-table td {
@@ -1421,7 +1414,7 @@
   }
   /* the row being read stands out; the others step back */
   .has-active .ic-table tbody tr:not(.is-active) td {
-    opacity: 0.32;
+    opacity: 0.5;
   }
   .ic-table tbody tr.is-active th b {
     color: var(--color-magenta);
@@ -1724,9 +1717,7 @@
     color: var(--color-magenta);
   }
   .about-band {
-    background:
-      radial-gradient(70% 90% at 100% 0%, rgb(18 196 222 / 0.16), transparent 60%),
-      var(--color-night);
+    background: var(--color-night);
   }
   .strengths {
     display: grid;
@@ -1802,8 +1793,12 @@
     box-shadow: inset 0 0 0 1px var(--color-line-2);
   }
   .office-dark {
+    align-self: start;
     background: var(--color-night);
     box-shadow: none;
+  }
+  .office .desk-value {
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem);
   }
   .office-addr {
     display: block;

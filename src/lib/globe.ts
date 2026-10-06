@@ -95,8 +95,11 @@ export function initGlobe(): void {
       const b = Math.max(0, stage.getBoundingClientRect().bottom);
       mid = b + (window.innerHeight - b) * 0.45;
     }
+    // on narrow screens the photo sits at the top of each card, just under the
+    // sticky globe, so the photo (not the whole card) meets the reading line
+    const narrow = window.innerWidth < 1024;
     const centers = cards.map((c) => {
-      const r = c.getBoundingClientRect();
+      const r = ((narrow && c.querySelector('figure')) || c).getBoundingClientRect();
       return r.top + r.height / 2 - mid;
     });
     // centers[i] is the card centre relative to the reading line (0 = on it)
@@ -108,6 +111,14 @@ export function initGlobe(): void {
       if (centers[i + 1] > 0) return i + -centers[i] / (centers[i + 1] - centers[i]);
     }
     return cards.length - 1;
+  }
+
+  /** under 1024px: the first card whose photo is wholly below the sticky globe */
+  function narrowActive(): number | null {
+    if (window.innerWidth >= 1024 || !stage) return null;
+    const edge = stage.getBoundingClientRect().bottom - 8;
+    const i = cards.findIndex((c) => (c.querySelector('figure') ?? c).getBoundingClientRect().top >= edge);
+    return i < 0 ? cards.length - 1 : i;
   }
 
   function setActive(i: number) {
@@ -127,7 +138,7 @@ export function initGlobe(): void {
     f = measure();
     if (Math.abs(f - lastF) < 0.0005) return;
     lastF = f;
-    setActive(Math.max(0, Math.min(cards.length - 1, Math.round(f))));
+    setActive(narrowActive() ?? Math.max(0, Math.min(cards.length - 1, Math.round(f))));
     onFrame?.(f);
   }
   setActive(0);

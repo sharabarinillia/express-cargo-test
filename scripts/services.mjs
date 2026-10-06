@@ -292,12 +292,12 @@ function page(p, all, L) {
       </section>
 
       <!-- JOURNEY: the shipment travels as you scroll ──────────── -->
-      <section class="journey on-night" aria-labelledby="journey-title" data-journey style="--steps: ${p.journey.length}">
+      <section class="journey" aria-labelledby="journey-title" data-journey style="--steps: ${p.journey.length}">
         <div class="journey-sticky">
           <div class="wrap">
             <div class="jt-head">
               <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>${esc(p.journeyTitle)}</h2>
-              <p class="chart text-[#c9d6e3]">${L.steps(p.journey.length)}</p>
+              <p class="chart text-mute">${L.steps(p.journey.length)}</p>
             </div>
             <div class="journey-track" aria-hidden="true">
               <span class="jt-line"><i data-jt-fill></i></span>
@@ -309,7 +309,7 @@ function page(p, all, L) {
                 ${p.journey
                   .map(([, code, title, text], i) => {
                     const facts = p.facts[i];
-                    return `<li class="jt-step${i === 0 ? ' is-active' : ''}"><span class="chart text-cyan">${String(i + 1).padStart(2, '0')} / ${String(p.journey.length).padStart(2, '0')} · ${code}</span><h3 class="mt-3">${esc(title)}</h3><p class="mt-3">${esc(text)}</p><ul class="jt-facts">${facts.map((f) => `<li><ec-icon name="check" />${esc(f)}</li>`).join('')}</ul></li>`;
+                    return `<li class="jt-step${i === 0 ? ' is-active' : ''}"><span class="chart text-magenta">${String(i + 1).padStart(2, '0')} / ${String(p.journey.length).padStart(2, '0')} · ${code}</span><h3 class="mt-3">${esc(title)}</h3><p class="mt-3">${esc(text)}</p><ul class="jt-facts">${facts.map((f) => `<li><ec-icon name="check" />${esc(f)}</li>`).join('')}</ul></li>`;
                   })
                   .join('\n                ')}
               </ol>

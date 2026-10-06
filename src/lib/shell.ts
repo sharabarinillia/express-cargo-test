@@ -71,6 +71,11 @@ export function initNav(): void {
   let openedAt = 0;
   let hoverAt = 0;
 
+  // a top-level link that already marks the page wins over the dropdowns
+  const topMatch = [...document.querySelectorAll<HTMLAnchorElement>('a.nav-link')].some((a) => {
+    const u = new URL(a.href, location.href);
+    return !u.hash && u.pathname === location.pathname;
+  });
   triggers.forEach((t) => {
     const panel = panelOf(t);
     panel.toggleAttribute('inert', true);
@@ -80,7 +85,7 @@ export function initNav(): void {
       const u = new URL(a.href, location.href);
       return !u.hash && u.pathname === location.pathname && location.pathname !== '/';
     });
-    t.classList.toggle('is-current', here);
+    t.classList.toggle('is-current', here && !topMatch);
   });
 
   const set = (t: HTMLButtonElement | null) => {
