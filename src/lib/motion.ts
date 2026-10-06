@@ -77,7 +77,12 @@ export function initHeadlines(): void {
 function drawIcons(scope: Element, delay = 0) {
   const paths = scope.querySelectorAll<SVGGeometryElement>('.icon path, .icon circle, .icon line, .icon polyline, .icon rect');
   paths.forEach((p) => p.setAttribute('pathLength', '1'));
-  gsap.fromTo(paths, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.02, delay });
+  // each icon draws as one stroke (its paths together); icons follow one another
+  const icons = [...new Set([...paths].map((p) => p.closest('.icon')))];
+  icons.forEach((icon, i) => {
+    const own = [...paths].filter((p) => p.closest('.icon') === icon);
+    gsap.fromTo(own, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: 'power2.out', delay: delay + i * 0.08 });
+  });
 }
 
 export function initReveals(): void {

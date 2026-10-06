@@ -33,6 +33,37 @@ export function initHeader(): void {
   window.addEventListener('scroll', update, { passive: true });
 }
 
+/**
+ * Quick actions (call, quote) docked to the viewport once the hero is behind
+ * you. They step aside where the page already offers the same actions: the
+ * closing panel, the footer and the contact form, and clear the pinned
+ * flight log, whose cards run to the bottom of the screen.
+ */
+export function initDock(): void {
+  const dock = document.querySelector<HTMLElement>('[data-dock]');
+  if (!dock) return;
+  if (document.querySelector('[data-enquiry]')) {
+    dock.remove();
+    return;
+  }
+  const stops = [...document.querySelectorAll<HTMLElement>('.close-section, [data-footer], [data-flog]')];
+  const near = new Set<Element>();
+  const update = () => {
+    const menuOpen = document.documentElement.classList.contains('menu-open');
+    const on = !menuOpen && window.scrollY > window.innerHeight * 0.8 && near.size === 0;
+    dock.classList.toggle('is-on', on);
+    dock.inert = !on;
+  };
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) e.isIntersecting ? near.add(e.target) : near.delete(e.target);
+    update();
+  }, { rootMargin: '0px 0px -12% 0px' });
+  stops.forEach((el) => io.observe(el));
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  new MutationObserver(update).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+}
+
 export function initMenu(lenis: Lenis | null): void {
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const label = document.querySelector<HTMLElement>('[data-menu-label]');
@@ -155,6 +186,7 @@ export function initShell(): Lenis | null {
   initHeader();
   initMenu(lenis);
   initNav();
+  initDock();
   document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
   // mark the current page in the navigation (in-page anchors are not pages)
   document.querySelectorAll<HTMLAnchorElement>('a.nav-link, [data-menu-link], .nav-card').forEach((a) => {

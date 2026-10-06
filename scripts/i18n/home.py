@@ -153,5 +153,13 @@ P = COMMON + links_present(SRC, LINKS) + [
     ('type="submit">Continue to quote <!-- @include arrow --></button>', 'type="submit">Verder naar offerte <!-- @include arrow --></button>'),
     ('Prefer to talk? Call <a', 'Liever bellen? Bel <a'),
     ('</a> or email <a', '</a> of mail <a'),
+    ("Cargo that can't wait for tomorrow?<span>Call the desk for the next flight out, or send the details now.</span>", 'Lading die niet tot morgen kan wachten?<span>Bel de desk voor de eerstvolgende vlucht, of stuur nu de gegevens.</span>'),
+    ('href="/contact/?mode=time-critical#enquiry">Book time-critical <!-- @include arrow -->', 'href="/nl/contact/?mode=time-critical#enquiry">Spoedzending boeken <!-- @include arrow -->'),
+    ('Specimens or dangerous goods to ship?<span>Send the UN numbers with your request; a DGR-certified coordinator checks the packaging and paperwork.</span>', 'Specimens of gevaarlijke stoffen te verzenden?<span>Stuur de UN-nummers mee met uw aanvraag; een DGR-gecertificeerde coördinator controleert de verpakking en de papieren.</span>'),
+    ('href="/contact/?mode=air&amp;what=Dangerous%20goods#enquiry">Quote a DG shipment <!-- @include arrow -->', 'href="/nl/contact/?mode=air&amp;what=Gevaarlijke%20stoffen#enquiry">Offerte voor gevaarlijke stoffen <!-- @include arrow -->'),
+    ('href="/contact/?what=Cold-chain%20storage#enquiry">Ask about cold storage <!-- @include arrow -->', 'href="/nl/contact/?what=Opslag%20in%20de%20koelketen#enquiry">Vraag naar koelopslag <!-- @include arrow -->'),
+    ('A shipment like these?<span>Crates, active containers or oversized loads: one coordinator plans the route with you.</span>', 'Een zending zoals deze?<span>Kisten, actieve containers of oversized lading: één coördinator plant de route met u.</span>'),
+    ('href="/contact/?what=Special%20project#enquiry">Start a project quote <!-- @include arrow -->', 'href="/nl/contact/?what=Speciaal%20project#enquiry">Projectofferte aanvragen <!-- @include arrow -->'),
+    ('href="/nl/diensten/projecten/">Special projects</a>', 'href="/nl/diensten/projecten/">Speciale projecten</a>'),
 ]
 translate(SRC, DST, P)

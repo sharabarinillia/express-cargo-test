@@ -92,5 +92,8 @@ footer = LINKS + [
     ('href="/about/#team">Team</a>', 'href="/nl/over-ons/#team">Team</a>'),
     ('href="/contact/">Contact</a>', 'href="/nl/contact/">Contact</a>'),
     ('IATA member', 'IATA-lid'),
+    ('aria-label="Call +31 20 333 2405"', 'aria-label="Bel +31 20 333 2405"'),
+    ('<span class="dock-short">Call</span>', '<span class="dock-short">Bellen</span>'),
+    ('#enquiry">Request a quote <!-- @include arrow -->', '#enquiry">Offerte aanvragen <!-- @include arrow -->'),
 ]
 translate(R + 'footer.html', R + 'footer-nl.html', footer)
