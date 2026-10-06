@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1098" width="1600" height="1098">
+<rect width="1600" height="1098" fill="#eef2f5"/>
+<text x="64" y="104" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="56" letter-spacing="-1.5">Incoterms® 2020</text>
+<text x="64" y="148" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="24">Who pays for each stage, and where the risk passes from seller to buyer.</text>
+<rect x="1016" y="74" width="22" height="22" rx="3" fill="#0e2a4a"/><text x="1048" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Seller pays</text>
+<rect x="1196" y="74" width="22" height="22" rx="3" fill="#d6f1f6" stroke="#c9d4dd"/><text x="1228" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Buyer pays</text>
+<rect x="1376" y="78" width="15" height="15" fill="#b4236b" transform="rotate(45 1383.5 85.5)"/><text x="1408" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Risk passes</text>
+<text x="508.1" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">LOAD</text>
+<text x="616.3000000000001" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">EXPORT</text>
+<text x="724.5" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">TO PORT</text>
+<text x="832.7" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">ORIGIN</text>
+<text x="940.9" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">MAIN LEG</text>
+<text x="1049.1" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">INSURE</text>
+<text x="1157.3" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">ARRIVAL</text>
+<text x="1265.5" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">TO DOOR</text>
+<text x="1373.6999999999998" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">UNLOAD</text>
+<text x="1481.9" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">IMPORT</text>
+<text x="64" y="286" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">EXW</text><text x="146" y="285" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Ex Works</text>
+<rect x="457" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="565.2" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="673.4" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="781.6" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="889.8" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="998" y="258" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="444" y="269" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 454 279)"/>
+<text x="64" y="344" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">FCA</text><text x="146" y="343" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Free Carrier</text>
+<rect x="457" y="316" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="316" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="316" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="316" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="889.8" y="316" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="998" y="316" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="316" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="316" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="316" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="316" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="768.6" y="327" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 778.6 337)"/>
+<text x="64" y="402" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">CPT</text><text x="146" y="401" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Carriage Paid To</text>
+<rect x="457" y="374" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="374" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="374" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="374" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="374" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="998" y="374" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="374" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="374" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="374" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="374" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="768.6" y="385" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 778.6 395)"/>
+<text x="64" y="460" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">CIP</text><text x="146" y="459" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Carriage and Insurance Paid To</text>
+<rect x="457" y="432" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="432" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="432" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="432" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="432" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="998" y="432" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1106.2" y="432" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="432" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="432" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="432" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="768.6" y="443" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 778.6 453)"/>
+<text x="64" y="518" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">DAP</text><text x="146" y="517" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Delivered at Place</text>
+<rect x="457" y="490" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="490" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="490" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="490" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="490" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="998" y="490" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="490" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1214.4" y="490" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1322.6" y="490" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="490" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1309.6" y="501" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 1319.6 511)"/>
+<text x="64" y="576" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">DPU</text><text x="146" y="575" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Delivered at Place Unloaded</text>
+<rect x="457" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="998" y="548" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1214.4" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1322.6" y="548" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1430.8000000000002" y="548" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1417.8000000000002" y="559" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 1427.8000000000002 569)"/>
+<text x="64" y="634" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">DDP</text><text x="146" y="633" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Delivered Duty Paid</text>
+<rect x="457" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="998" y="606" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1214.4" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1322.6" y="606" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="606" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1309.6" y="617" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 1319.6 627)"/>
+<line x1="64" x2="1536" y1="654" y2="654" stroke="#0e2a4a" stroke-width="2" stroke-dasharray="4 6"/>
+<text x="64" y="692" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">FAS</text><text x="146" y="691" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Free Alongside Ship</text>
+<rect x="457" y="664" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="664" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="664" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="664" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="889.8" y="664" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="998" y="664" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="664" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="664" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="664" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="664" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="768.6" y="675" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 778.6 685)"/>
+<text x="64" y="750" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">FOB</text><text x="146" y="749" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Free on Board</text>
+<rect x="457" y="722" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="722" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="722" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="722" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="722" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="998" y="722" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="722" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="722" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="722" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="722" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="876.8" y="733" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 886.8 743)"/>
+<text x="64" y="808" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">CFR</text><text x="146" y="807" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Cost and Freight</text>
+<rect x="457" y="780" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="780" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="780" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="780" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="780" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="998" y="780" width="102.2" height="42" rx="4" fill="#eef2f5" stroke="#c9d4dd" stroke-dasharray="3 4"/>
+<rect x="1106.2" y="780" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="780" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="780" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="780" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="876.8" y="791" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 886.8 801)"/>
+<text x="64" y="866" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">CIF</text><text x="146" y="865" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Cost, Insurance and Freight</text>
+<rect x="457" y="838" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="565.2" y="838" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="673.4" y="838" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="781.6" y="838" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="889.8" y="838" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="998" y="838" width="102.2" height="42" rx="4" fill="#0e2a4a"/>
+<rect x="1106.2" y="838" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1214.4" y="838" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1322.6" y="838" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="1430.8000000000002" y="838" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
+<rect x="876.8" y="849" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 886.8 859)"/>
+<text x="64" y="928" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="17">EXW to DDP: any mode of transport · FAS to CIF: sea and inland waterway only. Simplified overview; see the ICC rules for detail.</text>
+<text x="64" y="956" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="17">Incoterms® is a registered trademark of the International Chamber of Commerce.</text>
+<line x1="64" x2="1536" y1="992" y2="992" stroke="#c9d4dd"/>
+<text x="64" y="1044" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="30">Express Cargo</text>
+<text x="1536" y="1042" text-anchor="end" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="22">express-cargo.nl · +31 20 333 2405 · salesams@express-cargo.nl</text>
+</svg>

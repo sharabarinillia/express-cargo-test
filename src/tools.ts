@@ -297,7 +297,7 @@ function initLdm() {
       deck!.appendChild(el);
       cells.push(el);
     }
-    if (!reducedMotion) gsap.from(cells, { opacity: 0, scale: 0.6, duration: 0.45, ease: 'back.out(2)', stagger: { each: Math.min(0.04, 0.8 / cells.length), from: 'start' } });
+    if (!reducedMotion) gsap.from(cells, { opacity: 0, scale: 0.6, duration: 0.45, ease: 'expo.out', stagger: { each: Math.min(0.04, 0.8 / cells.length), from: 'start' } });
   }
   form.addEventListener('input', compute);
   form.addEventListener('change', compute);

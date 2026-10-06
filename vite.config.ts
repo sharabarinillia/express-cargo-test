@@ -80,6 +80,7 @@ export default defineConfig({
         sea: resolve(import.meta.dirname, 'services/sea-freight/index.html'),
         road: resolve(import.meta.dirname, 'services/road-transport/index.html'),
         projects: resolve(import.meta.dirname, 'services/special-projects/index.html'),
+        resources: resolve(import.meta.dirname, 'resources/index.html'),
       },
     },
   },
