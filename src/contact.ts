@@ -53,8 +53,21 @@ function initForm() {
     const v = params.get(key)?.slice(0, 200);
     if (v && field(key)) field(key)!.value = v;
   }
-  // a result from the shipping tools opens the details it filled in
-  if (params.get('weight')) document.querySelector<HTMLDetailsElement>('[data-details]')?.setAttribute('open', '');
+  // optional details: each chip reveals its field (and focuses it); a field
+  // that already holds a value, such as a weight from the tools, starts open
+  const chips = [...form.querySelectorAll<HTMLButtonElement>('[data-extras] .chip')];
+  const show = (chip: HTMLButtonElement, open: boolean, focus = false) => {
+    const box = document.getElementById(chip.getAttribute('aria-controls')!);
+    if (!box) return;
+    box.hidden = !open;
+    chip.setAttribute('aria-expanded', String(open));
+    if (focus && open) box.querySelector<HTMLElement>('input, select')?.focus();
+  };
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => show(chip, chip.getAttribute('aria-expanded') !== 'true', true));
+    const box = document.getElementById(chip.getAttribute('aria-controls')!);
+    if (box?.querySelector<HTMLInputElement>('input, select')?.value) show(chip, true);
+  });
   syncLine();
 
   const LABELS: Record<string, string> = { name: t('Your name', 'Uw naam'), email: t('Your email', 'Uw e-mailadres') };

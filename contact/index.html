@@ -60,14 +60,14 @@
               <label class="sr-only" for="f-from">From</label><input class="blank" id="f-from" name="from" placeholder="Amsterdam" autocomplete="off" />
               to
               <label class="sr-only" for="f-to">To</label><input class="blank" id="f-to" name="to" placeholder="Perth" autocomplete="off" data-fl-input />
-              by
+              <span class="whitespace-nowrap">by
               <label class="sr-only" for="f-mode">Mode</label><select class="blank" id="f-mode" name="mode">
                 <option value="">whatever fits</option>
                 <option value="Air freight">air</option>
                 <option value="Road">road</option>
                 <option value="Ocean">sea</option>
                 <option value="Time-critical">the next flight out</option>
-              </select>.
+              </select>.</span>
             </p>
             <p class="sentence-line mt-4">
               I'm
@@ -76,22 +76,30 @@
               <label class="sr-only" for="f-email">Email</label><input class="blank" id="f-email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />.
             </p>
 
-            <details class="details mt-10" data-details>
-              <summary><ec-icon name="plus" /> <span>Add shipment details <span class="text-mute">(optional, speeds up the quote)</span></span></summary>
-              <div class="grid gap-5 pt-6 sm:grid-cols-2 lg:grid-cols-4">
-                <div class="field"><label class="chart text-mute" for="f-weight">Weight &amp; pieces</label><input id="f-weight" name="weight" placeholder="e.g. 2 boxes, 40 kg" /></div>
-                <div class="field"><label class="chart text-mute" for="f-temp">Temperature</label><select id="f-temp" name="temperature"><option value="">Not needed</option><option>+15–25 °C</option><option>+2–8 °C</option><option>−20 °C</option><option>Dry ice</option></select></div>
-                <div class="field"><label class="chart text-mute" for="f-ready">Ready on</label><input id="f-ready" name="ready" type="date" /></div>
-                <div class="field"><label class="chart text-mute" for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" /></div>
-                <div class="field sm:col-span-2"><label class="chart text-mute" for="f-un">Dangerous goods (UN numbers)</label><input id="f-un" name="un" placeholder="e.g. UN3373, UN3481" /></div>
-                <div class="field sm:col-span-2"><label class="chart text-mute" for="f-message">Anything else</label><input id="f-message" name="message" /></div>
+            <div class="extras mt-8" data-extras>
+              <p class="text-ink-2"><span class="font-semibold text-ink">Add details</span> (optional, speeds up the quote)</p>
+              <div class="chips mt-4">
+                <button type="button" class="chip" aria-expanded="false" aria-controls="x-weight"><ec-icon name="plus" /> Weight &amp; pieces</button>
+                <button type="button" class="chip" aria-expanded="false" aria-controls="x-temp"><ec-icon name="plus" /> Temperature</button>
+                <button type="button" class="chip" aria-expanded="false" aria-controls="x-ready"><ec-icon name="plus" /> Ready date</button>
+                <button type="button" class="chip" aria-expanded="false" aria-controls="x-phone"><ec-icon name="plus" /> Phone</button>
+                <button type="button" class="chip" aria-expanded="false" aria-controls="x-un"><ec-icon name="plus" /> UN numbers</button>
+                <button type="button" class="chip" aria-expanded="false" aria-controls="x-message"><ec-icon name="plus" /> Note</button>
               </div>
-            </details>
+              <div class="extras-fields grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <div id="x-weight" hidden class="field"><label class="chart text-mute" for="f-weight">Weight &amp; pieces</label><input id="f-weight" name="weight" placeholder="e.g. 2 boxes, 40 kg" /></div>
+                <div id="x-temp" hidden class="field"><label class="chart text-mute" for="f-temp">Temperature</label><select id="f-temp" name="temperature"><option value="">Not needed</option><option>+15–25 °C</option><option>+2–8 °C</option><option>−20 °C</option><option>Dry ice</option></select></div>
+                <div id="x-ready" hidden class="field"><label class="chart text-mute" for="f-ready">Ready on</label><input id="f-ready" name="ready" type="date" /></div>
+                <div id="x-phone" hidden class="field"><label class="chart text-mute" for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" /></div>
+                <div id="x-un" hidden class="field sm:col-span-2"><label class="chart text-mute" for="f-un">Dangerous goods (UN numbers)</label><input id="f-un" name="un" placeholder="e.g. UN3373, UN3481" /></div>
+                <div id="x-message" hidden class="field sm:col-span-2"><label class="chart text-mute" for="f-message">Anything else</label><input id="f-message" name="message" /></div>
+              </div>
+            </div>
 
             <!-- honeypot -->
             <div class="hidden" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off" /></label></div>
 
-            <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
               <button type="submit" class="btn btn-ink !min-h-[58px] !px-8 text-[1.05rem]">Send to a coordinator <!-- @include arrow --></button>
               <p class="text-ink-2">or call <a class="link-u whitespace-nowrap font-semibold text-ink" href="tel:+31203332405">+31 20 333 2405</a></p>
             </div>
