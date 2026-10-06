@@ -446,6 +446,25 @@
     background: #fff;
     color: var(--color-ink);
   }
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    margin-top: 12px;
+    font-family: var(--font-chart);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .more-link > svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-magenta);
+    transition: transform 0.3s;
+  }
+  .more-link:hover > svg {
+    transform: translateX(4px);
+  }
   .link-u {
     background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
     transition: background-size 0.3s;
