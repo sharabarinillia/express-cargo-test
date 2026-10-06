@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { initShell, reducedMotion } from './lib/shell';
 import { initHeadlines } from './lib/motion';
 import { countTo, initPageMotion } from './lib/page';
+import { lang, locale, t } from './lib/i18n';
 
 initShell();
 initHeadlines();
@@ -13,7 +14,10 @@ initPageMotion();
 type Mode = 'air' | 'courier' | 'road' | 'sea';
 /** kg charged per cubic metre */
 const KG_PER_CBM: Record<Mode, number> = { air: 1e6 / 6000, courier: 1e6 / 5000, road: 333, sea: 1000 };
-const RULE: Record<Mode, string> = { air: 'IATA 1:6000', courier: 'Courier 1:5000', road: 'Road 1 m³ = 333 kg', sea: 'Sea W/M 1 m³ = 1,000 kg' };
+const RULE: Record<Mode, string> =
+  lang === 'nl'
+    ? { air: 'IATA 1:6000', courier: 'Koerier 1:5000', road: 'Weg 1 m³ = 333 kg', sea: 'Zee W/M 1 m³ = 1.000 kg' }
+    : { air: 'IATA 1:6000', courier: 'Courier 1:5000', road: 'Road 1 m³ = 333 kg', sea: 'Sea W/M 1 m³ = 1,000 kg' };
 const QUOTE_MODE: Record<Mode, string> = { air: 'air', courier: 'time-critical', road: 'road', sea: 'ocean' };
 const LDM_KG = 1750;
 const IN = 2.54;
@@ -23,7 +27,7 @@ const num = (v: string) => {
   const n = parseFloat(v.replace(',', '.'));
   return Number.isFinite(n) && n > 0 ? n : 0;
 };
-const fmt = (n: number, d = 0) => n.toLocaleString('en-GB', { minimumFractionDigits: d, maximumFractionDigits: d });
+const fmt = (n: number, d = 0) => n.toLocaleString(locale, { minimumFractionDigits: d, maximumFractionDigits: d });
 
 /* ── Hero cube: takes the proportions of the first line ──────────── */
 const cube = document.querySelector<HTMLElement>('[data-cube]');
@@ -41,7 +45,7 @@ function shapeCube(l: number, w: number, h: number, kgVol: number, unit: string,
   if (cubeDims) cubeDims.textContent = `${fmt(l)} × ${fmt(w)} × ${fmt(h)} ${unit}`;
   if (cubeKg) cubeKg.textContent = `${fmt(kgVol, kgVol < 100 ? 1 : 0)} ${unit === 'in' ? 'lb' : 'kg'}`;
   const read = cubeKg?.nextElementSibling;
-  if (read) read.textContent = `at ${factor}`;
+  if (read) read.textContent = `${t('at', 'bij')} ${factor}`;
 }
 const spin = document.querySelector<HTMLElement>('[data-cube-spin]');
 if (cube && spin && !reducedMotion) {
@@ -97,7 +101,7 @@ function initCalc() {
       r.querySelector('.row-n')!.textContent = String(i + 1).padStart(2, '0');
       const del = r.querySelector<HTMLButtonElement>('[data-del]')!;
       del.disabled = rows.length === 1;
-      del.querySelector('.sr-only')!.textContent = `Remove line ${i + 1}`;
+      del.querySelector('.sr-only')!.textContent = `${t('Remove line', 'Verwijder regel')} ${i + 1}`;
     });
   }
 
@@ -140,9 +144,9 @@ function initCalc() {
 
     const basis = form!.querySelector<HTMLElement>('[data-basis]')!;
     const byVol = volKg > kg;
-    if (!kg && !cbm) basis.textContent = 'Enter dimensions and weight';
-    else if (mode === 'sea') basis.textContent = cbm >= kg / 1000 ? `Charged on volume: ${fmt(rt, 2)} revenue tonnes` : `Charged on weight: ${fmt(rt, 2)} revenue tonnes`;
-    else basis.textContent = byVol ? `Charged on volume · ${fmt((volKg / Math.max(kg, 0.001)) * 100 - 100)}% above actual` : 'Charged on actual weight';
+    if (!kg && !cbm) basis.textContent = t('Enter dimensions and weight', 'Vul afmetingen en gewicht in');
+    else if (mode === 'sea') basis.textContent = cbm >= kg / 1000 ? `${t('Charged on volume', 'Berekend op volume')}: ${fmt(rt, 2)} ${t('revenue tonnes', 'vrachttonnen')}` : `${t('Charged on weight', 'Berekend op gewicht')}: ${fmt(rt, 2)} ${t('revenue tonnes', 'vrachttonnen')}`;
+    else basis.textContent = byVol ? `${t('Charged on volume', 'Berekend op volume')} · ${fmt((volKg / Math.max(kg, 0.001)) * 100 - 100)}% ${t('above actual', 'boven werkelijk')}` : t('Charged on actual weight', 'Berekend op werkelijk gewicht');
     basis.classList.toggle('is-vol', byVol);
 
     // bars, relative to the larger of the two
@@ -163,16 +167,16 @@ function initCalc() {
       gsap.to(li.querySelector('i'), { scaleX: Math.min(1, p), duration: reducedMotion ? 0 : 0.7, ease: 'expo.out' });
     });
 
-    if (first) shapeCube(first[0], first[1], first[2], toU(volKg), imperial ? 'in' : 'cm', RULE[mode].replace(/^(Road|Sea W\/M|Courier) /, ''));
+    if (first) shapeCube(first[0], first[1], first[2], toU(volKg), imperial ? 'in' : 'cm', RULE[mode].replace(/^(Road|Sea W\/M|Courier|Weg|Zee W\/M|Koerier) /, ''));
 
     // hand the result to the quote form
     const u = imperial ? 'lb' : 'kg';
-    const summary = `${fmt(pcs)} pcs, ${fmt(toU(kg))} ${u} actual, ${cbm ? `${fmt(cbm, 3)} m³, ` : ''}chargeable ${fmt(toU(cw), 1)} ${u} (${RULE[mode]})`;
+    const summary = `${fmt(pcs)} ${t('pcs', 'colli')}, ${fmt(toU(kg))} ${u} ${t('actual', 'werkelijk')}, ${cbm ? `${fmt(cbm, 3)} m³, ` : ''}${t('chargeable', 'belastbaar')} ${fmt(toU(cw), 1)} ${u} (${RULE[mode]})`;
     const q = new URLSearchParams({ type: 'quote', mode: QUOTE_MODE[mode], weight: summary });
-    form!.querySelector<HTMLAnchorElement>('[data-quote]')!.href = `/contact/?${q}#enquiry`;
+    form!.querySelector<HTMLAnchorElement>('[data-quote]')!.href = `${t('/contact/', '/nl/contact/')}?${q}#enquiry`;
     form!.dataset.summary = summary;
     if (peekVal) peekVal.textContent = fmt(toU(cw), toU(cw) % 1 ? 1 : 0);
-    if (peekBasis) peekBasis.textContent = !kg && !cbm ? '' : mode === 'sea' ? 'W/M' : byVol ? 'by volume' : 'by weight';
+    if (peekBasis) peekBasis.textContent = !kg && !cbm ? '' : mode === 'sea' ? 'W/M' : byVol ? t('by volume', 'op volume') : t('by weight', 'op gewicht');
   }
 
   form.addEventListener('input', compute);
@@ -222,7 +226,7 @@ function initCalc() {
     const status = form.querySelector<HTMLElement>('[data-copy-status]')!;
     try {
       await navigator.clipboard.writeText(form.dataset.summary ?? '');
-      status.textContent = 'Copied.';
+      status.textContent = t('Copied.', 'Gekopieerd.');
     } catch {
       status.textContent = form.dataset.summary ?? '';
     }
@@ -265,9 +269,9 @@ function initLdm() {
     out('cbm').textContent = fmt(cbm, 2);
     out('kg').textContent = fmt(kg);
     countTo(out('cw'), cw, (v) => fmt(v));
-    const basis = kg >= ldmKg && kg >= volKg ? 'actual weight' : ldmKg >= volKg ? `loading metres (${fmt(ldm, 2)} × 1,750 kg)` : 'volume (1 m³ = 333 kg)';
-    out('basis').textContent = `Charged on ${basis}, the greatest of weight, volume and floor space.`;
-    out('note').textContent = ldm > 13.6 ? `More than one trailer: ${fmt(Math.ceil(ldm / 13.6))} trailers, or a full load we plan with you.` : stack ? 'Stacked two high: each spot carries two pallets.' : '';
+    const basis = kg >= ldmKg && kg >= volKg ? t('actual weight', 'werkelijk gewicht') : ldmKg >= volKg ? `${t('loading metres', 'laadmeters')} (${fmt(ldm, 2)} × ${fmt(1750)} kg)` : t('volume (1 m³ = 333 kg)', 'volume (1 m³ = 333 kg)');
+    out('basis').textContent = t(`Charged on ${basis}, the greatest of weight, volume and floor space.`, `Berekend op ${basis}: het hoogste van gewicht, volume en vloerruimte.`);
+    out('note').textContent = ldm > 13.6 ? t(`More than one trailer: ${fmt(Math.ceil(ldm / 13.6))} trailers, or a full load we plan with you.`, `Meer dan één trailer: ${fmt(Math.ceil(ldm / 13.6))} trailers, of een complete lading die we met u plannen.`) : stack ? t('Stacked two high: each spot carries two pallets.', 'Twee hoog gestapeld: elke plek draagt twee pallets.') : '';
 
     // top view: rows across the trailer, the orientation that fits the most
     const across1 = Math.floor(TRAILER_W / pw); // long side along the trailer

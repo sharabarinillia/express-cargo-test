@@ -1,6 +1,7 @@
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { t } from './i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,7 +43,7 @@ export function initMenu(lenis: Lenis | null): void {
   const set = (open: boolean) => {
     root.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', String(open));
-    if (label) label.textContent = open ? 'Close menu' : 'Open menu';
+    if (label) label.textContent = open ? t('Close menu', 'Menu sluiten') : t('Open menu', 'Menu openen');
     icon?.setAttribute('d', open ? 'M5 5l14 14M19 5L5 19' : 'M3 8h18M3 16h18');
     panel.toggleAttribute('inert', !open);
     if (open) lenis?.stop();

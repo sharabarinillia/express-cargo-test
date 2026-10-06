@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <!-- @include head -->
+    <title>Express Cargo — Lucht-, weg- en zeevracht voor gevoelige zendingen | Schiphol</title>
+    <meta name="description" content="Gespecialiseerd expediteur sinds 2002 op Amsterdam Schiphol. Clinical trials, biologische samples, gevaarlijke stoffen (IATA DGR), koelketen-entrepot onder douanetoezicht en spoedzendingen: NFO, OBC en Direct Driver." />
+    <link rel="canonical" href="https://www.express-cargo.nl/nl/" />
+    <meta property="og:title" content="Express Cargo — Uw meest gevoelige zendingen, in veilige handen" />
+    <meta property="og:description" content="Lucht-, weg- en zeevracht voor clinical trials, biologische samples, gevaarlijke stoffen en koelketenlading. Schiphol, sinds 2002." />
+    <meta property="og:url" content="https://www.express-cargo.nl/nl/" />
+    <meta property="og:image" content="https://www.express-cargo.nl/img/poster-hero-clouds-1600.webp" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Express Cargo",
+        "url": "https://www.express-cargo.nl/",
+        "logo": "https://www.express-cargo.nl/logo-ink.svg",
+        "foundingDate": "2002",
+        "email": "salesams@express-cargo.nl",
+        "telephone": "+31 20 333 2405",
+        "sameAs": ["https://www.linkedin.com/company/express-cargo-amsterdam/"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Breguetlaan 21",
+          "postalCode": "1438 BA",
+          "addressLocality": "Oude Meer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        }
+      }
+    </script>
+    <script type="module" src="/src/home.ts"></script>
+  </head>
+  <body data-dark-hero>
+    <!-- @include header-nl -->
+
+    <main id="main" class="relative" data-route-host>
+      <!-- the plotted route and the aircraft flying it (decorative) -->
+      <div class="route-layer" aria-hidden="true">
+        <svg data-route-svg>
+          <path class="route-plan" data-route-plan />
+          <path class="route-flown" data-route-flown />
+        </svg>
+        <div data-route-wps></div>
+        <div class="aircraft" data-aircraft>
+          <svg viewBox="0 0 48 48"><path fill="currentColor" d="M24 2c1.6 0 2.6 2.3 2.6 5.2v11.1l17.4 10v3.4l-17.4-5.3v9.4l5.2 3.9v2.8L24 40.6l-7.8 1.9v-2.8l5.2-3.9v-9.4L4 31.7v-3.4l17.4-10V7.2C21.4 4.3 22.4 2 24 2z"/><path fill="#12c4de" d="M22.6 7.5h2.8v3h-2.8z"/></svg>
+        </div>
+      </div>
+
+      <!-- HERO: full-bleed departure ──────────────────────────── -->
+      <section id="top" class="hero on-night" data-route-dark data-leg="hero" data-wp="AMS · 52°18′N 004°46′E">
+        <div class="hero-media" aria-hidden="true" data-hero-media>
+          <picture>
+            <source media="(max-width: 767px)" type="image/avif" srcset="/img/poster-hero-clouds-m-480.avif 480w, /img/poster-hero-clouds-m-720.avif 720w" sizes="100vw" />
+            <source media="(max-width: 767px)" type="image/webp" srcset="/img/poster-hero-clouds-m-480.webp 480w, /img/poster-hero-clouds-m-720.webp 720w" sizes="100vw" />
+            <source type="image/avif" srcset="/img/poster-hero-clouds-960.avif 960w, /img/poster-hero-clouds-1600.avif 1600w, /img/poster-hero-clouds-1920.avif 1920w" sizes="100vw" />
+            <img src="/img/poster-hero-clouds-1600.webp" srcset="/img/poster-hero-clouds-960.webp 960w, /img/poster-hero-clouds-1600.webp 1600w, /img/poster-hero-clouds-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high" />
+          </picture>
+          <video muted loop playsinline preload="none" data-hero-video>
+            <source media="(max-width: 767px)" src="/video/hero-clouds-m.mp4" type="video/mp4" />
+            <source src="/video/hero-clouds.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="hero-veil" aria-hidden="true"></div>
+
+        <div class="wrap hero-head">
+          <h1 class="display display-hero" data-split>Uw meest gevoelige zendingen, in veilige handen.</h1>
+        </div>
+
+        <div class="hero-foot">
+          <div class="wrap grid items-end gap-x-12 gap-y-6 lg:grid-cols-12">
+            <p class="lede order-2 lg:order-none lg:col-span-5" data-fade>Gespecialiseerde lucht-, weg- en zeevracht vanaf Amsterdam Schiphol en Belgrado sinds 2002, voor clinical trials, biologische samples, gevaarlijke stoffen en temperatuurgevoelige lading.</p>
+            <div class="order-1 flex flex-wrap items-center gap-3 lg:order-none lg:col-span-5 lg:gap-4" data-fade>
+              <a href="/nl/contact/#enquiry" class="btn btn-cyan">Offerte aanvragen <!-- @include arrow --></a>
+              <a href="tel:+31203332405" class="btn btn-line"><ec-icon name="phone" /> +31 20 333 2405</a>
+              <p class="chart flex w-full items-center gap-2 text-[#dbe5ee]"><ec-icon name="zap" class="!h-[18px] !w-[18px] text-cyan" /> Snelle offertes van een echte coördinator</p>
+            </div>
+            <ul class="chart order-3 flex flex-wrap gap-x-5 gap-y-2 text-[#dbe5ee] lg:order-none lg:col-span-2 lg:flex-col lg:items-end">
+              <li class="flex items-center gap-2"><ec-icon name="badge-check" class="!h-[18px] !w-[18px] text-cyan" /> ISO 9001:2015</li>
+              <li class="flex items-center gap-2"><ec-icon name="plane" class="!h-[18px] !w-[18px] text-cyan" /> IATA · DGR</li>
+              <li class="flex items-center gap-2"><ec-icon name="shield-check" class="!h-[18px] !w-[18px] text-cyan" /> GDP</li>
+            </ul>
+          </div>
+          <div class="wrap mt-8" data-fade>
+            <p class="manifest chart"><span class="text-[#9fb2c6]">We vervoeren</span> <span>UN3373-specimens</span> <span>Droogijs</span> <span>Clinical-trialkits</span> <span>Lithiumbatterijen</span> <span>+2–8 °C</span> <span>−20 °C</span> <span>Oversized</span></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES ────────────────────────────────────────────── -->
+      <section id="services" class="section" data-leg="right" data-wp="Diensten">
+        <div class="wrap">
+          <div class="grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-6">
+              <h2 class="display display-l" data-split>Elke modaliteit, één coördinator.</h2>
+            </div>
+            <p class="lede self-end lg:col-span-5 lg:col-start-8">Sinds 2002 leveren we het hele pakket aan logistieke oplossingen. Een breed netwerk van agenten bereikt zelfs de meest afgelegen bestemmingen, en één coördinator blijft bij uw zending van ophalen tot aflevering.</p>
+          </div>
+          <ul class="mt-16 grid gap-x-16 md:grid-cols-2" data-airways>
+            <li class="airway">
+              <span class="symbol"><span></span><ec-icon name="plane" /></span>
+              <div><h3 class="display display-m"><a href="/nl/diensten/luchtvracht/">Luchtvracht</a></h3><p class="copy mt-2">Ingeklaard, van deur tot deur, via Amsterdam Schiphol en de luchthaven van Belgrado.</p></div>
+            </li>
+            <li class="airway">
+              <span class="symbol"><span></span><ec-icon name="ship" /></span>
+              <div><h3 class="display display-m"><a href="/nl/diensten/wegtransport/">Weg</a> &amp; <a href="/nl/diensten/zeevracht/">zee</a></h3><p class="copy mt-2">Nationaal en Europees wegtransport, volle containers (FCL) en deelladingen (LCL), oversized inbegrepen.</p></div>
+            </li>
+            <li class="airway">
+              <span class="symbol"><span></span><ec-icon name="zap" /></span>
+              <div><h3 class="display display-m"><a href="#time-critical">Spoedzendingen</a></h3><p class="copy mt-2">Next Flight Out, On-Board Courier en Direct Driver, voor als het echt niet kan wachten.</p></div>
+            </li>
+            <li class="airway">
+              <span class="symbol"><span></span><ec-icon name="biohazard" /></span>
+              <div><h3 class="display display-m"><a href="#specialist">Biologisch &amp; gevaarlijke stoffen</a></h3><p class="copy mt-2">Specimens en gevaarlijke stoffen wereldwijd, lithium inbegrepen, behandeld door IATA DGR-gecertificeerde medewerkers.</p></div>
+            </li>
+            <li class="airway">
+              <span class="symbol"><span></span><ec-icon name="flask-conical" /></span>
+              <div><h3 class="display display-m"><a href="#specialist">Clinical&#8209;triallogistiek</a></h3><p class="copy mt-2">Geneesmiddelen voor onderzoek (IMP), werkzame stoffen, eindproducten en hulpmaterialen, met advies over regelgeving.</p></div>
+            </li>
+            <li class="airway">
+              <span class="symbol"><span></span><ec-icon name="thermometer-snowflake" /></span>
+              <div><h3 class="display display-m"><a href="#cold-chain">Koelketen-entrepot</a></h3><p class="copy mt-2">Opslag onder douanetoezicht in drie geconditioneerde zones, van −20 °C tot +25 °C.</p></div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AIR FREIGHT: night band with full-bleed video ───────── -->
+      <section id="air" class="relative" data-leg="left" data-wp="Luchtvracht">
+        <div class="relative bg-night" data-reveal-band data-route-dark>
+          <div class="inset !rounded-none absolute inset-0" data-band-media>
+            <ec-video name="air-loading" class="h-full w-full object-[40%_50%]" />
+          </div>
+          <div class="absolute inset-0 z-[3] bg-[linear-gradient(90deg,rgba(11,33,64,0.92)_0%,rgba(11,33,64,0.78)_45%,rgba(11,33,64,0.2)_100%)]"></div>
+          <div class="on-night wrap relative z-[4] section">
+            <h2 class="display display-l max-w-[14ch]" data-split>De snelste modaliteit, volledig verzorgd.</h2>
+            <p class="copy mt-6 max-w-[52ch]">Binnen enkele dagen kan uw zending aan de andere kant van de wereld staan. Express Cargo is geregistreerd bij IATA en IATA DGR-gecertificeerd: we halen op, klaren in en uit, houden alle documenten perfect op orde en leveren af aan de deur. Snelheid, communicatie en service staan bij ons hoog in het vaandel.</p>
+
+            <div class="relative mt-14 max-w-[980px]" data-legs>
+              <span class="absolute left-[7px] right-0 top-[8px] hidden h-[2px] origin-left bg-cyan lg:block" aria-hidden="true" data-legs-line></span>
+              <ol class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <li class="leg"><p class="chart text-cyan">Etappe 01</p><p class="mt-2 text-lg font-medium">Ophalen op uw locatie</p></li>
+                <li class="leg"><p class="chart text-cyan">Etappe 02</p><p class="mt-2 text-lg font-medium">In- en uitklaring bij de douane</p></li>
+                <li class="leg"><p class="chart text-cyan">Etappe 03</p><p class="mt-2 text-lg font-medium">Transport van en naar Schiphol</p></li>
+                <li class="leg"><p class="chart text-cyan">Etappe 04</p><p class="mt-2 text-lg font-medium">Levering van deur tot deur</p></li>
+              </ol>
+            </div>
+
+            <ul class="mt-14 grid max-w-[980px] gap-x-10 gap-y-4 text-[#dbe5ee] sm:grid-cols-2 lg:grid-cols-3">
+              <li class="flex items-center gap-3"><ec-icon name="triangle-alert" class="text-cyan" /> Gevaarlijke stoffen</li>
+              <li class="flex items-center gap-3"><ec-icon name="battery-charging" class="text-cyan" /> Lithiumbatterijen</li>
+              <li class="flex items-center gap-3"><ec-icon name="test-tube-diagonal" class="text-cyan" /> Biologisch &amp; farmaceutisch</li>
+              <li class="flex items-center gap-3"><ec-icon name="thermometer" class="text-cyan" /> Temperatuurgecontroleerd</li>
+              <li class="flex items-center gap-3"><ec-icon name="file-check" class="text-cyan" /> Douanedocumenten &amp; formaliteiten</li>
+              <li class="flex items-center gap-3"><ec-icon name="warehouse" class="text-cyan" /> Douane-entrepot</li>
+            </ul>
+            <a class="btn btn-line mt-12" href="/nl/diensten/luchtvracht/">Meer over luchtvracht <!-- @include arrow --></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROAD & SEA ──────────────────────────────────────────── -->
+      <section id="road-sea" class="section" data-leg="right" data-wp="Weg &amp; zee">
+        <div class="wrap">
+          <div class="grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <h2 class="display display-l" data-split>Eén pallet of tweehonderd, over de weg of over zee.</h2>
+            </div>
+            <p class="lede self-end lg:col-span-5">Van 1 kg tot 10.000 kg: voor elke bestemming hebben we een specialist in ons netwerk.</p>
+          </div>
+
+          <div class="mt-16 grid gap-10 md:grid-cols-2">
+            <article>
+              <figure class="inset aspect-[4/3]" data-depth>
+                <ec-video name="road-highway" class="h-full w-full" />
+                <figcaption class="inset-label chart">Weg · Europa</figcaption>
+              </figure>
+              <h3 class="display display-m mt-8 flex items-center gap-3"><ec-icon name="truck" class="text-cyan-ink" /> Wegtransport</h3>
+              <p class="copy mt-4">Nationaal en internationaal wegtransport door Europa en daarbuiten. Waardevolle goederen met een beveiliger en een trackinglink, oversized luchtvracht doorgezet naar regionale hubs, en levering aan elk douanekantoor in Servië of de EU. Ook bieden we dedicated transport, TAPA TSR1-beveiligd transport, kunst- en hangend modetransport, groupage en medische samples.</p>
+              <a class="more-link" href="/nl/diensten/wegtransport/">Meer over wegtransport <!-- @include arrow --></a>
+            </article>
+            <article class="md:mt-24">
+              <figure class="inset aspect-[4/3]" data-depth>
+                <ec-video name="sea-river" class="h-full w-full" />
+                <figcaption class="inset-label chart">Zee · FCL / LCL</figcaption>
+              </figure>
+              <h3 class="display display-m mt-8 flex items-center gap-3"><ec-icon name="ship" class="text-cyan-ink" /> Zeevracht</h3>
+              <p class="copy mt-4">Volle containers (FCL) en kleinere zendingen samen in één container (LCL), overal ter wereld opgehaald en afgeleverd. We regelen het volledige containertransport en verzorgen alle documenten, met dezelfde persoonlijke service.</p>
+              <a class="more-link" href="/nl/diensten/zeevracht/">Meer over zeevracht <!-- @include arrow --></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIME-CRITICAL: flight strips ────────────────────────── -->
+      <section id="time-critical" class="section bg-paper-2 overflow-x-clip" data-leg="left" data-wp="Spoed">
+        <div class="wrap">
+          <div class="grid items-end gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <h2 class="display display-l" data-split>Als het echt niet kan wachten.</h2>
+              <p class="lede mt-6">Drie manieren om de zending nooit uit het oog te verliezen, gekozen op wat uw zending en uw deadline vragen.</p>
+            </div>
+            <figure class="inset aspect-[16/10] lg:col-span-5" data-depth>
+              <ec-video name="tc-cargojet" class="h-full w-full" />
+              <figcaption class="inset-label chart">Spoedcharter</figcaption>
+            </figure>
+          </div>
+
+          <div class="mt-14 grid gap-4" data-strips>
+            <div class="strip">
+              <div class="strip-id"><b>NFO</b><span class="chart text-cyan">Lucht</span></div>
+              <div><p class="flex items-center gap-2 font-semibold"><ec-icon name="plane-takeoff" class="!h-5 !w-5 text-cyan-ink" /> Next Flight Out</p><p class="copy mt-1">Opgehaald en meegegeven met de eerste beschikbare vlucht, van deur tot deur gevolgd.</p></div>
+              <div><p class="chart text-mute">Custody</p><p class="mt-1 font-medium">Van deur tot deur gevolgd</p></div>
+              <div><p class="chart text-mute">Departure</p><p class="mt-1 font-medium">Eerste beschikbare vlucht</p></div>
+            </div>
+            <div class="strip is-premium">
+              <div class="strip-id"><b>OBC</b><span class="chart">Premium</span></div>
+              <div><p class="flex items-center gap-2 font-semibold"><ec-icon name="briefcase" class="!h-5 !w-5 text-magenta" /> On-Board Courier</p><p class="copy mt-1">Een eigen medewerker neemt uw zending als handbagage mee op de eerstvolgende vlucht.</p></div>
+              <div><p class="chart text-mute">Custody</p><p class="mt-1 font-medium">Wijkt er niet van zijde</p></div>
+              <div><p class="chart text-mute">Departure</p><p class="mt-1 font-medium">Eerstvolgende vlucht</p></div>
+            </div>
+            <div class="strip">
+              <div class="strip-id"><b>DD</b><span class="chart text-cyan">Weg</span></div>
+              <div><p class="flex items-center gap-2 font-semibold"><ec-icon name="truck" class="!h-5 !w-5 text-cyan-ink" /> Direct Driver</p><p class="copy mt-1">Exclusief wegtransport per bestelbus, vrachtwagen met laadklep, thermo- of koelvoertuig.</p></div>
+              <div><p class="chart text-mute">Custody</p><p class="mt-1 font-medium">Eén chauffeur, één zending</p></div>
+              <div><p class="chart text-mute">Transit</p><p class="mt-1 font-medium">Minimaal, van deur tot deur</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPECIALIST ──────────────────────────────────────────── -->
+      <section id="specialist" class="section" data-leg="right" data-wp="DG &amp; specimens">
+        <div class="wrap grid items-center gap-14 lg:grid-cols-12">
+          <figure class="inset aspect-[4/5] lg:col-span-5" data-depth>
+            <ec-video name="lab-tubes" class="h-full w-full" />
+            <figcaption class="inset-label chart">Specimens · UN3373</figcaption>
+          </figure>
+          <div class="lg:col-span-6 lg:col-start-7">
+            <h2 class="display display-l" data-split>Biologische samples &amp; gevaarlijke stoffen.</h2>
+            <p class="copy mt-6">Onze specialisatie is de zending die anderen weigeren: geneesmiddelen, medische specimens, materiaal voor clinical trials en samplezendingen op droogijs. Chemicaliën, batterijen en brandbare stoffen vragen de juiste documentatie, verpakking en etikettering volgens de IATA- en ICAO-regels, en een team dat daarvoor is opgeleid.</p>
+            <ul class="mt-10 grid gap-6 sm:grid-cols-2" data-pictos>
+              <li class="flex gap-4"><span class="symbol !h-12 !w-12 shrink-0"><span></span><ec-icon name="globe" /></span><p class="text-ink-2">Wereldwijd specimentransport via ons netwerk van partneragenten</p></li>
+              <li class="flex gap-4"><span class="symbol !h-12 !w-12 shrink-0"><span></span><ec-icon name="pill" /></span><p class="text-ink-2">Klinische werkzame stoffen, geneesmiddelen voor onderzoek (IMP), eindproducten en hulpmaterialen</p></li>
+              <li class="flex gap-4"><span class="symbol !h-12 !w-12 shrink-0"><span></span><ec-icon name="thermometer" /></span><p class="text-ink-2">Temperatuurgecontroleerde voertuigen, live bewaakt met TT4-temperatuurloggers</p></li>
+              <li class="flex gap-4"><span class="symbol !h-12 !w-12 shrink-0"><span></span><ec-icon name="file-text" /></span><p class="text-ink-2">Advies over regelgeving en buitenlandse handel, volledige import- en exportdocumentatie</p></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLD CHAIN: airspace cross-section ──────────────────── -->
+      <section id="cold-chain" class="section bg-paper-2" data-leg="left" data-wp="Koelketen">
+        <div class="wrap">
+          <div class="grid items-start gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <h2 class="display display-l max-w-[16ch]" data-split>Drie klimaten, één douane-entrepot.</h2>
+              <p class="copy mt-5">Koelketenopslag onder douanetoezicht die dag en nacht binnen bereik blijft.</p>
+            <div class="airspace mt-10" data-airspace>
+              <div class="layer bg-sheet" style="--layer-line: #c9d4dd">
+                <div><p class="chart text-mute">Geconditioneerd</p><p class="layer-temp mt-1">+15–25 °C</p></div>
+                <p class="flex items-center gap-3 text-ink-2"><ec-icon name="thermometer" class="text-cyan-ink" /> Voor farma die stabiel moet blijven op kamertemperatuur.</p>
+              </div>
+              <div class="layer bg-cyan-wash" style="--layer-line: #9fdbe6">
+                <div><p class="chart text-cyan-ink">Gekoeld</p><p class="layer-temp mt-1">+2–8 °C</p></div>
+                <p class="flex items-center gap-3 text-ink-2"><ec-icon name="snowflake" class="text-cyan-ink" /> De koelketenstandaard voor vaccins, biologische geneesmiddelen en IMP.</p>
+              </div>
+              <div class="layer bg-ink text-white" style="--layer-line: #0e2a4a">
+                <div><p class="chart text-cyan">Vriescel</p><p class="layer-temp mt-1">−20 °C</p></div>
+                <p class="flex items-center gap-3 text-[#dbe5ee]"><ec-icon name="thermometer-snowflake" class="text-cyan" /> Diepvriesopslag voor samples en producten die dat vragen.</p>
+              </div>
+            </div>
+            </div>
+            <div class="lg:col-span-5 lg:pt-4">
+              <figure class="inset aspect-[4/3]" data-depth>
+                <ec-video name="cold-store" class="h-full w-full" />
+                <figcaption class="inset-label chart">Koelcel · illustratief</figcaption>
+              </figure>
+              <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+                <li class="flex items-center gap-3"><ec-icon name="fan" class="text-cyan-ink" /> Dubbele koeling met twin-screw</li>
+                <li class="flex items-center gap-3"><ec-icon name="cpu" class="text-cyan-ink" /> PLC-temperatuurregeling</li>
+                <li class="flex items-center gap-3"><ec-icon name="droplets" class="text-cyan-ink" /> Vochtregeling</li>
+                <li class="flex items-center gap-3"><ec-icon name="cctv" class="text-cyan-ink" /> 24/7 camerabewaking</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS: routes flown on a 3D globe (sticky globe, scrolling log) -->
+      <section id="projects" class="section" data-leg="right" data-wp="Projecten">
+        <div class="wrap">
+          <h2 class="display display-l max-w-[22ch]" data-split>Brunei, Australië, landelijk Kenia, Mexico, Perth.</h2>
+          <p class="lede mt-6">Vijf zendingen die anderen lastig vonden, en de routes die ze aflegden.</p>
+
+          <div class="mt-12 grid gap-x-12 lg:grid-cols-12" data-projects>
+            <div class="globe-stage lg:col-span-7" data-globe-stage>
+              <div class="globe-frame">
+                <img class="globe-poster" src="/globe/globe-poster.webp" alt="" width="900" height="900" loading="lazy" decoding="async" />
+                <div class="globe-canvas" data-globe role="img" aria-label="Wereldbol met de vijf projectroutes vanaf Amsterdam Schiphol"></div>
+                <p class="globe-hud chart" aria-hidden="true"><span data-globe-route>AMS → Brunei</span><span class="text-mute" data-globe-dist></span></p>
+              </div>
+            </div>
+            <ol class="project-log lg:col-span-5" data-project-log>
+              <li class="project-card" data-lat="4.94" data-lng="114.95" data-place="Brunei" data-mode="sea">
+                <figure class="inset aspect-[16/10]"><ec-img name="project-trucks-brunei" alt="Truck met een gele vacuümtank, klaar voor verscheping" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
+                <p class="chart mt-5 flex justify-between text-cyan-ink"><span>NL → Brunei</span><span class="text-mute">Zee · Weg</span></p>
+                <h3 class="display display-m mt-2">Twee trucks met waardevolle vacuümtanks</h3>
+                <p class="copy mt-3">Met een dieplader geladen bij de leverancier, verzegeld en verpakt in Rotterdam, verscheept op twee 40' High Cube-flatracks met onze partners Supermaritime Forwarding en Maple Group.</p>
+              </li>
+              <li class="project-card" data-lat="-33.87" data-lng="151.21" data-place="Australië" data-mode="air">
+                <figure class="inset aspect-[16/10]"><ec-img name="project-envirotainer" alt="Envirotainer, een actieve temperatuurgecontroleerde container" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
+                <p class="chart mt-5 flex justify-between text-cyan-ink"><span>AMS → Australië</span><span class="text-mute">Lucht · Actief gekoeld</span></p>
+                <h3 class="display display-m mt-2">Twee Envirotainers met farmaceutica</h3>
+                <p class="copy mt-3">Actieve containers voor farma en biotech, op een constante temperatuur helemaal tot in Australië.</p>
+              </li>
+              <li class="project-card" data-lat="-0.25" data-lng="34.33" data-place="South Uyoma, Kenia" data-mode="air">
+                <figure class="inset aspect-[16/10]"><ec-img name="project-kenya" alt="Poort van het Madiany Sub County Hospital, Kenia" sizes="(min-width: 1024px) 34vw, 100vw" class="object-[64%_50%]" /></figure>
+                <p class="chart mt-5 flex justify-between text-cyan-ink"><span>AMS → South Uyoma, Kenia</span><span class="text-mute">Air</span></p>
+                <h3 class="display display-m mt-2">Medische apparatuur voor een afgelegen ziekenhuis</h3>
+                <p class="copy mt-3">Veilig afgeleverd bij het Madiany Sub County Hospital, een eerstelijnsziekenhuis van het ministerie van Volksgezondheid.</p>
+              </li>
+              <li class="project-card" data-lat="19.43" data-lng="-99.13" data-place="Mexico" data-mode="air">
+                <figure class="inset aspect-[16/10]"><ec-img name="project-crate-mexico" alt="Grote houten transportkisten" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
+                <p class="chart mt-5 flex justify-between text-cyan-ink"><span>AMS → Mexico</span><span class="text-mute">Lucht · Op maat</span></p>
+                <h3 class="display display-m mt-2">Een kist van bijna drie meter lang</h3>
+                <p class="copy mt-3">Tweeënhalve meter hoog, in verpakking op maat. Voor internationaal transport is een houten kist de aanbevolen keuze.</p>
+              </li>
+              <li class="project-card" data-lat="-31.95" data-lng="115.86" data-place="Perth" data-mode="air">
+                <figure class="inset aspect-[16/10]"><ec-img name="project-perth" alt="Verzegelde bouwmaterialen, klaar voor verzending" sizes="(min-width: 1024px) 34vw, 100vw" /></figure>
+                <p class="chart mt-5 flex justify-between text-cyan-ink"><span>NL → Perth, Australië</span><span class="text-mute">Air</span></p>
+                <h3 class="display display-m mt-2">Bouwmaterialen boven 3.000 kg</h3>
+                <p class="copy mt-3">Opgehaald, verzegeld en onderweg naar Perth. Voor waardevolle, kwetsbare of complexe objecten bieden we ook white glove levering, binnen tot in de ruimte van uw keuze.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT / LEGEND ──────────────────────────────────────── -->
+      <section id="about" class="section bg-paper-2" data-leg="left" data-wp="Gecertificeerd">
+        <div class="wrap grid gap-14 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <h2 class="display display-l" data-split>Een partner waarop u kunt bouwen.</h2>
+            <p class="copy mt-8">Express Cargo is in 2002 opgericht om snel en veilig vrachtvervoer naar elke bestemming ter wereld te bieden. Als onderdeel van de Express-Cargo Group, met kantoren op Amsterdam Schiphol, de belangrijkste vrachtluchthaven van Europa, en in Servië, bieden we internationaal en binnenlands vervoer, expeditie, douane-afhandeling en opslag.</p>
+            <p class="copy mt-5">Elke zending wordt van begin tot eind begeleid door een vaste coördinator: één direct aanspreekpunt, snelle communicatie en een transportoplossing op maat van uw planning, lading en douane-eisen.</p>
+            <p class="display display-m mt-10 max-w-[24ch] !leading-[1.3] text-cyan-ink">Uw zending in onze handen is uw zending in veilige en betrouwbare handen.</p>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-8">
+            <div class="legend" data-legend>
+              <p class="chart flex items-center justify-between border-b border-line-2 px-[22px] py-4"><span>Legenda</span><span class="text-mute">Certificering &amp; lidmaatschap</span></p>
+              <div class="legend-row"><ec-icon name="badge-check" /><p><b class="font-semibold">ISO 9001:2015</b><span class="block text-ink-2">Kwaliteitsmanagement, gecertificeerd door TÜV SÜD</span></p></div>
+              <div class="legend-row"><ec-icon name="plane" /><p><b class="font-semibold">IATA-lid</b><span class="block text-ink-2">International Air Transport Association</span></p></div>
+              <div class="legend-row"><ec-icon name="triangle-alert" /><p><b class="font-semibold">IATA DGR</b><span class="block text-ink-2">Gecertificeerd voor gevaarlijke stoffen door de lucht</span></p></div>
+              <div class="legend-row"><ec-icon name="shield-check" /><p><b class="font-semibold">GDP</b><span class="block text-ink-2">Good Distribution Practice voor farmaceutica</span></p></div>
+              <div class="legend-row"><ec-icon name="globe" /><p><b class="font-semibold">Global Logistics Network</b><span class="block text-ink-2">Lid van een wereldwijd agentennetwerk</span></p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREW + STATIONS ─────────────────────────────────────── -->
+      <section id="crew" class="section" data-leg="right" data-wp="Team">
+        <div class="wrap">
+          <div class="grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <h2 class="display display-l" data-split>De mensen die uw telefoon opnemen.</h2>
+            </div>
+            <p class="lede self-end lg:col-span-5">Eén coördinator volgt uw zending van het eerste bericht tot de aflevering. Mail ze rechtstreeks.</p>
+          </div>
+          <ul class="mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 lg:grid lg:grid-cols-5 lg:overflow-visible" data-crew>
+            <li class="w-[64vw] max-w-[260px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+              <figure class="inset aspect-[4/5]"><ec-img name="team-marcel" alt="Marcel Sannes" sizes="(min-width: 1024px) 18vw, 64vw" /></figure>
+              <p class="chart mt-4 text-cyan-ink">Director</p><p class="text-lg font-semibold">Marcel Sannes</p>
+              <a class="link-u inline-block py-2 text-sm text-ink-2" href="mailto:marcel@express-cargo.nl">marcel@express-cargo.nl</a>
+            </li>
+            <li class="w-[64vw] max-w-[260px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+              <figure class="inset aspect-[4/5]"><ec-img name="team-roy" alt="Roy van Zwieten" sizes="(min-width: 1024px) 18vw, 64vw" /></figure>
+              <p class="chart mt-4 text-cyan-ink">Operationeel manager</p><p class="text-lg font-semibold">Roy van Zwieten</p>
+              <a class="link-u inline-block py-2 text-sm text-ink-2" href="mailto:roy@express-cargo.nl">roy@express-cargo.nl</a>
+            </li>
+            <li class="w-[64vw] max-w-[260px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+              <figure class="inset aspect-[4/5]"><ec-img name="team-niels" alt="Niels Meijaard" sizes="(min-width: 1024px) 18vw, 64vw" /></figure>
+              <p class="chart mt-4 text-cyan-ink">Export</p><p class="text-lg font-semibold">Niels Meijaard</p>
+              <a class="link-u inline-block py-2 text-sm text-ink-2" href="mailto:exportams@express-cargo.nl">exportams@express-cargo.nl</a>
+            </li>
+            <li class="w-[64vw] max-w-[260px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+              <figure class="inset aspect-[4/5]"><ec-img name="team-josette" alt="Josette van Kaam" sizes="(min-width: 1024px) 18vw, 64vw" /></figure>
+              <p class="chart mt-4 text-cyan-ink">Import</p><p class="text-lg font-semibold">Josette van Kaam</p>
+              <a class="link-u inline-block py-2 text-sm text-ink-2" href="mailto:importams@express-cargo.nl">importams@express-cargo.nl</a>
+            </li>
+            <li class="w-[64vw] max-w-[260px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+              <figure class="inset aspect-[4/5]"><ec-img name="team-kim" alt="Kim Sannes" sizes="(min-width: 1024px) 18vw, 64vw" /></figure>
+              <p class="chart mt-4 text-cyan-ink">Administratie</p><p class="text-lg font-semibold">Kim Sannes</p>
+              <a class="link-u inline-block py-2 text-sm text-ink-2" href="mailto:accounting@express-cargo.nl">accounting@express-cargo.nl</a>
+            </li>
+          </ul>
+
+          <div class="mt-20 grid gap-6 md:grid-cols-2">
+            <div class="legend p-7">
+              <p class="chart flex items-center gap-2 text-cyan-ink"><ec-icon name="map-pin" class="!h-5 !w-5 text-magenta" /> AMS · 52°18′N 004°46′E</p>
+              <h3 class="display display-m mt-3">Amsterdam Schiphol</h3>
+              <address class="mt-3 not-italic leading-relaxed text-ink-2">Breguetlaan 21, 1438 BA Oude Meer, Nederland</address>
+              <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                <a class="link-u chart-l text-lg" href="tel:+31203332405">+31 20 333 2405</a>
+                <a class="link-u text-ink-2" href="mailto:salesams@express-cargo.nl">salesams@express-cargo.nl</a>
+              </p>
+            </div>
+            <div class="legend p-7">
+              <p class="chart flex items-center gap-2 text-cyan-ink"><ec-icon name="map-pin" class="!h-5 !w-5 text-magenta" /> BEG · 44°49′N 020°18′E</p>
+              <h3 class="display display-m mt-3">Belgrado, Servië</h3>
+              <p class="mt-3 leading-relaxed text-ink-2">Ingeklaarde luchtvracht van deur tot deur via de luchthaven van Belgrado, en levering aan elk douanekantoor in Servië of de EU.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLOSE: file your flight plan ───────────────────────── -->
+      <section id="close" class="pb-24" data-leg="end" data-wp="Uw bestemming">
+        <div class="wrap">
+          <div class="inset on-night relative min-h-[560px] !rounded-xl bg-night" data-close-inset data-route-dark>
+            <div class="absolute inset-0"><ec-video name="close-wing" class="h-full w-full" /></div>
+            <div class="absolute inset-0 z-[3] bg-[linear-gradient(90deg,rgba(11,33,64,0.9)_0%,rgba(11,33,64,0.6)_55%,rgba(11,33,64,0.25)_100%)]"></div>
+            <div class="relative z-[4] p-8 md:p-14 lg:p-20">
+              <h2 class="display display-xl max-w-[13ch]" data-split>Klaar wanneer uw zending dat is.</h2>
+              <p class="lede mt-5 max-w-[46ch] text-[#dbe5ee]">Drie gegevens zijn genoeg. Offertes gaan snel de deur uit, geprijsd door een coördinator die de route kent.</p>
+              <form class="mt-10 grid max-w-[960px] gap-4 md:grid-cols-[1fr_1fr_1fr_auto]" action="/nl/contact/" method="get" data-quick-quote>
+                <input type="hidden" name="type" value="quote" />
+                <div class="field">
+                  <label class="chart text-[#e6edf3]" for="qq-from">Van</label>
+                  <input id="qq-from" name="from" autocomplete="off" placeholder="Stad of land" />
+                </div>
+                <div class="field">
+                  <label class="chart text-[#e6edf3]" for="qq-to">Naar</label>
+                  <input id="qq-to" name="to" autocomplete="off" placeholder="Stad of land" />
+                </div>
+                <div class="field">
+                  <label class="chart text-[#e6edf3]" for="qq-mode">Modaliteit</label>
+                  <select id="qq-mode" name="mode">
+                    <option value="">Weet ik nog niet</option>
+                    <option value="air">Luchtvracht</option>
+                    <option value="road">Weg</option>
+                    <option value="ocean">Zee</option>
+                    <option value="time-critical">Spoed (NFO · OBC · Direct)</option>
+                  </select>
+                </div>
+                <button class="btn btn-cyan self-end" type="submit">Verder naar offerte <!-- @include arrow --></button>
+              </form>
+              <p class="mt-6 text-[#c9d6e3]">Liever bellen? Bel <a class="link-u whitespace-nowrap text-white" href="tel:+31203332405">+31 20 333 2405</a> of mail <a class="link-u whitespace-nowrap text-white" href="mailto:salesams@express-cargo.nl">salesams@express-cargo.nl</a>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include footer-nl -->
+  </body>
+</html>

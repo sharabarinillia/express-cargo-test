@@ -11,6 +11,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { reducedMotion } from './shell';
+import { locale, t } from './i18n';
 
 type Dest = { lat: number; lng: number; place: string; mode: string; km: number; from: { lat: number; lng: number }; code: string };
 type Arc = { i: number; t: number };
@@ -115,7 +116,7 @@ export function initGlobe(): void {
     cards.forEach((c, j) => c.classList.toggle('is-active', j === i));
     const d = dests[Math.max(0, i)];
     if (hudRoute) hudRoute.textContent = `${d.code} → ${d.place}`;
-    if (hudDist) hudDist.textContent = `Great-circle ${d.km.toLocaleString('en-GB')} km`;
+    if (hudDist) hudDist.textContent = `${t('Great-circle', 'Grootcirkel')} ${d.km.toLocaleString(locale)} km`;
     onActive?.(i);
   }
 

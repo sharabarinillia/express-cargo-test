@@ -1,0 +1,11 @@
+{
+  "/": "/nl/",
+  "/about/": "/nl/over-ons/",
+  "/contact/": "/nl/contact/",
+  "/tools/": "/nl/tools/",
+  "/resources/": "/nl/incoterms/",
+  "/services/air-freight/": "/nl/diensten/luchtvracht/",
+  "/services/sea-freight/": "/nl/diensten/zeevracht/",
+  "/services/road-transport/": "/nl/diensten/wegtransport/",
+  "/services/special-projects/": "/nl/diensten/projecten/"
+}

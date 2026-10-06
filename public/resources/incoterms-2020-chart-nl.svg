@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1098" width="1600" height="1098">
 <rect width="1600" height="1098" fill="#eef2f5"/>
 <text x="64" y="104" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="56" letter-spacing="-1.5">Incoterms® 2020</text>
-<text x="64" y="148" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="24">Who pays for each stage, and where the risk passes from seller to buyer.</text>
-<rect x="1390.9" y="78" width="15" height="15" fill="#b4236b" transform="rotate(45 1398.4 85.5)"/><text x="1419.4" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Risk passes</text>
-<rect x="1215.4" y="74" width="22" height="22" rx="3" fill="#d6f1f6" stroke="#c9d4dd"/><text x="1247.4" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Buyer pays</text>
-<rect x="1032.8000000000002" y="74" width="22" height="22" rx="3" fill="#0e2a4a"/><text x="1064.8000000000002" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Seller pays</text>
+<text x="64" y="148" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="24">Wie betaalt welke stap, en waar het risico van verkoper naar koper overgaat.</text>
+<rect x="1337.9" y="78" width="15" height="15" fill="#b4236b" transform="rotate(45 1345.4 85.5)"/><text x="1366.4" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Risico gaat over</text>
+<rect x="1130.6000000000001" y="74" width="22" height="22" rx="3" fill="#d6f1f6" stroke="#c9d4dd"/><text x="1162.6000000000001" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Koper betaalt</text>
+<rect x="895.0000000000001" y="74" width="22" height="22" rx="3" fill="#0e2a4a"/><text x="927.0000000000001" y="92" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="20">Verkoper betaalt</text>
 
-<text x="508.1" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">LOAD</text>
-<text x="616.3000000000001" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">EXPORT</text>
-<text x="724.5" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">TO PORT</text>
-<text x="832.7" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">ORIGIN</text>
-<text x="940.9" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">MAIN LEG</text>
-<text x="1049.1" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">INSURE</text>
-<text x="1157.3" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">ARRIVAL</text>
-<text x="1265.5" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">TO DOOR</text>
-<text x="1373.6999999999998" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">UNLOAD</text>
-<text x="1481.9" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="17" letter-spacing="1">IMPORT</text>
+<text x="508.1" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">LADEN</text>
+<text x="616.3000000000001" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">EXPORT</text>
+<text x="724.5" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">NAAR HAVEN</text>
+<text x="832.7" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">VERTREK</text>
+<text x="940.9" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">HOOFDREIS</text>
+<text x="1049.1" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">VERZEKERING</text>
+<text x="1157.3" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">AANKOMST</text>
+<text x="1265.5" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">NAAR DEUR</text>
+<text x="1373.6999999999998" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">LOSSEN</text>
+<text x="1481.9" y="224" text-anchor="middle" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="13.5" letter-spacing="0.4">IMPORT</text>
 <text x="64" y="286" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">EXW</text><text x="146" y="285" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="18">Ex Works</text>
 <rect x="457" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
 <rect x="565.2" y="258" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
@@ -149,8 +149,8 @@
 <rect x="1322.6" y="838" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
 <rect x="1430.8000000000002" y="838" width="102.2" height="42" rx="4" fill="#d6f1f6"/>
 <rect x="876.8" y="849" width="20" height="20" fill="#b4236b" stroke="#eef2f5" stroke-width="3" transform="rotate(45 886.8 859)"/>
-<text x="64" y="928" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="17">EXW to DDP: any mode of transport · FAS to CIF: sea and inland waterway only. Simplified overview; see the ICC rules for detail.</text>
-<text x="64" y="956" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="17">Incoterms® is a registered trademark of the International Chamber of Commerce.</text>
+<text x="64" y="928" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="17">EXW t/m DDP: elke vervoerswijze · FAS t/m CIF: alleen zee en binnenwateren. Vereenvoudigd overzicht; zie de ICC-regels voor details.</text>
+<text x="64" y="956" fill="#4b5f72" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="17">Incoterms® is een geregistreerd handelsmerk van de International Chamber of Commerce.</text>
 <line x1="64" x2="1536" y1="992" y2="992" stroke="#c9d4dd"/>
 <text x="64" y="1044" fill="#0e2a4a" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="30">Express Cargo</text>
 <text x="1536" y="1042" text-anchor="end" fill="#0e2a4a" font-family="Manrope, Arial, sans-serif" font-weight="600" font-size="22">express-cargo.nl · +31 20 333 2405 · salesams@express-cargo.nl</text>

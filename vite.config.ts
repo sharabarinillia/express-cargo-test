@@ -61,10 +61,28 @@ function videos(html: string): string {
   });
 }
 
+/** English ⇄ Dutch page pairs: drives the language switch and hreflang links */
+const routes: Record<string, string> = JSON.parse(readFileSync(resolve(import.meta.dirname, 'src/content/routes.json'), 'utf8'));
+const SITE = 'https://www.express-cargo.nl';
+function languages(html: string, file: string): string {
+  const page = file.replace(/index\.html$/, '');
+  const en = page.startsWith('/nl/') ? Object.keys(routes).find((k) => routes[k] === page) : page;
+  const nl = en ? routes[en] : undefined;
+  if (!en || !nl) return html;
+  const alt = page.startsWith('/nl/') ? en : nl;
+  const links = `<link rel="alternate" hreflang="en" href="${SITE}${en}" />\n    <link rel="alternate" hreflang="nl" href="${SITE}${nl}" />\n    <link rel="alternate" hreflang="x-default" href="${SITE}${en}" />\n  </head>`;
+  return html.replaceAll('{{alt-lang}}', alt).replace('</head>', links);
+}
+
 const html = (): Plugin => ({
   name: 'ec-html',
-  transformIndexHtml: { order: 'pre', handler: (src) => videos(icons(pictures(includes(src)))) },
+  transformIndexHtml: { order: 'pre', handler: (src, ctx) => languages(videos(icons(pictures(includes(src)))), ctx.path) },
 });
+
+/** every page, English and Dutch */
+const pageInputs = Object.fromEntries(
+  Object.entries(routes).flatMap(([en, nl]) => [en, nl]).map((p) => [p === '/' ? 'main' : p.replace(/^\/|\/$/g, '').replace(/\//g, '-'), resolve(import.meta.dirname, `.${p}index.html`)]),
+);
 
 export default defineConfig({
   plugins: [html(), tailwindcss()],
@@ -72,17 +90,7 @@ export default defineConfig({
     // the WebGL globe (three.js) is a lazy chunk fetched only near #projects
     chunkSizeWarningLimit: 600,
     rollupOptions: {
-      input: {
-        main: resolve(import.meta.dirname, 'index.html'),
-        contact: resolve(import.meta.dirname, 'contact/index.html'),
-        tools: resolve(import.meta.dirname, 'tools/index.html'),
-        about: resolve(import.meta.dirname, 'about/index.html'),
-        air: resolve(import.meta.dirname, 'services/air-freight/index.html'),
-        sea: resolve(import.meta.dirname, 'services/sea-freight/index.html'),
-        road: resolve(import.meta.dirname, 'services/road-transport/index.html'),
-        projects: resolve(import.meta.dirname, 'services/special-projects/index.html'),
-        resources: resolve(import.meta.dirname, 'resources/index.html'),
-      },
+      input: pageInputs,
     },
   },
 });

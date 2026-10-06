@@ -229,7 +229,43 @@ function page() {
 }
 
 /** the same chart as a standalone image, in the site's colours */
-function chartSvg() {
+const CHART = {
+  en: {
+    sub: 'Who pays for each stage, and where the risk passes from seller to buyer.',
+    seller: 'Seller pays', buyer: 'Buyer pays', risk: 'Risk passes',
+    stages: stages.map(([, short]) => short),
+    names: Object.fromEntries(terms.map((t) => [t.code, t.name])),
+    foot1: 'EXW to DDP: any mode of transport · FAS to CIF: sea and inland waterway only. Simplified overview; see the ICC rules for detail.',
+    foot2: 'Incoterms® is a registered trademark of the International Chamber of Commerce.',
+  },
+  nl: {
+    sub: 'Wie betaalt welke stap, en waar het risico van verkoper naar koper overgaat.',
+    seller: 'Verkoper betaalt', buyer: 'Koper betaalt', risk: 'Risico gaat over',
+    stages: ['Laden', 'Export', 'Naar haven', 'Vertrek', 'Hoofdreis', 'Verzekering', 'Aankomst', 'Naar deur', 'Lossen', 'Import'],
+    names: Object.fromEntries(terms.map((t) => [t.code, t.name])),
+    foot1: 'EXW t/m DDP: elke vervoerswijze · FAS t/m CIF: alleen zee en binnenwateren. Vereenvoudigd overzicht; zie de ICC-regels voor details.',
+    foot2: 'Incoterms® is een geregistreerd handelsmerk van de International Chamber of Commerce.',
+  },
+};
+
+function chartSvg(T = CHART.en) {
+  // legend laid out right to left from estimated text widths (Manrope 600 at 20px)
+  const legend = (T) => {
+    let x = W - pad;
+    const items = [
+      [T.risk, (cx) => `<rect x="${cx - 7.5}" y="78" width="15" height="15" fill="${C.magenta}" transform="rotate(45 ${cx} 85.5)"/>`],
+      [T.buyer, (cx) => `<rect x="${cx - 11}" y="74" width="22" height="22" rx="3" fill="${C.wash}" stroke="${C.line}"/>`],
+      [T.seller, (cx) => `<rect x="${cx - 11}" y="74" width="22" height="22" rx="3" fill="${C.ink}"/>`],
+    ];
+    return items
+      .map(([label, mark]) => {
+        const w = label.length * 10.6;
+        const out = `${mark(x - w - 21)}<text x="${x - w}" y="92" fill="${C.ink}" ${f(20)}>${label}</text>`;
+        x -= w + 32 + 34;
+        return out;
+      })
+      .join('\n');
+  };
   const W = 1600;
   const pad = 64;
   const labelW = 390;
@@ -242,18 +278,21 @@ function chartSvg() {
   let o = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
 <rect width="${W}" height="${H}" fill="${C.paper}"/>
 <text x="${pad}" y="104" fill="${C.ink}" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="56" letter-spacing="-1.5">Incoterms® 2020</text>
-<text x="${pad}" y="148" fill="${C.mute}" ${f(24, 500)}>Who pays for each stage, and where the risk passes from seller to buyer.</text>
-<rect x="${W - pad - 520}" y="74" width="22" height="22" rx="3" fill="${C.ink}"/><text x="${W - pad - 488}" y="92" fill="${C.ink}" ${f(20)}>Seller pays</text>
-<rect x="${W - pad - 340}" y="74" width="22" height="22" rx="3" fill="${C.wash}" stroke="${C.line}"/><text x="${W - pad - 308}" y="92" fill="${C.ink}" ${f(20)}>Buyer pays</text>
-<rect x="${W - pad - 160}" y="78" width="15" height="15" fill="${C.magenta}" transform="rotate(45 ${W - pad - 152.5} 85.5)"/><text x="${W - pad - 128}" y="92" fill="${C.ink}" ${f(20)}>Risk passes</text>\n`;
-  stages.forEach(([, short], i) => {
+<text x="${pad}" y="148" fill="${C.mute}" ${f(24, 500)}>${T.sub}</text>
+${legend(T)}
+
+`;
+  T.stages.forEach((short, i) => {
     const x = pad + labelW + cw * i + cw / 2;
-    o += `<text x="${x}" y="${top - 26}" text-anchor="middle" fill="${C.mute}" ${f(17)} letter-spacing="1">${short.toUpperCase()}</text>\n`;
+    // one size per chart, small enough for its longest label
+    const longest = Math.max(...T.stages.map((x) => x.length));
+    const size = longest > 9 ? 13.5 : longest > 8 ? 15 : 17;
+    o += `<text x="${x}" y="${top - 26}" text-anchor="middle" fill="${C.mute}" ${f(size)} letter-spacing="${size < 17 ? 0.4 : 1}">${short.toUpperCase()}</text>\n`;
   });
   terms.forEach((t, r) => {
     const y = top + r * rowH;
     if (r === 7) o += `<line x1="${pad}" x2="${W - pad}" y1="${y - 2}" y2="${y - 2}" stroke="${C.ink}" stroke-width="2" stroke-dasharray="4 6"/>\n`;
-    o += `<text x="${pad}" y="${y + 36}" fill="${C.ink}" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">${t.code}</text><text x="${pad + 82}" y="${y + 35}" fill="${C.mute}" ${f(18, 500)}>${t.name.replace(/&/g, '&amp;')}</text>\n`;
+    o += `<text x="${pad}" y="${y + 36}" fill="${C.ink}" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="26">${t.code}</text><text x="${pad + 82}" y="${y + 35}" fill="${C.mute}" ${f(18, 500)}>${T.names[t.code].replace(/&/g, '&amp;')}</text>\n`;
     [...t.costs].forEach((c, i) => {
       const x = pad + labelW + cw * i;
       const fill = c === 'S' ? C.ink : c === 'B' ? C.wash : C.paper;
@@ -263,8 +302,8 @@ function chartSvg() {
     o += `<rect x="${rx - 10}" y="${y + rowH / 2 - 10}" width="20" height="20" fill="${C.magenta}" stroke="${C.paper}" stroke-width="3" transform="rotate(45 ${rx} ${y + rowH / 2})"/>\n`;
   });
   const fy = top + terms.length * rowH + 40;
-  o += `<text x="${pad}" y="${fy}" fill="${C.mute}" ${f(17, 500)}>EXW to DDP: any mode of transport · FAS to CIF: sea and inland waterway only. Simplified overview; see the ICC rules for detail.</text>
-<text x="${pad}" y="${fy + 28}" fill="${C.mute}" ${f(17, 500)}>Incoterms® is a registered trademark of the International Chamber of Commerce.</text>
+  o += `<text x="${pad}" y="${fy}" fill="${C.mute}" ${f(17, 500)}>${T.foot1}</text>
+<text x="${pad}" y="${fy + 28}" fill="${C.mute}" ${f(17, 500)}>${T.foot2}</text>
 <line x1="${pad}" x2="${W - pad}" y1="${fy + 64}" y2="${fy + 64}" stroke="${C.line}"/>
 <text x="${pad}" y="${fy + 116}" fill="${C.ink}" font-family="Sora, Arial, sans-serif" font-weight="700" font-size="30">Express Cargo</text>
 <text x="${W - pad}" y="${fy + 114}" text-anchor="end" fill="${C.ink}" ${f(22)}>express-cargo.nl · +31 20 333 2405 · salesams@express-cargo.nl</text>
@@ -275,7 +314,9 @@ function chartSvg() {
 mkdirSync(resolve(root, 'resources'), { recursive: true });
 mkdirSync(resolve(root, 'public/resources'), { recursive: true });
 writeFileSync(resolve(root, 'resources/index.html'), page());
-const svg = chartSvg();
-writeFileSync(resolve(root, 'public/resources/incoterms-2020-chart.svg'), svg);
-await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(resolve(root, 'public/resources/incoterms-2020-chart.png'));
+for (const [suffix, T] of [['', CHART.en], ['-nl', CHART.nl]]) {
+  const svg = chartSvg(T);
+  writeFileSync(resolve(root, `public/resources/incoterms-2020-chart${suffix}.svg`), svg);
+  await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(resolve(root, `public/resources/incoterms-2020-chart${suffix}.png`));
+}
 console.log('wrote resources page and chart image');

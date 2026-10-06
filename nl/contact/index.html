@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <!-- @include head -->
+    <title>Contact &amp; offerte aanvragen | Express Cargo, Schiphol</title>
+    <meta name="description" content="Neem contact op met Express Cargo, Breguetlaan 21, Oude Meer (Schiphol): +31 20 333 2405. Vraag een offerte aan voor lucht-, weg-, zee- of spoedvracht, ook voor gevaarlijke stoffen en temperatuurgevoelige zendingen." />
+    <link rel="canonical" href="https://www.express-cargo.nl/nl/contact/" />
+    <meta property="og:title" content="Contact met Express Cargo" />
+    <meta property="og:description" content="Vraag een offerte aan of bel ons team op Schiphol: +31 20 333 2405." />
+    <meta property="og:url" content="https://www.express-cargo.nl/nl/contact/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Express Cargo",
+        "url": "https://www.express-cargo.nl/",
+        "image": "https://www.express-cargo.nl/logo-ink.svg",
+        "telephone": "+31 20 333 2405",
+        "email": "salesams@express-cargo.nl",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Breguetlaan 21",
+          "postalCode": "1438 BA",
+          "addressLocality": "Oude Meer",
+          "addressRegion": "Noord-Holland",
+          "addressCountry": "NL"
+        },
+        "hasMap": "https://maps.google.com/?cid=6484987491529801286"
+      }
+    </script>
+    <script type="module" src="/src/contact.ts"></script>
+  </head>
+  <body>
+    <!-- @include header-nl -->
+
+    <main id="main">
+      <!-- ENQUIRY: one sentence on a flight line ───────────────────── -->
+      <section class="contact-hero" id="enquiry" data-page-hero>
+        <div class="wrap">
+          <div class="flightline" aria-hidden="true" data-flightline>
+            <span class="fl-node"><b class="chart">AMS</b><i></i></span>
+            <span class="fl-track"><span class="fl-flown" data-fl-flown></span><span class="fl-rail"><svg class="fl-plane" viewBox="0 0 48 48" data-fl-plane><path fill="currentColor" d="M24 2c1.6 0 2.6 2.3 2.6 5.2v11.1l17.4 10v3.4l-17.4-5.3v9.4l5.2 3.9v2.8L24 40.6l-7.8 1.9v-2.8l5.2-3.9v-9.4L4 31.7v-3.4l17.4-10V7.2C21.4 4.3 22.4 2 24 2z"/></svg></span></span>
+            <span class="fl-node is-dest"><i></i><b class="chart" data-fl-dest>Uw bestemming</b></span>
+          </div>
+
+          <h1 class="display display-xl mt-14 max-w-[16ch]" data-split>Vertel wat er verzonden moet worden.</h1>
+          <p class="lede mt-5" data-fade>Eén zin is genoeg. Offertes gaan snel de deur uit, geprijsd door een coördinator, niet door een boekingsmachine.</p>
+
+          <form class="sentence mt-12" novalidate data-enquiry>
+            <div class="sr-only" aria-live="polite" data-form-status></div>
+            <div class="mb-8 hidden border-l-4 border-magenta py-2 pl-4" role="alert" tabindex="-1" data-error-summary>
+              <p class="font-semibold">Bijna klaar. Controleer nog even:</p>
+              <ul class="mt-2 list-disc pl-5 text-sm text-ink-2" data-error-list></ul>
+            </div>
+
+            <p class="sentence-line">
+              Ik verstuur
+              <label class="sr-only" for="f-what">Wat u verstuurt</label><input class="blank" id="f-what" name="what" placeholder="klinische samples" autocomplete="off" />
+              van
+              <label class="sr-only" for="f-from">Van</label><input class="blank" id="f-from" name="from" placeholder="Amsterdam" autocomplete="off" />
+              naar
+              <label class="sr-only" for="f-to">Naar</label><input class="blank" id="f-to" name="to" placeholder="Perth" autocomplete="off" data-fl-input />
+              per
+              <label class="sr-only" for="f-mode">Modaliteit</label><select class="blank" id="f-mode" name="mode">
+                <option value="">wat het beste past</option>
+                <option value="Air freight">luchtvracht</option>
+                <option value="Road">de weg</option>
+                <option value="Ocean">zee</option>
+                <option value="Time-critical">de eerstvolgende vlucht</option>
+              </select>.
+            </p>
+            <p class="sentence-line mt-4">
+              Ik ben
+              <label class="sr-only" for="f-name">Uw naam</label><input class="blank" id="f-name" name="name" placeholder="uw naam" autocomplete="name" required />
+              en u bereikt mij op
+              <label class="sr-only" for="f-email">E-mail</label><input class="blank" id="f-email" name="email" type="email" placeholder="naam@bedrijf.nl" autocomplete="email" required />.
+            </p>
+
+            <details class="details mt-10" data-details>
+              <summary><ec-icon name="plus" /> Zendinggegevens toevoegen <span class="text-mute">(optioneel, versnelt de offerte)</span></summary>
+              <div class="grid gap-5 pt-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="field"><label class="chart text-mute" for="f-weight">Gewicht &amp; colli</label><input id="f-weight" name="weight" placeholder="bijv. 2 dozen, 40 kg" /></div>
+                <div class="field"><label class="chart text-mute" for="f-temp">Temperatuur</label><select id="f-temp" name="temperature"><option value="">Niet nodig</option><option>+15–25 °C</option><option>+2–8 °C</option><option>−20 °C</option><option>Droogijs</option></select></div>
+                <div class="field"><label class="chart text-mute" for="f-ready">Gereed op</label><input id="f-ready" name="ready" type="date" /></div>
+                <div class="field"><label class="chart text-mute" for="f-phone">Telefoon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" /></div>
+                <div class="field sm:col-span-2"><label class="chart text-mute" for="f-un">Gevaarlijke stoffen (UN-nummers)</label><input id="f-un" name="un" placeholder="bijv. UN3373, UN3481" /></div>
+                <div class="field sm:col-span-2"><label class="chart text-mute" for="f-message">Verder nog iets</label><input id="f-message" name="message" /></div>
+              </div>
+            </details>
+
+            <!-- honeypot -->
+            <div class="hidden" aria-hidden="true"><label>Leeg laten<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+
+            <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <button type="submit" class="btn btn-ink !min-h-[58px] !px-8 text-[1.05rem]">Naar een coördinator sturen <!-- @include arrow --></button>
+              <p class="text-ink-2">of bel <a class="link-u whitespace-nowrap font-semibold text-ink" href="tel:+31203332405">+31 20 333 2405</a></p>
+            </div>
+            <p class="mt-5 max-w-[60ch] text-sm text-ink-2">We gebruiken deze gegevens alleen om u te antwoorden.</p>
+          </form>
+
+          <div class="hidden max-w-[760px] pt-4" tabindex="-1" data-success>
+            <h2 class="display display-l" data-success-title>Uw e-mailprogramma opent nu met deze aanvraag.</h2>
+            <p class="copy mt-5" data-success-copy>Druk daar op verzenden en een coördinator antwoordt. Opende er niets? Kopieer de aanvraag hieronder en mail hem naar <a class="link-u text-ink" href="mailto:salesams@express-cargo.nl">salesams@express-cargo.nl</a>, of bel <a class="link-u whitespace-nowrap text-ink" href="tel:+31203332405">+31 20 333 2405</a>.</p>
+            <div class="field mt-7" data-success-draft>
+              <label class="chart text-mute" for="enquiry-draft">Uw aanvraag</label>
+              <textarea id="enquiry-draft" rows="8" readonly data-draft></textarea>
+              <div class="mt-4 flex flex-wrap items-center gap-3">
+                <button type="button" class="btn btn-ink" data-copy><ec-icon name="copy" /> Aanvraag kopiëren</button>
+                <a class="btn btn-line" href="mailto:salesams@express-cargo.nl" data-mailto><ec-icon name="mail" /> E-mail opnieuw openen</a>
+                <p class="text-sm text-ink-2" role="status" data-copy-status></p>
+              </div>
+            </div>
+            <button type="button" class="link-u mt-8 font-semibold text-ink" data-reset>Aanvraag bewerken</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PEOPLE: a desk you can call, not a form ───────────────────── -->
+      <section class="section bg-paper-2" aria-labelledby="people-title">
+        <div class="wrap">
+          <h2 id="people-title" class="display display-l max-w-[18ch]" data-split>Of ga direct naar de desk.</h2>
+          <div class="mt-12 grid gap-4 md:grid-cols-3">
+            <a class="desk" href="tel:+31203332405">
+              <ec-icon name="phone" />
+              <span class="chart text-mute">Bel Schiphol</span>
+              <span class="desk-value">+31 20 333 2405</span>
+            </a>
+            <a class="desk" href="mailto:salesams@express-cargo.nl">
+              <ec-icon name="mail" />
+              <span class="chart text-mute">Sales &amp; boekingen</span>
+              <span class="desk-value">salesams@<wbr />express-cargo.nl</span>
+            </a>
+            <a class="desk" href="https://maps.google.com/?cid=6484987491529801286" rel="noopener">
+              <ec-icon name="map-pin" />
+              <span class="chart text-mute">Bezoek · AMS</span>
+              <span class="desk-value">Breguetlaan 21, Oude Meer</span>
+            </a>
+          </div>
+
+          <ul class="mt-16 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <li class="person">
+              <figure class="inset aspect-square !rounded-full"><ec-img name="team-marcel" alt="Marcel Sannes" sizes="96px" /></figure>
+              <div><p class="chart text-cyan-ink">Director</p><p class="font-semibold">Marcel Sannes</p><a class="link-u inline-block py-1 text-sm text-ink-2" href="mailto:marcel@express-cargo.nl">marcel@express-cargo.nl</a></div>
+            </li>
+            <li class="person">
+              <figure class="inset aspect-square !rounded-full"><ec-img name="team-roy" alt="Roy van Zwieten" sizes="96px" /></figure>
+              <div><p class="chart text-cyan-ink">Operations</p><p class="font-semibold">Roy van Zwieten</p><a class="link-u inline-block py-1 text-sm text-ink-2" href="mailto:roy@express-cargo.nl">roy@express-cargo.nl</a></div>
+            </li>
+            <li class="person">
+              <figure class="inset aspect-square !rounded-full"><ec-img name="team-niels" alt="Niels Meijaard" sizes="96px" /></figure>
+              <div><p class="chart text-cyan-ink">Export</p><p class="font-semibold">Niels Meijaard</p><a class="link-u inline-block py-1 text-sm text-ink-2" href="mailto:exportams@express-cargo.nl">exportams@express-cargo.nl</a></div>
+            </li>
+            <li class="person">
+              <figure class="inset aspect-square !rounded-full"><ec-img name="team-josette" alt="Josette van Kaam" sizes="96px" /></figure>
+              <div><p class="chart text-cyan-ink">Import</p><p class="font-semibold">Josette van Kaam</p><a class="link-u inline-block py-1 text-sm text-ink-2" href="mailto:importams@express-cargo.nl">importams@express-cargo.nl</a></div>
+            </li>
+            <li class="person">
+              <figure class="inset aspect-square !rounded-full"><ec-img name="team-kim" alt="Kim Sannes" sizes="96px" /></figure>
+              <div><p class="chart text-cyan-ink">Administratie</p><p class="font-semibold">Kim Sannes</p><a class="link-u inline-block py-1 text-sm text-ink-2" href="mailto:accounting@express-cargo.nl">accounting@express-cargo.nl</a></div>
+            </li>
+          </ul>
+
+          <p class="mt-16 flex max-w-[70ch] items-start gap-3 border-t border-line pt-6 text-ink-2"><ec-icon name="plane-landing" class="mt-0.5 text-cyan-ink" /><span><b class="font-semibold text-ink">Belgrado, Servië (BEG).</b> Ingeklaarde luchtvracht van deur tot deur via de luchthaven van Belgrado, en levering aan elk douanekantoor in Servië of de EU. Neem contact op met de desk op Schiphol en we brengen u in contact.</span></p>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include footer-nl -->
+  </body>
+</html>

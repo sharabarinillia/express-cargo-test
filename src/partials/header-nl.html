@@ -1,0 +1,125 @@
+<a class="skip-link" href="#main">Naar de inhoud</a>
+<header class="site-header" data-header>
+  <div class="wrap relative">
+    <div class="header-bar">
+      <a href="/nl/" class="header-logo relative z-[51]" aria-label="Express Cargo — home">
+        <img src="/logo-ink.svg" alt="Express Cargo" width="789" height="377" class="logo-ink" />
+        <img src="/logo.svg" alt="" width="789" height="377" class="logo-light" aria-hidden="true" />
+      </a>
+      <nav aria-label="Hoofdmenu" class="hidden lg:block" data-nav>
+        <ul class="flex items-center gap-1">
+          <li><button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-controls="nav-services" data-nav-trigger>Diensten <ec-icon name="chevron-down" stroke="2" /></button></li>
+          <li><button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-controls="nav-tools" data-nav-trigger>Tools &amp; kennis <ec-icon name="chevron-down" stroke="2" /></button></li>
+          <li><button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-controls="nav-company" data-nav-trigger>Bedrijf <ec-icon name="chevron-down" stroke="2" /></button></li>
+          <li><a class="nav-link" href="/nl/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="flex items-center gap-2 sm:gap-4">
+        <a href="{{alt-lang}}" class="lang-switch" hreflang="en" lang="en" data-lang-switch><span class="sr-only">English</span><span aria-hidden="true">EN</span></a>
+        <a href="tel:+31203332405" class="header-phone link-u hidden xl:inline-flex"><ec-icon name="phone" /> +31 20 333 2405</a>
+        <a href="/nl/contact/#enquiry" class="btn btn-ink header-cta"><span class="sm:hidden">Offerte</span><span class="hidden sm:inline">Offerte aanvragen</span> <!-- @include arrow --></a>
+        <button type="button" class="header-menu relative z-[51] lg:hidden" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+          <span class="sr-only" data-menu-label>Menu openen</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16" data-menu-icon /></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- desktop dropdowns: one panel per group, under the bar -->
+    <div class="nav-panel hidden lg:block" id="nav-services" data-nav-panel>
+      <div class="nav-panel-grid">
+        <div>
+          <p class="chart text-mute">Transport</p>
+          <ul class="nav-cards mt-3">
+            <li><a class="nav-card" href="/nl/diensten/luchtvracht/"><span class="nav-card-icon"><ec-icon name="plane" /></span><span><b>Luchtvracht</b><small>IATA DGR, lithium, farma, douane-entrepot</small></span></a></li>
+            <li><a class="nav-card" href="/nl/diensten/zeevracht/"><span class="nav-card-icon"><ec-icon name="ship" /></span><span><b>Zeevracht</b><small>FCL en LCL, documenten geregeld</small></span></a></li>
+            <li><a class="nav-card" href="/nl/diensten/wegtransport/"><span class="nav-card-icon"><ec-icon name="truck" /></span><span><b>Wegtransport</b><small>Van groupage tot dedicated, TAPA TSR1</small></span></a></li>
+            <li><a class="nav-card" href="/nl/diensten/projecten/"><span class="nav-card-icon"><ec-icon name="gem" /></span><span><b>Projecten &amp; white glove</b><small>Kisten, kunst, Envirotainer, oversized</small></span></a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="chart text-mute">Specialistische lading</p>
+          <ul class="nav-list mt-3">
+            <li><a href="/nl/#time-critical"><ec-icon name="timer" /> Spoed: NFO, OBC, Direct</a></li>
+            <li><a href="/nl/#specialist"><ec-icon name="triangle-alert" /> Gevaarlijke stoffen &amp; samples</a></li>
+            <li><a href="/nl/#cold-chain"><ec-icon name="snowflake" /> Koelketen &amp; douane-entrepot</a></li>
+          </ul>
+          <a class="nav-feature mt-5" href="/nl/contact/#enquiry"><span class="chart text-cyan">Snelle offertes</span><b>Vertel wat er verzonden moet worden</b><small>Een coördinator prijst het, geen boekingsmachine.</small><!-- @include arrow --></a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-panel hidden lg:block" id="nav-tools" data-nav-panel>
+      <div class="nav-panel-grid is-even">
+        <div>
+          <p class="chart text-mute">Gratis verzendtools</p>
+          <ul class="nav-cards is-stack mt-3">
+            <li><a class="nav-card" href="/nl/tools/#chargeable"><span class="nav-card-icon"><ec-icon name="calculator" /></span><span><b>Belastbaar gewicht</b><small>Lucht, koerier, weg en zee, per collo</small></span></a></li>
+            <li><a class="nav-card" href="/nl/tools/#loading"><span class="nav-card-icon"><ec-icon name="ruler" /></span><span><b>CBM &amp; laadmeters</b><small>Pallets op een trailer, LDM en volume</small></span></a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="chart text-mute">Kennis</p>
+          <ul class="nav-cards is-stack mt-3">
+            <li><a class="nav-card" href="/nl/incoterms/"><span class="nav-card-icon"><ec-icon name="scroll-text" /></span><span><b>Incoterms® 2020-overzicht</b><small>Wie betaalt, wie draagt het risico</small></span></a></li>
+            <li><a class="nav-card" href="/nl/incoterms/#links"><span class="nav-card-icon"><ec-icon name="link" /></span><span><b>Handige links</b><small>IATA, douane, gevaarlijke stoffen, tracking</small></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="nav-panel hidden lg:block" id="nav-company" data-nav-panel>
+      <div class="nav-panel-grid">
+        <div>
+          <p class="chart text-mute">Express Cargo</p>
+          <ul class="nav-cards mt-3">
+            <li><a class="nav-card" href="/nl/over-ons/"><span class="nav-card-icon"><ec-icon name="building-2" /></span><span><b>Over ons</b><small>Sinds 2002 op Schiphol, wat we doen</small></span></a></li>
+            <li><a class="nav-card" href="/nl/over-ons/#team"><span class="nav-card-icon"><ec-icon name="users" /></span><span><b>Team</b><small>De mensen die uw telefoon opnemen</small></span></a></li>
+            <li><a class="nav-card" href="/nl/over-ons/#certified"><span class="nav-card-icon"><ec-icon name="badge-check" /></span><span><b>Certificeringen</b><small>ISO 9001, IATA DGR, GDP</small></span></a></li>
+            <li><a class="nav-card" href="/nl/contact/"><span class="nav-card-icon"><ec-icon name="map-pin" /></span><span><b>Contact &amp; kantoren</b><small>Breguetlaan 21, Oude Meer</small></span></a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="chart text-mute">Bel of mail de desk</p>
+          <p class="mt-3"><a class="chart-l link-u text-xl" href="tel:+31203332405">+31 20 333 2405</a></p>
+          <p class="mt-2"><a class="link-u text-ink-2" href="mailto:salesams@express-cargo.nl">salesams@express-cargo.nl</a></p>
+          <p class="mt-5 text-sm text-ink-2">Luchtvracht ook via de luchthaven van Belgrado (BEG), Servië.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="menu-panel lg:hidden" id="menu" data-menu>
+  <nav aria-label="Mobiel menu" class="menu-groups">
+    <div class="menu-group">
+      <p class="chart text-mute">Diensten</p>
+      <ul>
+        <li><a href="/nl/diensten/luchtvracht/" data-menu-link><ec-icon name="plane" /> Luchtvracht</a></li>
+        <li><a href="/nl/diensten/zeevracht/" data-menu-link><ec-icon name="ship" /> Zeevracht</a></li>
+        <li><a href="/nl/diensten/wegtransport/" data-menu-link><ec-icon name="truck" /> Wegtransport</a></li>
+        <li><a href="/nl/diensten/projecten/" data-menu-link><ec-icon name="gem" /> Projecten &amp; white glove</a></li>
+        <li><a href="/nl/#time-critical" data-menu-link><ec-icon name="timer" /> Spoedzendingen</a></li>
+        <li><a href="/nl/#cold-chain" data-menu-link><ec-icon name="snowflake" /> Koelketen</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p class="chart text-mute">Tools &amp; kennis</p>
+      <ul>
+        <li><a href="/nl/tools/" data-menu-link><ec-icon name="calculator" /> Gewicht- &amp; LDM-calculator</a></li>
+        <li><a href="/nl/incoterms/" data-menu-link><ec-icon name="scroll-text" /> Incoterms® 2020</a></li>
+        <li><a href="/nl/incoterms/#links" data-menu-link><ec-icon name="link" /> Handige links</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p class="chart text-mute">Bedrijf</p>
+      <ul>
+        <li><a href="/nl/over-ons/" data-menu-link><ec-icon name="building-2" /> Over ons</a></li>
+        <li><a href="/nl/over-ons/#team" data-menu-link><ec-icon name="users" /> Team</a></li>
+        <li><a href="/nl/contact/" data-menu-link><ec-icon name="map-pin" /> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="menu-foot">
+    <a href="/nl/contact/#enquiry" class="btn btn-ink" data-menu-link>Offerte aanvragen <!-- @include arrow --></a>
+    <a href="tel:+31203332405" class="chart-l text-xl">+31 20 333 2405</a>
+    <a href="mailto:salesams@express-cargo.nl" class="text-ink-2">salesams@express-cargo.nl</a>
+  </div>
+</div>

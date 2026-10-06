@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <!-- @include head -->
+    <title>Volumegewicht &amp; laadmetercalculator | Gratis verzendtools | Express Cargo</title>
+    <meta name="description" content="Gratis calculator voor belastbaar gewicht bij luchtvracht (IATA 1:6000), koerier (1:5000), wegtransport (333 kg/m³) en zeevracht (W/M 1 m³ = 1.000 kg), plus een laadmeter- (LDM) en palletcalculator voor een trailer van 13,6 m." />
+    <link rel="canonical" href="https://www.express-cargo.nl/nl/tools/" />
+    <meta property="og:title" content="Gratis verzendtools: belastbaar gewicht &amp; laadmeters" />
+    <meta property="og:description" content="Reken uit waarop uw zending wordt berekend voordat u een offerte vraagt: lucht, koerier, weg en zee." />
+    <meta property="og:url" content="https://www.express-cargo.nl/nl/tools/" />
+    <script type="module" src="/src/tools.ts"></script>
+  </head>
+  <body>
+    <!-- @include header-nl -->
+
+    <main id="main">
+      <!-- HERO: a box that takes the shape you type ──────────────── -->
+      <section class="page-hero tools-hero" data-page-hero>
+        <div class="wrap grid items-center gap-x-12 gap-y-10 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <p class="chart flex items-center gap-2 text-cyan-ink" data-fade><ec-icon name="calculator" class="!h-[18px] !w-[18px]" /> Gratis verzendtools</p>
+            <h1 class="display display-xl mt-5 max-w-[14ch]" data-split>Weet waarvoor u betaalt.</h1>
+            <p class="lede mt-6" data-fade>Vervoerders rekenen op werkelijk gewicht of op ruimte, wat het hoogst is. Vul uw colli in en zie wat er geldt, voor lucht, koerier, weg en zee.</p>
+            <div class="mt-8 flex flex-wrap gap-3" data-fade>
+              <a class="btn btn-ink" href="#chargeable">Belastbaar gewicht <ec-icon name="arrow-down" /></a>
+              <a class="btn btn-line" href="#loading">Laadmeters <ec-icon name="arrow-down" /></a>
+            </div>
+          </div>
+          <div class="lg:col-span-5" data-fade>
+            <div class="cube-stage" aria-hidden="true" data-cube-stage>
+              <div class="cube" data-cube><div class="cube-spin" data-cube-spin>
+                <i class="f front"><b class="chart" data-cube-dims>120 × 80 × 100 cm</b></i><i class="f back"></i><i class="f right"></i><i class="f left"></i><i class="f top"></i><i class="f bottom"></i>
+              </div></div>
+              <p class="cube-read chart"><span data-cube-kg>160 kg</span> op volume <span class="text-mute">bij 1:6000</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOOL 1: chargeable weight ────────────────────────────── -->
+      <section id="chargeable" class="section !pt-8" aria-labelledby="cw-title">
+        <div class="wrap">
+          <div class="grid gap-6 lg:grid-cols-12">
+            <h2 id="cw-title" class="display display-l lg:col-span-7" data-split>Belastbaar gewicht</h2>
+            <p class="copy self-end lg:col-span-5" data-reveal>Voer elk soort collo één keer in, met het aantal. Maten zijn buitenmaten, verpakt.</p>
+          </div>
+
+          <form class="calc mt-12 grid gap-8 lg:grid-cols-12" data-calc novalidate>
+            <div class="lg:col-span-7" data-reveal>
+              <fieldset>
+                <legend class="chart text-mute">Modaliteit</legend>
+                <div class="seg mt-3" role="radiogroup">
+                  <label class="seg-opt"><input type="radio" name="mode" value="air" checked /><span><ec-icon name="plane" /><b>Lucht</b><small>IATA 1:6000</small></span></label>
+                  <label class="seg-opt"><input type="radio" name="mode" value="courier" /><span><ec-icon name="package-check" /><b>Koerier</b><small>1:5000</small></span></label>
+                  <label class="seg-opt"><input type="radio" name="mode" value="road" /><span><ec-icon name="truck" /><b>Weg</b><small>1 m³ = 333 kg</small></span></label>
+                  <label class="seg-opt"><input type="radio" name="mode" value="sea" /><span><ec-icon name="ship" /><b>Zee LCL</b><small>1 m³ = 1.000 kg</small></span></label>
+                </div>
+              </fieldset>
+
+              <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+                <p class="chart text-mute" id="pieces-label">Colli</p>
+                <div class="unit-toggle" role="group" aria-label="Eenheden">
+                  <button type="button" aria-pressed="true" data-unit="metric">cm · kg</button>
+                  <button type="button" aria-pressed="false" data-unit="imperial">in · lb</button>
+                </div>
+              </div>
+              <ol class="rows mt-3" aria-labelledby="pieces-label" data-rows></ol>
+              <template data-row-tpl>
+                <li class="row">
+                  <span class="row-n chart" aria-hidden="true"></span>
+                  <div class="field r-qty"><label class="chart text-mute">Aantal</label><input type="number" inputmode="numeric" min="1" step="1" name="qty" value="1" /></div>
+                  <div class="field r-l"><label class="chart text-mute">Lengte <span data-u-len>cm</span></label><input type="number" inputmode="decimal" min="0" step="any" name="l" /></div>
+                  <div class="field r-w"><label class="chart text-mute">Breedte <span data-u-len>cm</span></label><input type="number" inputmode="decimal" min="0" step="any" name="w" /></div>
+                  <div class="field r-h"><label class="chart text-mute">Hoogte <span data-u-len>cm</span></label><input type="number" inputmode="decimal" min="0" step="any" name="h" /></div>
+                  <div class="field r-kg"><label class="chart text-mute">Gewicht <span data-u-kg>kg</span> / st</label><input type="number" inputmode="decimal" min="0" step="any" name="kg" /></div>
+                  <button type="button" class="row-del" data-del><ec-icon name="x" /><span class="sr-only">Verwijder deze regel</span></button>
+                </li>
+              </template>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <button type="button" class="btn btn-line !text-ink" data-add><ec-icon name="plus" /> Regel toevoegen</button>
+                <button type="button" class="btn-text" data-example>Probeer een voorbeeld</button>
+              </div>
+            </div>
+
+            <aside class="lg:col-span-5" aria-label="Resultaat" data-reveal>
+              <div class="result on-night" id="cw-result" tabindex="-1" data-result>
+                <p class="chart text-cyan">Belastbaar gewicht</p>
+                <p class="result-big mt-2" aria-live="polite"><span data-out="cw">0</span> <span class="result-unit" data-u-kg>kg</span></p>
+                <p class="result-basis chart mt-3" data-basis>Vul afmetingen en gewicht in</p>
+
+                <div class="bars mt-7" aria-hidden="true">
+                  <div class="bar" data-bar="actual"><span class="bar-label chart">Werkelijk</span><span class="bar-track"><i></i></span><span class="bar-val chart" data-out="actual-bar">0</span></div>
+                  <div class="bar" data-bar="vol"><span class="bar-label chart">Op volume</span><span class="bar-track"><i></i></span><span class="bar-val chart" data-out="vol-bar">0</span></div>
+                </div>
+
+                <dl class="result-dl mt-7">
+                  <div><dt>Colli</dt><dd data-out="pcs">0</dd></div>
+                  <div><dt>Totaal volume</dt><dd><span data-out="cbm">0</span> <span data-u-vol>m³</span></dd></div>
+                  <div><dt>Werkelijk gewicht</dt><dd><span data-out="actual">0</span> <span data-u-kg>kg</span></dd></div>
+                  <div><dt>Volumegewicht</dt><dd><span data-out="vol">0</span> <span data-u-kg>kg</span></dd></div>
+                  <div class="is-sea" hidden><dt>Vrachttonnen (W/M)</dt><dd data-out="rt">0</dd></div>
+                  <div><dt>Regel</dt><dd data-out="rule">IATA 1:6000</dd></div>
+                </dl>
+
+                <div class="fit mt-7 is-sea" hidden>
+                  <p class="chart text-[#c9d6e3]">Containervulling (op volume)</p>
+                  <ul class="mt-3 grid gap-2" data-fit>
+                    <li data-cap="33.2"><span>20′ standaard</span><span class="bar-track"><i></i></span><b>0%</b></li>
+                    <li data-cap="67.7"><span>40′ standaard</span><span class="bar-track"><i></i></span><b>0%</b></li>
+                    <li data-cap="76.3"><span>40′ high cube</span><span class="bar-track"><i></i></span><b>0%</b></li>
+                  </ul>
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a class="btn btn-cyan" href="/nl/contact/#enquiry" data-quote>Offerte voor deze zending <!-- @include arrow --></a>
+                  <button type="button" class="btn btn-line" data-copy><ec-icon name="copy" /> Kopiëren</button>
+                </div>
+                <p class="mt-3 text-sm text-[#c9d6e3]" role="status" data-copy-status></p>
+              </div>
+            </aside>
+          </form>
+          <!-- phones: the answer stays in reach while typing -->
+          <a class="result-peek on-night lg:hidden" href="#cw-result" data-peek><span class="chart text-cyan">Belastbaar</span> <b><span data-peek-val>0</span> <span data-u-kg>kg</span></b> <span class="chart text-[#c9d6e3]" data-peek-basis></span><ec-icon name="arrow-down" /></a>
+        </div>
+      </section>
+
+      <!-- TOOL 2: loading metres ─────────────────────────────── -->
+      <section id="loading" class="section bg-paper-2" aria-labelledby="ldm-title">
+        <div class="wrap">
+          <div class="grid gap-6 lg:grid-cols-12">
+            <h2 id="ldm-title" class="display display-l lg:col-span-7" data-split>Laadmeters &amp; pallets</h2>
+            <p class="copy self-end lg:col-span-5" data-reveal>Groupage over de weg wordt geprijsd op de vloerruimte die u inneemt op een trailer van 13,6 m. Eén laadmeter is een meter trailer, 2,4 m breed.</p>
+          </div>
+
+          <form class="mt-12 grid gap-8 lg:grid-cols-12" data-ldm novalidate>
+            <div class="grid grid-cols-2 content-start gap-x-4 gap-y-5 lg:col-span-5" data-reveal>
+              <div class="field col-span-2">
+                <label class="chart text-mute" for="p-type">Pallet</label>
+                <select id="p-type" name="type">
+                  <option value="120x80">Europallet, 120 × 80 cm</option>
+                  <option value="120x100">Blokpallet, 120 × 100 cm</option>
+                  <option value="114x114">Industrieel, 114 × 114 cm</option>
+                  <option value="custom">Eigen maat</option>
+                </select>
+              </div>
+              <div class="field" data-custom hidden><label class="chart text-mute" for="p-l">Lengte cm</label><input id="p-l" name="l" type="number" inputmode="decimal" min="1" value="120" /></div>
+              <div class="field" data-custom hidden><label class="chart text-mute" for="p-w">Breedte cm</label><input id="p-w" name="w" type="number" inputmode="decimal" min="1" value="80" /></div>
+              <div class="field"><label class="chart text-mute" for="p-n">Aantal pallets</label><input id="p-n" name="n" type="number" inputmode="numeric" min="1" max="99" value="6" /></div>
+              <div class="field"><label class="chart text-mute" for="p-h">Hoogte cm</label><input id="p-h" name="h" type="number" inputmode="decimal" min="1" value="150" /></div>
+              <div class="field"><label class="chart text-mute" for="p-kg">Gewicht kg / pallet</label><input id="p-kg" name="kg" type="number" inputmode="decimal" min="0" value="400" /></div>
+              <label class="check self-end"><input type="checkbox" name="stack" /><span>Stapelbaar, twee hoog</span></label>
+            </div>
+
+            <div class="lg:col-span-7" data-reveal>
+              <div class="trailer-card">
+                <div class="flex flex-wrap items-baseline justify-between gap-3">
+                  <p class="chart text-mute">Trailer 13,6 m · bovenaanzicht</p>
+                  <p class="chart text-cyan-ink"><span data-l="fill">0</span>% van de vloer</p>
+                </div>
+                <div class="trailer mt-4" data-trailer aria-hidden="true">
+                  <span class="trailer-cab"></span>
+                  <div class="trailer-deck" data-deck></div>
+                </div>
+                <p class="mt-3 text-sm text-ink-2" data-l="note" aria-live="polite"></p>
+                <dl class="ldm-dl mt-6">
+                  <div><dt class="chart text-mute">Laadmeters</dt><dd class="chart-l" data-l="ldm">0</dd></div>
+                  <div><dt class="chart text-mute">Volume</dt><dd class="chart-l"><span data-l="cbm">0</span> m³</dd></div>
+                  <div><dt class="chart text-mute">Werkelijk</dt><dd class="chart-l"><span data-l="kg">0</span> kg</dd></div>
+                  <div><dt class="chart text-mute">Belastbaar</dt><dd class="chart-l text-magenta"><span data-l="cw">0</span> kg</dd></div>
+                </dl>
+                <p class="mt-4 text-sm text-ink-2" data-l="basis"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- RULES: what the numbers are based on ─────────────────── -->
+      <section class="section" aria-labelledby="rules-title">
+        <div class="wrap">
+          <h2 id="rules-title" class="display display-l max-w-[18ch]" data-split>De regels achter de getallen.</h2>
+          <div class="rules mt-12" data-reveal>
+            <table>
+              <caption class="sr-only">Volumefactoren per modaliteit</caption>
+              <thead><tr><th scope="col">Modaliteit</th><th scope="col">Volumeregel</th><th scope="col">In de praktijk</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><ec-icon name="plane" /> Luchtvracht</th><td>L × B × H (cm) ÷ 6.000</td><td>1 m³ = 166,67 kg. Belastbaar gewicht wordt naar boven afgerond op 0,5 kg.</td></tr>
+                <tr><th scope="row"><ec-icon name="package-check" /> Koerier &amp; express</th><td>L × B × H (cm) ÷ 5.000</td><td>1 m³ = 200 kg. Integrators bepalen hun eigen deler; 5.000 is de gangbare.</td></tr>
+                <tr><th scope="row"><ec-icon name="truck" /> Weg (Europa)</th><td>1 m³ = 333 kg · 1 LDM = 1.750 kg</td><td>Groupage wordt berekend op het hoogste van gewicht, volume en laadmeters.</td></tr>
+                <tr><th scope="row"><ec-icon name="ship" /> Zee LCL</th><td>1 m³ = 1.000 kg (W/M)</td><td>Berekend per vrachtton: kubieke meters of tonnen, wat het hoogst is.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-6 max-w-[70ch] text-sm text-ink-2" data-reveal>Alleen indicatief. Vervoerders en routes kunnen eigen factoren en minimums hanteren, en gevaarlijke stoffen of temperatuurbeheersing kunnen de verpakking veranderen. Uw coördinator bevestigt het definitieve belastbare gewicht in de offerte.</p>
+        </div>
+      </section>
+
+      <!-- CLOSE ───────────────────────────────────────────────── -->
+      <section class="pb-24" aria-labelledby="tools-close">
+        <div class="wrap">
+          <div class="close-panel on-night" data-settle>
+            <div class="grid items-end gap-8 lg:grid-cols-12">
+              <div class="lg:col-span-8">
+                <h2 id="tools-close" class="display display-l max-w-[16ch]" data-split>Getallen klaar. Nu de prijs.</h2>
+                <p class="lede mt-5">Offertes gaan snel de deur uit. Stuur het resultaat en een coördinator prijst de route.</p>
+              </div>
+              <div class="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
+                <a class="btn btn-cyan" href="/nl/contact/#enquiry">Offerte aanvragen <!-- @include arrow --></a>
+                <a class="btn btn-line" href="/nl/incoterms/"><ec-icon name="scroll-text" /> Incoterms® 2020</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include footer-nl -->
+  </body>
+</html>

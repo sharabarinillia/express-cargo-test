@@ -5,6 +5,7 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { servicesNl } from './content/services-nl.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 
@@ -193,12 +194,52 @@ const journeyMore = {
   ],
 };
 
+/** fixed wording and paths per language */
+const LOCALES = {
+  en: {
+    lang: 'en', header: 'header', footer: 'footer', contact: '/contact/',
+    path: (p) => `/services/${p.slug}/`,
+    href: (h) => h,
+    quote: 'Request a quote', fast: 'Fast quotes from a real coordinator', steps: (n) => `${n} steps · one coordinator`, step: 'Step',
+    inPractice: 'In practice', recent: 'Recent projects.', freeTool: 'Free tool', resource: 'Resource', other: 'Other services',
+    closeH: 'Tell us what’s moving.', closeP: 'Quotes go out fast. One sentence is enough to start: what, from where, to where.', email: 'Email us',
+    area: 'Worldwide',
+  },
+  nl: {
+    lang: 'nl', header: 'header-nl', footer: 'footer-nl', contact: '/nl/contact/',
+    path: (p) => `/nl/diensten/${p.nlSlug}/`,
+    href: (h) => h.replace('/tools/', '/nl/tools/').replace(/^\/resources\//, '/nl/incoterms/'),
+    quote: 'Offerte aanvragen', fast: 'Snelle offertes van een echte coördinator', steps: (n) => `${n} stappen · één coördinator`, step: 'Stap',
+    inPractice: 'In de praktijk', recent: 'Recente projecten.', freeTool: 'Gratis tool', resource: 'Kennis', other: 'Andere diensten',
+    closeH: 'Vertel wat er verzonden moet worden.', closeP: 'Offertes gaan snel de deur uit. Eén zin is genoeg om te beginnen: wat, van waar, naar waar.', email: 'Mail ons',
+    area: 'Wereldwijd',
+  },
+};
+
+/** English page objects get their journey facts and photos; Dutch ones are the English with Dutch text */
+for (const p of pages) {
+  p.facts = journeyMore[p.slug].map(([f]) => f);
+  p.photos = journeyMore[p.slug].map(([, img]) => img);
+}
+const pagesNl = pages.map((p) => {
+  const n = servicesNl[p.slug];
+  return {
+    ...p,
+    ...n,
+    journey: p.journey.map(([icon], i) => [icon, ...n.journey[i]]),
+    caps: p.caps.map(([icon], i) => [icon, ...n.caps[i]]),
+    media: { img: p.media.img, alt: n.mediaAlt },
+    tool: { href: p.tool.href, label: n.tool },
+    cases: p.cases?.map(([img], i) => [img, ...n.cases[i]]),
+  };
+});
+
 const esc = (s) => s.replace(/&(?!\w+;)/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
-function page(p) {
-  const others = pages.filter((o) => o.slug !== p.slug);
-  const quoteHref = `/contact/?type=quote${p.quoteMode ? `&amp;mode=${p.quoteMode}` : ''}#enquiry`;
-  const url = `https://www.express-cargo.nl/services/${p.slug}/`;
+function page(p, all, L) {
+  const others = all.filter((o) => o.slug !== p.slug);
+  const quoteHref = `${L.contact}?type=quote${p.quoteMode ? `&amp;mode=${p.quoteMode}` : ''}#enquiry`;
+  const url = `https://www.express-cargo.nl${L.path(p)}`;
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -206,11 +247,11 @@ function page(p) {
     serviceType: p.nav,
     description: p.description,
     url,
-    areaServed: 'Worldwide',
+    areaServed: L.area,
     provider: { '@type': 'Organization', name: 'Express Cargo', url: 'https://www.express-cargo.nl/', telephone: '+31 20 333 2405', email: 'salesams@express-cargo.nl' },
   };
   return `<!doctype html>
-<html lang="en">
+<html lang="${L.lang}">
   <head>
     <!-- @include head -->
     <title>${esc(p.title)}</title>
@@ -226,7 +267,7 @@ function page(p) {
     <script type="module" src="/src/service.ts"></script>
   </head>
   <body data-dark-hero>
-    <!-- @include header -->
+    <!-- @include ${L.header} -->
 
     <main id="main">
       <!-- HERO: full-bleed, the mode in motion ─────────────────── -->
@@ -242,11 +283,11 @@ function page(p) {
           <div class="mt-8 grid items-end gap-8 lg:grid-cols-12">
             <p class="lede lg:col-span-6" data-fade>${esc(p.lede)}</p>
             <div class="flex flex-wrap gap-3 lg:col-span-6 lg:justify-end" data-fade>
-              <a class="btn btn-cyan" href="${quoteHref}">Request a quote <!-- @include arrow --></a>
+              <a class="btn btn-cyan" href="${quoteHref}">${L.quote} <!-- @include arrow --></a>
               <a class="btn btn-line" href="tel:+31203332405"><ec-icon name="phone" /> +31 20 333 2405</a>
             </div>
           </div>
-          <p class="chart mt-8 flex items-center gap-2 text-[#dbe5ee]" data-fade><ec-icon name="zap" class="!h-[18px] !w-[18px] text-cyan" /> Fast quotes from a real coordinator</p>
+          <p class="chart mt-8 flex items-center gap-2 text-[#dbe5ee]" data-fade><ec-icon name="zap" class="!h-[18px] !w-[18px] text-cyan" /> ${L.fast}</p>
         </div>
       </section>
 
@@ -256,7 +297,7 @@ function page(p) {
           <div class="wrap">
             <div class="jt-head">
               <h2 id="journey-title" class="display display-l max-w-[16ch]" data-split>${esc(p.journeyTitle)}</h2>
-              <p class="chart text-[#c9d6e3]">${p.journey.length} steps · one coordinator</p>
+              <p class="chart text-[#c9d6e3]">${L.steps(p.journey.length)}</p>
             </div>
             <div class="journey-track" aria-hidden="true">
               <span class="jt-line"><i data-jt-fill></i></span>
@@ -267,14 +308,14 @@ function page(p) {
               <ol class="journey-steps" data-jt-steps>
                 ${p.journey
                   .map(([, code, title, text], i) => {
-                    const [facts] = journeyMore[p.slug][i];
+                    const facts = p.facts[i];
                     return `<li class="jt-step${i === 0 ? ' is-active' : ''}"><span class="chart text-cyan">${String(i + 1).padStart(2, '0')} / ${String(p.journey.length).padStart(2, '0')} · ${code}</span><h3 class="mt-3">${esc(title)}</h3><p class="mt-3">${esc(text)}</p><ul class="jt-facts">${facts.map((f) => `<li><ec-icon name="check" />${esc(f)}</li>`).join('')}</ul></li>`;
                   })
                   .join('\n                ')}
               </ol>
               <div class="jt-media" aria-hidden="true" data-jt-media>
                 ${p.journey
-                  .map(([, code], i) => `<figure class="${i === 0 ? 'is-active' : ''}"><ec-img name="${journeyMore[p.slug][i][1]}" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">Step ${String(i + 1).padStart(2, '0')} · ${code}</figcaption></figure>`)
+                  .map(([, code], i) => `<figure class="${i === 0 ? 'is-active' : ''}"><ec-img name="${p.photos[i]}" alt="" sizes="(min-width: 1024px) 40vw, 92vw" class="h-full w-full object-cover" /><figcaption class="inset-label chart">${L.step} ${String(i + 1).padStart(2, '0')} · ${code}</figcaption></figure>`)
                   .join('\n                ')}
               </div>
             </div>
@@ -296,7 +337,7 @@ function page(p) {
       </section>
 
       <!-- FEATURE: one image, one sentence ──────────────────────── -->
-      <section class="section !pt-0" aria-label="In practice">
+      <section class="section !pt-0" aria-label="${L.inPractice}">
         <div class="wrap">
           <figure class="svc-feature inset" data-depth>
             <ec-img name="${p.media.img}" alt="${esc(p.media.alt)}" sizes="(min-width: 1440px) 1320px, 100vw" class="h-full w-full object-cover" />
@@ -315,7 +356,7 @@ ${
       <!-- CASES ─────────────────────────────────────────────────── -->
       <section class="section bg-paper-2" aria-labelledby="cases-title">
         <div class="wrap">
-          <h2 id="cases-title" class="display display-l max-w-[18ch]" data-split>Recent projects.</h2>
+          <h2 id="cases-title" class="display display-l max-w-[18ch]" data-split>${L.recent}</h2>
           <ul class="cases mt-14" data-stagger>
             ${p.cases.map(([img, place, text, mode]) => `<li class="case"><figure class="inset aspect-[4/3]"><ec-img name="${img}" alt="${esc(text)}" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 92vw" class="h-full w-full object-cover" /></figure><p class="chart mt-4 text-cyan-ink">${esc(mode)}</p><h3 class="display-m mt-1 !text-[1.3rem]">${esc(place)}</h3><p class="copy mt-2 text-[0.98rem]">${esc(text)}</p></li>`).join('\n            ')}
           </ul>
@@ -327,14 +368,14 @@ ${
       <!-- TOOL + OTHER SERVICES ─────────────────────────────────── -->
       <section class="section${p.cases ? '' : ' bg-paper-2'}" aria-labelledby="more-title">
         <div class="wrap">
-          <a class="tool-strip" href="${p.tool.href}" data-reveal>
+          <a class="tool-strip" href="${L.href(p.tool.href)}" data-reveal>
             <span class="nav-card-icon"><ec-icon name="${p.tool.href.startsWith('/tools') ? 'calculator' : 'scroll-text'}" /></span>
-            <span><span class="chart text-cyan-ink">${p.tool.href.startsWith('/tools') ? 'Free tool' : 'Resource'}</span><b class="mt-1 block">${esc(p.tool.label)}</b></span>
+            <span><span class="chart text-cyan-ink">${p.tool.href.startsWith('/tools') ? L.freeTool : L.resource}</span><b class="mt-1 block">${esc(p.tool.label)}</b></span>
             <!-- @include arrow -->
           </a>
-          <h2 id="more-title" class="display display-m mt-20">Other services</h2>
+          <h2 id="more-title" class="display display-m mt-20">${L.other}</h2>
           <ul class="more mt-6" data-stagger>
-            ${others.map((o) => `<li><a class="more-card" href="/services/${o.slug}/"><figure class="inset aspect-[16/10]"><ec-img name="poster-${o.video}" alt="" sizes="(min-width: 1024px) 30vw, 92vw" class="h-full w-full object-cover" /></figure><span class="more-label"><ec-icon name="${o.icon}" /> ${esc(o.nav)} <!-- @include arrow --></span></a></li>`).join('\n            ')}
+            ${others.map((o) => `<li><a class="more-card" href="${L.path(o)}"><figure class="inset aspect-[16/10]"><ec-img name="poster-${o.video}" alt="" sizes="(min-width: 1024px) 30vw, 92vw" class="h-full w-full object-cover" /></figure><span class="more-label"><ec-icon name="${o.icon}" /> ${esc(o.nav)} <!-- @include arrow --></span></a></li>`).join('\n            ')}
           </ul>
         </div>
       </section>
@@ -345,12 +386,12 @@ ${
           <div class="close-panel on-night" data-settle>
             <div class="grid items-end gap-8 lg:grid-cols-12">
               <div class="lg:col-span-8">
-                <h2 id="svc-close" class="display display-l max-w-[16ch]" data-split>Tell us what’s moving.</h2>
-                <p class="lede mt-5">Quotes go out fast. One sentence is enough to start: what, from where, to where.</p>
+                <h2 id="svc-close" class="display display-l max-w-[16ch]" data-split>${L.closeH}</h2>
+                <p class="lede mt-5">${L.closeP}</p>
               </div>
               <div class="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
-                <a class="btn btn-cyan" href="${quoteHref}">Request a quote <!-- @include arrow --></a>
-                <a class="btn btn-line" href="mailto:salesams@express-cargo.nl"><ec-icon name="mail" /> Email us</a>
+                <a class="btn btn-cyan" href="${quoteHref}">${L.quote} <!-- @include arrow --></a>
+                <a class="btn btn-line" href="mailto:salesams@express-cargo.nl"><ec-icon name="mail" /> ${L.email}</a>
               </div>
             </div>
           </div>
@@ -358,16 +399,17 @@ ${
       </section>
     </main>
 
-    <!-- @include footer -->
+    <!-- @include ${L.footer} -->
   </body>
 </html>
 `;
 }
 
-for (const p of pages) {
-  const dir = resolve(root, 'services', p.slug);
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(resolve(dir, 'index.html'), page(p));
+for (const [list, L] of [[pages, LOCALES.en], [pagesNl, LOCALES.nl]]) {
+  for (const p of list) {
+    const dir = resolve(root, `.${L.path(p)}`);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(resolve(dir, 'index.html'), page(p, list, L));
+  }
 }
-export const servicePages = pages.map((p) => p.slug);
-console.log(`wrote ${pages.length} service pages`);
+console.log(`wrote ${pages.length} service pages in English and Dutch`);
