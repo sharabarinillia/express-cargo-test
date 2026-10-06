@@ -83,7 +83,7 @@ export function initNav(): void {
     // a group holding the current page carries the current-page diamond
     const here = [...panel.querySelectorAll<HTMLAnchorElement>('a')].some((a) => {
       const u = new URL(a.href, location.href);
-      return !u.hash && u.pathname === location.pathname && location.pathname !== '/';
+      return u.pathname === location.pathname && location.pathname !== '/' && location.pathname !== '/nl/';
     });
     t.classList.toggle('is-current', here && !topMatch);
   });

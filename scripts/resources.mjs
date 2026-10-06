@@ -206,15 +206,15 @@ function page() {
 
       <!-- @faq -->
 
-      <section class="py-24" aria-labelledby="res-close">
+      <section class="close-section" aria-labelledby="res-close">
         <div class="wrap">
           <div class="close-panel on-night" data-settle>
             <div class="grid items-end gap-8 lg:grid-cols-12">
-              <div class="lg:col-span-8">
+              <div class="lg:col-span-7">
                 <h2 id="res-close" class="display display-l max-w-[16ch]" data-split>Rule chosen? Let’s move it.</h2>
                 <p class="lede mt-5">Tell us the Incoterm, origin and destination. Quotes go out fast.</p>
               </div>
-              <div class="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
+              <div class="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
                 <a class="btn btn-cyan" href="/contact/#enquiry">Request a quote <!-- @include arrow --></a>
                 <a class="btn btn-line" href="tel:+31203332405"><ec-icon name="phone" /> +31 20 333 2405</a>
               </div>

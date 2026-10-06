@@ -173,9 +173,16 @@
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
-  .section {
+  .section,
+  .close-section {
     position: relative;
     padding-block: clamp(88px, 6vw + 48px, 160px);
+  }
+
+  /* the closing panel has the same space above it as below: a plain section
+     before it hands over its bottom padding instead of stacking on top */
+  .section:not([class*="bg-"]):has(+ .close-section) {
+    padding-bottom: 0;
   }
 
   /* ── Hero: full-bleed flight above the clouds (looping) ─────────── */
@@ -709,6 +716,9 @@
   }
   .nav-cards.is-stack {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .nav-cards.is-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .nav-cards {
     margin-inline: -12px;
