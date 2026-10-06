@@ -5,7 +5,7 @@ import { initHeadlines } from './lib/motion';
 
 /** Where enquiries go. Set VITE_FORM_ENDPOINT to POST JSON to a form backend; otherwise we fall back to the visitor's email app. */
 const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
-const SALES = 'salesams@express-cargo.com';
+const SALES = 'salesams@express-cargo.nl';
 
 initShell();
 initHeadlines();
