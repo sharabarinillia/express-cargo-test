@@ -1,5 +1,27 @@
 # Next task: SEO and GEO for express-cargo.nl
 
+## Status (implemented on `claude/wizardly-fermat-fmmblm`)
+
+| Phase | State | Where |
+|---|---|---|
+| 1. Migration | Done: 25 permanent redirects from the Wix URLs (Dutch root pages, the `/en/` mirror and the blog post, checked against the live URL inventory); verification tags kept; `robots.txt`; build-time `sitemap.xml` with hreflang; 1200×630 share images per page in both languages | `vercel.json` (from `scripts/redirects.mjs`), `src/partials/head.html`, `public/robots.txt`, `vite.config.ts`, `scripts/og.mjs` |
+| 2. Structured data | Done: one generated `@graph` per page (Organization `@id`, WebSite, WebPage, BreadcrumbList, Service, WebApplication, DefinedTermSet, people, FAQPage). The build fails on invalid graphs or duplicate titles, descriptions and canonicals | `scripts/seo.mjs` |
+| 3. GEO content | Done: `llms.txt`, plus answer-first FAQs (4–5 per page, English and Dutch) on the service, tools and Incoterms pages. Explainer and case pages are still to do | `public/llms.txt`, `src/content/faq.json` |
+| 4. Dutch version | Done: `/nl/` mirror with hreflang and a language switch | `nl/`, `scripts/i18n/` |
+| 5. Measurement | Waiting on the client | |
+
+Verified: `tsc` and the build pass; every page has a unique title, description and canonical; Lighthouse SEO is 100 on home, air freight, tools and the Dutch air freight page; 520 internal links resolve.
+
+### Open questions for Express Cargo
+1. **Root language.** The old `/` was the Dutch homepage, and `/` is now English (Dutch at `/nl/`, linked with hreflang). Should `/` stay English, or should Dutch be the default?
+2. **Analytics.** Which tool, if any? Plausible or Fathom need no cookie banner; GA4 does. Events to track: `quote_submit`, `tool_calculate`, `chart_download`, `tel_click`, `mailto_click`.
+3. **Form backend.** Where should quote requests go (`VITE_FORM_ENDPOINT`)? This is also needed to count quote requests as conversions.
+4. **Quote turnaround.** Is there a typical time we can state (for example "within one working day")? The FAQ currently says only that quotes go out fast.
+5. **Google Business Profile.** Who manages it? Its name, address and phone must match the site.
+6. **Blog.** The Wix blog had one post (Dangerous Goods), which now redirects to air freight. Should we bring news or articles back?
+7. **Hosting.** The redirects are written for Vercel (the `express-cargo-test` project). If the domain will be hosted elsewhere, they need porting.
+8. **Slash-less contact URL.** `/contact` (no slash, the old Dutch page) now redirects to `/nl/contact/`. The English page is `/contact/`.
+
 Goal: the new site replaces the Wix site at www.express-cargo.nl without losing rankings. It then becomes the source that both search engines and AI assistants (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) quote for specialist air freight from Schiphol, chargeable weight and Incoterms.
 
 GEO means generative engine optimisation: being quoted and cited by AI assistants.
