@@ -28,12 +28,13 @@ const SETS = {
   'containership': ['brand/photos/aerial-containership.jpg', [640, 1060]],
   'schiphol-aerial': ['brand/photos/schiphol-aerial.jpg', [640, 1035]],
   'world-map': ['brand/photos/world-map-outline-white.jpg', [1342]],
-  'project-white-glove': ['brand/site-photos/project-white-glove.jpg', [640, 1060]],
+  // white glove and Kenya: Magnific Precision (photo) 2x upscales of the client's photos
+  'project-white-glove': ['brand/site-photos/project-white-glove-2x.jpg', [640, 1068]],
   'project-trucks-brunei': ['brand/site-photos/project-trucks-brunei.jpg', [640, 1280]],
   'project-perth': ['brand/site-photos/project-perth-construction.jpg', [640, 800]],
   'project-crate-mexico': ['brand/site-photos/project-crate-mexico.jpg', [640, 1280]],
   'project-envirotainer': ['brand/site-photos/project-envirotainer-australia.jpg', [640, 1280]],
-  'project-kenya': ['brand/site-photos/project-kenya-hospital.jpg', [640, 800]],
+  'project-kenya': ['brand/site-photos/project-kenya-hospital-2x.jpg', [640, 1280, 1600]],
   'team-marcel': ['brand/site-photos/team-marcel.jpg', [480, 800]],
   'team-roy': ['brand/site-photos/team-roy.jpg', [480, 800]],
   'team-niels': ['brand/site-photos/team-niels.jpg', [480, 800]],
@@ -59,14 +60,14 @@ for (const [name, [orig, widths]] of Object.entries(SETS)) {
   const out = [];
   for (const w of widths) {
     const width = Math.min(w, meta.width);
-    // project-kenya: keep only the hospital-gate photo of the PhotoGrid collage (above its watermark)
-    const crop = name === 'project-kenya' ? { left: 0, top: Math.round(meta.height * 0.49), width: meta.width, height: Math.round(meta.height * 0.43) } : null;
-    const base = (crop ? sharp(src).extract(crop) : sharp(src)).rotate().resize({ width, withoutEnlargement: true });
+    // project-kenya's source is already the hospital-gate photo cut from the
+    // client's PhotoGrid collage (above its watermark), then upscaled
+    const base = sharp(src).rotate().resize({ width, withoutEnlargement: true });
     await base.clone().avif(smooth ? { quality: 68, effort: 6, chromaSubsampling: '4:4:4' } : { quality: 52, effort: 5 }).toFile(`public/img/${name}-${width}.avif`);
     await base.clone().webp(smooth ? { quality: 88, smartSubsample: true } : { quality: 74 }).toFile(`public/img/${name}-${width}.webp`);
     out.push(width);
   }
-  manifest[name] = { widths: [...new Set(out)], ratio: +(meta.width / (name === 'project-kenya' ? Math.round(meta.height * 0.43) : meta.height)).toFixed(4), source: orig };
+  manifest[name] = { widths: [...new Set(out)], ratio: +(meta.width / meta.height).toFixed(4), source: orig };
   console.log(name, out.join(','));
 }
 await writeFile('src/content/images.json', JSON.stringify(manifest, null, 2));

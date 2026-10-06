@@ -93,10 +93,11 @@
   },
   "project-white-glove": {
     "widths": [
-      534
+      640,
+      1068
     ],
     "ratio": 1.3728,
-    "source": "brand/site-photos/project-white-glove.jpg"
+    "source": "brand/site-photos/project-white-glove-2x.jpg"
   },
   "project-trucks-brunei": {
     "widths": [
@@ -133,10 +134,11 @@
   "project-kenya": {
     "widths": [
       640,
-      800
+      1280,
+      1600
     ],
     "ratio": 2.3256,
-    "source": "brand/site-photos/project-kenya-hospital.jpg"
+    "source": "brand/site-photos/project-kenya-hospital-2x.jpg"
   },
   "team-marcel": {
     "widths": [
