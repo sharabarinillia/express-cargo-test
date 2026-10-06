@@ -204,6 +204,8 @@ function page() {
         </div>
       </section>
 
+      <!-- @faq -->
+
       <section class="py-24" aria-labelledby="res-close">
         <div class="wrap">
           <div class="close-panel on-night" data-settle>

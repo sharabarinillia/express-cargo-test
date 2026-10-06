@@ -1,0 +1,90 @@
+{
+  "/tools/": {
+    "en": [
+      ["How is chargeable weight calculated for air freight?", "Chargeable weight is the greater of the actual weight and the volumetric weight. For air freight, IATA volumetric weight is length × width × height in centimetres divided by 6,000, so one cubic metre counts as 166.67 kg. Airlines round the result up to the next half kilo."],
+      ["What volumetric factor do courier and express services use?", "Most integrators divide length × width × height (cm) by 5,000, so one cubic metre counts as 200 kg. Each carrier sets its own divisor, so the factor in your quote is the one that applies."],
+      ["How is LCL sea freight charged?", "Per revenue tonne, also written W/M: whichever is greater, the volume in cubic metres or the weight in tonnes. One cubic metre counts as 1,000 kg."],
+      ["What is a loading metre (LDM)?", "One metre of trailer floor, 2.4 m wide. A EUR pallet (120 × 80 cm) takes 0.4 LDM, so a 13.6 m trailer holds 33 of them. European road groupage converts 1 LDM to 1,750 kg and 1 m³ to 333 kg, and charges on the greatest of weight, volume and loading metres."]
+    ],
+    "nl": [
+      ["Hoe wordt het belastbaar gewicht bij luchtvracht berekend?", "Het belastbaar gewicht is het hoogste van het werkelijke gewicht en het volumegewicht. Bij luchtvracht is het IATA-volumegewicht lengte × breedte × hoogte in centimeters gedeeld door 6.000, dus één kubieke meter telt als 166,67 kg. Luchtvaartmaatschappijen ronden af naar boven op een halve kilo."],
+      ["Welke volumefactor gebruiken koeriers- en expressdiensten?", "De meeste integrators delen lengte × breedte × hoogte (cm) door 5.000, dus één kubieke meter telt als 200 kg. Elke vervoerder bepaalt zijn eigen deler; de factor in uw offerte is de factor die geldt."],
+      ["Hoe wordt LCL-zeevracht berekend?", "Per vrachtton, ook wel W/M: het hoogste van het volume in kubieke meters of het gewicht in tonnen. Eén kubieke meter telt als 1.000 kg."],
+      ["Wat is een laadmeter (LDM)?", "Eén meter trailervloer, 2,4 m breed. Een europallet (120 × 80 cm) neemt 0,4 LDM in, dus een trailer van 13,6 m draagt er 33. Europese groupage rekent 1 LDM als 1.750 kg en 1 m³ als 333 kg, en berekent het hoogste van gewicht, volume en laadmeters."]
+    ]
+  },
+  "/services/air-freight/": {
+    "en": [
+      ["Can you ship dangerous goods by air from Schiphol?", "Yes. Express Cargo is IATA registered and IATA DGR certified: dangerous goods are declared, packed and labelled to the IATA Dangerous Goods Regulations by certified staff, and every document is checked before the cargo moves."],
+      ["Do you ship lithium batteries?", "Yes: lithium-ion (UN3480, UN3481) and lithium metal (UN3090, UN3091), packed on their own, with equipment or inside it, under the IATA Dangerous Goods Regulations."],
+      ["What does UN3373 mean?", "UN3373 is the UN number for “Biological substance, Category B”, such as diagnostic and clinical specimens. We ship UN3373 samples worldwide, on dry ice (UN1845) when they must stay frozen."],
+      ["Which Incoterm suits air freight?", "FCA is the usual choice: the seller clears export and hands the goods to the buyer’s carrier, and the buyer books the flight. FOB, CFR and CIF are meant for sea and inland waterway only."],
+      ["How quickly do you send a quote?", "Quotes go out fast and are priced by a coordinator who knows the route, not by a booking engine. For anything urgent, call +31 20 333 2405."]
+    ],
+    "nl": [
+      ["Kunnen jullie gevaarlijke stoffen per luchtvracht vanaf Schiphol versturen?", "Ja. Express Cargo is IATA-geregistreerd en IATA DGR-gecertificeerd: gevaarlijke stoffen worden door gecertificeerde medewerkers aangemeld, verpakt en gelabeld volgens de IATA Dangerous Goods Regulations, en alle documenten worden gecontroleerd voordat de lading vertrekt."],
+      ["Versturen jullie lithiumbatterijen?", "Ja: lithium-ion (UN3480, UN3481) en lithiummetaal (UN3090, UN3091), los verpakt, bij apparatuur of erin, volgens de IATA Dangerous Goods Regulations."],
+      ["Wat betekent UN3373?", "UN3373 is het UN-nummer voor “Biologische stof, categorie B”, zoals diagnostische en klinische specimens. We versturen UN3373-samples wereldwijd, op droogijs (UN1845) als ze bevroren moeten blijven."],
+      ["Welke Incoterm past bij luchtvracht?", "FCA is de gangbare keuze: de verkoper doet de exportaangifte en draagt de goederen over aan de vervoerder van de koper, die de vlucht boekt. FOB, CFR en CIF zijn alleen bedoeld voor zee en binnenwateren."],
+      ["Hoe snel sturen jullie een offerte?", "Offertes gaan snel de deur uit en worden geprijsd door een coördinator die de route kent, niet door een boekingsmachine. Is het dringend? Bel +31 20 333 2405."]
+    ]
+  },
+  "/services/sea-freight/": {
+    "en": [
+      ["What is the difference between FCL and LCL?", "FCL (full container load) means you book a whole 20′, 40′ or 40′ high-cube container. LCL (less than container load) means your cargo shares a container with other shipments and you pay for the space you use, per revenue tonne."],
+      ["How much fits in a shipping container?", "Internal volume is about 33 m³ for a 20′ standard, 67–68 m³ for a 40′ standard and 76 m³ for a 40′ high cube. Usable volume is lower once cargo is stacked and secured."],
+      ["Can you ship vehicles or oversized machinery?", "Yes, on flat-rack containers. For example, two trucks carrying a high-value vacuum tank went to Brunei on two 40′ high-cube flat racks, loaded by low-loader at the supplier and secured in Rotterdam."],
+      ["Do you arrange the shipping documents?", "Yes. Bills of lading, customs declarations and certificates are prepared for you, and one coordinator follows the shipment from booking to delivery."]
+    ],
+    "nl": [
+      ["Wat is het verschil tussen FCL en LCL?", "FCL (full container load) betekent dat u een hele 20′-, 40′- of 40′-high-cubecontainer boekt. LCL (less than container load) betekent dat uw lading een container deelt met andere zendingen en u betaalt voor de ruimte die u gebruikt, per vrachtton."],
+      ["Hoeveel past er in een zeecontainer?", "Het binnenvolume is ongeveer 33 m³ voor een 20′-standaard, 67–68 m³ voor een 40′-standaard en 76 m³ voor een 40′-high cube. Het bruikbare volume is lager zodra de lading gestapeld en vastgezet is."],
+      ["Kunnen jullie voertuigen of grote machines verschepen?", "Ja, op flatrackcontainers. Zo gingen twee trucks met een waardevolle vacuümtank naar Brunei op twee 40′-high-cubeflatracks, met een dieplader geladen bij de leverancier en vastgezet in Rotterdam."],
+      ["Regelen jullie de verzenddocumenten?", "Ja. Cognossementen, douaneaangiften en certificaten worden voor u opgesteld, en één coördinator volgt de zending van boeking tot aflevering."]
+    ]
+  },
+  "/services/road-transport/": {
+    "en": [
+      ["What is groupage?", "Groupage is shared road transport: your pallets travel on a trailer with other shipments, so you pay for the floor space you use. We arrange groupage from 1 to 200 pallets through long-standing partner networks."],
+      ["What is TAPA TSR1?", "TAPA TSR is the security standard for road transport from the Transported Asset Protection Association; level 1 is the highest. We arrange TAPA TSR1 transport for high-value freight, with a security escort and a tracking link on request."],
+      ["How is road freight priced?", "On the greatest of actual weight, volume (1 m³ = 333 kg) and loading metres (1 LDM = 1,750 kg). Our free calculator works out the loading metres your pallets take on a 13.6 m trailer."],
+      ["Can you transport art or hanging garments?", "Yes. Art travels soft-packed or crated and handled with care, and fashion travels hanging on rails, ready for the shop floor."]
+    ],
+    "nl": [
+      ["Wat is groupage?", "Groupage is gedeeld wegtransport: uw pallets reizen op een trailer met andere zendingen, dus u betaalt voor de vloerruimte die u gebruikt. We regelen groupage van 1 tot 200 pallets via netwerken van vaste partners."],
+      ["Wat is TAPA TSR1?", "TAPA TSR is de beveiligingsstandaard voor wegtransport van de Transported Asset Protection Association; niveau 1 is het hoogste. We regelen TAPA TSR1-transport voor waardevolle vracht, met een beveiliger en een trackinglink op aanvraag."],
+      ["Hoe wordt wegtransport geprijsd?", "Op het hoogste van werkelijk gewicht, volume (1 m³ = 333 kg) en laadmeters (1 LDM = 1.750 kg). Onze gratis calculator rekent uit hoeveel laadmeters uw pallets innemen op een trailer van 13,6 m."],
+      ["Vervoeren jullie kunst of hangende kleding?", "Ja. Kunst reist zacht of in een kist verpakt en met zorg behandeld, en mode reist hangend aan rails, klaar voor de winkelvloer."]
+    ]
+  },
+  "/services/special-projects/": {
+    "en": [
+      ["What is white glove delivery?", "A delivery service for high-value, fragile, large or complex items: packed as you wish, inspected and labelled, tracked in real time, then carried inside by trained people and placed in the room where it belongs, assembled where needed."],
+      ["What packaging do you recommend for art and fragile items?", "For international transport a wooden crate is the most common and recommended choice. Hard and soft pack are both available, tailor-made for the item’s size, value, fragility and the route."],
+      ["What is an Envirotainer?", "An active, temperature-controlled air cargo container that keeps pharmaceutical and biotech products at a constant temperature. Two Envirotainers filled with pharmaceuticals went to Australia this way."],
+      ["Can someone travel with the shipment?", "Yes. If needed, a transport manager accompanies the shipment for the whole journey."]
+    ],
+    "nl": [
+      ["Wat is white glove levering?", "Een leverservice voor waardevolle, kwetsbare, grote of complexe objecten: verpakt zoals u wilt, geïnspecteerd en gelabeld, realtime gevolgd, en door getrainde mensen naar binnen gebracht en geplaatst in de juiste ruimte, gemonteerd waar nodig."],
+      ["Welke verpakking raden jullie aan voor kunst en kwetsbare objecten?", "Voor internationaal transport is een houten kist de meest gebruikte en aanbevolen keuze. Hard en zacht verpakken kan allebei, op maat van afmetingen, waarde, kwetsbaarheid en route."],
+      ["Wat is een Envirotainer?", "Een actieve, temperatuurgecontroleerde luchtvrachtcontainer die farmaceutische en biotechproducten op een constante temperatuur houdt. Zo gingen twee Envirotainers vol farmaceutica naar Australië."],
+      ["Kan er iemand met de zending meereizen?", "Ja. Indien nodig reist een transportmanager het hele traject met de zending mee."]
+    ]
+  },
+  "/resources/": {
+    "en": [
+      ["What are Incoterms?", "Incoterms® 2020 are eleven rules published by the International Chamber of Commerce. Each one defines which party arranges and pays for each stage of transport, and where the risk passes from seller to buyer."],
+      ["Which Incoterms are only for sea freight?", "FAS, FOB, CFR and CIF are meant for sea and inland waterway transport only. The other seven (EXW, FCA, CPT, CIP, DAP, DPU and DDP) can be used for any mode, including air freight."],
+      ["What is the difference between CIF and CIP?", "Both make the seller pay carriage and insurance. CIF is for sea and inland waterway and requires minimum cover (Institute Cargo Clauses C). CIP works for any mode and requires the highest cover (Institute Cargo Clauses A)."],
+      ["What is the difference between DAP, DPU and DDP?", "With all three the seller delivers to the named destination. Under DAP the goods arrive ready for unloading; under DPU the seller also unloads them; under DDP the seller also clears import and pays the duties and taxes."],
+      ["Should I use FOB for container shipments?", "ICC recommends FCA instead. With containers the goods are usually handed over at a terminal before they are loaded on board, which FCA describes and FOB does not."]
+    ],
+    "nl": [
+      ["Wat zijn Incoterms?", "Incoterms® 2020 zijn elf regels van de International Chamber of Commerce. Elke regel bepaalt welke partij elke stap van het transport regelt en betaalt, en waar het risico van verkoper naar koper overgaat."],
+      ["Welke Incoterms zijn alleen voor zeevracht?", "FAS, FOB, CFR en CIF zijn alleen bedoeld voor transport over zee en binnenwateren. De andere zeven (EXW, FCA, CPT, CIP, DAP, DPU en DDP) gelden voor elke vervoerswijze, ook luchtvracht."],
+      ["Wat is het verschil tussen CIF en CIP?", "Bij beide betaalt de verkoper vervoer en verzekering. CIF is voor zee en binnenwateren en vraagt minimale dekking (Institute Cargo Clauses C). CIP geldt voor elke vervoerswijze en vraagt de hoogste dekking (Institute Cargo Clauses A)."],
+      ["Wat is het verschil tussen DAP, DPU en DDP?", "Bij alle drie levert de verkoper op de genoemde bestemming. Bij DAP komen de goederen klaar om te lossen aan; bij DPU lost de verkoper ze ook; bij DDP klaart de verkoper ook in en betaalt hij de invoerrechten en belastingen."],
+      ["Moet ik FOB gebruiken voor containerzendingen?", "ICC raadt FCA aan. Bij containers worden de goederen meestal op een terminal overgedragen voordat ze aan boord gaan; dat beschrijft FCA wel en FOB niet."]
+    ]
+  }
+}

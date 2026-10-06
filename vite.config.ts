@@ -2,6 +2,8 @@ import { defineConfig, type Plugin } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+// @ts-expect-error plain ESM build helper without types
+import { buildGraph, renderFaq, validateGraph, validatePages } from './scripts/seo.mjs';
 
 type ImageSet = { widths: number[]; ratio: number };
 const images: Record<string, ImageSet> = JSON.parse(
@@ -64,6 +66,13 @@ function videos(html: string): string {
 /** English ⇄ Dutch page pairs: drives the language switch and hreflang links */
 const routes: Record<string, string> = JSON.parse(readFileSync(resolve(import.meta.dirname, 'src/content/routes.json'), 'utf8'));
 const SITE = 'https://www.express-cargo.nl';
+
+/** which page a file is, its English counterpart and its language */
+function pageOf(file: string) {
+  const page = file.replace(/index\.html$/, '');
+  const en = page.startsWith('/nl/') ? Object.keys(routes).find((k) => routes[k] === page) : page;
+  return { page, en, nl: en ? routes[en] : undefined, lang: page.startsWith('/nl/') ? 'nl' : 'en' };
+}
 /** English page → share image name in public/og/ (scripts/og.mjs) */
 const OG: Record<string, string> = {
   '/': 'home', '/about/': 'about', '/contact/': 'contact', '/tools/': 'tools', '/resources/': 'incoterms',
@@ -71,9 +80,7 @@ const OG: Record<string, string> = {
   '/services/road-transport/': 'road-transport', '/services/special-projects/': 'special-projects',
 };
 function languages(html: string, file: string): string {
-  const page = file.replace(/index\.html$/, '');
-  const en = page.startsWith('/nl/') ? Object.keys(routes).find((k) => routes[k] === page) : page;
-  const nl = en ? routes[en] : undefined;
+  const { page, en, nl } = pageOf(file);
   if (!en || !nl) return html;
   const alt = page.startsWith('/nl/') ? en : nl;
   // one share image per page pair, Dutch pages get the Dutch card
@@ -84,9 +91,41 @@ function languages(html: string, file: string): string {
   return html.replaceAll('{{alt-lang}}', alt).replace('</head>', links);
 }
 
+/** FAQ block from src/content/faq.json where a page asks for one */
+function faqs(html: string, file: string): string {
+  const { en, lang } = pageOf(file);
+  return html.replace('<!-- @faq -->', en ? renderFaq(en, lang) : '');
+}
+
+/** every page's JSON-LD is one generated @graph (scripts/seo.mjs), checked as it is built */
+const seen: { page: string; title?: string; description?: string; canonical?: string }[] = [];
+function structuredData(html: string, file: string): string {
+  const { page, en, lang } = pageOf(file);
+  if (!en) return html;
+  html = html.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+  const graph = buildGraph(html, en, page, lang);
+  const problems: string[] = validateGraph(graph, page);
+  if (problems.length) throw new Error(`Structured data:\n${problems.join('\n')}`);
+  seen.push({
+    page,
+    title: html.match(/<title>([\s\S]*?)<\/title>/)?.[1].trim(),
+    description: html.match(/<meta name="description" content="([^"]*)"/)?.[1],
+    canonical: html.match(/<link rel="canonical" href="([^"]+)"/)?.[1],
+  });
+  const json = JSON.stringify(graph).replace(/</g, '\\u003c');
+  return html.replace('</head>', `  <script type="application/ld+json">${json}</script>\n  </head>`);
+}
+
 const html = (): Plugin => ({
   name: 'ec-html',
-  transformIndexHtml: { order: 'pre', handler: (src, ctx) => languages(videos(icons(pictures(includes(src)))), ctx.path) },
+  transformIndexHtml: { order: 'pre', handler: (src, ctx) => structuredData(languages(videos(icons(pictures(faqs(includes(src), ctx.path)))), ctx.path), ctx.path) },
+  // across all pages: titles, descriptions and canonicals present and unique
+  closeBundle() {
+    if (!seen.length) return;
+    const problems: string[] = validatePages(seen);
+    seen.length = 0;
+    if (problems.length) throw new Error(`Page metadata:\n${problems.join('\n')}`);
+  },
 });
 
 /** every page, English and Dutch */

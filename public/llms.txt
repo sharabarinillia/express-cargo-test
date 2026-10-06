@@ -1,0 +1,40 @@
+# Express Cargo
+
+> Specialist freight forwarder at Amsterdam Airport Schiphol, the Netherlands, since 2002. Part of the Express-Cargo Group. Air, sea and road freight worldwide, specialising in dangerous goods (IATA DGR), clinical trials and biological samples on dry ice, temperature-controlled cargo, and high-value, fragile or oversized shipments with white glove service. Air freight also via Belgrade airport (BEG), Serbia.
+
+Every shipment has one coordinator from first message to delivery. Quotes are priced by a coordinator, not a booking engine, and go out fast.
+
+- Address: Breguetlaan 21, 1438 BA Oude Meer (Schiphol Airport), the Netherlands
+- Phone: +31 20 333 2405
+- Email (sales and bookings): salesams@express-cargo.nl
+- Certifications and memberships: ISO 9001:2015 (TÜV SÜD), IATA member, IATA DGR certified, GDP (Good Distribution Practice), Global Logistics Network
+- Languages: English and Dutch
+
+## Services
+
+- [Air freight](https://www.express-cargo.nl/services/air-freight/): door to door from Schiphol; dangerous goods, lithium batteries (UN3480, UN3481, UN3090, UN3091), biological and pharmaceutical shipments (UN3373, dry ice UN1845), temperature-controlled cargo, customs documents, bonded warehousing
+- [Sea freight](https://www.express-cargo.nl/services/sea-freight/): full containers (FCL) and shared containers (LCL) with partners, flat racks for vehicles and out-of-gauge cargo, all documents arranged
+- [Road transport](https://www.express-cargo.nl/services/road-transport/): national and international, 1 to 10,000 kg and 1 to 200 pallets; dedicated transport, white glove, TAPA TSR1 security, art, hanging garments, groupage, medical samples
+- [Special projects and white glove](https://www.express-cargo.nl/services/special-projects/): tailor-made crates, Envirotainer active containers, heavy and oversized cargo, inside delivery, a transport manager travelling with the shipment when needed
+- Time-critical: Next Flight Out (NFO), On-Board Courier (OBC) and Direct Driver, described on the [home page](https://www.express-cargo.nl/#time-critical)
+
+## Free tools and references
+
+- [Chargeable weight and loading metre calculator](https://www.express-cargo.nl/tools/): air (IATA 1:6000), courier (1:5000), road (1 m³ = 333 kg, 1 LDM = 1,750 kg) and sea LCL (W/M, 1 m³ = 1,000 kg)
+- [Incoterms® 2020 chart](https://www.express-cargo.nl/resources/): all eleven rules, who pays for each stage and where the risk passes, plus useful links for customs, dangerous goods and tracking
+
+## Company
+
+- [About Express Cargo](https://www.express-cargo.nl/about/): history, certifications, team (Director Marcel Sannes; operations, export, import and accounting contacts)
+- [Contact and quote request](https://www.express-cargo.nl/contact/)
+
+## Nederlands
+
+- [Startpagina](https://www.express-cargo.nl/nl/)
+- [Luchtvracht](https://www.express-cargo.nl/nl/diensten/luchtvracht/), [Zeevracht](https://www.express-cargo.nl/nl/diensten/zeevracht/), [Wegtransport](https://www.express-cargo.nl/nl/diensten/wegtransport/), [Projecten & white glove](https://www.express-cargo.nl/nl/diensten/projecten/)
+- [Calculator belastbaar gewicht & laadmeters](https://www.express-cargo.nl/nl/tools/), [Incoterms® 2020-overzicht](https://www.express-cargo.nl/nl/incoterms/)
+- [Over ons](https://www.express-cargo.nl/nl/over-ons/), [Contact](https://www.express-cargo.nl/nl/contact/)
+
+## Optional
+
+- [Sitemap](https://www.express-cargo.nl/sitemap.xml)
