@@ -95,5 +95,6 @@ footer = LINKS + [
     ('aria-label="Call +31 20 333 2405"', 'aria-label="Bel +31 20 333 2405"'),
     ('<span class="dock-short">Call</span>', '<span class="dock-short">Bellen</span>'),
     ('#enquiry">Request a quote <!-- @include arrow -->', '#enquiry">Offerte aanvragen <!-- @include arrow -->'),
+    ('aria-label="Certifications and memberships"', 'aria-label="Certificeringen en lidmaatschappen"'),
 ]
 translate(R + 'footer.html', R + 'footer-nl.html', footer)

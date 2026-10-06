@@ -75,6 +75,7 @@ run('contact/index.html', 'nl/contact/index.html', [
 ] + TEAM[1:])
 
 run('about/index.html', 'nl/over-ons/index.html', TEAM + [
+    ('aria-label="Certifications and memberships"', 'aria-label="Certificeringen en lidmaatschappen"'),
     ('<title>About Express Cargo | Specialist freight forwarder at Schiphol since 2002</title>', '<title>Over Express Cargo | Gespecialiseerd expediteur op Schiphol sinds 2002</title>'),
     ('content="Express Cargo has delivered fast, safe freight to any destination since 2002. Part of the Express-Cargo Group at Amsterdam Schiphol, specialised in dangerous goods, clinical trials and samples on dry ice. Meet the team."', 'content="Express Cargo vervoert sinds 2002 snel en veilig vracht naar elke bestemming. Onderdeel van de Express-Cargo Group op Amsterdam Schiphol, gespecialiseerd in gevaarlijke stoffen, clinical trials en samples op droogijs. Maak kennis met het team."'),
     ('href="https://www.express-cargo.nl/about/"', 'href="https://www.express-cargo.nl/nl/over-ons/"'),

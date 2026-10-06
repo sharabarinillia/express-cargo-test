@@ -161,5 +161,6 @@ P = COMMON + links_present(SRC, LINKS) + [
     ('A shipment like these?<span>Crates, active containers or oversized loads: one coordinator plans the route with you.</span>', 'Een zending zoals deze?<span>Kisten, actieve containers of oversized lading: één coördinator plant de route met u.</span>'),
     ('href="/contact/?what=Special%20project#enquiry">Start a project quote <!-- @include arrow -->', 'href="/nl/contact/?what=Speciaal%20project#enquiry">Projectofferte aanvragen <!-- @include arrow -->'),
     ('href="/nl/diensten/projecten/">Special projects</a>', 'href="/nl/diensten/projecten/">Speciale projecten</a>'),
+    ('aria-label="Certifications and memberships"', 'aria-label="Certificeringen en lidmaatschappen"'),
 ]
 translate(SRC, DST, P)

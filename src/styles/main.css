@@ -1701,6 +1701,35 @@
     height: 28px;
     color: var(--color-cyan-ink);
   }
+  /* certification and network logos, as the client shows them */
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 30px;
+    padding: 18px 22px;
+    border-top: 1px solid var(--color-line-2);
+  }
+  .badges img {
+    width: auto;
+    height: 46px;
+  }
+  .badges-tiles {
+    gap: 8px;
+    padding: 0;
+    border: 0;
+  }
+  .badges-tiles li {
+    display: grid;
+    place-items: center;
+    height: 52px;
+    padding: 0 12px;
+    border-radius: 6px;
+    background: #fff;
+  }
+  .badges-tiles img {
+    height: 34px;
+  }
 
   /* ── Forms (flight plan) ────────────────────────────────────────── */
   .field label,
