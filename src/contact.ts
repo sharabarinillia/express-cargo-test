@@ -48,10 +48,12 @@ function initForm() {
   const modeMap: Record<string, string> = { air: 'Air freight', road: 'Road', ocean: 'Ocean', 'time-critical': 'Time-critical' };
   const mode = modeMap[params.get('mode') ?? ''];
   if (mode && field('mode')) field('mode')!.value = mode;
-  for (const key of ['from', 'to'] as const) {
-    const v = params.get(key);
+  for (const key of ['from', 'to', 'what', 'weight'] as const) {
+    const v = params.get(key)?.slice(0, 200);
     if (v && field(key)) field(key)!.value = v;
   }
+  // a result from the shipping tools opens the details it filled in
+  if (params.get('weight')) document.querySelector<HTMLDetailsElement>('[data-details]')?.setAttribute('open', '');
   syncLine();
 
   const LABELS: Record<string, string> = { name: 'Your name', email: 'Your email' };

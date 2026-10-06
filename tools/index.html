@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- @include head -->
+    <title>Chargeable weight &amp; loading metre calculator | Free shipping tools | Express Cargo</title>
+    <meta name="description" content="Free chargeable-weight calculator for air (IATA 1:6000), courier (1:5000), road (333 kg/m³) and sea freight (W/M 1 m³ = 1,000 kg), plus a loading-metre (LDM) and pallet calculator for a 13.6 m trailer." />
+    <link rel="canonical" href="https://www.express-cargo.nl/tools/" />
+    <meta property="og:title" content="Free shipping tools: chargeable weight &amp; loading metres" />
+    <meta property="og:description" content="Work out what your shipment is charged on before you ask for a quote: air, courier, road and sea." />
+    <meta property="og:url" content="https://www.express-cargo.nl/tools/" />
+    <script type="module" src="/src/tools.ts"></script>
+  </head>
+  <body>
+    <!-- @include header -->
+
+    <main id="main">
+      <!-- HERO: a box that takes the shape you type ──────────────── -->
+      <section class="page-hero tools-hero" data-page-hero>
+        <div class="wrap grid items-center gap-x-12 gap-y-10 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <p class="chart flex items-center gap-2 text-cyan-ink" data-fade><ec-icon name="calculator" class="!h-[18px] !w-[18px]" /> Free shipping tools</p>
+            <h1 class="display display-xl mt-5 max-w-[14ch]" data-split>Know what you'll be charged for.</h1>
+            <p class="lede mt-6" data-fade>Carriers charge on actual weight or on space, whichever is greater. Type your pieces and see which one applies, for air, courier, road and sea.</p>
+            <div class="mt-8 flex flex-wrap gap-3" data-fade>
+              <a class="btn btn-ink" href="#chargeable">Chargeable weight <ec-icon name="arrow-down" /></a>
+              <a class="btn btn-line" href="#loading">Loading metres <ec-icon name="arrow-down" /></a>
+            </div>
+          </div>
+          <div class="lg:col-span-5" data-fade>
+            <div class="cube-stage" aria-hidden="true" data-cube-stage>
+              <div class="cube" data-cube><div class="cube-spin" data-cube-spin>
+                <i class="f front"><b class="chart" data-cube-dims>120 × 80 × 100 cm</b></i><i class="f back"></i><i class="f right"></i><i class="f left"></i><i class="f top"></i><i class="f bottom"></i>
+              </div></div>
+              <p class="cube-read chart"><span data-cube-kg>160 kg</span> by volume <span class="text-mute">at 1:6000</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOOL 1: chargeable weight ────────────────────────────── -->
+      <section id="chargeable" class="section !pt-8" aria-labelledby="cw-title">
+        <div class="wrap">
+          <div class="grid gap-6 lg:grid-cols-12">
+            <h2 id="cw-title" class="display display-l lg:col-span-7" data-split>Chargeable weight</h2>
+            <p class="copy self-end lg:col-span-5" data-reveal>Add each kind of piece once with how many there are. Measurements are outside dimensions, packed.</p>
+          </div>
+
+          <form class="calc mt-12 grid gap-8 lg:grid-cols-12" data-calc novalidate>
+            <div class="lg:col-span-7" data-reveal>
+              <fieldset>
+                <legend class="chart text-mute">Mode</legend>
+                <div class="seg mt-3" role="radiogroup">
+                  <label class="seg-opt"><input type="radio" name="mode" value="air" checked /><span><ec-icon name="plane" /><b>Air</b><small>IATA 1:6000</small></span></label>
+                  <label class="seg-opt"><input type="radio" name="mode" value="courier" /><span><ec-icon name="package-check" /><b>Courier</b><small>1:5000</small></span></label>
+                  <label class="seg-opt"><input type="radio" name="mode" value="road" /><span><ec-icon name="truck" /><b>Road</b><small>1 m³ = 333 kg</small></span></label>
+                  <label class="seg-opt"><input type="radio" name="mode" value="sea" /><span><ec-icon name="ship" /><b>Sea LCL</b><small>1 m³ = 1,000 kg</small></span></label>
+                </div>
+              </fieldset>
+
+              <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+                <p class="chart text-mute" id="pieces-label">Pieces</p>
+                <div class="unit-toggle" role="group" aria-label="Units">
+                  <button type="button" aria-pressed="true" data-unit="metric">cm · kg</button>
+                  <button type="button" aria-pressed="false" data-unit="imperial">in · lb</button>
+                </div>
+              </div>
+              <ol class="rows mt-3" aria-labelledby="pieces-label" data-rows></ol>
+              <template data-row-tpl>
+                <li class="row">
+                  <span class="row-n chart" aria-hidden="true"></span>
+                  <div class="field r-qty"><label class="chart text-mute">Qty</label><input type="number" inputmode="numeric" min="1" step="1" name="qty" value="1" /></div>
+                  <div class="field r-l"><label class="chart text-mute">Length <span data-u-len>cm</span></label><input type="number" inputmode="decimal" min="0" step="any" name="l" /></div>
+                  <div class="field r-w"><label class="chart text-mute">Width <span data-u-len>cm</span></label><input type="number" inputmode="decimal" min="0" step="any" name="w" /></div>
+                  <div class="field r-h"><label class="chart text-mute">Height <span data-u-len>cm</span></label><input type="number" inputmode="decimal" min="0" step="any" name="h" /></div>
+                  <div class="field r-kg"><label class="chart text-mute">Weight <span data-u-kg>kg</span> / pc</label><input type="number" inputmode="decimal" min="0" step="any" name="kg" /></div>
+                  <button type="button" class="row-del" data-del><ec-icon name="x" /><span class="sr-only">Remove this line</span></button>
+                </li>
+              </template>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <button type="button" class="btn btn-line !text-ink" data-add><ec-icon name="plus" /> Add a line</button>
+                <button type="button" class="btn-text" data-example>Try an example</button>
+              </div>
+            </div>
+
+            <aside class="lg:col-span-5" aria-label="Result" data-reveal>
+              <div class="result on-night" id="cw-result" tabindex="-1" data-result>
+                <p class="chart text-cyan">Chargeable weight</p>
+                <p class="result-big mt-2" aria-live="polite"><span data-out="cw">0</span> <span class="result-unit" data-u-kg>kg</span></p>
+                <p class="result-basis chart mt-3" data-basis>Enter dimensions and weight</p>
+
+                <div class="bars mt-7" aria-hidden="true">
+                  <div class="bar" data-bar="actual"><span class="bar-label chart">Actual</span><span class="bar-track"><i></i></span><span class="bar-val chart" data-out="actual-bar">0</span></div>
+                  <div class="bar" data-bar="vol"><span class="bar-label chart">By volume</span><span class="bar-track"><i></i></span><span class="bar-val chart" data-out="vol-bar">0</span></div>
+                </div>
+
+                <dl class="result-dl mt-7">
+                  <div><dt>Pieces</dt><dd data-out="pcs">0</dd></div>
+                  <div><dt>Total volume</dt><dd><span data-out="cbm">0</span> <span data-u-vol>m³</span></dd></div>
+                  <div><dt>Actual weight</dt><dd><span data-out="actual">0</span> <span data-u-kg>kg</span></dd></div>
+                  <div><dt>Volumetric weight</dt><dd><span data-out="vol">0</span> <span data-u-kg>kg</span></dd></div>
+                  <div class="is-sea" hidden><dt>Revenue tonnes (W/M)</dt><dd data-out="rt">0</dd></div>
+                  <div><dt>Rule</dt><dd data-out="rule">IATA 1:6000</dd></div>
+                </dl>
+
+                <div class="fit mt-7 is-sea" hidden>
+                  <p class="chart text-[#c9d6e3]">Container fill (by volume)</p>
+                  <ul class="mt-3 grid gap-2" data-fit>
+                    <li data-cap="33.2"><span>20′ standard</span><span class="bar-track"><i></i></span><b>0%</b></li>
+                    <li data-cap="67.7"><span>40′ standard</span><span class="bar-track"><i></i></span><b>0%</b></li>
+                    <li data-cap="76.3"><span>40′ high cube</span><span class="bar-track"><i></i></span><b>0%</b></li>
+                  </ul>
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a class="btn btn-cyan" href="/contact/#enquiry" data-quote>Quote this shipment <!-- @include arrow --></a>
+                  <button type="button" class="btn btn-line" data-copy><ec-icon name="copy" /> Copy</button>
+                </div>
+                <p class="mt-3 text-sm text-[#c9d6e3]" role="status" data-copy-status></p>
+              </div>
+            </aside>
+          </form>
+          <!-- phones: the answer stays in reach while typing -->
+          <a class="result-peek on-night lg:hidden" href="#cw-result" data-peek><span class="chart text-cyan">Chargeable</span> <b><span data-peek-val>0</span> <span data-u-kg>kg</span></b> <span class="chart text-[#c9d6e3]" data-peek-basis></span><ec-icon name="arrow-down" /></a>
+        </div>
+      </section>
+
+      <!-- TOOL 2: loading metres ─────────────────────────────── -->
+      <section id="loading" class="section bg-paper-2" aria-labelledby="ldm-title">
+        <div class="wrap">
+          <div class="grid gap-6 lg:grid-cols-12">
+            <h2 id="ldm-title" class="display display-l lg:col-span-7" data-split>Loading metres &amp; pallets</h2>
+            <p class="copy self-end lg:col-span-5" data-reveal>Road groupage is priced on the floor you take on a 13.6 m trailer. One loading metre is a metre of trailer, 2.4 m wide.</p>
+          </div>
+
+          <form class="mt-12 grid gap-8 lg:grid-cols-12" data-ldm novalidate>
+            <div class="grid grid-cols-2 content-start gap-x-4 gap-y-5 lg:col-span-5" data-reveal>
+              <div class="field col-span-2">
+                <label class="chart text-mute" for="p-type">Pallet</label>
+                <select id="p-type" name="type">
+                  <option value="120x80">EUR pallet, 120 × 80 cm</option>
+                  <option value="120x100">Block pallet, 120 × 100 cm</option>
+                  <option value="114x114">Industrial, 114 × 114 cm</option>
+                  <option value="custom">Custom size</option>
+                </select>
+              </div>
+              <div class="field" data-custom hidden><label class="chart text-mute" for="p-l">Length cm</label><input id="p-l" name="l" type="number" inputmode="decimal" min="1" value="120" /></div>
+              <div class="field" data-custom hidden><label class="chart text-mute" for="p-w">Width cm</label><input id="p-w" name="w" type="number" inputmode="decimal" min="1" value="80" /></div>
+              <div class="field"><label class="chart text-mute" for="p-n">Number of pallets</label><input id="p-n" name="n" type="number" inputmode="numeric" min="1" max="99" value="6" /></div>
+              <div class="field"><label class="chart text-mute" for="p-h">Height cm</label><input id="p-h" name="h" type="number" inputmode="decimal" min="1" value="150" /></div>
+              <div class="field"><label class="chart text-mute" for="p-kg">Weight kg / pallet</label><input id="p-kg" name="kg" type="number" inputmode="decimal" min="0" value="400" /></div>
+              <label class="check self-end"><input type="checkbox" name="stack" /><span>Stackable, two high</span></label>
+            </div>
+
+            <div class="lg:col-span-7" data-reveal>
+              <div class="trailer-card">
+                <div class="flex flex-wrap items-baseline justify-between gap-3">
+                  <p class="chart text-mute">13.6 m trailer · top view</p>
+                  <p class="chart text-cyan-ink"><span data-l="fill">0</span>% of the floor</p>
+                </div>
+                <div class="trailer mt-4" data-trailer aria-hidden="true">
+                  <span class="trailer-cab"></span>
+                  <div class="trailer-deck" data-deck></div>
+                </div>
+                <p class="mt-3 text-sm text-ink-2" data-l="note" aria-live="polite"></p>
+                <dl class="ldm-dl mt-6">
+                  <div><dt class="chart text-mute">Loading metres</dt><dd class="chart-l" data-l="ldm">0</dd></div>
+                  <div><dt class="chart text-mute">Volume</dt><dd class="chart-l"><span data-l="cbm">0</span> m³</dd></div>
+                  <div><dt class="chart text-mute">Actual</dt><dd class="chart-l"><span data-l="kg">0</span> kg</dd></div>
+                  <div><dt class="chart text-mute">Chargeable</dt><dd class="chart-l text-magenta"><span data-l="cw">0</span> kg</dd></div>
+                </dl>
+                <p class="mt-4 text-sm text-ink-2" data-l="basis"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- RULES: what the numbers are based on ─────────────────── -->
+      <section class="section" aria-labelledby="rules-title">
+        <div class="wrap">
+          <h2 id="rules-title" class="display display-l max-w-[18ch]" data-split>The rules behind the numbers.</h2>
+          <div class="rules mt-12" data-reveal>
+            <table>
+              <caption class="sr-only">Volumetric conversion factors by mode</caption>
+              <thead><tr><th scope="col">Mode</th><th scope="col">Volumetric rule</th><th scope="col">In practice</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><ec-icon name="plane" /> Air freight</th><td>L × W × H (cm) ÷ 6,000</td><td>1 m³ = 166.67 kg. Chargeable weight rounds up to the next 0.5 kg.</td></tr>
+                <tr><th scope="row"><ec-icon name="package-check" /> Courier &amp; express</th><td>L × W × H (cm) ÷ 5,000</td><td>1 m³ = 200 kg. Integrators set their own divisor; 5,000 is the common one.</td></tr>
+                <tr><th scope="row"><ec-icon name="truck" /> Road (Europe)</th><td>1 m³ = 333 kg · 1 LDM = 1,750 kg</td><td>Groupage is charged on the greatest of weight, volume and loading metres.</td></tr>
+                <tr><th scope="row"><ec-icon name="ship" /> Sea LCL</th><td>1 m³ = 1,000 kg (W/M)</td><td>Charged per revenue tonne: whichever is greater, cubic metres or tonnes.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-6 max-w-[70ch] text-sm text-ink-2" data-reveal>Indicative only. Carriers and routes can apply their own factors and minimums, and dangerous goods or temperature control can change the packing. Your coordinator confirms the final chargeable weight in the quote.</p>
+        </div>
+      </section>
+
+      <!-- CLOSE ───────────────────────────────────────────────── -->
+      <section class="pb-24" aria-labelledby="tools-close">
+        <div class="wrap">
+          <div class="close-panel on-night" data-settle>
+            <div class="grid items-end gap-8 lg:grid-cols-12">
+              <div class="lg:col-span-8">
+                <h2 id="tools-close" class="display display-l max-w-[16ch]" data-split>Numbers done. Now the price.</h2>
+                <p class="lede mt-5">Quotes go out fast. Send the result and a coordinator prices the route.</p>
+              </div>
+              <div class="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
+                <a class="btn btn-cyan" href="/contact/#enquiry">Request a quote <!-- @include arrow --></a>
+                <a class="btn btn-line" href="/resources/"><ec-icon name="scroll-text" /> Incoterms® 2020</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include footer -->
+  </body>
+</html>

@@ -1,6 +1,9 @@
 @import "tailwindcss" source(none);
 @source "../../index.html";
 @source "../../contact/index.html";
+@source "../../tools";
+@source "../../services";
+@source "../../resources";
 @source "../partials";
 @source "../lib";
 @source "../*.ts";
