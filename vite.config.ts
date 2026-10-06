@@ -76,6 +76,7 @@ export default defineConfig({
         main: resolve(import.meta.dirname, 'index.html'),
         contact: resolve(import.meta.dirname, 'contact/index.html'),
         tools: resolve(import.meta.dirname, 'tools/index.html'),
+        about: resolve(import.meta.dirname, 'about/index.html'),
         air: resolve(import.meta.dirname, 'services/air-freight/index.html'),
         sea: resolve(import.meta.dirname, 'services/sea-freight/index.html'),
         road: resolve(import.meta.dirname, 'services/road-transport/index.html'),
