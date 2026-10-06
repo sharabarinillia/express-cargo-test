@@ -1672,6 +1672,17 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px 16px;
   }
+  /* an odd last member spans the row, photo beside the details */
+  .team li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    align-content: end;
+  }
+  .team li:last-child:nth-child(odd) figure {
+    grid-row: span 4;
+  }
   .about-hero {
     aspect-ratio: 4 / 3;
   }
