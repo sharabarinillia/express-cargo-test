@@ -170,7 +170,7 @@ function page() {
                 .join('\n              ')}
             </ol>
           </div>
-          <p class="mt-10 max-w-[78ch] text-sm text-ink-2" data-reveal>A simplified overview for planning. The full rules, including where costs such as terminal handling fall in your contract of carriage, are in the ICC publication. Incoterms® is a registered trademark of the International Chamber of Commerce. Not sure which rule fits? Ask your coordinator.</p>
+          <p class="mt-6 max-w-[78ch] text-sm text-ink-2" data-reveal>A simplified overview for planning. The full rules, including where costs such as terminal handling fall in your contract of carriage, are in the ICC publication. Incoterms® is a registered trademark of the International Chamber of Commerce. Not sure which rule fits? Ask your coordinator.</p>
         </div>
       </section>
 
@@ -181,7 +181,7 @@ function page() {
             <h2 id="links-title" class="display display-l lg:col-span-7" data-split>Useful links.</h2>
             <p class="lede self-end lg:col-span-5" data-reveal>The sources we use ourselves, for rules, customs, dangerous goods and tracking.</p>
           </div>
-          <div class="link-groups mt-14">
+          <div class="link-groups mt-12">
             ${links
               .map(
                 ([title, icon, items]) => `<div class="link-group">

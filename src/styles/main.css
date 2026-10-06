@@ -175,7 +175,7 @@
   }
   .section {
     position: relative;
-    padding-block: clamp(96px, 13vh, 160px);
+    padding-block: clamp(88px, 6vw + 48px, 160px);
   }
 
   /* ── Hero: full-bleed flight above the clouds (looping) ─────────── */
@@ -708,6 +708,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .nav-cards {
+    margin-inline: -12px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
@@ -1316,7 +1317,7 @@
   /* ── Contact: one-sentence enquiry on a flight line ─────────────── */
   .contact-hero {
     padding-top: clamp(128px, 18vh, 184px);
-    padding-bottom: clamp(80px, 12vh, 140px);
+    padding-bottom: clamp(80px, 5vw + 48px, 140px);
   }
   .flightline {
     display: grid;
