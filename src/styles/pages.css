@@ -1897,6 +1897,13 @@
   .faq-item[open] summary .icon {
     transform: rotate(45deg);
   }
+  /* animated toggles turn the icon at the click, not when the motion ends */
+  .faq-item[data-dir="close"] summary .icon {
+    transform: none;
+  }
+  .faq-item[data-dir="open"] summary .icon {
+    transform: rotate(45deg);
+  }
   .faq-item summary:hover span {
     color: var(--color-cyan-ink);
   }

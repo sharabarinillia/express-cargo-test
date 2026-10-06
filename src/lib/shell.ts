@@ -64,6 +64,51 @@ export function initDock(): void {
   new MutationObserver(update).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 }
 
+/**
+ * Disclosures (FAQ): open and close slide the height and fade the answer
+ * instead of snapping. The element stays a native <details>, so it works
+ * without script, with find-in-page and with assistive technology; only the
+ * toggle is animated. Reduced motion keeps the native snap.
+ */
+export function initDisclosures(): void {
+  if (reducedMotion) return;
+  const ease = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
+  document.querySelectorAll<HTMLDetailsElement>('details.faq-item').forEach((el) => {
+    const summary = el.querySelector('summary');
+    const body = summary?.nextElementSibling as HTMLElement | null;
+    if (!summary || !body) return;
+    let anim: Animation | null = null;
+    let fade: Animation | null = null;
+    const run = (open: boolean) => {
+      const from = el.getBoundingClientRect().height;
+      anim?.cancel();
+      fade?.cancel();
+      if (open) el.open = true;
+      const to = open ? summary.offsetHeight + body.offsetHeight : summary.offsetHeight;
+      const duration = Math.min(520, 260 + Math.abs(to - from) * 0.6);
+      el.style.overflow = 'hidden';
+      anim = el.animate({ height: [`${from}px`, `${to}px`] }, { duration, easing: ease });
+      fade = body.animate(
+        open ? { opacity: [0, 1], transform: ['translateY(-6px)', 'none'] } : { opacity: [1, 0], transform: ['none', 'translateY(-4px)'] },
+        { duration: open ? duration : duration * 0.6, easing: ease, fill: 'both' },
+      );
+      anim.onfinish = () => {
+        if (!open) el.open = false;
+        el.style.overflow = '';
+        fade?.cancel();
+        anim = fade = null;
+      };
+    };
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      // a click mid-animation reverses from wherever it is
+      const opening = anim ? el.dataset.dir !== 'open' : !el.open;
+      el.dataset.dir = opening ? 'open' : 'close';
+      run(opening);
+    });
+  });
+}
+
 export function initMenu(lenis: Lenis | null): void {
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const label = document.querySelector<HTMLElement>('[data-menu-label]');
@@ -187,6 +232,7 @@ export function initShell(): Lenis | null {
   initMenu(lenis);
   initNav();
   initDock();
+  initDisclosures();
   document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
   // mark the current page in the navigation (in-page anchors are not pages)
   document.querySelectorAll<HTMLAnchorElement>('a.nav-link, [data-menu-link], .nav-card').forEach((a) => {
