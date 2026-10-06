@@ -1,19 +1,17 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header" data-header>
-  <div class="wrap">
+  <div class="wrap relative">
     <div class="header-bar">
       <a href="/" class="header-logo relative z-[51]" aria-label="Express Cargo — home">
         <img src="/logo-ink.svg" alt="Express Cargo" width="789" height="377" class="logo-ink" />
         <img src="/logo.svg" alt="" width="789" height="377" class="logo-light" aria-hidden="true" />
       </a>
-      <nav aria-label="Primary" class="hidden lg:block">
+      <nav aria-label="Primary" class="hidden lg:block" data-nav>
         <ul class="flex items-center gap-1">
-          <li><a class="nav-link" href="/#services">Services</a></li>
-          <li><a class="nav-link" href="/#cold-chain">Cold chain</a></li>
-          <li><a class="nav-link" href="/#projects">Projects</a></li>
-          <li><a class="nav-link" href="/#about">About</a></li>
-          <li><a class="nav-link" href="/#crew">Team</a></li>
-          <li><a class="nav-link" href="/contact/" data-nav="contact">Contact</a></li>
+          <li><button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-controls="nav-services" data-nav-trigger>Services <ec-icon name="chevron-down" stroke="2" /></button></li>
+          <li><button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-controls="nav-tools" data-nav-trigger>Tools &amp; resources <ec-icon name="chevron-down" stroke="2" /></button></li>
+          <li><button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-controls="nav-company" data-nav-trigger>Company <ec-icon name="chevron-down" stroke="2" /></button></li>
+          <li><a class="nav-link" href="/contact/">Contact</a></li>
         </ul>
       </nav>
       <div class="flex items-center gap-2 sm:gap-4">
@@ -25,20 +23,101 @@
         </button>
       </div>
     </div>
+
+    <!-- desktop dropdowns: one panel per group, under the bar -->
+    <div class="nav-panel hidden lg:block" id="nav-services" data-nav-panel>
+      <div class="nav-panel-grid">
+        <div>
+          <p class="chart text-mute">Transport</p>
+          <ul class="nav-cards mt-3">
+            <li><a class="nav-card" href="/services/air-freight/"><span class="nav-card-icon"><ec-icon name="plane" /></span><span><b>Air freight</b><small>IATA DGR, lithium, pharma, bonded storage</small></span></a></li>
+            <li><a class="nav-card" href="/services/sea-freight/"><span class="nav-card-icon"><ec-icon name="ship" /></span><span><b>Sea freight</b><small>FCL and LCL, documents handled</small></span></a></li>
+            <li><a class="nav-card" href="/services/road-transport/"><span class="nav-card-icon"><ec-icon name="truck" /></span><span><b>Road transport</b><small>Groupage to dedicated, TAPA TSR1</small></span></a></li>
+            <li><a class="nav-card" href="/services/special-projects/"><span class="nav-card-icon"><ec-icon name="gem" /></span><span><b>Projects &amp; white glove</b><small>Crates, art, Envirotainer, oversize</small></span></a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="chart text-mute">Specialist cargo</p>
+          <ul class="nav-list mt-3">
+            <li><a href="/#time-critical"><ec-icon name="timer" /> Time-critical: NFO, OBC, Direct</a></li>
+            <li><a href="/#specialist"><ec-icon name="triangle-alert" /> Dangerous goods &amp; samples</a></li>
+            <li><a href="/#cold-chain"><ec-icon name="snowflake" /> Cold chain &amp; bonded storage</a></li>
+          </ul>
+          <a class="nav-feature mt-5" href="/contact/#enquiry"><span class="chart text-cyan">Fast quotes</span><b>Tell us what's moving</b><small>A coordinator prices it, not a booking engine.</small><!-- @include arrow --></a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-panel hidden lg:block" id="nav-tools" data-nav-panel>
+      <div class="nav-panel-grid is-even">
+        <div>
+          <p class="chart text-mute">Free shipping tools</p>
+          <ul class="nav-cards is-stack mt-3">
+            <li><a class="nav-card" href="/tools/#chargeable"><span class="nav-card-icon"><ec-icon name="calculator" /></span><span><b>Chargeable weight</b><small>Air, courier, road and sea, piece by piece</small></span></a></li>
+            <li><a class="nav-card" href="/tools/#loading"><span class="nav-card-icon"><ec-icon name="ruler" /></span><span><b>CBM &amp; loading metres</b><small>Pallets on a trailer, LDM and volume</small></span></a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="chart text-mute">Resources</p>
+          <ul class="nav-cards is-stack mt-3">
+            <li><a class="nav-card" href="/resources/"><span class="nav-card-icon"><ec-icon name="scroll-text" /></span><span><b>Incoterms® 2020 chart</b><small>Who pays, who carries the risk</small></span></a></li>
+            <li><a class="nav-card" href="/resources/#links"><span class="nav-card-icon"><ec-icon name="link" /></span><span><b>Useful links</b><small>IATA, customs, dangerous goods, tracking</small></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="nav-panel hidden lg:block" id="nav-company" data-nav-panel>
+      <div class="nav-panel-grid">
+        <div>
+          <p class="chart text-mute">Express Cargo</p>
+          <ul class="nav-cards mt-3">
+            <li><a class="nav-card" href="/#about"><span class="nav-card-icon"><ec-icon name="building-2" /></span><span><b>About</b><small>Schiphol since 2002, certifications</small></span></a></li>
+            <li><a class="nav-card" href="/#projects"><span class="nav-card-icon"><ec-icon name="globe" /></span><span><b>Projects</b><small>Routes we have flown, on a globe</small></span></a></li>
+            <li><a class="nav-card" href="/#crew"><span class="nav-card-icon"><ec-icon name="users" /></span><span><b>Team</b><small>The people who answer your call</small></span></a></li>
+            <li><a class="nav-card" href="/contact/"><span class="nav-card-icon"><ec-icon name="map-pin" /></span><span><b>Contact &amp; offices</b><small>Breguetlaan 21, Oude Meer</small></span></a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="chart text-mute">Talk to the desk</p>
+          <p class="mt-3"><a class="chart-l link-u text-xl" href="tel:+31203332405">+31 20 333 2405</a></p>
+          <p class="mt-2"><a class="link-u text-ink-2" href="mailto:salesams@express-cargo.nl">salesams@express-cargo.nl</a></p>
+          <p class="mt-5 text-sm text-ink-2">Air freight also via Belgrade airport (BEG), Serbia.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 <div class="menu-panel lg:hidden" id="menu" data-menu>
-  <nav aria-label="Mobile">
-    <ul class="display display-m flex flex-col gap-3">
-      <li><a href="/#services" data-menu-link>Services</a></li>
-      <li><a href="/#cold-chain" data-menu-link>Cold chain</a></li>
-      <li><a href="/#projects" data-menu-link>Projects</a></li>
-      <li><a href="/#about" data-menu-link>About</a></li>
-      <li><a href="/#crew" data-menu-link>Team</a></li>
-      <li><a href="/contact/" data-menu-link>Contact</a></li>
-    </ul>
+  <nav aria-label="Mobile" class="menu-groups">
+    <div class="menu-group">
+      <p class="chart text-mute">Services</p>
+      <ul>
+        <li><a href="/services/air-freight/" data-menu-link><ec-icon name="plane" /> Air freight</a></li>
+        <li><a href="/services/sea-freight/" data-menu-link><ec-icon name="ship" /> Sea freight</a></li>
+        <li><a href="/services/road-transport/" data-menu-link><ec-icon name="truck" /> Road transport</a></li>
+        <li><a href="/services/special-projects/" data-menu-link><ec-icon name="gem" /> Projects &amp; white glove</a></li>
+        <li><a href="/#time-critical" data-menu-link><ec-icon name="timer" /> Time-critical</a></li>
+        <li><a href="/#cold-chain" data-menu-link><ec-icon name="snowflake" /> Cold chain</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p class="chart text-mute">Tools &amp; resources</p>
+      <ul>
+        <li><a href="/tools/" data-menu-link><ec-icon name="calculator" /> Weight &amp; LDM calculator</a></li>
+        <li><a href="/resources/" data-menu-link><ec-icon name="scroll-text" /> Incoterms® 2020</a></li>
+        <li><a href="/resources/#links" data-menu-link><ec-icon name="link" /> Useful links</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p class="chart text-mute">Company</p>
+      <ul>
+        <li><a href="/#about" data-menu-link><ec-icon name="building-2" /> About</a></li>
+        <li><a href="/#projects" data-menu-link><ec-icon name="globe" /> Projects</a></li>
+        <li><a href="/#crew" data-menu-link><ec-icon name="users" /> Team</a></li>
+        <li><a href="/contact/" data-menu-link><ec-icon name="map-pin" /> Contact</a></li>
+      </ul>
+    </div>
   </nav>
-  <div class="mt-auto flex flex-col gap-4">
+  <div class="menu-foot">
     <a href="/contact/#enquiry" class="btn btn-ink" data-menu-link>Request a quote <!-- @include arrow --></a>
     <a href="tel:+31203332405" class="chart-l text-xl">+31 20 333 2405</a>
     <a href="mailto:salesams@express-cargo.nl" class="text-ink-2">salesams@express-cargo.nl</a>

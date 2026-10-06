@@ -23,7 +23,7 @@ export function initHeader(): void {
   const update = () => {
     const y = window.scrollY;
     header.classList.toggle('is-solid', y > 24);
-    const menuOpen = document.documentElement.classList.contains('menu-open');
+    const menuOpen = document.documentElement.classList.contains('menu-open') || header.classList.contains('is-open');
     header.classList.toggle('is-hidden', !menuOpen && y > 480 && y > last + 2);
     if (y < last - 2) header.classList.remove('is-hidden');
     last = y;
@@ -59,13 +59,99 @@ export function initMenu(lenis: Lenis | null): void {
   });
 }
 
+/** Desktop dropdowns: click or hover to open, Escape / outside click / focus leaving to close. */
+export function initNav(): void {
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const triggers = [...document.querySelectorAll<HTMLButtonElement>('[data-nav-trigger]')];
+  if (!header || !triggers.length) return;
+  const panelOf = (t: HTMLButtonElement) => document.getElementById(t.getAttribute('aria-controls')!)!;
+  let open: HTMLButtonElement | null = null;
+  let timer = 0;
+  let openedAt = 0;
+  let hoverAt = 0;
+
+  triggers.forEach((t) => {
+    const panel = panelOf(t);
+    panel.toggleAttribute('inert', true);
+    panel.querySelectorAll<HTMLElement>('li, .nav-feature').forEach((el, i) => el.style.setProperty('--i', String(i)));
+    // a group holding the current page carries the current-page diamond
+    const here = [...panel.querySelectorAll<HTMLAnchorElement>('a')].some((a) => {
+      const u = new URL(a.href, location.href);
+      return !u.hash && u.pathname === location.pathname && location.pathname !== '/';
+    });
+    t.classList.toggle('is-current', here);
+  });
+
+  const set = (t: HTMLButtonElement | null) => {
+    window.clearTimeout(timer);
+    if (open === t) return;
+    if (open) {
+      open.setAttribute('aria-expanded', 'false');
+      const p = panelOf(open);
+      p.classList.remove('is-open');
+      p.toggleAttribute('inert', true);
+    }
+    open = t;
+    if (t) {
+      t.setAttribute('aria-expanded', 'true');
+      const p = panelOf(t);
+      p.classList.add('is-open');
+      p.toggleAttribute('inert', false);
+    }
+    header.classList.toggle('is-open', !!t);
+    openedAt = window.scrollY;
+  };
+
+  triggers.forEach((t) => {
+    // a click right after hover opened the sheet confirms it rather than closing it
+    t.addEventListener('click', () => set(open === t && performance.now() - hoverAt > 450 ? null : t));
+    t.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        if (open !== t) hoverAt = performance.now();
+        set(t);
+      }, open ? 0 : 90);
+    });
+  });
+  header.addEventListener('pointerleave', (e) => {
+    if (e.pointerType !== 'mouse' || !open) return;
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => set(null), 220);
+  });
+  header.addEventListener('pointerenter', () => window.clearTimeout(timer));
+  // pointing at other bar items (logo, contact, CTA) closes the sheet
+  header.querySelectorAll<HTMLElement>('.header-bar a').forEach((a) =>
+    a.addEventListener('pointerenter', (e) => {
+      if (e.pointerType === 'mouse' && open) timer = window.setTimeout(() => set(null), 120);
+    }),
+  );
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && open) {
+      const t = open;
+      set(null);
+      t.focus();
+    }
+  });
+  document.addEventListener('pointerdown', (e) => {
+    if (open && !header.contains(e.target as Node)) set(null);
+  });
+  header.addEventListener('focusout', (e) => {
+    if (open && !header.contains(e.relatedTarget as Node)) set(null);
+  });
+  header.querySelectorAll('[data-nav-panel] a').forEach((a) => a.addEventListener('click', () => set(null)));
+  // scrolling the page away from an open sheet closes it
+  window.addEventListener('scroll', () => open && Math.abs(window.scrollY - openedAt) > 80 && set(null), { passive: true });
+}
+
 export function initShell(): Lenis | null {
   const lenis = initSmoothScroll();
   initHeader();
   initMenu(lenis);
+  initNav();
   document.querySelectorAll('[data-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
   // mark the current page in the navigation (in-page anchors are not pages)
-  document.querySelectorAll<HTMLAnchorElement>('.nav-link, [data-menu-link]').forEach((a) => {
+  document.querySelectorAll<HTMLAnchorElement>('a.nav-link, [data-menu-link], .nav-card').forEach((a) => {
     const url = new URL(a.href, location.href);
     if (!url.hash && url.pathname === location.pathname) a.setAttribute('aria-current', 'page');
   });
