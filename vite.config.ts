@@ -64,13 +64,23 @@ function videos(html: string): string {
 /** English ⇄ Dutch page pairs: drives the language switch and hreflang links */
 const routes: Record<string, string> = JSON.parse(readFileSync(resolve(import.meta.dirname, 'src/content/routes.json'), 'utf8'));
 const SITE = 'https://www.express-cargo.nl';
+/** English page → share image name in public/og/ (scripts/og.mjs) */
+const OG: Record<string, string> = {
+  '/': 'home', '/about/': 'about', '/contact/': 'contact', '/tools/': 'tools', '/resources/': 'incoterms',
+  '/services/air-freight/': 'air-freight', '/services/sea-freight/': 'sea-freight',
+  '/services/road-transport/': 'road-transport', '/services/special-projects/': 'special-projects',
+};
 function languages(html: string, file: string): string {
   const page = file.replace(/index\.html$/, '');
   const en = page.startsWith('/nl/') ? Object.keys(routes).find((k) => routes[k] === page) : page;
   const nl = en ? routes[en] : undefined;
   if (!en || !nl) return html;
   const alt = page.startsWith('/nl/') ? en : nl;
-  const links = `<link rel="alternate" hreflang="en" href="${SITE}${en}" />\n    <link rel="alternate" hreflang="nl" href="${SITE}${nl}" />\n    <link rel="alternate" hreflang="x-default" href="${SITE}${en}" />\n  </head>`;
+  // one share image per page pair, Dutch pages get the Dutch card
+  const og = `${SITE}/og/${OG[en] ?? 'home'}${page.startsWith('/nl/') ? '-nl' : ''}.jpg`;
+  html = html.replace(/\s*<meta property="og:image"[^>]*>/g, '');
+  const meta = `<meta property="og:image" content="${og}" />\n    <meta property="og:image:width" content="1200" />\n    <meta property="og:image:height" content="630" />\n    <meta name="twitter:image" content="${og}" />\n    <meta property="og:locale" content="${page.startsWith('/nl/') ? 'nl_NL' : 'en_GB'}" />\n    `;
+  const links = `${meta}<link rel="alternate" hreflang="en" href="${SITE}${en}" />\n    <link rel="alternate" hreflang="nl" href="${SITE}${nl}" />\n    <link rel="alternate" hreflang="x-default" href="${SITE}${en}" />\n  </head>`;
   return html.replaceAll('{{alt-lang}}', alt).replace('</head>', links);
 }
 
@@ -84,8 +94,25 @@ const pageInputs = Object.fromEntries(
   Object.entries(routes).flatMap(([en, nl]) => [en, nl]).map((p) => [p === '/' ? 'main' : p.replace(/^\/|\/$/g, '').replace(/\//g, '-'), resolve(import.meta.dirname, `.${p}index.html`)]),
 );
 
+/** sitemap.xml from the same page pairs, with hreflang alternates for each URL */
+const sitemap = (): Plugin => ({
+  name: 'ec-sitemap',
+  apply: 'build',
+  generateBundle() {
+    const today = new Date().toISOString().slice(0, 10);
+    const entry = (loc: string, en: string, nl: string) =>
+      `  <url>\n    <loc>${SITE}${loc}</loc>\n    <lastmod>${today}</lastmod>\n` +
+      `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${en}" />\n` +
+      `    <xhtml:link rel="alternate" hreflang="nl" href="${SITE}${nl}" />\n` +
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${en}" />\n  </url>`;
+    const urls = Object.entries(routes).flatMap(([en, nl]) => [entry(en, en, nl), entry(nl, en, nl)]);
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`;
+    this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: xml });
+  },
+});
+
 export default defineConfig({
-  plugins: [html(), tailwindcss()],
+  plugins: [html(), tailwindcss(), sitemap()],
   build: {
     // the WebGL globe (three.js) is a lazy chunk fetched only near #projects
     chunkSizeWarningLimit: 600,

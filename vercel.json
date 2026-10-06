@@ -1,0 +1,187 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
+    {
+      "src": "(?i)^/luchtvracht/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/diensten/luchtvracht/"
+      }
+    },
+    {
+      "src": "(?i)^/zeevracht/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/diensten/zeevracht/"
+      }
+    },
+    {
+      "src": "(?i)^/weg-transport/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/diensten/wegtransport/"
+      }
+    },
+    {
+      "src": "(?i)^/s-projects-basic/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/diensten/projecten/"
+      }
+    },
+    {
+      "src": "(?i)^/diensten/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/#services"
+      }
+    },
+    {
+      "src": "(?i)^/over/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/over-ons/"
+      }
+    },
+    {
+      "src": "(?i)^/meet-the-team/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/over-ons/#team"
+      }
+    },
+    {
+      "src": "(?i)^/contact$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/contact/"
+      }
+    },
+    {
+      "src": "(?i)^/vraag-een-offerte-aan/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/contact/#enquiry"
+      }
+    },
+    {
+      "src": "(?i)^/blog/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/"
+      }
+    },
+    {
+      "src": "(?i)^/post/dangerous-goods/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/diensten/luchtvracht/"
+      }
+    },
+    {
+      "src": "(?i)^/post/.+$",
+      "status": 301,
+      "headers": {
+        "Location": "/nl/"
+      }
+    },
+    {
+      "src": "(?i)^/en/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "src": "(?i)^/en/luchtvracht/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/services/air-freight/"
+      }
+    },
+    {
+      "src": "(?i)^/en/zeevracht/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/services/sea-freight/"
+      }
+    },
+    {
+      "src": "(?i)^/en/weg-transport/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/services/road-transport/"
+      }
+    },
+    {
+      "src": "(?i)^/en/s-projects-basic/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/services/special-projects/"
+      }
+    },
+    {
+      "src": "(?i)^/en/diensten/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/#services"
+      }
+    },
+    {
+      "src": "(?i)^/en/over/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/about/"
+      }
+    },
+    {
+      "src": "(?i)^/en/meet-the-team/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/about/#team"
+      }
+    },
+    {
+      "src": "(?i)^/en/contact/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/contact/"
+      }
+    },
+    {
+      "src": "(?i)^/en/vraag-een-offerte-aan/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/contact/#enquiry"
+      }
+    },
+    {
+      "src": "(?i)^/en/blog/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "src": "(?i)^/en/post/dangerous-goods/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/services/air-freight/"
+      }
+    },
+    {
+      "src": "(?i)^/en/post/.+$",
+      "status": 301,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "src": "^/assets/(.*)$",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      },
+      "continue": true
+    }
+  ]
+}
