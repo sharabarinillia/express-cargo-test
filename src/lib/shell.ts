@@ -37,7 +37,8 @@ export function initHeader(): void {
  * Quick actions (call, quote) docked to the viewport once the hero is behind
  * you. They step aside where the page already offers the same actions: the
  * closing panel, the footer and the contact form, and clear the pinned
- * flight log, whose cards run to the bottom of the screen.
+ * flight log, whose cards run to the bottom of the screen. Phones don't show
+ * it at all (main.css): there it would cover the page.
  */
 export function initDock(): void {
   const dock = document.querySelector<HTMLElement>('[data-dock]');
