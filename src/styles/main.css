@@ -1153,6 +1153,33 @@
     border-radius: 50%;
     background: var(--color-night);
     border: 2px solid var(--color-cyan);
+    transition:
+      background-color 0.35s,
+      box-shadow 0.35s;
+  }
+  .leg.is-lit::before {
+    background: var(--color-cyan);
+    box-shadow: 0 0 0 4px rgb(18 196 222 / 0.18);
+  }
+  /* below desktop the legs stack: a vertical segment links each dot to the
+     next and draws as you scroll (--seg, 0 to 1); desktop uses the long
+     horizontal line instead */
+  @media (max-width: 1023px) {
+    .leg {
+      padding-top: 0;
+      padding-left: 34px;
+    }
+    .leg:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 18px;
+      bottom: -32px;
+      width: 2px;
+      background: var(--color-cyan);
+      transform-origin: top;
+      transform: scaleY(var(--seg, 1));
+    }
   }
 
   /* ── ATC flight strips (time-critical) ──────────────────────────── */

@@ -122,6 +122,28 @@ export function initReveals(): void {
   if (legsLine) {
     gsap.fromTo(legsLine, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '[data-legs]', start: 'top 80%', end: 'top 40%', scrub: 0.6 } });
     gsap.from('[data-legs] .leg', { opacity: 0, y: 16, stagger: 0.18, duration: 0.6, ease: 'power3.out', scrollTrigger: { trigger: '[data-legs]', start: 'top 75%', once: true } });
+    const legs = gsap.utils.toArray<HTMLElement>('[data-legs] .leg');
+    const mm = gsap.matchMedia();
+    // desktop: each dot lights as the horizontal line reaches it
+    mm.add('(min-width: 1024px)', () => {
+      ScrollTrigger.create({
+        trigger: '[data-legs]',
+        start: 'top 80%',
+        end: 'top 40%',
+        onUpdate: (st) => legs.forEach((leg, i) => leg.classList.toggle('is-lit', st.progress >= i / legs.length)),
+        onLeaveBack: () => legs.forEach((leg) => leg.classList.remove('is-lit')),
+      });
+      return () => legs.forEach((leg) => leg.classList.remove('is-lit'));
+    });
+    // phones and tablets: the stacked legs are linked by vertical segments that
+    // draw down the column, lighting each dot as the line arrives
+    mm.add('(max-width: 1023px)', () => {
+      legs.forEach((leg, i) => {
+        ScrollTrigger.create({ trigger: leg, start: 'top 72%', onEnter: () => leg.classList.add('is-lit'), onLeaveBack: () => leg.classList.remove('is-lit') });
+        if (i < legs.length - 1) gsap.fromTo(leg, { '--seg': 0 }, { '--seg': 1, ease: 'none', scrollTrigger: { trigger: leg, start: 'top 72%', end: 'bottom 52%', scrub: 0.5 } });
+      });
+      return () => legs.forEach((leg) => leg.classList.remove('is-lit'));
+    });
   }
 
   // airways: rows land, icons draw themselves
