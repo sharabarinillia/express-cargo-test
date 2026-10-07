@@ -848,12 +848,10 @@
     inset: 0;
     z-index: 49;
     background: var(--color-paper);
-    padding: 88px var(--gutter) 28px;
+    padding-top: 84px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
+    overflow: hidden;
     visibility: hidden;
     opacity: 0;
     transition:
@@ -865,9 +863,18 @@
     opacity: 1;
     transition: opacity 0.3s;
   }
+  /* the links scroll on their own; the actions below stay on screen */
   .menu-groups {
+    flex: 1;
+    min-height: 0;
     display: grid;
-    gap: 26px;
+    align-content: start;
+    gap: 22px;
+    padding: 8px var(--gutter) 28px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
   }
   @media (min-width: 640px) {
     .menu-groups {
@@ -882,11 +889,11 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    min-height: 46px;
+    min-height: 44px;
     border-bottom: 1px solid var(--color-line-2);
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 1.14rem;
+    font-size: 1.06rem;
     letter-spacing: -0.01em;
   }
   .menu-group .icon {
@@ -898,10 +905,40 @@
     color: var(--color-magenta);
   }
   .menu-foot {
-    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
+    padding: 14px var(--gutter) calc(14px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--color-line);
+    background: var(--color-paper);
+  }
+  .menu-contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px 16px;
+  }
+  .menu-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+  }
+  .menu-contact .icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-cyan-ink);
+  }
+  @media (min-width: 640px) {
+    .menu-foot {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .menu-contact {
+      gap: 4px 24px;
+    }
   }
   .menu-group,
   .menu-foot {

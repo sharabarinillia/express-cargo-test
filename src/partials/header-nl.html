@@ -87,7 +87,7 @@
   </div>
 </header>
 <div class="menu-panel lg:hidden" id="menu" data-menu>
-  <nav aria-label="Mobiel menu" class="menu-groups">
+  <nav aria-label="Mobiel menu" class="menu-groups" data-lenis-prevent>
     <div class="menu-group">
       <p class="chart text-mute">Diensten</p>
       <ul>
@@ -116,9 +116,12 @@
       </ul>
     </div>
   </nav>
+  <!-- pinned to the bottom of the screen so the actions are always in reach -->
   <div class="menu-foot">
     <a href="/nl/contact/#enquiry" class="btn btn-ink" data-menu-link>Offerte aanvragen <!-- @include arrow --></a>
-    <a href="tel:+31203332405" class="chart-l py-2 text-xl">+31 20 333 2405</a>
-    <a href="mailto:salesams@express-cargo.nl" class="py-2 text-ink-2">salesams@express-cargo.nl</a>
+    <p class="menu-contact">
+      <a href="tel:+31203332405" class="chart-l"><ec-icon name="phone" /> +31 20 333 2405</a>
+      <a href="mailto:salesams@express-cargo.nl" class="text-ink-2">salesams@express-cargo.nl</a>
+    </p>
   </div>
 </div>
