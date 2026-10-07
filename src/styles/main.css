@@ -960,8 +960,18 @@
   .menu-open .menu-group:nth-child(3) {
     transition-delay: 0.12s;
   }
-  .menu-open .menu-foot {
+  .menu-open .menu-group:nth-child(4) {
     transition-delay: 0.18s;
+  }
+  .menu-open .menu-foot {
+    transition-delay: 0.24s;
+  }
+  /* Home: one row above the groups, across both columns on tablets */
+  .menu-group.is-home {
+    grid-column: 1 / -1;
+  }
+  .menu-group.is-home ul {
+    margin-top: 0;
   }
 
   /* ── The route: plotted line + aircraft ─────────────────────────── */
