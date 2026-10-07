@@ -135,6 +135,7 @@ run('about/index.html', 'nl/over-ons/index.html', TEAM + [
 ])
 
 run('tools/index.html', 'nl/tools/index.html', [
+    ('<span class="chart text-cyan-ink">Lithium batteries</span><b class="mt-1 block">Shipping batteries? Find the UN number, packing instruction and documents first.</b>', '<span class="chart text-cyan-ink">Lithiumbatterijen</span><b class="mt-1 block">Batterijen verzenden? Zoek eerst het UN-nummer, de verpakkingsinstructie en de documenten op.</b>'),
     ('<title>Chargeable weight &amp; loading metre calculator | Free shipping tools | Express Cargo</title>', '<title>Volumegewicht &amp; laadmetercalculator | Gratis verzendtools | Express Cargo</title>'),
     ('content="Free chargeable-weight calculator for air (IATA 1:6000), courier (1:5000), road (333 kg/m³) and sea freight (W/M 1 m³ = 1,000 kg), plus a loading-metre (LDM) and pallet calculator for a 13.6 m trailer."', 'content="Gratis calculator voor belastbaar gewicht bij luchtvracht (IATA 1:6000), koerier (1:5000), wegtransport (333 kg/m³) en zeevracht (W/M 1 m³ = 1.000 kg), plus een laadmeter- (LDM) en palletcalculator voor een trailer van 13,6 m."'),
     ('href="https://www.express-cargo.nl/tools/"', 'href="https://www.express-cargo.nl/nl/tools/"'),

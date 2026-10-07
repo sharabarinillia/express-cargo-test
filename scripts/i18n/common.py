@@ -10,6 +10,8 @@ LINKS = [
     ('href="/services/sea-freight/"', 'href="/nl/diensten/zeevracht/"'),
     ('href="/services/road-transport/"', 'href="/nl/diensten/wegtransport/"'),
     ('href="/services/special-projects/"', 'href="/nl/diensten/projecten/"'),
+    ('href="/services/lithium-batteries/#', 'href="/nl/diensten/lithiumbatterijen/#'),
+    ('href="/services/lithium-batteries/"', 'href="/nl/diensten/lithiumbatterijen/"'),
     ('href="/contact/#enquiry"', 'href="/nl/contact/#enquiry"'),
     ('href="/contact/"', 'href="/nl/contact/"'),
     ('href="/about/', 'href="/nl/over-ons/'),

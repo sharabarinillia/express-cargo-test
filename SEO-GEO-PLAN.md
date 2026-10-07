@@ -6,7 +6,7 @@
 |---|---|---|
 | 1. Migration | Done: 25 permanent redirects from the Wix URLs (Dutch root pages, the `/en/` mirror and the blog post, checked against the live URL inventory); verification tags kept; `robots.txt`; build-time `sitemap.xml` with hreflang; 1200×630 share images per page in both languages | `vercel.json` (from `scripts/redirects.mjs`), `src/partials/head.html`, `public/robots.txt`, `vite.config.ts`, `scripts/og.mjs` |
 | 2. Structured data | Done: one generated `@graph` per page (Organization `@id`, WebSite, WebPage, BreadcrumbList, Service, WebApplication, DefinedTermSet, people, FAQPage). The build fails on invalid graphs or duplicate titles, descriptions and canonicals | `scripts/seo.mjs` |
-| 3. GEO content | Done: `llms.txt`, plus answer-first FAQs (4–5 per page, English and Dutch) on the service, tools and Incoterms pages. Explainer and case pages are still to do | `public/llms.txt`, `src/content/faq.json` |
+| 3. GEO content | Done: `llms.txt`, plus answer-first FAQs (4–6 per page, English and Dutch) on the service, tools, Incoterms and lithium pages. First explainer live: lithium batteries (UN3480/UN3481), with a classifier of the 2026 IATA air rules and a `DefinedTermSet` of the four UN numbers. Other explainers and case pages are still to do | `public/llms.txt`, `src/content/faq.json`, `scripts/lithium.mjs` |
 | 4. Dutch version | Done: `/nl/` mirror with hreflang and a language switch | `nl/`, `scripts/i18n/` |
 | 5. Measurement | Waiting on the client | |
 

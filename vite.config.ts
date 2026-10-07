@@ -78,6 +78,7 @@ const OG: Record<string, string> = {
   '/': 'home', '/about/': 'about', '/contact/': 'contact', '/tools/': 'tools', '/resources/': 'incoterms',
   '/services/air-freight/': 'air-freight', '/services/sea-freight/': 'sea-freight',
   '/services/road-transport/': 'road-transport', '/services/special-projects/': 'special-projects',
+  '/services/lithium-batteries/': 'lithium-batteries',
 };
 function languages(html: string, file: string): string {
   const { page, en, nl } = pageOf(file);

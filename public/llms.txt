@@ -16,6 +16,7 @@ Every shipment has one coordinator from first message to delivery. Quotes are pr
 - [Sea freight](https://www.express-cargo.nl/services/sea-freight/): full containers (FCL) and shared containers (LCL) with partners, flat racks for vehicles and out-of-gauge cargo, all documents arranged
 - [Road transport](https://www.express-cargo.nl/services/road-transport/): national and international, 1 to 10,000 kg and 1 to 200 pallets; dedicated transport, white glove, TAPA TSR1 security, art, hanging garments, groupage, medical samples
 - [Special projects and white glove](https://www.express-cargo.nl/services/special-projects/): tailor-made crates, Envirotainer active containers, heavy and oversized cargo, inside delivery, a transport manager travelling with the shipment when needed
+- [Lithium batteries](https://www.express-cargo.nl/services/lithium-batteries/): UN3480 and UN3481 (lithium-ion), UN3090 and UN3091 (lithium metal); on their own, packed with equipment or contained in equipment; by air (IATA DGR), road (ADR) and sea (IMDG Code), subject to the applicable regulations, carrier acceptance and classification. UN-specification packaging arranged, packing and preparation in house where needed. Strong focus on medical equipment and healthcare. Damaged or defective lithium batteries are not accepted. The page has a classifier with the 2026 air rules per battery type (packing instruction, aircraft, marks, documents, state of charge)
 - Time-critical: Next Flight Out (NFO), On-Board Courier (OBC) and Direct Driver, described on the [home page](https://www.express-cargo.nl/#time-critical)
 
 ## Free tools and references
@@ -31,7 +32,7 @@ Every shipment has one coordinator from first message to delivery. Quotes are pr
 ## Nederlands
 
 - [Startpagina](https://www.express-cargo.nl/nl/)
-- [Luchtvracht](https://www.express-cargo.nl/nl/diensten/luchtvracht/), [Zeevracht](https://www.express-cargo.nl/nl/diensten/zeevracht/), [Wegtransport](https://www.express-cargo.nl/nl/diensten/wegtransport/), [Projecten & white glove](https://www.express-cargo.nl/nl/diensten/projecten/)
+- [Luchtvracht](https://www.express-cargo.nl/nl/diensten/luchtvracht/), [Zeevracht](https://www.express-cargo.nl/nl/diensten/zeevracht/), [Wegtransport](https://www.express-cargo.nl/nl/diensten/wegtransport/), [Projecten & white glove](https://www.express-cargo.nl/nl/diensten/projecten/), [Lithiumbatterijen](https://www.express-cargo.nl/nl/diensten/lithiumbatterijen/)
 - [Calculator belastbaar gewicht & laadmeters](https://www.express-cargo.nl/nl/tools/), [Incoterms® 2020-overzicht](https://www.express-cargo.nl/nl/incoterms/)
 - [Over ons](https://www.express-cargo.nl/nl/over-ons/), [Contact](https://www.express-cargo.nl/nl/contact/)
 

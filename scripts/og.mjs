@@ -25,6 +25,7 @@ const cards = [
   ['air-freight', 'img/poster-air-loading-1600.webp', 'Air · AMS → Worldwide', 'Air freight, door to door.', 'Lucht · AMS → Wereldwijd', 'Luchtvracht, van deur tot deur.'],
   ['sea-freight', 'img/poster-sea-river-1600.webp', 'Sea · RTM → Worldwide', 'Sea freight, full or shared.', 'Zee · RTM → Wereldwijd', 'Zeevracht, vol of gedeeld.'],
   ['road-transport', 'img/poster-road-highway-1600.webp', 'Road · Europe & beyond', 'Road transport, one box to a full trailer.', 'Weg · Europa & verder', 'Wegtransport, van één doos tot een volle trailer.'],
+  ['lithium-batteries', 'img/poster-tc-cargojet-1600.webp', 'UN3480 · UN3481 · Class 9', 'Lithium batteries, shipped right the first time.', 'UN3480 · UN3481 · Klasse 9', 'Lithiumbatterijen, in één keer goed verzonden.'],
   ['special-projects', 'img/poster-close-wing-1600.webp', 'Projects · White glove', 'Projects that don’t fit a form.', 'Projecten · White glove', 'Projecten die niet in een formulier passen.'],
 ];
 

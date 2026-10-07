@@ -28,6 +28,7 @@ const CRUMBS = {
   '/services/sea-freight/': ['Sea freight', 'Zeevracht'],
   '/services/road-transport/': ['Road transport', 'Wegtransport'],
   '/services/special-projects/': ['Projects & white glove', 'Projecten & white glove'],
+  '/services/lithium-batteries/': ['Lithium batteries', 'Lithiumbatterijen'],
 };
 const PAGE_TYPE = { '/about/': 'AboutPage', '/contact/': 'ContactPage' };
 
@@ -187,6 +188,39 @@ export function buildGraph(html, en, page, lang) {
     });
   }
 
+  if (en === '/services/lithium-batteries/') {
+    // the four UN numbers for lithium batteries, as answered on the page (IATA DGR 2026)
+    const UN = nl
+      ? [
+          ['UN3480', 'Lithium ion batteries', 'Lithium-ionbatterijen die los worden verzonden, ook powerbanks. IATA-verpakkingsinstructie 965; alleen vrachtvliegtuig; maximaal 30% laadtoestand.'],
+          ['UN3481', 'Lithium ion batteries packed with / contained in equipment', 'Lithium-ionbatterijen bij apparatuur (PI 966) of in apparatuur (PI 967). Passagiers- of vrachtvliegtuig binnen de limieten per pakket; sinds 1 januari 2026 maximaal 30% laadtoestand als ze bij apparatuur zijn verpakt.'],
+          ['UN3090', 'Lithium metal batteries', 'Lithiummetaalbatterijen die los worden verzonden. IATA-verpakkingsinstructie 968; alleen vrachtvliegtuig.'],
+          ['UN3091', 'Lithium metal batteries packed with / contained in equipment', 'Lithiummetaalbatterijen bij apparatuur (PI 969) of in apparatuur (PI 970). Passagiers- of vrachtvliegtuig binnen de limieten per pakket.'],
+        ]
+      : [
+          ['UN3480', 'Lithium ion batteries', 'Lithium-ion batteries shipped on their own, including power banks. IATA packing instruction 965; cargo aircraft only; at most 30% state of charge.'],
+          ['UN3481', 'Lithium ion batteries packed with / contained in equipment', 'Lithium-ion batteries packed with equipment (PI 966) or contained in it (PI 967). Passenger or cargo aircraft within the package limits; since 1 January 2026 at most 30% state of charge when packed with equipment.'],
+          ['UN3090', 'Lithium metal batteries', 'Lithium metal batteries shipped on their own. IATA packing instruction 968; cargo aircraft only.'],
+          ['UN3091', 'Lithium metal batteries packed with / contained in equipment', 'Lithium metal batteries packed with equipment (PI 969) or contained in it (PI 970). Passenger or cargo aircraft within the package limits.'],
+        ];
+    graph.push({
+      '@type': 'DefinedTermSet',
+      '@id': `${canonical}#un-numbers`,
+      name: nl ? 'UN-nummers voor lithiumbatterijen' : 'UN numbers for lithium batteries',
+      description: nl ? 'De vier UN-nummers voor lithiumbatterijen in de IATA Dangerous Goods Regulations (2026).' : 'The four UN numbers for lithium batteries in the IATA Dangerous Goods Regulations (2026).',
+      inLanguage: lang,
+      hasDefinedTerm: UN.map(([code, name, description]) => ({
+        '@type': 'DefinedTerm',
+        '@id': `${canonical}#${code.toLowerCase()}`,
+        termCode: code,
+        name: `${code} (${name})`,
+        description,
+        url: `${canonical}#classifier`,
+        inDefinedTermSet: { '@id': `${canonical}#un-numbers` },
+      })),
+    });
+  }
+
   if (en === '/about/') {
     for (const [name, role, roleNl, email] of TEAM)
       graph.push({ '@type': 'Person', name, jobTitle: nl ? roleNl : role, email, worksFor: { '@id': ORG } });
@@ -255,7 +289,8 @@ export function validateGraph(data, page) {
       });
     if (types.includes('FAQPage'))
       for (const q of n.mainEntity) if (!q.name || !q.acceptedAnswer?.text) fail('FAQ question without answer');
-    if (types.includes('DefinedTermSet') && n.hasDefinedTerm.length !== 11) fail(`expected 11 Incoterms, found ${n.hasDefinedTerm.length}`);
+    if (types.includes('DefinedTermSet') && n['@id'].endsWith('#incoterms') && n.hasDefinedTerm.length !== 11) fail(`expected 11 Incoterms, found ${n.hasDefinedTerm.length}`);
+    if (types.includes('DefinedTermSet') && n['@id'].endsWith('#un-numbers') && n.hasDefinedTerm.length !== 4) fail(`expected 4 lithium UN numbers, found ${n.hasDefinedTerm.length}`);
   }
   if (!nodes.some((n) => n['@id'] === ORG)) fail('Organization missing');
   return problems;

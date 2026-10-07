@@ -34,7 +34,7 @@ const pages = [
     capsLede: 'Shipments that need more than a booking: the right packing, the right paperwork and someone who follows up.',
     caps: [
       ['triangle-alert', 'Dangerous goods', 'Declared, packed and labelled to IATA DGR by certified staff.'],
-      ['battery-charging', 'Lithium batteries', 'UN3480, UN3481 and UN3090/3091, in or with equipment.'],
+      ['battery-charging', 'Lithium batteries', 'UN3480, UN3481 and UN3090/3091, in or with equipment.', { en: ['/services/lithium-batteries/', 'How we ship them'], nl: ['/nl/diensten/lithiumbatterijen/', 'Zo verzenden wij ze'] }],
       ['flask-conical', 'Biological & pharmaceutical', 'Clinical samples, UN3373 specimens and pharma, on dry ice when needed.'],
       ['thermometer-snowflake', 'Temperature-controlled', '+2–8 °C, +15–25 °C and frozen, from packaging to active containers.'],
       ['file-text', 'Customs documents', 'Export and import formalities handled, documents prepared and checked.'],
@@ -227,7 +227,7 @@ const pagesNl = pages.map((p) => {
     ...p,
     ...n,
     journey: p.journey.map(([icon], i) => [icon, ...n.journey[i]]),
-    caps: p.caps.map(([icon], i) => [icon, ...n.caps[i]]),
+    caps: p.caps.map(([icon, , , link], i) => [icon, ...n.caps[i], link]),
     media: { img: p.media.img, alt: n.mediaAlt },
     tool: { href: p.tool.href, label: n.tool },
     cases: p.cases?.map(([img], i) => [img, ...n.cases[i]]),
@@ -331,7 +331,7 @@ function page(p, all, L) {
             <p class="lede self-end lg:col-span-6" data-reveal>${esc(p.capsLede)}</p>
           </div>
           <ul class="caps mt-14" data-stagger>
-            ${p.caps.map(([icon, t, d]) => `<li class="cap"><span class="cap-icon"><ec-icon name="${icon}" /></span><h3 class="cap-title">${esc(t)}</h3><p class="copy mt-2 text-[0.98rem]">${esc(d)}</p></li>`).join('\n            ')}
+            ${p.caps.map(([icon, t, d, link]) => `<li class="cap"><span class="cap-icon"><ec-icon name="${icon}" /></span><h3 class="cap-title">${esc(t)}</h3><p class="copy mt-2 text-[0.98rem]">${esc(d)}</p>${link ? `<a class="more-link mt-4" href="${link[L.lang][0]}">${esc(link[L.lang][1])} <!-- @include arrow --></a>` : ''}</li>`).join('\n            ')}
           </ul>
         </div>
       </section>

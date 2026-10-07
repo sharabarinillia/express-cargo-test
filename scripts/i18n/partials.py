@@ -8,6 +8,7 @@ LINKS = [
     ('href="/services/sea-freight/"', 'href="/nl/diensten/zeevracht/"'),
     ('href="/services/road-transport/"', 'href="/nl/diensten/wegtransport/"'),
     ('href="/services/special-projects/"', 'href="/nl/diensten/projecten/"'),
+    ('href="/services/lithium-batteries/"', 'href="/nl/diensten/lithiumbatterijen/"'),
 ]
 
 header = LINKS + [
@@ -39,6 +40,7 @@ header = LINKS + [
     ('<b>Road transport</b><small>Groupage to dedicated, TAPA TSR1</small>', '<b>Wegtransport</b><small>Van groupage tot dedicated, TAPA TSR1</small>'),
     ('<b>Projects &amp; white glove</b><small>Crates, art, Envirotainer, oversize</small>', '<b>Projecten &amp; white glove</b><small>Kisten, kunst, Envirotainer, oversized</small>'),
     ('Specialist cargo', 'Specialistische lading'),
+    ('<ec-icon name="battery-charging" /> Lithium batteries: UN3480, UN3481</a>', '<ec-icon name="battery-charging" /> Lithiumbatterijen: UN3480, UN3481</a>'),
     ('Time-critical: NFO, OBC, Direct', 'Spoed: NFO, OBC, Direct'),
     ('Dangerous goods &amp; samples', 'Gevaarlijke stoffen &amp; samples'),
     ('Cold chain &amp; bonded storage', 'Koelketen &amp; douane-entrepot'),
@@ -60,6 +62,7 @@ header = LINKS + [
     ('<ec-icon name="ship" /> Sea freight</a>', '<ec-icon name="ship" /> Zeevracht</a>'),
     ('<ec-icon name="truck" /> Road transport</a>', '<ec-icon name="truck" /> Wegtransport</a>'),
     ('<ec-icon name="gem" /> Projects &amp; white glove</a>', '<ec-icon name="gem" /> Projecten &amp; white glove</a>'),
+    ('<ec-icon name="battery-charging" /> Lithium batteries</a>', '<ec-icon name="battery-charging" /> Lithiumbatterijen</a>'),
     ('<ec-icon name="timer" /> Time-critical</a>', '<ec-icon name="timer" /> Spoedzendingen</a>'),
     ('<ec-icon name="snowflake" /> Cold chain</a>', '<ec-icon name="snowflake" /> Koelketen</a>'),
     ('<p class="chart text-mute">Tools &amp; resources</p>', '<p class="chart text-mute">Tools &amp; kennis</p>'),
@@ -81,6 +84,7 @@ footer = LINKS + [
     ('py-2" href="/nl/diensten/zeevracht/">Sea freight</a>', 'py-2" href="/nl/diensten/zeevracht/">Zeevracht</a>'),
     ('py-2" href="/nl/diensten/wegtransport/">Road transport</a>', 'py-2" href="/nl/diensten/wegtransport/">Wegtransport</a>'),
     ('Projects &amp; white glove</a>', 'Projecten &amp; white glove</a>'),
+    ('href="/nl/diensten/lithiumbatterijen/">Lithium batteries</a>', 'href="/nl/diensten/lithiumbatterijen/">Lithiumbatterijen</a>'),
     ('href="/#time-critical">Time-critical</a>', 'href="/nl/#time-critical">Spoedzendingen</a>'),
     ('aria-label="Footer tools"', 'aria-label="Tools"'),
     ('href="/tools/">Weight calculator</a>', 'href="/nl/tools/">Gewichtcalculator</a>'),

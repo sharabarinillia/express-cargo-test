@@ -49,7 +49,7 @@ function initForm() {
   const modeMap: Record<string, string> = { air: 'Air freight', road: 'Road', ocean: 'Ocean', 'time-critical': 'Time-critical' }; // option values, the same in both languages
   const mode = modeMap[params.get('mode') ?? ''];
   if (mode && field('mode')) field('mode')!.value = mode;
-  for (const key of ['from', 'to', 'what', 'weight'] as const) {
+  for (const key of ['from', 'to', 'what', 'weight', 'un'] as const) {
     const v = params.get(key)?.slice(0, 200);
     if (v && field(key)) field(key)!.value = v;
   }

@@ -31,7 +31,8 @@
   font-display: swap;
 }
 
-@theme {
+/* static: every token is emitted, also those only page stylesheets use (pages.css) */
+@theme static {
   --font-sans: "Overpass", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-chart: "Manrope", "Overpass", ui-sans-serif, system-ui, sans-serif;

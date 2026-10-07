@@ -8,6 +8,8 @@ npm run dev        # http://localhost:5173
 npm run build      # typecheck + production build → dist/
 npm run preview
 node scripts/images.mjs   # rebuild responsive AVIF/WebP sets from brand/ into public/img
+node scripts/services.mjs # service pages, English and Dutch
+node scripts/lithium.mjs  # lithium battery page and classifier (rules and text: scripts/content/lithium.mjs)
 ```
 
 - Pages: `index.html` (scroll story), `contact/index.html`. Shared markup lives in `src/partials/` and is included with `<!-- @include name -->`.
